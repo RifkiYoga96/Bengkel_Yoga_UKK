@@ -43,12 +43,10 @@
             button1 = new Button();
             flowLayoutPanel2 = new FlowLayoutPanel();
             dataGridView1 = new DataGridView();
-            sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             layout2.SuspendLayout();
             layoutDashboard.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)sfDataGrid1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -294,27 +292,13 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(703, 75);
             dataGridView1.TabIndex = 6;
-            // 
-            // sfDataGrid1
-            // 
-            sfDataGrid1.AccessibleName = "Table";
-            sfDataGrid1.Location = new Point(337, 203);
-            sfDataGrid1.Name = "sfDataGrid1";
-            sfDataGrid1.Size = new Size(703, 292);
-            sfDataGrid1.Style.BorderColor = Color.FromArgb(100, 100, 100);
-            sfDataGrid1.Style.CheckBoxStyle.CheckedBackColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.Style.CheckBoxStyle.CheckedBorderColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.Style.CheckBoxStyle.IndeterminateBorderColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.Style.HyperlinkStyle.DefaultLinkColor = Color.FromArgb(0, 120, 215);
-            sfDataGrid1.TabIndex = 7;
-            sfDataGrid1.Text = "sfDataGrid1";
+
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1083, 642);
-            Controls.Add(sfDataGrid1);
             Controls.Add(dataGridView1);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(button1);
@@ -325,7 +309,6 @@
             layoutDashboard.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)sfDataGrid1).EndInit();
             ResumeLayout(false);
         }
 
@@ -345,6 +328,5 @@
         private Button button8;
         private FlowLayoutPanel flowLayoutPanel2;
         private DataGridView dataGridView1;
-        private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
     }
 }

@@ -28,25 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            recordNavigationBar1 = new Syncfusion.Windows.Forms.RecordNavigationBar();
+            button1 = new Button();
+            sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
             SuspendLayout();
             // 
-            // recordNavigationBar1
+            // button1
             // 
-            recordNavigationBar1.CausesValidation = false;
-            recordNavigationBar1.Location = new Point(12, 12);
-            recordNavigationBar1.Name = "recordNavigationBar1";
-            recordNavigationBar1.Size = new Size(255, 426);
-            recordNavigationBar1.SizeToFit = false;
-            recordNavigationBar1.TabIndex = 0;
-            recordNavigationBar1.Text = "recordNavigationBar1";
+            button1.Location = new Point(87, 395);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // sfButton1
+            // 
+            sfButton1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            sfButton1.Location = new Point(178, 353);
+            sfButton1.Name = "sfButton1";
+            sfButton1.Size = new Size(96, 28);
+            sfButton1.TabIndex = 2;
+            sfButton1.Text = "sfButton1";
+            // 
+            // sfButton2
+            // 
+            sfButton2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            sfButton2.Location = new Point(286, 125);
+            sfButton2.Name = "sfButton2";
+            sfButton2.Size = new Size(96, 28);
+            sfButton2.TabIndex = 3;
+            sfButton2.Text = "sfButton2";
             // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(recordNavigationBar1);
+            ClientSize = new Size(837, 508);
+            Controls.Add(sfButton2);
+            Controls.Add(sfButton1);
+            Controls.Add(button1);
             Name = "Form3";
             Text = "Form3";
             ResumeLayout(false);
@@ -54,6 +75,8 @@
 
         #endregion
 
-        private Syncfusion.Windows.Forms.RecordNavigationBar recordNavigationBar1;
+        private Button button1;
+        private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton sfButton2;
     }
 }

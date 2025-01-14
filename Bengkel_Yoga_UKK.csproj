@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Bunifu.UI.WinForms" Version="7.2.0" />
     <PackageReference Include="Syncfusion.SfDataGrid.WinForms" Version="28.1.38" />
+    <PackageReference Include="Syncfusion.Tools.Windows" Version="28.1.38" />
   </ItemGroup>
 
   <ItemGroup>

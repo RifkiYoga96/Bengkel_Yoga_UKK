@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Licensing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,29 +21,34 @@ namespace Bengkel_Yoga_UKK
         {
             InitializeComponent();
 
+
+
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 1;
             _timer.Tick += _timer_Tick;
 
             _timerMenu2 = new System.Windows.Forms.Timer();
             _timerMenu2.Interval = 1;
-            _timerMenu2.Tick += _timer_Tick;
+            _timerMenu2.Tick += _timerMenu2_Tick;
 
             InitComponent();
             RegisterEvent();
 
-            EnableDoubleBuffering(dataGridView1);
+            //EnableDoubleBuffering(dataGridView1);
 
 
 
             SetupDataGridView();
             LoadData();
+
+            
         }
 
 
         private void RegisterEvent()
         {
-            btnDashboard.Click += BtnDashboard_Click;
+            /*btnDashboard.Click += (s, e) => _timer.Start();
+            btnHome.Click += (s, e) => _timerMenu2.Start();
 
             Color colorHover = Color.FromArgb(35, 41, 44);
             Color colorLeave = Color.FromArgb(55, 65, 70);
@@ -57,23 +63,23 @@ namespace Bengkel_Yoga_UKK
             button3.FlatAppearance.MouseOverBackColor = colorLeave;
 
             button5.FlatAppearance.MouseDownBackColor = colorHover;
-            button5.FlatAppearance.MouseOverBackColor = colorLeave;
+            button5.FlatAppearance.MouseOverBackColor = colorLeave;*/
 
-            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+            this.Load += Form2_Load1;
         }
 
+        private void Form2_Load1(object? sender, EventArgs e)
+        {
+            //AddShadowToPanel(panel4);
+            //panel3.BackColor = Color.FromArgb(50,Color.Black);
+        }
 
         private void InitComponent()
         {
         }
-
-        private void BtnDashboard_Click(object? sender, EventArgs e)
-        {
-            _timer.Start();
-        }
         private void _timer_Tick(object? sender, EventArgs e)
         {
-            if (!_dashboardExpand)
+            /*if (!_dashboardExpand)
             {
                 layoutDashboard.Height += 8;
                 if (layoutDashboard.Height == layoutDashboard.MaximumSize.Height)
@@ -90,33 +96,48 @@ namespace Bengkel_Yoga_UKK
                     _dashboardExpand = false;
                     _timer.Stop();
                 }
-            }
+            }*/
         }
-
-
-
-
-
-
-
+        private void _timerMenu2_Tick(object? sender, EventArgs e)
+        {
+            /*if (!_layout2Expand)
+            {
+                layout2.Height += 8;
+                if (layout2.Height == layout2.MaximumSize.Height)
+                {
+                    _layout2Expand = true;
+                    _timerMenu2.Stop();
+                }
+            }
+            else
+            {
+                layout2.Height -= 8;
+                if (layout2.Height == layout2.MinimumSize.Height)
+                {
+                    _layout2Expand = false;
+                    _timerMenu2.Stop();
+                }
+            }*/
+        }
 
         private void SetupDataGridView()
         {
-            // Menambahkan kolom gambar untuk status
-            DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
-            imageColumn.HeaderText = "Status";
-            imageColumn.Name = "StatusColumn";
-            dataGridView1.Columns.Add(imageColumn);
 
-            // Menambahkan kolom teks untuk data
-            dataGridView1.Columns.Add("OrderID", "Order ID");
-            dataGridView1.Columns.Add("CustomerName", "Customer Name");
-
-            // Menyesuaikan ukuran kolom gambar
-            imageColumn.Width = 100;
-            dataGridView1.RowTemplate.Height = 30;
+            //dataGridView1.RowTemplate.Height = 30;
         }
+        private void AddShadowToPanel(Panel panel)
+        {
+            Panel shadowPanel = new Panel
+            {
+                Size = new Size(panel.Width, panel.Height),
+                Location = new Point(panel.Left + 5, panel.Top + 5), // Geser untuk efek bayangan
+                BackColor = Color.FromArgb(50, Color.Black)         // Warna transparan untuk bayangan
+            };
 
+            this.Controls.Add(shadowPanel);
+            shadowPanel.SendToBack(); // Pastikan bayangan ada di belakang
+            panel.BringToFront();     // Panel utama tetap di depan
+        }
         private void LoadData()
         {
             // Membuat data dummy tanpa database
@@ -173,7 +194,7 @@ namespace Bengkel_Yoga_UKK
             };
 
             // Menambahkan data ke DataGridView
-            dataGridView1.DataSource = orders;
+            /*dataGridView1.DataSource = orders;
 
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
@@ -183,28 +204,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dataGridView1.VirtualMode = true;
-        }
-        private void DataGridView1_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // Menentukan gambar berdasarkan status
-            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["StatusColumn"].Index)
-            {
-                string status = dataGridView1.Rows[e.RowIndex].Cells["Status"].Value.ToString();
 
-                // Menampilkan gambar berdasarkan status
-                if (status == "Pending")
-                {
-                    e.Value = ResizeImageWithPercentage(Properties.Resources.BelumBayar, 50); // Gambar untuk status Pending, 50% ukuran asli
-                }
-                else if (status == "Completed")
-                {
-                    e.Value = ResizeImageWithPercentage(Properties.Resources.Selesai, 30); // Gambar untuk status Completed, 30% ukuran asli
-                }
-                else if (status == "Shipped")
-                {
-                    e.Value = ResizeImageWithPercentage(Properties.Resources.Antre, 40); // Gambar untuk status Shipped, 40% ukuran asli
-                }
-            }
+            dataGridView1.RowHeadersVisible = false;*/
         }
 
         // Metode untuk meresize gambar berdasarkan persentase
@@ -235,5 +236,9 @@ namespace Bengkel_Yoga_UKK
                 null, dgv, new object[] { true });
         }
 
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
