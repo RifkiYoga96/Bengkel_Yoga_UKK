@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bunifu.UI.WinForms" Version="7.2.0" />
-    <PackageReference Include="Syncfusion.SfDataGrid.WinForms" Version="28.1.38" />
-    <PackageReference Include="Syncfusion.Tools.Windows" Version="28.1.38" />
+    <PackageReference Include="Syncfusion.Chart.Windows" Version="19.2.0.57" />
+    <PackageReference Include="Syncfusion.Grid.Windows" Version="19.2.0.57" />
+    <PackageReference Include="Syncfusion.SfDataGrid.WinForms" Version="28.1.39" />
   </ItemGroup>
 
   <ItemGroup>

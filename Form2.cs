@@ -41,7 +41,7 @@ namespace Bengkel_Yoga_UKK
             SetupDataGridView();
             LoadData();
 
-            
+
         }
 
 
@@ -237,6 +237,21 @@ namespace Bengkel_Yoga_UKK
         }
 
         private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

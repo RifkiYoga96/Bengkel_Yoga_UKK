@@ -1,12 +1,12 @@
 namespace Bengkel_Yoga_UKK
 {
-    public partial class Dashboard : Form
+    public partial class Dashboardd : Form
     {
         private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.Timer _timerMenu2;
         private bool _dashboardExpand = false;
         private bool _layout2Expand = false;
-        public Dashboard()
+        public Dashboardd()
         {
             InitializeComponent();
 
