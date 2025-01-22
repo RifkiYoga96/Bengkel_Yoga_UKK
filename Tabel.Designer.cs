@@ -32,9 +32,20 @@
             dataGridView1 = new DataGridView();
             label2 = new Label();
             yogaPanel1 = new YogaPanel();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            yogaButton3 = new YogaButton();
+            yogaButton2 = new YogaButton();
+            label4 = new Label();
+            textBox1 = new TextBox();
+            label3 = new Label();
+            label1 = new Label();
+            numericUpDown1 = new NumericUpDown();
             yogaButton1 = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -44,10 +55,10 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.GridColor = SystemColors.Control;
-            dataGridView1.Location = new Point(46, 67);
+            dataGridView1.Location = new Point(46, 142);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(995, 342);
+            dataGridView1.Size = new Size(995, 306);
             dataGridView1.TabIndex = 0;
             // 
             // label2
@@ -66,15 +77,131 @@
             yogaPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             yogaPanel1.BackColor = Color.White;
             yogaPanel1.BorderColor = Color.PaleVioletRed;
-            yogaPanel1.BorderRadius = 20;
+            yogaPanel1.BorderRadius = 10;
             yogaPanel1.BorderSize = 0;
+            yogaPanel1.Controls.Add(panel1);
+            yogaPanel1.Controls.Add(label4);
+            yogaPanel1.Controls.Add(textBox1);
+            yogaPanel1.Controls.Add(label3);
+            yogaPanel1.Controls.Add(label1);
+            yogaPanel1.Controls.Add(numericUpDown1);
             yogaPanel1.Controls.Add(dataGridView1);
             yogaPanel1.Controls.Add(yogaButton1);
             yogaPanel1.ForeColor = Color.White;
-            yogaPanel1.Location = new Point(28, 88);
+            yogaPanel1.Location = new Point(28, 78);
             yogaPanel1.Name = "yogaPanel1";
-            yogaPanel1.Size = new Size(1086, 453);
+            yogaPanel1.Size = new Size(1086, 528);
             yogaPanel1.TabIndex = 11;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(yogaButton3);
+            panel1.Controls.Add(yogaButton2);
+            panel1.Location = new Point(863, 464);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(178, 40);
+            panel1.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.MenuHighlight;
+            panel2.Location = new Point(71, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(58, 40);
+            panel2.TabIndex = 10;
+            // 
+            // yogaButton3
+            // 
+            yogaButton3.BackColor = Color.White;
+            yogaButton3.BackgroundColor = Color.White;
+            yogaButton3.BorderColor = Color.PaleVioletRed;
+            yogaButton3.BorderRadius = 5;
+            yogaButton3.BorderSize = 2;
+            yogaButton3.FlatAppearance.BorderSize = 0;
+            yogaButton3.FlatStyle = FlatStyle.Flat;
+            yogaButton3.ForeColor = SystemColors.ControlText;
+            yogaButton3.Location = new Point(120, 0);
+            yogaButton3.Margin = new Padding(0);
+            yogaButton3.Name = "yogaButton3";
+            yogaButton3.Size = new Size(58, 40);
+            yogaButton3.TabIndex = 9;
+            yogaButton3.Text = "Next";
+            yogaButton3.TextColor = SystemColors.ControlText;
+            yogaButton3.UseVisualStyleBackColor = false;
+            // 
+            // yogaButton2
+            // 
+            yogaButton2.BackColor = Color.White;
+            yogaButton2.BackgroundColor = Color.White;
+            yogaButton2.BorderColor = Color.PaleVioletRed;
+            yogaButton2.BorderRadius = 5;
+            yogaButton2.BorderSize = 2;
+            yogaButton2.FlatAppearance.BorderSize = 0;
+            yogaButton2.FlatStyle = FlatStyle.Flat;
+            yogaButton2.ForeColor = SystemColors.ControlText;
+            yogaButton2.Location = new Point(0, 0);
+            yogaButton2.Margin = new Padding(0);
+            yogaButton2.Name = "yogaButton2";
+            yogaButton2.Size = new Size(76, 40);
+            yogaButton2.TabIndex = 8;
+            yogaButton2.Text = "Previous";
+            yogaButton2.TextColor = SystemColors.ControlText;
+            yogaButton2.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.DimGray;
+            label4.Location = new Point(767, 104);
+            label4.Name = "label4";
+            label4.Size = new Size(65, 23);
+            label4.TabIndex = 7;
+            label4.Text = "Search:";
+            // 
+            // textBox1
+            // 
+            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(838, 102);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(203, 27);
+            textBox1.TabIndex = 6;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.DimGray;
+            label3.Location = new Point(164, 104);
+            label3.Name = "label3";
+            label3.Size = new Size(61, 23);
+            label3.TabIndex = 5;
+            label3.Text = "entries";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(46, 104);
+            label1.Name = "label1";
+            label1.Size = new Size(52, 23);
+            label1.TabIndex = 4;
+            label1.Text = "Show";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.BackColor = Color.White;
+            numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
+            numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            numericUpDown1.Location = new Point(98, 103);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(64, 27);
+            numericUpDown1.TabIndex = 3;
             // 
             // yogaButton1
             // 
@@ -103,7 +230,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1143, 570);
+            ClientSize = new Size(1143, 635);
             Controls.Add(yogaPanel1);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
@@ -111,6 +238,9 @@
             Text = "Tabel";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             yogaPanel1.ResumeLayout(false);
+            yogaPanel1.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -121,5 +251,14 @@
         private Label label2;
         private YogaPanel yogaPanel1;
         private YogaButton yogaButton1;
+        private NumericUpDown numericUpDown1;
+        private Label label1;
+        private TextBox textBox1;
+        private Label label3;
+        private Panel panel1;
+        private YogaButton yogaButton3;
+        private YogaButton yogaButton2;
+        private Label label4;
+        private Panel panel2;
     }
 }

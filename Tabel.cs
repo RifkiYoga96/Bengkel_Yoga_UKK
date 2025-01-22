@@ -268,7 +268,7 @@ namespace Bengkel_Yoga_UKK
 
         public Image ResizeImagePersentase(Image image, int persentase)
         {
-            double persen = (double)persentase/100;
+            double persen = (double)persentase / 100;
             // Hitung rasio aspek gambar
             double ratioX = image.Width * persen;
             double ratioY = image.Height * persen;
@@ -300,7 +300,7 @@ namespace Bengkel_Yoga_UKK
         private byte[] ImageToByteProduk(string imgDirectory)
         {
             Image image = Image.FromFile(imgDirectory);
-            Image imageResize = ResizeImage(image, 55,55);
+            Image imageResize = ResizeImage(image, 55, 55);
             byte[] byteimg = ImageToByteArray(imageResize);
             return byteimg;
         }

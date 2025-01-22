@@ -120,11 +120,11 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="yogaButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAAc0lEQVQ4T+WT0QnAIAxEs4dOV6E4WIeyXcbeafwRAsH2o9AHDyThArVRLGqtEV7whEHLfhBKcJC0
-        7Aeh3LONrGU/DPVs48sD0ORtb3CfPOCA57nPTOQA/qZVyisDAlz9BHvB0PzNHlgg9PgxccGKaty2yA2V
-        ZJyxgaxtyAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABzSURBVDhP5ZPR
+        CcAgDESzh05XoThYh7Jdxt5p/BECwfaj0AcPJOECtVEsaq0RXvCEQct+EEpwkLTsB6Hcs42sZT8M9Wzj
+        ywPQ5G1vcJ884IDnuc9M5AD+plXKKwMCXP0Ee8HQ/M0eWCD0+DFxwYpq3LbIDZVknLGBrG3IAAAAAElF
+        TkSuQmCC
 </value>
   </data>
 </root>
