@@ -34,6 +34,7 @@
             yogaPanel1 = new YogaPanel();
             panel1 = new Panel();
             panel2 = new Panel();
+            label5 = new Label();
             yogaButton3 = new YogaButton();
             yogaButton2 = new YogaButton();
             label4 = new Label();
@@ -45,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -99,18 +101,30 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(yogaButton3);
             panel1.Controls.Add(yogaButton2);
-            panel1.Location = new Point(863, 464);
+            panel1.Location = new Point(878, 464);
             panel1.Name = "panel1";
-            panel1.Size = new Size(178, 40);
+            panel1.Size = new Size(165, 40);
             panel1.TabIndex = 9;
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.MenuHighlight;
-            panel2.Location = new Point(71, 0);
+            panel2.BackColor = Color.RoyalBlue;
+            panel2.Controls.Add(label5);
+            panel2.Location = new Point(67, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(58, 40);
+            panel2.Size = new Size(45, 39);
             panel2.TabIndex = 10;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(13, 9);
+            label5.Name = "label5";
+            label5.Size = new Size(18, 20);
+            label5.TabIndex = 10;
+            label5.Text = "1";
             // 
             // yogaButton3
             // 
@@ -121,8 +135,9 @@
             yogaButton3.BorderSize = 2;
             yogaButton3.FlatAppearance.BorderSize = 0;
             yogaButton3.FlatStyle = FlatStyle.Flat;
+            yogaButton3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             yogaButton3.ForeColor = SystemColors.ControlText;
-            yogaButton3.Location = new Point(120, 0);
+            yogaButton3.Location = new Point(105, 0);
             yogaButton3.Margin = new Padding(0);
             yogaButton3.Name = "yogaButton3";
             yogaButton3.Size = new Size(58, 40);
@@ -140,6 +155,7 @@
             yogaButton2.BorderSize = 2;
             yogaButton2.FlatAppearance.BorderSize = 0;
             yogaButton2.FlatStyle = FlatStyle.Flat;
+            yogaButton2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             yogaButton2.ForeColor = SystemColors.ControlText;
             yogaButton2.Location = new Point(0, 0);
             yogaButton2.Margin = new Padding(0);
@@ -208,7 +224,7 @@
             yogaButton1.BackColor = Color.RoyalBlue;
             yogaButton1.BackgroundColor = Color.RoyalBlue;
             yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 6;
+            yogaButton1.BorderRadius = 5;
             yogaButton1.BorderSize = 0;
             yogaButton1.FlatAppearance.BorderSize = 0;
             yogaButton1.FlatStyle = FlatStyle.Flat;
@@ -240,6 +256,8 @@
             yogaPanel1.ResumeLayout(false);
             yogaPanel1.PerformLayout();
             panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -260,5 +278,6 @@
         private YogaButton yogaButton2;
         private Label label4;
         private Panel panel2;
+        private Label label5;
     }
 }

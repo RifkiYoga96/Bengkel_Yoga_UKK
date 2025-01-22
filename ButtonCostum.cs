@@ -224,35 +224,33 @@ namespace Bengkel_Yoga_UKK
 
             Rectangle rectSurface = this.ClientRectangle;
             Rectangle rectBorder = Rectangle.Inflate(rectSurface, -borderSize, -borderSize);
-            int smoothSize = 2;
-            if (borderSize > 0)
-                smoothSize = borderSize;
 
             if (borderRadius > 2) // Rounded panel
             {
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
-                using (Pen penSurface = new Pen(this.Parent.BackColor, smoothSize))
                 using (Pen penBorder = new Pen(borderColor, borderSize))
                 {
                     e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                    // Panel surface
-                    this.Region = new Region(pathSurface);
-                    // Draw surface border for HD result
-                    e.Graphics.DrawPath(penSurface, pathSurface);
 
-                    // Panel border                    
+                    // Fill the background with the panel's BackColor
+                    e.Graphics.FillPath(new SolidBrush(this.BackColor), pathSurface);
+
+                    // Draw the border
                     if (borderSize >= 1)
-                        // Draw control border
+                    {
                         e.Graphics.DrawPath(penBorder, pathBorder);
+                    }
                 }
             }
             else // Normal panel
             {
                 e.Graphics.SmoothingMode = SmoothingMode.None;
-                // Panel surface
-                this.Region = new Region(rectSurface);
-                // Panel border
+
+                // Fill the background with the panel's BackColor
+                e.Graphics.FillRectangle(new SolidBrush(this.BackColor), rectSurface);
+
+                // Draw the border
                 if (borderSize >= 1)
                 {
                     using (Pen penBorder = new Pen(borderColor, borderSize))
@@ -263,6 +261,32 @@ namespace Bengkel_Yoga_UKK
                 }
             }
         }
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            base.OnBackColorChanged(e);
+            foreach (Control control in this.Controls)
+            {
+                if (control is DataGridView dgv)
+                {
+                    dgv.BackColor = this.BackColor;
+                    dgv.DefaultCellStyle.BackColor = this.BackColor;
+                }
+            }
+        }
+
+        protected override void OnForeColorChanged(EventArgs e)
+        {
+            base.OnForeColorChanged(e);
+            foreach (Control control in this.Controls)
+            {
+                if (control is DataGridView dgv)
+                {
+                    dgv.ForeColor = this.ForeColor;
+                    dgv.DefaultCellStyle.ForeColor = this.ForeColor;
+                }
+            }
+        }
+
 
         protected override void OnHandleCreated(EventArgs e)
         {

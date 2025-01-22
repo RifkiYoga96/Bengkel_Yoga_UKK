@@ -36,17 +36,19 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
 
-            dataGridView1.Columns[0].Width = 120;
-            dataGridView1.Columns[1].Width = 300;
-            dataGridView1.Columns[2].Width = 200;
-            dataGridView1.Columns[3].Width = 170;
-            dataGridView1.Columns[0].HeaderText = "";
+            dataGridView1.Columns[0].Width = 100;
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].Width = 150;
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Width = 170;
+            dataGridView1.Columns[5].Width = 170;
+            //dataGridView1.Columns[0].HeaderText = "";
 
 
             // Mengatur ukuran font header kolom
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -122,14 +124,14 @@ namespace Bengkel_Yoga_UKK
 
             return new SortableBindingList<DataItem>
                 {
-                    new DataItem { GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = "20", HARGA = "Rp 220.000" },
-                    new DataItem { GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = "10", HARGA = "Rp 300.000" },
-                    new DataItem { GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = "11", HARGA = "Rp 450.000" },
-                    new DataItem { GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = "34", HARGA = "Rp 190.000" },
-                    new DataItem { GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = "23", HARGA = "Rp 240.000" },
-                    new DataItem { GAMBAR = spion, PRODUK = "Spion LowASC", STOK = "20", HARGA = "Rp 89.000" },
-                    new DataItem { GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = "20", HARGA = "Rp 520.000" },
-                    new DataItem { GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = "55", HARGA = "Rp 1.200.000" },
+                    new DataItem { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = "20", HARGA = "Rp 220.000" },
+                    new DataItem { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = "10", HARGA = "Rp 300.000" },
+                    new DataItem { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = "11", HARGA = "Rp 450.000" },
+                    new DataItem { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = "34", HARGA = "Rp 190.000" },
+                    new DataItem { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = "23", HARGA = "Rp 240.000" },
+                    new DataItem { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = "20", HARGA = "Rp 89.000" },
+                    new DataItem { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = "20", HARGA = "Rp 520.000" },
+                    new DataItem { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = "55", HARGA = "Rp 1.200.000" },
                 };
         }
 
@@ -191,6 +193,12 @@ namespace Bengkel_Yoga_UKK
                         // Gambar panah dengan ukuran yang disesuaikan
                         e.Graphics.DrawImage(sortGlyph, arrowX, arrowY, arrowWidth, arrowHeight);
                     }
+                }
+                int i = 0;
+                foreach(var item in dataGridView1.Rows)
+                {
+                    dataGridView1.Rows[i].Cells[0].Value = i+1;
+                    i++;
                 }
 
                 e.Handled = true; // Tandai event sebagai sudah dihandle
@@ -311,6 +319,8 @@ namespace Bengkel_Yoga_UKK
 
 public class DataItem
 {
+    public int NO {  get; set; }
+    public string KODE_SPAREPART {  get; set; }
     public byte[] GAMBAR { get; set; }
     public string PRODUK { get; set; }
     public string HARGA { get; set; }
