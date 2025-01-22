@@ -73,12 +73,16 @@ namespace Bengkel_Yoga_UKK
             rjButton7.Click += BtnSideBar_Click;
 
             panelMain.Resize += PanelMain_Resize;
+
+            rjButton1.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
+            rjButton2.Click += (s, e) => ShowFormInPanel2(new Tabel());
+            
         }
 
         private void PanelMain_Resize(object? sender, EventArgs e)
         {
-            var size = panelMain.Size;
-            formShow.Size = new Size(size.Width,size.Height);
+            //var size = panelMain.Size;
+            //formShow.Size = new Size(size.Width,size.Height);
         }
 
         private void AddButton(int key, Button value)
@@ -101,9 +105,27 @@ namespace Bengkel_Yoga_UKK
                 }
                 buttonActiveBefore = buttonActiveAfter;
             }
-
-            ShowFormOverPanel();
         }
+
+
+
+        private void ShowFormInPanel2(Form form)
+        {
+            if (panelMain.Controls.Count > 0)
+                panelMain.Controls.RemoveAt(0);
+
+            if (form == null) return;
+
+            form.TopLevel = false;
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+
+            panelMain.Tag = form;
+
+            panelMain.Controls.Add(form);
+            form.Show();
+        }
+
 
         // Method untuk menampilkan Form2 di atas Panel
         private void ShowFormOverPanel()

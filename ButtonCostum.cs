@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bengkel_Yoga_UKK
 {
-    public class RJButton : Button
+    public class YogaButton : Button
     {
         //Fields
         private int borderSize = 0;
@@ -64,7 +64,7 @@ namespace Bengkel_Yoga_UKK
         }
 
         //Constructor
-        public RJButton()
+        public YogaButton()
         {
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
@@ -153,104 +153,57 @@ namespace Bengkel_Yoga_UKK
     }
 
 
-
-
-
-
-    public class RJButtonColumn : DataGridViewColumn
+    public class YogaPanel : Panel
     {
-        public RJButtonColumn()
-        {
-            this.CellTemplate = new RJButtonCell(); // Gunakan RJButtonCell sebagai template
-        }
-    }
+        // Fields
+        public int borderRadius = 0;
+        public Color borderColor = Color.PaleVioletRed;
+        public int borderSize = 0;
 
-
-    /*public class RJButtonCell : DataGridViewButtonCell
-    {
-        private int borderSize = 0;
-        private int borderRadius = 10;
-        private Color borderColor = Color.PaleVioletRed;
-        private int margin = 5; // Margin antara tombol dan border cell
-
-        public int BorderSize
-        {
-            get { return borderSize; }
-            set { borderSize = value; }
-        }
-
+        // Properties
+        [Category("RJ Code Advance")]
         public int BorderRadius
         {
             get { return borderRadius; }
-            set { borderRadius = value; }
-        }
-
-        public Color BorderColor
-        {
-            get { return borderColor; }
-            set { borderColor = value; }
-        }
-
-        public int Margin
-        {
-            get { return margin; }
-            set { margin = value; }
-        }
-
-        protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates elementState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
-        {
-            base.Paint(graphics, clipBounds, cellBounds, rowIndex, elementState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
-
-            // Menambahkan margin pada cellBounds agar tombol tidak menempel pada border
-            var buttonBounds = new Rectangle(
-                cellBounds.X + margin,  // Posisi X dengan margin
-                cellBounds.Y + margin,  // Posisi Y dengan margin
-                cellBounds.Width - 2 * margin,  // Lebar tombol dengan margin
-                cellBounds.Height - 2 * margin // Tinggi tombol dengan margin
-            );
-
-            // Menggambar latar belakang dan border tombol
-            using (var backBrush = new SolidBrush(Color.MediumSlateBlue))
-            using (var textBrush = new SolidBrush(Color.White))
+            set
             {
-                // Gambar latar belakang tombol
-                if (borderRadius > 2) // Tombol dengan sudut melengkung
-                {
-                    using (var path = GetFigurePath(buttonBounds, borderRadius))
-                    {
-                        graphics.FillPath(backBrush, path);
-                        if (borderSize >= 1)
-                        {
-                            using (var pen = new Pen(borderColor, borderSize))
-                            {
-                                graphics.DrawPath(pen, path);
-                            }
-                        }
-                    }
-                }
-                else // Tombol biasa
-                {
-                    graphics.FillRectangle(backBrush, buttonBounds);
-                    if (borderSize >= 1)
-                    {
-                        using (var pen = new Pen(borderColor, borderSize))
-                        {
-                            graphics.DrawRectangle(pen, buttonBounds);
-                        }
-                    }
-                }
-
-                // Gambar teks tombol, memastikan teks berada di tengah tombol
-                var text = formattedValue?.ToString() ?? "Aksi";
-                var format = new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
-                graphics.DrawString(text, cellStyle.Font, textBrush, buttonBounds, format);
+                borderRadius = value;
+                this.Invalidate();
             }
         }
 
+        [Category("RJ Code Advance")]
+        public Color BorderColor
+        {
+            get { return borderColor; }
+            set
+            {
+                borderColor = value;
+                this.Invalidate();
+            }
+        }
+
+        [Category("RJ Code Advance")]
+        public int BorderSize
+        {
+            get { return borderSize; }
+            set
+            {
+                borderSize = value;
+                this.Invalidate();
+            }
+        }
+
+        // Constructor
+        public YogaPanel()
+        {
+            this.Size = new Size(200, 100);
+            this.BackColor = Color.MediumSlateBlue;
+            this.ForeColor = Color.White;
+            this.Resize += new EventHandler(Panel_Resize);
+        }
+
+        // Methods
         private GraphicsPath GetFigurePath(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
@@ -264,168 +217,68 @@ namespace Bengkel_Yoga_UKK
             path.CloseFigure();
             return path;
         }
-    }*/
 
-    public class RJButtonCell : DataGridViewButtonCell
-    {
-        private int borderSize = 0;
-        private int borderRadius = 20;
-        private Color borderColor = Color.PaleVioletRed;
-
-        public int BorderSize
+        protected override void OnPaint(PaintEventArgs e)
         {
-            get { return borderSize; }
-            set { borderSize = value; }
-        }
+            base.OnPaint(e);
 
-        public int BorderRadius
-        {
-            get { return borderRadius; }
-            set { borderRadius = value; }
-        }
+            Rectangle rectSurface = this.ClientRectangle;
+            Rectangle rectBorder = Rectangle.Inflate(rectSurface, -borderSize, -borderSize);
+            int smoothSize = 2;
+            if (borderSize > 0)
+                smoothSize = borderSize;
 
-        public Color BorderColor
-        {
-            get { return borderColor; }
-            set { borderColor = value; }
-        }
-
-        protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates elementState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
-        {
-            // Aktifkan antialiasing untuk membuat rendering lebih halus
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            // Warna latar belakang sel
-            using (var backBrush = new SolidBrush(cellStyle.BackColor))
+            if (borderRadius > 2) // Rounded panel
             {
-                graphics.FillRectangle(backBrush, cellBounds);
-            }
-
-            // Tentukan margin untuk tombol
-            var buttonRect = new Rectangle(
-                cellBounds.X + 5,  // Margin kiri
-                cellBounds.Y + 5,  // Margin atas
-                cellBounds.Width - 30, // Lebar tombol
-                cellBounds.Height - 30 // Tinggi tombol
-            );
-
-            // Gambar tombol
-            using (var backBrush = new SolidBrush(Color.MediumSlateBlue))
-            using (var textBrush = new SolidBrush(Color.White))
-            {
-                // Tombol dengan sudut melengkung
-                if (borderRadius > 2)
+                using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
+                using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
+                using (Pen penSurface = new Pen(this.Parent.BackColor, smoothSize))
+                using (Pen penBorder = new Pen(borderColor, borderSize))
                 {
-                    using (var path = GetFigurePath(buttonRect, borderRadius))
-                    {
-                        graphics.FillPath(backBrush, path);
-                        if (borderSize >= 1)
-                        {
-                            using (var pen = new Pen(borderColor, borderSize))
-                            {
-                                graphics.DrawPath(pen, path);
-                            }
-                        }
-                    }
-                }
-                else // Tombol biasa (kotak)
-                {
-                    graphics.FillRectangle(backBrush, buttonRect);
+                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                    // Panel surface
+                    this.Region = new Region(pathSurface);
+                    // Draw surface border for HD result
+                    e.Graphics.DrawPath(penSurface, pathSurface);
+
+                    // Panel border                    
                     if (borderSize >= 1)
+                        // Draw control border
+                        e.Graphics.DrawPath(penBorder, pathBorder);
+                }
+            }
+            else // Normal panel
+            {
+                e.Graphics.SmoothingMode = SmoothingMode.None;
+                // Panel surface
+                this.Region = new Region(rectSurface);
+                // Panel border
+                if (borderSize >= 1)
+                {
+                    using (Pen penBorder = new Pen(borderColor, borderSize))
                     {
-                        using (var pen = new Pen(borderColor, borderSize))
-                        {
-                            graphics.DrawRectangle(pen, buttonRect);
-                        }
+                        penBorder.Alignment = PenAlignment.Inset;
+                        e.Graphics.DrawRectangle(penBorder, 0, 0, this.Width - 1, this.Height - 1);
                     }
                 }
-
-                // Gambar teks tombol
-                var text = formattedValue?.ToString() ?? "Aksi";
-                var format = new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
-                graphics.DrawString(text, cellStyle.Font, textBrush, buttonRect, format);
             }
         }
 
-        private GraphicsPath GetFigurePath(Rectangle rect, int radius)
+        protected override void OnHandleCreated(EventArgs e)
         {
-            GraphicsPath path = new GraphicsPath();
-            float curveSize = radius * 2F;
-
-            path.StartFigure();
-            path.AddArc(rect.X, rect.Y, curveSize, curveSize, 180, 90);
-            path.AddArc(rect.Right - curveSize, rect.Y, curveSize, curveSize, 270, 90);
-            path.AddArc(rect.Right - curveSize, rect.Bottom - curveSize, curveSize, curveSize, 0, 90);
-            path.AddArc(rect.X, rect.Bottom - curveSize, curveSize, curveSize, 90, 90);
-            path.CloseFigure();
-            return path;
-        }
-    }
-
-
-
-
-    public class HoverButtonCell : DataGridViewButtonCell
-    {
-        private int buttonMargin = 5; // Margin antara tombol dan border cell
-        private bool isHovered = false; // Flag untuk mendeteksi hover
-
-        public int ButtonMargin
-        {
-            get { return buttonMargin; }
-            set { buttonMargin = value; }
+            base.OnHandleCreated(e);
+            this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
         }
 
-        protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates elementState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+        private void Container_BackColorChanged(object sender, EventArgs e)
         {
-            base.Paint(graphics, clipBounds, cellBounds, rowIndex, elementState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
-
-            // Ukuran tombol kecil, sesuaikan dengan margin
-            Rectangle buttonBounds = new Rectangle(
-                cellBounds.X + buttonMargin,
-                cellBounds.Y + buttonMargin,
-                cellBounds.Width - 2 * buttonMargin,
-                cellBounds.Height - 2 * buttonMargin
-            );
-
-            // Periksa apakah mouse berada di atas tombol
-            isHovered = buttonBounds.Contains(Cursor.Position);
-
-            // Gambar latar belakang tombol dengan warna (tergantung hover)
-            using (var backBrush = new SolidBrush(isHovered ? Color.LightSkyBlue : Color.LightBlue))
-            {
-                graphics.FillRectangle(backBrush, buttonBounds);
-            }
-
-            // Gambar teks tombol di tengah
-            using (var textBrush = new SolidBrush(Color.Black))
-            {
-                var text = formattedValue?.ToString() ?? "Klik Saya";
-                var format = new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
-                graphics.DrawString(text, cellStyle.Font, textBrush, buttonBounds, format);
-            }
-
-            // Gambar border tombol jika diperlukan
-            using (var pen = new Pen(Color.Black, 1))
-            {
-                graphics.DrawRectangle(pen, buttonBounds);
-            }
+            this.Invalidate();
         }
-    }
 
-    public class HoverButtonColumn : DataGridViewColumn
-    {
-        public HoverButtonColumn()
+        private void Panel_Resize(object sender, EventArgs e)
         {
-            this.CellTemplate = new HoverButtonCell();
+            if (borderRadius > this.Height)
+                borderRadius = this.Height;
         }
     }
 

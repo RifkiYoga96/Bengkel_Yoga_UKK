@@ -35,13 +35,13 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             panel2 = new Panel();
             label1 = new Label();
-            rjButton1 = new RJButton();
-            rjButton2 = new RJButton();
-            rjButton3 = new RJButton();
-            rjButton4 = new RJButton();
-            rjButton5 = new RJButton();
-            rjButton6 = new RJButton();
-            rjButton7 = new RJButton();
+            rjButton1 = new YogaButton();
+            rjButton2 = new YogaButton();
+            rjButton3 = new YogaButton();
+            rjButton4 = new YogaButton();
+            rjButton5 = new YogaButton();
+            rjButton6 = new YogaButton();
+            rjButton7 = new YogaButton();
             panelMain = new Panel();
             DASHBOARD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)profilePicture).BeginInit();
@@ -332,13 +332,13 @@
         private Label lblNama;
         private Panel panel2;
         private Label label1;
-        private RJButton rjButton1;
-        private RJButton rjButton2;
-        private RJButton rjButton3;
-        private RJButton rjButton4;
-        private RJButton rjButton5;
-        private RJButton rjButton6;
-        private RJButton rjButton7;
+        private YogaButton rjButton1;
+        private YogaButton rjButton2;
+        private YogaButton rjButton3;
+        private YogaButton rjButton4;
+        private YogaButton rjButton5;
+        private YogaButton rjButton6;
+        private YogaButton rjButton7;
         private Panel panelMain;
     }
 }

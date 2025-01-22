@@ -12,33 +12,61 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class Form4 : Form
     {
+        private DataGridView dataGridView;
         public Form4()
         {
-            InitializeComponent();
-            InitDataGrid();
-        }
+            dataGridView = new DataGridView();
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.AutoGenerateColumns = false;
 
-        private void InitDataGrid()
-        {
-            // Menambahkan kolom ke DataGridView
-            dataGridView1.Columns.Add("Column1", "Kolom 1");
-            dataGridView1.Columns.Add("Column2", "Kolom 2");
-            dataGridView1.Columns.Add("Column3", "Kolom 3");
+            // Tambahkan kolom biasa
+            dataGridView.Columns.Add("PRODUK", "Produk");
+            dataGridView.Columns.Add("HARGA", "Harga");
+            dataGridView.Columns.Add("STOK", "Stok");
 
-            // Menambahkan baris data acak
-            Random random = new Random();
-            for (int i = 0; i < 10; i++) // Menambahkan 10 baris
+            // Tambahkan kolom button
+            var buttonColumn = new DataGridViewButtonColumn
             {
-                // Data acak untuk setiap kolom
-                string col1 = "Data " + (i + 1);
-                string col2 = (random.Next(100)).ToString(); // Angka acak antara 0-99
-                string col3 = DateTime.Now.AddDays(i).ToString("dd/MM/yyyy"); // Tanggal acak
+                Name = "BUTTON",
+                HeaderText = "Aksi",
+                Text = "Klik Saya", // Teks default pada button
+                UseColumnTextForButtonValue = true // Gunakan teks kolom sebagai teks button
+            };
+            dataGridView.Columns.Add(buttonColumn);
 
-                // Menambahkan baris ke DataGridView
-                dataGridView1.Rows.Add(col1, col2, col3);
+            // Contoh data
+            dataGridView.Rows.Add("Produk 1", "Rp 100.000", "10");
+            dataGridView.Rows.Add("Produk 2", "Rp 200.000", "5");
+
+            // Atur background image dan style untuk kolom button
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                var buttonCell = row.Cells["BUTTON"] as DataGridViewButtonCell;
+                if (buttonCell != null)
+                {
+                    buttonCell.Style.BackColor = Color.Transparent;
+                    buttonCell.Style.SelectionBackColor = Color.Transparent;
+                    buttonCell.Style.Padding = new Padding(0); // Hilangkan padding
+                    buttonCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Pusatkan teks
+
+
+                }
             }
 
-            dataGridView1.Rows[2].Cells[2].Style.ForeColor = Color.White;
+            // Handle CellClick untuk menangani klik button
+            dataGridView.CellClick += DataGridView_CellClick;
+
+            this.Controls.Add(dataGridView);
         }
+
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Handle klik pada kolom button
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView.Columns["BUTTON"].Index)
+            {
+                MessageBox.Show($"Button di baris {e.RowIndex + 1} diklik!");
+            }
+        }
+
     }
 }

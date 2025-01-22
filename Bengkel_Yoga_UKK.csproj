@@ -9,9 +9,240 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Chart.Windows" Version="19.2.0.57" />
-    <PackageReference Include="Syncfusion.Grid.Windows" Version="19.2.0.57" />
+    <PackageReference Include="Syncfusion.Chart.Windows" Version="28.1.41" />
     <PackageReference Include="Syncfusion.SfDataGrid.WinForms" Version="28.1.39" />
+    <PackageReference Include="Syncfusion.Tools.Windows" Version="28.1.41" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DemoCommon">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\DemoCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.BulletGraph.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.BulletGraph.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Calculate.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Calculate.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Calculate.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Calculate.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Chart.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Chart.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Chart.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Chart.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Core.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Core.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Data.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Data.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DataSource.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.DataSource.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Diagram.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Diagram.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Diagram.Utility.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Diagram.Utility.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Diagram.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Diagram.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DICOM.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.DICOM.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.DocIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocToPDFConverter.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.DocToPDFConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Edit.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Edit.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.ExcelChartToImageConverter.Wpf">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.ExcelChartToImageConverter.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.ExcelToPDFConverter.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.ExcelToPDFConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Gauge.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Gauge.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grid.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Grouping.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grid.Grouping.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Grouping.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grid.Grouping.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Grouping.Windows.XmlSerializers">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grid.Grouping.Windows.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grid.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grid.Windows.XmlSerializers">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grid.Windows.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.GridCommon.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridConverter.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.GridConverter.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridHelperClasses.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.GridHelperClasses.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grouping.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grouping.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Grouping.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Grouping.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.HighContrastTheme.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.HighContrastTheme.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.HtmlConverter.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.HtmlConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.HTMLUI.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.HTMLUI.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.HTMLUI.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.HTMLUI.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Linq.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Linq.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Maps.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Maps.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.MIME.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.MIME.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Office2016Theme.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Office2016Theme.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Office2019Theme.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Office2019Theme.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChartToImageConverter.Wpf">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.OfficeChartToImageConverter.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Olap.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Olap.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PdfToImageConverter.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PdfToImageConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PdfViewer.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PdfViewer.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PivotAnalysis.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PivotAnalysis.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PivotAnalysis.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PivotAnalysis.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PivotChart.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PivotChart.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PivotConverter.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PivotConverter.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PMML.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PMML.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Presentation.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Presentation.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PresentationToPdfConverter.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.PresentationToPdfConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.ProjIO.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.ProjIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Schedule.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Schedule.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Schedule.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Schedule.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Scripting.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Scripting.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Scripting.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Scripting.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfBarcode.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfBarcode.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfChart.WPF">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfChart.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGrid.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfDataGrid.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGridConverter.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfDataGridConverter.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfInput.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfListView.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfListView.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSmithChart.WinForms">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SfSmithChart.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Shared.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Shared.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Wpf">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SpellChecker.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SpellChecker.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Spreadsheet.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Spreadsheet.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SpreadsheetHelper.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.SpreadsheetHelper.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Tools.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.Tools.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.TreeMap.Windows">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.TreeMap.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\Windows\28.1.33\Assemblies\4.6.2\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
