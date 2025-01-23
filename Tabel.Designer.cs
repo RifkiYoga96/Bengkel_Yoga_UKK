@@ -34,9 +34,9 @@
             yogaPanel1 = new YogaPanel();
             panel1 = new Panel();
             panel2 = new Panel();
-            label5 = new Label();
-            yogaButton3 = new YogaButton();
-            yogaButton2 = new YogaButton();
+            lblHalaman = new Label();
+            btnNext = new YogaButton();
+            btnPrevious = new YogaButton();
             label4 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
@@ -99,8 +99,8 @@
             // 
             panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.Controls.Add(panel2);
-            panel1.Controls.Add(yogaButton3);
-            panel1.Controls.Add(yogaButton2);
+            panel1.Controls.Add(btnNext);
+            panel1.Controls.Add(btnPrevious);
             panel1.Location = new Point(878, 464);
             panel1.Name = "panel1";
             panel1.Size = new Size(165, 40);
@@ -109,62 +109,62 @@
             // panel2
             // 
             panel2.BackColor = Color.RoyalBlue;
-            panel2.Controls.Add(label5);
+            panel2.Controls.Add(lblHalaman);
             panel2.Location = new Point(67, 1);
             panel2.Name = "panel2";
             panel2.Size = new Size(45, 39);
             panel2.TabIndex = 10;
             // 
-            // label5
+            // lblHalaman
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(13, 9);
-            label5.Name = "label5";
-            label5.Size = new Size(18, 20);
-            label5.TabIndex = 10;
-            label5.Text = "1";
+            lblHalaman.AutoSize = true;
+            lblHalaman.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHalaman.ForeColor = Color.White;
+            lblHalaman.Location = new Point(13, 9);
+            lblHalaman.Name = "lblHalaman";
+            lblHalaman.Size = new Size(18, 20);
+            lblHalaman.TabIndex = 10;
+            lblHalaman.Text = "1";
             // 
-            // yogaButton3
+            // btnNext
             // 
-            yogaButton3.BackColor = Color.White;
-            yogaButton3.BackgroundColor = Color.White;
-            yogaButton3.BorderColor = Color.PaleVioletRed;
-            yogaButton3.BorderRadius = 5;
-            yogaButton3.BorderSize = 2;
-            yogaButton3.FlatAppearance.BorderSize = 0;
-            yogaButton3.FlatStyle = FlatStyle.Flat;
-            yogaButton3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            yogaButton3.ForeColor = SystemColors.ControlText;
-            yogaButton3.Location = new Point(105, 0);
-            yogaButton3.Margin = new Padding(0);
-            yogaButton3.Name = "yogaButton3";
-            yogaButton3.Size = new Size(58, 40);
-            yogaButton3.TabIndex = 9;
-            yogaButton3.Text = "Next";
-            yogaButton3.TextColor = SystemColors.ControlText;
-            yogaButton3.UseVisualStyleBackColor = false;
+            btnNext.BackColor = Color.White;
+            btnNext.BackgroundColor = Color.White;
+            btnNext.BorderColor = Color.PaleVioletRed;
+            btnNext.BorderRadius = 5;
+            btnNext.BorderSize = 2;
+            btnNext.FlatAppearance.BorderSize = 0;
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnNext.ForeColor = SystemColors.ControlText;
+            btnNext.Location = new Point(105, 0);
+            btnNext.Margin = new Padding(0);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(58, 40);
+            btnNext.TabIndex = 9;
+            btnNext.Text = "Next";
+            btnNext.TextColor = SystemColors.ControlText;
+            btnNext.UseVisualStyleBackColor = false;
             // 
-            // yogaButton2
+            // btnPrevious
             // 
-            yogaButton2.BackColor = Color.White;
-            yogaButton2.BackgroundColor = Color.White;
-            yogaButton2.BorderColor = Color.PaleVioletRed;
-            yogaButton2.BorderRadius = 5;
-            yogaButton2.BorderSize = 2;
-            yogaButton2.FlatAppearance.BorderSize = 0;
-            yogaButton2.FlatStyle = FlatStyle.Flat;
-            yogaButton2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            yogaButton2.ForeColor = SystemColors.ControlText;
-            yogaButton2.Location = new Point(0, 0);
-            yogaButton2.Margin = new Padding(0);
-            yogaButton2.Name = "yogaButton2";
-            yogaButton2.Size = new Size(76, 40);
-            yogaButton2.TabIndex = 8;
-            yogaButton2.Text = "Previous";
-            yogaButton2.TextColor = SystemColors.ControlText;
-            yogaButton2.UseVisualStyleBackColor = false;
+            btnPrevious.BackColor = Color.White;
+            btnPrevious.BackgroundColor = Color.White;
+            btnPrevious.BorderColor = Color.PaleVioletRed;
+            btnPrevious.BorderRadius = 5;
+            btnPrevious.BorderSize = 2;
+            btnPrevious.FlatAppearance.BorderSize = 0;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPrevious.ForeColor = SystemColors.ControlText;
+            btnPrevious.Location = new Point(0, 0);
+            btnPrevious.Margin = new Padding(0);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(76, 40);
+            btnPrevious.TabIndex = 8;
+            btnPrevious.Text = "Previous";
+            btnPrevious.TextColor = SystemColors.ControlText;
+            btnPrevious.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -274,10 +274,10 @@
         private TextBox textBox1;
         private Label label3;
         private Panel panel1;
-        private YogaButton yogaButton3;
-        private YogaButton yogaButton2;
+        private YogaButton btnNext;
+        private YogaButton btnPrevious;
         private Label label4;
         private Panel panel2;
-        private Label label5;
+        private Label lblHalaman;
     }
 }

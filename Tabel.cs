@@ -13,6 +13,7 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class Tabel : Form
     {
+        private int page = 1;
         public Tabel()
         {
             InitializeComponent();
@@ -26,6 +27,26 @@ namespace Bengkel_Yoga_UKK
         {
             yogaPanel1.Resize += (s, e) => yogaPanel1.Invalidate();
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            btnNext.Click += BtnNext_Click;
+            btnPrevious.Click += BtnPrevious_Click;
+        }
+
+        private void BtnPrevious_Click(object? sender, EventArgs e)
+        {
+            if (page > 1)
+            {
+                page--;
+            }
+            lblHalaman.Text = page.ToString();
+        }
+
+        private void BtnNext_Click(object? sender, EventArgs e)
+        {
+            if(page <= 10)
+            {
+                page++;
+            }
+            lblHalaman.Text = page.ToString();
         }
 
         #region DATAGRID
