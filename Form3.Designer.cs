@@ -30,7 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             DASHBOARD = new Panel();
-            profilePicture = new PictureBox();
+            label2 = new Label();
+            rjCircularPictureBox1 = new RJCircularPictureBox();
             lblNama = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
             panel2 = new Panel();
@@ -44,7 +45,7 @@
             rjButton7 = new YogaButton();
             panelMain = new Panel();
             DASHBOARD.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)profilePicture).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
             flowLayoutPanel2.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -52,7 +53,8 @@
             // DASHBOARD
             // 
             DASHBOARD.BackColor = Color.White;
-            DASHBOARD.Controls.Add(profilePicture);
+            DASHBOARD.Controls.Add(label2);
+            DASHBOARD.Controls.Add(rjCircularPictureBox1);
             DASHBOARD.Controls.Add(lblNama);
             DASHBOARD.Dock = DockStyle.Top;
             DASHBOARD.Location = new Point(264, 0);
@@ -60,16 +62,34 @@
             DASHBOARD.Size = new Size(904, 59);
             DASHBOARD.TabIndex = 0;
             // 
-            // profilePicture
+            // label2
             // 
-            profilePicture.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            profilePicture.BackgroundImage = (Image)resources.GetObject("profilePicture.BackgroundImage");
-            profilePicture.BackgroundImageLayout = ImageLayout.Stretch;
-            profilePicture.Location = new Point(847, 7);
-            profilePicture.Name = "profilePicture";
-            profilePicture.Size = new Size(45, 45);
-            profilePicture.TabIndex = 7;
-            profilePicture.TabStop = false;
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ControlText;
+            label2.Location = new Point(729, 24);
+            label2.Name = "label2";
+            label2.Size = new Size(110, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Rifki Yoga Syahbani";
+            // 
+            // rjCircularPictureBox1
+            // 
+            rjCircularPictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            rjCircularPictureBox1.BackgroundImage = (Image)resources.GetObject("rjCircularPictureBox1.BackgroundImage");
+            rjCircularPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            rjCircularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox1.BorderColor = Color.RoyalBlue;
+            rjCircularPictureBox1.BorderColor2 = Color.HotPink;
+            rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox1.BorderSize = 2;
+            rjCircularPictureBox1.GradientAngle = 50F;
+            rjCircularPictureBox1.Location = new Point(843, 1);
+            rjCircularPictureBox1.Name = "rjCircularPictureBox1";
+            rjCircularPictureBox1.Size = new Size(55, 55);
+            rjCircularPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox1.TabIndex = 0;
+            rjCircularPictureBox1.TabStop = false;
             // 
             // lblNama
             // 
@@ -308,16 +328,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
+            BackColor = Color.FromArgb(46, 134, 171);
             ClientSize = new Size(1168, 621);
             Controls.Add(panelMain);
             Controls.Add(DASHBOARD);
             Controls.Add(flowLayoutPanel2);
+            ForeColor = Color.White;
             Name = "Form3";
             Text = "ProFix";
             DASHBOARD.ResumeLayout(false);
             DASHBOARD.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)profilePicture).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
             flowLayoutPanel2.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -328,7 +349,6 @@
 
         private Panel DASHBOARD;
         private FlowLayoutPanel flowLayoutPanel2;
-        private PictureBox profilePicture;
         private Label lblNama;
         private Panel panel2;
         private Label label1;
@@ -340,5 +360,7 @@
         private YogaButton rjButton6;
         private YogaButton rjButton7;
         private Panel panelMain;
+        private RJCircularPictureBox rjCircularPictureBox1;
+        private Label label2;
     }
 }

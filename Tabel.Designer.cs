@@ -32,17 +32,18 @@
             dataGridView1 = new DataGridView();
             label2 = new Label();
             yogaPanel1 = new YogaPanel();
+            yogaButton2 = new YogaButton();
             panel1 = new Panel();
             panel2 = new Panel();
             lblHalaman = new Label();
             btnNext = new YogaButton();
             btnPrevious = new YogaButton();
-            label4 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
             label1 = new Label();
             numericUpDown1 = new NumericUpDown();
             yogaButton1 = new YogaButton();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -81,8 +82,9 @@
             yogaPanel1.BorderColor = Color.PaleVioletRed;
             yogaPanel1.BorderRadius = 10;
             yogaPanel1.BorderSize = 0;
+            yogaPanel1.Controls.Add(comboBox1);
+            yogaPanel1.Controls.Add(yogaButton2);
             yogaPanel1.Controls.Add(panel1);
-            yogaPanel1.Controls.Add(label4);
             yogaPanel1.Controls.Add(textBox1);
             yogaPanel1.Controls.Add(label3);
             yogaPanel1.Controls.Add(label1);
@@ -94,6 +96,24 @@
             yogaPanel1.Name = "yogaPanel1";
             yogaPanel1.Size = new Size(1086, 528);
             yogaPanel1.TabIndex = 11;
+            // 
+            // yogaButton2
+            // 
+            yogaButton2.BackColor = Color.MediumSlateBlue;
+            yogaButton2.BackgroundColor = Color.MediumSlateBlue;
+            yogaButton2.BorderColor = Color.PaleVioletRed;
+            yogaButton2.BorderRadius = 0;
+            yogaButton2.BorderSize = 0;
+            yogaButton2.FlatAppearance.BorderSize = 0;
+            yogaButton2.FlatStyle = FlatStyle.Flat;
+            yogaButton2.ForeColor = Color.White;
+            yogaButton2.Image = (Image)resources.GetObject("yogaButton2.Image");
+            yogaButton2.Location = new Point(255, 105);
+            yogaButton2.Name = "yogaButton2";
+            yogaButton2.Size = new Size(47, 27);
+            yogaButton2.TabIndex = 12;
+            yogaButton2.TextColor = Color.White;
+            yogaButton2.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -166,33 +186,22 @@
             btnPrevious.TextColor = SystemColors.ControlText;
             btnPrevious.UseVisualStyleBackColor = false;
             // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(767, 104);
-            label4.Name = "label4";
-            label4.Size = new Size(65, 23);
-            label4.TabIndex = 7;
-            label4.Text = "Search:";
-            // 
             // textBox1
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(838, 102);
+            textBox1.Location = new Point(46, 105);
             textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = " Search";
             textBox1.Size = new Size(203, 27);
             textBox1.TabIndex = 6;
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(164, 104);
+            label3.Location = new Point(978, 105);
             label3.Name = "label3";
             label3.Size = new Size(61, 23);
             label3.TabIndex = 5;
@@ -200,10 +209,11 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(46, 104);
+            label1.Location = new Point(860, 105);
             label1.Name = "label1";
             label1.Size = new Size(52, 23);
             label1.TabIndex = 4;
@@ -211,10 +221,11 @@
             // 
             // numericUpDown1
             // 
+            numericUpDown1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             numericUpDown1.BackColor = Color.White;
             numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
             numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(98, 103);
+            numericUpDown1.Location = new Point(912, 104);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(64, 27);
             numericUpDown1.TabIndex = 3;
@@ -240,6 +251,16 @@
             yogaButton1.TextColor = Color.White;
             yogaButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
             yogaButton1.UseVisualStyleBackColor = false;
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(308, 105);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(154, 28);
+            comboBox1.TabIndex = 12;
             // 
             // Tabel
             // 
@@ -276,8 +297,9 @@
         private Panel panel1;
         private YogaButton btnNext;
         private YogaButton btnPrevious;
-        private Label label4;
         private Panel panel2;
         private Label lblHalaman;
+        private YogaButton yogaButton2;
+        private ComboBox comboBox1;
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Syncfusion.WinForms.Core.Enums;
 
 namespace Bengkel_Yoga_UKK
 {
@@ -18,6 +19,7 @@ namespace Bengkel_Yoga_UKK
         {
             InitializeComponent();
             InitDataGrid();
+            InitCombo();
             CostumGrid();
             //ImageGrid();
             RegisterEvent();
@@ -48,6 +50,18 @@ namespace Bengkel_Yoga_UKK
             }
             lblHalaman.Text = page.ToString();
         }
+        #region COMBO BOX
+        private void InitCombo()
+        {
+            List<string> list = new List<string>() 
+            {
+                "Semua (All)","Stok Tersedia","Stok Habis"
+            };
+            comboBox1.DataSource = list;
+
+
+        }
+        #endregion
 
         #region DATAGRID
         private void CostumGrid()
@@ -57,13 +71,19 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
 
-            dataGridView1.Columns[0].Width = 100;
-            dataGridView1.Columns[1].Width = 100;
-            dataGridView1.Columns[2].Width = 150;
-            dataGridView1.Columns[3].Width = 250;
-            dataGridView1.Columns[4].Width = 170;
-            dataGridView1.Columns[5].Width = 170;
-            //dataGridView1.Columns[0].HeaderText = "";
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.Columns["NO"].FillWeight = 6;
+            dataGridView1.Columns["KODE_SPAREPART"].FillWeight = 8;
+            dataGridView1.Columns["GAMBAR"].FillWeight = 15;
+            dataGridView1.Columns["PRODUK"].FillWeight = 30;
+            dataGridView1.Columns["HARGA"].FillWeight = 15;
+            dataGridView1.Columns["STOK"].FillWeight = 10;
+            dataGridView1.Columns["KETERANGAN_STOK"].FillWeight = 16;
+
+            dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
+            dataGridView1.Columns["GAMBAR"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+           
+
 
 
             // Mengatur ukuran font header kolom
@@ -74,10 +94,10 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Warna background header
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.DimGray;    // Warna teks header
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.LightGray; // Warna saat header "terselect"
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.DimGray;      // Warna teks saat header "terselect"
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(46, 134, 171); // Warna background header
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;    // Warna teks header
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(46, 134, 171); // Warna saat header "terselect"
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;      // Warna teks saat header "terselect"
             dataGridView1.ForeColor = Color.DimGray;
 
 
@@ -100,6 +120,7 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.AllowUserToResizeRows = false;
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            
             dataGridView1.DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
 
             dataGridView1.DataBindingComplete += (s, e) =>
@@ -123,10 +144,13 @@ namespace Bengkel_Yoga_UKK
 
         private SortableBindingList<DataItem> GetData()
         {
-            byte[] ban1 = ImageToByteProduk(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg");
-            byte[] ban2 = ImageToByteProduk(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg");
-            byte[] velg = ImageToByteProduk(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg");
-            byte[] spion = ImageToByteProduk(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg");
+            byte[] ban1 = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg");
+            byte[] ban2 = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg");
+            byte[] velg = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg");
+            byte[] spion = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg");
+            byte[] habis = ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Habis.png", 15);
+            byte[] menipis = ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Menipis.png", 15);
+            byte[] tersedia = ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Tersedia.png", 15);
 
             // Path gambar yang akan digunakan
             string pandingImg = @"D:\APenyimpanan\BENGKEL - UKK\Panding.png";
@@ -145,46 +169,18 @@ namespace Bengkel_Yoga_UKK
 
             return new SortableBindingList<DataItem>
                 {
-                    new DataItem { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = "20", HARGA = "Rp 220.000" },
-                    new DataItem { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = "10", HARGA = "Rp 300.000" },
-                    new DataItem { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = "11", HARGA = "Rp 450.000" },
-                    new DataItem { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = "34", HARGA = "Rp 190.000" },
-                    new DataItem { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = "23", HARGA = "Rp 240.000" },
-                    new DataItem { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = "20", HARGA = "Rp 89.000" },
-                    new DataItem { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = "20", HARGA = "Rp 520.000" },
-                    new DataItem { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = "55", HARGA = "Rp 1.200.000" },
+                    new DataItem { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = "20", HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
+                    new DataItem { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = "0", HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
+                    new DataItem { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = "11", HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = "5", HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = "23", HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = "20", HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = "20", HARGA = "Rp 520.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = "55", HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
                 };
         }
 
-        /* private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
-         {
-             if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
-             {
-                 // Gambar latar belakang header default
-                 e.PaintBackground(e.CellBounds, true);
 
-                 // Gambar teks header
-                 TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter;
-                 TextRenderer.DrawText(e.Graphics, e.FormattedValue.ToString(), e.CellStyle.Font, e.CellBounds, e.CellStyle.ForeColor, flags);
-
-                 // Jika kolom sedang diurutkan, gambar panah
-                 if (dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection != SortOrder.None)
-                 {
-                     int arrowWidth = 8; // Lebar panah
-                     int arrowHeight = 8; // Tinggi panah
-                     int textWidth = TextRenderer.MeasureText(e.FormattedValue.ToString(), e.CellStyle.Font).Width;
-                     int arrowX = e.CellBounds.Left + textWidth + 2; // Jarak antara teks dan panah
-                     int arrowY = e.CellBounds.Top + (e.CellBounds.Height - arrowHeight) / 2; // Posisi vertikal tengah
-
-                     using (var sortGlyph = CreateSortGlyph(arrowWidth, arrowHeight, dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection))
-                     {
-                         e.Graphics.DrawImage(sortGlyph, arrowX, arrowY);
-                     }
-                 }
-
-                 e.Handled = true; // Tandai event sebagai sudah dihandle
-             }
-         }*/
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
@@ -192,9 +188,14 @@ namespace Bengkel_Yoga_UKK
                 // Gambar latar belakang header default
                 e.PaintBackground(e.CellBounds, true);
 
-                // Gambar teks header
+                // Tambahkan padding ke teks header
+                Rectangle paddedBounds = e.CellBounds;
+                paddedBounds.X += 20; // Padding kiri 20 piksel
+                paddedBounds.Width -= 20; // Sesuaikan lebar setelah padding
+
+                // Gambar teks header dengan padding
                 TextFormatFlags flags = TextFormatFlags.Left | TextFormatFlags.VerticalCenter;
-                TextRenderer.DrawText(e.Graphics, e.FormattedValue.ToString(), e.CellStyle.Font, e.CellBounds, e.CellStyle.ForeColor, flags);
+                TextRenderer.DrawText(e.Graphics, e.FormattedValue.ToString(), e.CellStyle.Font, paddedBounds, e.CellStyle.ForeColor, flags);
 
                 // Jika kolom sedang diurutkan, gambar panah
                 if (dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection != SortOrder.None)
@@ -202,7 +203,7 @@ namespace Bengkel_Yoga_UKK
                     int arrowWidth = 10; // Lebar panah (ukuran kecil)
                     int arrowHeight = 10; // Tinggi panah (ukuran kecil)
                     int textWidth = TextRenderer.MeasureText(e.FormattedValue.ToString(), e.CellStyle.Font).Width;
-                    int arrowX = e.CellBounds.Left + textWidth + 2; // Jarak antara teks dan panah
+                    int arrowX = paddedBounds.Left + textWidth + 2; // Jarak antara teks dan panah (gunakan paddedBounds)
                     int arrowY = e.CellBounds.Top + (e.CellBounds.Height - arrowHeight) / 2; // Posisi vertikal tengah
 
                     using (var sortGlyph = CreateSortGlyph(dataGridView1.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection))
@@ -215,11 +216,24 @@ namespace Bengkel_Yoga_UKK
                         e.Graphics.DrawImage(sortGlyph, arrowX, arrowY, arrowWidth, arrowHeight);
                     }
                 }
-                int i = 0;
-                foreach(var item in dataGridView1.Rows)
+
+                if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
-                    dataGridView1.Rows[i].Cells[0].Value = i+1;
-                    i++;
+                    // Daftar kolom yang ingin diterapkan CellPainting
+                    string[] targetColumns = { "GAMBAR" };
+
+                    // Periksa apakah kolom saat ini termasuk dalam daftar target
+                    if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))
+                    {
+                        // Gambar latar belakang header default
+                        e.PaintBackground(e.CellBounds, true);
+
+                        // Gambar teks header dengan alignment tengah
+                        TextFormatFlags flagss = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
+                        TextRenderer.DrawText(e.Graphics, e.FormattedValue.ToString(), e.CellStyle.Font, e.CellBounds, e.CellStyle.ForeColor, flagss);
+
+                        e.Handled = true; // Tandai event sebagai sudah dihandle
+                    }
                 }
 
                 e.Handled = true; // Tandai event sebagai sudah dihandle
@@ -237,39 +251,6 @@ namespace Bengkel_Yoga_UKK
             else
                 return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowUpKotak4.png");
         }
-        /*private Bitmap CreateSortGlyph(int width, int height, SortOrder sortOrder)
-        {
-            Bitmap glyph = new Bitmap(width, height);
-            using (Graphics g = Graphics.FromImage(glyph))
-            {
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-                Point[] points;
-                if (sortOrder == SortOrder.Ascending)
-                {
-                    // Panah menghadap ke atas
-                    points = new Point[]
-                    {
-                new Point(width / 2, 0),          // Puncak panah (atas tengah)
-                new Point(0, height),             // Sudut kiri bawah
-                new Point(width, height)          // Sudut kanan bawah
-                    };
-                }
-                else
-                {
-                    // Panah menghadap ke bawah
-                    points = new Point[]
-                    {
-                new Point(0, 0),                  // Sudut kiri atas
-                new Point(width, 0),              // Sudut kanan atas
-                new Point(width / 2, height)      // Puncak panah (bawah tengah)
-                    };
-                }
-
-                g.FillPolygon(Brushes.DimGray, points); // Gambar panah
-            }
-            return glyph;
-        }*/
         #endregion
 
         #region IMAGE
@@ -326,12 +307,18 @@ namespace Bengkel_Yoga_UKK
             }
         }
 
-        private byte[] ImageToByteProduk(string imgDirectory)
+        private byte[] ImageToByteMaxSize(string imgDirectory)
         {
             Image image = Image.FromFile(imgDirectory);
             Image imageResize = ResizeImage(image, 55, 55);
             byte[] byteimg = ImageToByteArray(imageResize);
             return byteimg;
+        }
+        private byte[] ImageToBytePercent(string imgDirectory,int percent)
+        {
+            Image image = Image.FromFile(imgDirectory);
+            Image imageResize = ResizeImagePersentase(image,percent);
+            return ImageToByteArray(imageResize);
         }
         #endregion
     }
@@ -346,6 +333,7 @@ public class DataItem
     public string PRODUK { get; set; }
     public string HARGA { get; set; }
     public string STOK { get; set; }
+    public byte[] KETERANGAN_STOK { get; set; }
     //public byte[] KETERANGAN { get; set; }
 }
 

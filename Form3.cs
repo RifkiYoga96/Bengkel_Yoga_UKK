@@ -28,7 +28,7 @@ namespace Bengkel_Yoga_UKK
             InitComponen();
             RegisterEvent();
             Image originalImage = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Profile (5).png");
-            SetProfilePicture(originalImage, profilePicture);
+            //SetProfilePicture(originalImage, profilePicture);
         }
 
         private void InitComponen()

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboardd));
             panel1 = new Panel();
             layout2 = new FlowLayoutPanel();
@@ -42,11 +43,15 @@
             button5 = new Button();
             button1 = new Button();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            dataGridView1 = new DataGridView();
+            sfToolTip1 = new Syncfusion.Windows.Forms.SfToolTip(components);
+            panel2 = new Panel();
+            button4 = new Button();
+            button9 = new Button();
+            button10 = new Button();
             layout2.SuspendLayout();
             layoutDashboard.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -284,31 +289,68 @@
             flowLayoutPanel2.Size = new Size(312, 571);
             flowLayoutPanel2.TabIndex = 5;
             // 
-            // dataGridView1
+            // panel2
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(337, 115);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(703, 75);
-            dataGridView1.TabIndex = 6;
-
+            panel2.BackColor = Color.Gray;
+            panel2.Controls.Add(button10);
+            panel2.Controls.Add(button9);
+            panel2.Controls.Add(button4);
+            panel2.Location = new Point(464, 126);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(492, 40);
+            panel2.TabIndex = 8;
             // 
-            // Dashboard
+            // button4
+            // 
+            button4.BackgroundImage = (Image)resources.GetObject("button4.BackgroundImage");
+            button4.BackgroundImageLayout = ImageLayout.Zoom;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button4.Location = new Point(443, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(46, 34);
+            button4.TabIndex = 10;
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            button9.BackgroundImage = (Image)resources.GetObject("button9.BackgroundImage");
+            button9.BackgroundImageLayout = ImageLayout.Zoom;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button9.Location = new Point(396, 3);
+            button9.Name = "button9";
+            button9.Size = new Size(46, 34);
+            button9.TabIndex = 11;
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            button10.BackgroundImage = (Image)resources.GetObject("button10.BackgroundImage");
+            button10.BackgroundImageLayout = ImageLayout.Zoom;
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button10.Location = new Point(349, 3);
+            button10.Name = "button10";
+            button10.Size = new Size(46, 34);
+            button10.TabIndex = 12;
+            button10.UseVisualStyleBackColor = true;
+            // 
+            // Dashboardd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1083, 642);
-            Controls.Add(dataGridView1);
+            Controls.Add(panel2);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(button1);
             Controls.Add(panel1);
-            Name = "Dashboard";
+            Name = "Dashboardd";
             Text = "Dashboard";
             layout2.ResumeLayout(false);
             layoutDashboard.ResumeLayout(false);
             flowLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -327,6 +369,10 @@
         private Button button7;
         private Button button8;
         private FlowLayoutPanel flowLayoutPanel2;
-        private DataGridView dataGridView1;
+        private Syncfusion.Windows.Forms.SfToolTip sfToolTip1;
+        private Panel panel2;
+        private Button button4;
+        private Button button10;
+        private Button button9;
     }
 }
