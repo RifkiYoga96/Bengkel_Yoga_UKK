@@ -71,33 +71,18 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["NO"].FillWeight = 6;
-            dataGridView1.Columns["KODE_SPAREPART"].FillWeight = 8;
-            dataGridView1.Columns["GAMBAR"].FillWeight = 15;
-            dataGridView1.Columns["PRODUK"].FillWeight = 30;
-            dataGridView1.Columns["HARGA"].FillWeight = 15;
-            dataGridView1.Columns["STOK"].FillWeight = 10;
-            dataGridView1.Columns["KETERANGAN_STOK"].FillWeight = 16;
-
-            dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
-            dataGridView1.Columns["GAMBAR"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-           
-
-
-
             // Mengatur ukuran font header kolom
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(46, 134, 171); // Warna background header
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;    // Warna teks header
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(46, 134, 171); // Warna saat header "terselect"
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;      // Warna teks saat header "terselect"
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(46, 134, 171); 
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(46, 134, 171); 
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White; 
             dataGridView1.ForeColor = Color.DimGray;
 
 
@@ -119,16 +104,37 @@ namespace Bengkel_Yoga_UKK
             // Mencegah pengubahan ukuran baris
             dataGridView1.AllowUserToResizeRows = false;
 
-            dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            
-            dataGridView1.DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            // Mencegah penambahan baris baru
+            dataGridView1.AllowUserToAddRows = false;
 
-            dataGridView1.DataBindingComplete += (s, e) =>
-            {
-                //dataGridView1.Rows[2].Cells[2].Style = new DataGridViewCellStyle();
-                //dataGridView1.Rows[2].Cells[3].Style.ForeColor = Color.Red;
-                //dataGridView1.Rows[2].DefaultCellStyle.BackColor = Color.FromArgb(255, 200, 200);
-            };
+            dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.Columns["NO"].FillWeight = 6;
+            dataGridView1.Columns["KODE_SPAREPART"].FillWeight = 8;
+            dataGridView1.Columns["GAMBAR"].FillWeight = 10;
+            dataGridView1.Columns["PRODUK"].FillWeight = 25;
+            dataGridView1.Columns["HARGA"].FillWeight = 15;
+            dataGridView1.Columns["STOK"].FillWeight = 10;
+            dataGridView1.Columns["STOK_MINIMUM"].FillWeight = 10;
+            dataGridView1.Columns["KETERANGAN_STOK"].FillWeight = 16;
+
+            dataGridView1.Columns["NO"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["KODE_SPAREPART"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["GAMBAR"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["PRODUK"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["HARGA"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["STOK"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["STOK_MINIMUM"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["KETERANGAN_STOK"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+
+            dataGridView1.Columns["GAMBAR"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["STOK"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["STOK_MINIMUM"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
+            dataGridView1.Columns["KETERANGAN_STOK"].HeaderText = "KETERANGAN";
+            dataGridView1.Columns["STOK_MINIMUM"].HeaderText = "STOK MINIMUM";
 
             dataGridView1.Columns["PRODUK"].SortMode = DataGridViewColumnSortMode.Automatic;
             dataGridView1.Columns["STOK"].SortMode = DataGridViewColumnSortMode.Automatic;
@@ -169,14 +175,20 @@ namespace Bengkel_Yoga_UKK
 
             return new SortableBindingList<DataItem>
                 {
-                    new DataItem { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = "20", HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
-                    new DataItem { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = "0", HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
-                    new DataItem { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = "11", HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = "5", HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = "23", HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = "20", HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = "20", HARGA = "Rp 520.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = "55", HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
+                    new DataItem { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = 0,STOK_MINIMUM=15, HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
+                    new DataItem { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 9, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 10, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 11, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 12, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new DataItem { NO = 13, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
+                    new DataItem { NO = 14, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
                 };
         }
 
@@ -220,7 +232,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "GAMBAR" };
+                    string[] targetColumns = { "GAMBAR","STOK","STOK_MINIMUM","KETERANGAN_STOK" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))
@@ -235,17 +247,15 @@ namespace Bengkel_Yoga_UKK
                         e.Handled = true; // Tandai event sebagai sudah dihandle
                     }
                 }
-
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    dataGridView1.Rows[i].Cells["NO"].Value = i +1;
+                }
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
         }
         private Bitmap CreateSortGlyph(SortOrder sortOrder)
         {
-            /* if (sortOrder == SortOrder.Ascending)
-                 return Properties.Resources.Arroww; // Gambar panah ke atas dari resource
-             else
-                 return Properties.Resources.ArrowUpL; // Gambar panah ke bawah dari resource*/
-
             if (sortOrder == SortOrder.Ascending)
                 return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowDownKotak4.png");
             else
@@ -332,7 +342,8 @@ public class DataItem
     public byte[] GAMBAR { get; set; }
     public string PRODUK { get; set; }
     public string HARGA { get; set; }
-    public string STOK { get; set; }
+    public int STOK { get; set; }
+    public int STOK_MINIMUM { get; set; }
     public byte[] KETERANGAN_STOK { get; set; }
     //public byte[] KETERANGAN { get; set; }
 }
