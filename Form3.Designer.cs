@@ -57,9 +57,9 @@
             DASHBOARD.Controls.Add(rjCircularPictureBox1);
             DASHBOARD.Controls.Add(lblNama);
             DASHBOARD.Dock = DockStyle.Top;
-            DASHBOARD.Location = new Point(264, 0);
+            DASHBOARD.Location = new Point(290, 0);
             DASHBOARD.Name = "DASHBOARD";
-            DASHBOARD.Size = new Size(904, 59);
+            DASHBOARD.Size = new Size(902, 59);
             DASHBOARD.TabIndex = 0;
             // 
             // label2
@@ -67,7 +67,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.ControlText;
-            label2.Location = new Point(729, 24);
+            label2.Location = new Point(727, 24);
             label2.Name = "label2";
             label2.Size = new Size(110, 15);
             label2.TabIndex = 9;
@@ -84,7 +84,7 @@
             rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             rjCircularPictureBox1.BorderSize = 2;
             rjCircularPictureBox1.GradientAngle = 50F;
-            rjCircularPictureBox1.Location = new Point(843, 1);
+            rjCircularPictureBox1.Location = new Point(841, 1);
             rjCircularPictureBox1.Name = "rjCircularPictureBox1";
             rjCircularPictureBox1.Size = new Size(55, 55);
             rjCircularPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -95,7 +95,7 @@
             // 
             lblNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblNama.AutoSize = true;
-            lblNama.Location = new Point(732, 22);
+            lblNama.Location = new Point(730, 22);
             lblNama.Name = "lblNama";
             lblNama.Size = new Size(110, 15);
             lblNama.TabIndex = 8;
@@ -116,10 +116,10 @@
             flowLayoutPanel2.Dock = DockStyle.Left;
             flowLayoutPanel2.ForeColor = SystemColors.ControlText;
             flowLayoutPanel2.Location = new Point(0, 0);
-            flowLayoutPanel2.MaximumSize = new Size(264, 0);
+            flowLayoutPanel2.MaximumSize = new Size(290, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(15, 0, 10, 0);
-            flowLayoutPanel2.Size = new Size(264, 621);
+            flowLayoutPanel2.Size = new Size(290, 713);
             flowLayoutPanel2.TabIndex = 5;
             // 
             // panel2
@@ -127,14 +127,14 @@
             panel2.Controls.Add(label1);
             panel2.Location = new Point(18, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(225, 109);
+            panel2.Size = new Size(255, 109);
             panel2.TabIndex = 12;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(59, 33);
+            label1.Location = new Point(71, 30);
             label1.Name = "label1";
             label1.Size = new Size(104, 40);
             label1.TabIndex = 12;
@@ -157,7 +157,7 @@
             rjButton1.Location = new Point(18, 118);
             rjButton1.Name = "rjButton1";
             rjButton1.Padding = new Padding(20, 0, 0, 0);
-            rjButton1.Size = new Size(228, 60);
+            rjButton1.Size = new Size(255, 60);
             rjButton1.TabIndex = 14;
             rjButton1.Text = "    Dashboard";
             rjButton1.TextAlign = ContentAlignment.MiddleLeft;
@@ -182,7 +182,7 @@
             rjButton2.Location = new Point(18, 184);
             rjButton2.Name = "rjButton2";
             rjButton2.Padding = new Padding(20, 0, 0, 0);
-            rjButton2.Size = new Size(228, 60);
+            rjButton2.Size = new Size(255, 60);
             rjButton2.TabIndex = 15;
             rjButton2.Text = "    Booking";
             rjButton2.TextAlign = ContentAlignment.MiddleLeft;
@@ -207,7 +207,7 @@
             rjButton3.Location = new Point(18, 250);
             rjButton3.Name = "rjButton3";
             rjButton3.Padding = new Padding(20, 0, 0, 0);
-            rjButton3.Size = new Size(228, 60);
+            rjButton3.Size = new Size(255, 60);
             rjButton3.TabIndex = 16;
             rjButton3.Text = "    Produk";
             rjButton3.TextAlign = ContentAlignment.MiddleLeft;
@@ -232,7 +232,7 @@
             rjButton4.Location = new Point(18, 316);
             rjButton4.Name = "rjButton4";
             rjButton4.Padding = new Padding(20, 0, 0, 0);
-            rjButton4.Size = new Size(228, 60);
+            rjButton4.Size = new Size(255, 60);
             rjButton4.TabIndex = 17;
             rjButton4.Text = "    Invoice";
             rjButton4.TextAlign = ContentAlignment.MiddleLeft;
@@ -257,7 +257,7 @@
             rjButton5.Location = new Point(18, 382);
             rjButton5.Name = "rjButton5";
             rjButton5.Padding = new Padding(20, 0, 0, 0);
-            rjButton5.Size = new Size(228, 60);
+            rjButton5.Size = new Size(255, 60);
             rjButton5.TabIndex = 18;
             rjButton5.Text = "    Jasa Servis";
             rjButton5.TextAlign = ContentAlignment.MiddleLeft;
@@ -282,7 +282,7 @@
             rjButton6.Location = new Point(18, 448);
             rjButton6.Name = "rjButton6";
             rjButton6.Padding = new Padding(20, 0, 0, 0);
-            rjButton6.Size = new Size(228, 60);
+            rjButton6.Size = new Size(255, 60);
             rjButton6.TabIndex = 19;
             rjButton6.Text = "    Pelanggan";
             rjButton6.TextAlign = ContentAlignment.MiddleLeft;
@@ -307,7 +307,7 @@
             rjButton7.Location = new Point(18, 514);
             rjButton7.Name = "rjButton7";
             rjButton7.Padding = new Padding(20, 0, 0, 0);
-            rjButton7.Size = new Size(228, 60);
+            rjButton7.Size = new Size(255, 60);
             rjButton7.TabIndex = 20;
             rjButton7.Text = "    Setting";
             rjButton7.TextAlign = ContentAlignment.MiddleLeft;
@@ -319,9 +319,9 @@
             // 
             panelMain.BackColor = SystemColors.Control;
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(264, 59);
+            panelMain.Location = new Point(290, 59);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(904, 562);
+            panelMain.Size = new Size(902, 654);
             panelMain.TabIndex = 6;
             // 
             // Form3
@@ -329,7 +329,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 134, 171);
-            ClientSize = new Size(1168, 621);
+            ClientSize = new Size(1192, 713);
             Controls.Add(panelMain);
             Controls.Add(DASHBOARD);
             Controls.Add(flowLayoutPanel2);

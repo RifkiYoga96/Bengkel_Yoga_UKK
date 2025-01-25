@@ -32,6 +32,8 @@
             dataGridView1 = new DataGridView();
             label2 = new Label();
             yogaPanel1 = new YogaPanel();
+            label4 = new Label();
+            comboBox1 = new ComboBox();
             yogaButton2 = new YogaButton();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -43,7 +45,6 @@
             label1 = new Label();
             numericUpDown1 = new NumericUpDown();
             yogaButton1 = new YogaButton();
-            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -58,10 +59,10 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.GridColor = SystemColors.Control;
-            dataGridView1.Location = new Point(46, 142);
+            dataGridView1.Location = new Point(46, 125);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(995, 306);
+            dataGridView1.Size = new Size(995, 323);
             dataGridView1.TabIndex = 0;
             // 
             // label2
@@ -82,6 +83,7 @@
             yogaPanel1.BorderColor = Color.PaleVioletRed;
             yogaPanel1.BorderRadius = 10;
             yogaPanel1.BorderSize = 0;
+            yogaPanel1.Controls.Add(label4);
             yogaPanel1.Controls.Add(comboBox1);
             yogaPanel1.Controls.Add(yogaButton2);
             yogaPanel1.Controls.Add(panel1);
@@ -97,6 +99,28 @@
             yogaPanel1.Size = new Size(1086, 528);
             yogaPanel1.TabIndex = 11;
             // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.DimGray;
+            label4.Location = new Point(46, 471);
+            label4.Name = "label4";
+            label4.Size = new Size(238, 23);
+            label4.TabIndex = 13;
+            label4.Text = "Showing 1 to 14 of 120 entries";
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(308, 91);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(154, 28);
+            comboBox1.TabIndex = 12;
+            // 
             // yogaButton2
             // 
             yogaButton2.BackColor = Color.MediumSlateBlue;
@@ -108,7 +132,7 @@
             yogaButton2.FlatStyle = FlatStyle.Flat;
             yogaButton2.ForeColor = Color.White;
             yogaButton2.Image = (Image)resources.GetObject("yogaButton2.Image");
-            yogaButton2.Location = new Point(255, 105);
+            yogaButton2.Location = new Point(255, 91);
             yogaButton2.Name = "yogaButton2";
             yogaButton2.Size = new Size(47, 27);
             yogaButton2.TabIndex = 12;
@@ -189,7 +213,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(46, 105);
+            textBox1.Location = new Point(46, 91);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = " Search";
             textBox1.Size = new Size(203, 27);
@@ -201,7 +225,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(978, 105);
+            label3.Location = new Point(978, 91);
             label3.Name = "label3";
             label3.Size = new Size(61, 23);
             label3.TabIndex = 5;
@@ -213,7 +237,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(860, 105);
+            label1.Location = new Point(860, 91);
             label1.Name = "label1";
             label1.Size = new Size(52, 23);
             label1.TabIndex = 4;
@@ -225,7 +249,7 @@
             numericUpDown1.BackColor = Color.White;
             numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
             numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(912, 104);
+            numericUpDown1.Location = new Point(912, 90);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(64, 27);
             numericUpDown1.TabIndex = 3;
@@ -251,16 +275,6 @@
             yogaButton1.TextColor = Color.White;
             yogaButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
             yogaButton1.UseVisualStyleBackColor = false;
-            // 
-            // comboBox1
-            // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(308, 105);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(154, 28);
-            comboBox1.TabIndex = 12;
             // 
             // Tabel
             // 
@@ -301,5 +315,6 @@
         private Label lblHalaman;
         private YogaButton yogaButton2;
         private ComboBox comboBox1;
+        private Label label4;
     }
 }

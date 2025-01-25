@@ -14,7 +14,7 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class Form3 : Form
     {
-        private Dictionary<int,Button> _listButton = new Dictionary<int,Button>();
+        private Dictionary<int, Button> _listButton = new Dictionary<int, Button>();
         private int buttonActiveBefore = 0;
         private int buttonActiveAfter = 1;
         Color active = System.Drawing.Color.FromArgb(255, 150, 50);
@@ -33,13 +33,13 @@ namespace Bengkel_Yoga_UKK
 
         private void InitComponen()
         {
-            AddButton(1,rjButton1);
-            AddButton(2,rjButton2);
-            AddButton(3,rjButton3);
-            AddButton(4,rjButton4);
-            AddButton(5,rjButton5);
-            AddButton(6,rjButton6);
-            AddButton(7,rjButton7);
+            AddButton(1, rjButton1);
+            AddButton(2, rjButton2);
+            AddButton(3, rjButton3);
+            AddButton(4, rjButton4);
+            AddButton(5, rjButton5);
+            AddButton(6, rjButton6);
+            AddButton(7, rjButton7);
 
             /*rjButton1.FlatAppearance.MouseDownBackColor = active;
             rjButton2.FlatAppearance.MouseDownBackColor = active;
@@ -76,7 +76,7 @@ namespace Bengkel_Yoga_UKK
 
             rjButton1.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
             rjButton2.Click += (s, e) => ShowFormInPanel2(new Tabel());
-            
+
         }
 
         private void PanelMain_Resize(object? sender, EventArgs e)
@@ -87,7 +87,7 @@ namespace Bengkel_Yoga_UKK
 
         private void AddButton(int key, Button value)
         {
-            _listButton.Add(key,value);
+            _listButton.Add(key, value);
         }
 
         private void BtnSideBar_Click(object? sender, EventArgs e)
@@ -98,7 +98,7 @@ namespace Bengkel_Yoga_UKK
                 button.BackColor = active;
                 button.FlatAppearance.MouseDownBackColor = active;
                 button.FlatAppearance.MouseOverBackColor = active;
-                if(buttonActiveBefore != 0)
+                if (buttonActiveBefore != 0)
                 {
                     _listButton[buttonActiveBefore].BackColor = over;
                     _listButton[buttonActiveBefore].FlatAppearance.MouseOverBackColor = hover;
@@ -139,8 +139,8 @@ namespace Bengkel_Yoga_UKK
             formShow.Parent = panelMain;
 
             // Atur ukuran dan posisi Form2 di dalam panelMain
-            formShow.Location = new Point(0,0); // Posisi relatif terhadap panelMain
-            formShow.Size = new Size(panelMain.Width,panelMain.Height); // Ukuran Form2
+            formShow.Location = new Point(0, 0); // Posisi relatif terhadap panelMain
+            formShow.Size = new Size(panelMain.Width, panelMain.Height); // Ukuran Form2
 
             // Tampilkan Form2
             formShow.Show();
@@ -161,6 +161,11 @@ namespace Bengkel_Yoga_UKK
 
             // Set gambar yang sudah di-resize ke PictureBox
             pictureBox.Image = resizedImage;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
