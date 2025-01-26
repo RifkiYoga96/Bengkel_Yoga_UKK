@@ -47,9 +47,6 @@
             panelMain = new Panel();
             panelTop = new Panel();
             label3 = new Label();
-            btnMin = new Button();
-            btnMax = new Button();
-            btnClose = new Button();
             flowLayoutPanel2.SuspendLayout();
             panelLeft.SuspendLayout();
             panelLogOut.SuspendLayout();
@@ -363,9 +360,6 @@
             // 
             panelTop.BackColor = Color.White;
             panelTop.Controls.Add(label3);
-            panelTop.Controls.Add(btnMin);
-            panelTop.Controls.Add(btnMax);
-            panelTop.Controls.Add(btnClose);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(290, 0);
             panelTop.Name = "panelTop";
@@ -384,53 +378,6 @@
             label3.Size = new Size(114, 32);
             label3.TabIndex = 19;
             label3.Text = "PRODUK";
-            // 
-            // btnMin
-            // 
-            btnMin.BackgroundImageLayout = ImageLayout.Zoom;
-            btnMin.Dock = DockStyle.Right;
-            btnMin.FlatAppearance.BorderSize = 0;
-            btnMin.FlatStyle = FlatStyle.Flat;
-            btnMin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMin.Image = (Image)resources.GetObject("btnMin.Image");
-            btnMin.Location = new Point(737, 0);
-            btnMin.Name = "btnMin";
-            btnMin.Size = new Size(55, 67);
-            btnMin.TabIndex = 18;
-            btnMin.UseVisualStyleBackColor = true;
-            btnMin.Visible = false;
-            // 
-            // btnMax
-            // 
-            btnMax.BackgroundImageLayout = ImageLayout.Zoom;
-            btnMax.Dock = DockStyle.Right;
-            btnMax.FlatAppearance.BorderSize = 0;
-            btnMax.FlatStyle = FlatStyle.Flat;
-            btnMax.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMax.Image = (Image)resources.GetObject("btnMax.Image");
-            btnMax.Location = new Point(792, 0);
-            btnMax.Name = "btnMax";
-            btnMax.Size = new Size(55, 67);
-            btnMax.TabIndex = 17;
-            btnMax.UseVisualStyleBackColor = true;
-            btnMax.Visible = false;
-            // 
-            // btnClose
-            // 
-            btnClose.BackgroundImageLayout = ImageLayout.Zoom;
-            btnClose.Dock = DockStyle.Right;
-            btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
-            btnClose.FlatAppearance.MouseOverBackColor = Color.Red;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(847, 0);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(55, 67);
-            btnClose.TabIndex = 16;
-            btnClose.UseVisualStyleBackColor = true;
-            btnClose.Visible = false;
             // 
             // Form3
             // 
@@ -479,9 +426,6 @@
         private Label label1;
         private RJCircularPictureBox rjCircularPictureBox1;
         private Label label2;
-        private Button btnMin;
-        private Button btnMax;
-        private Button btnClose;
         private Label label3;
     }
 }

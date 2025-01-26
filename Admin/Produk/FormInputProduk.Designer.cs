@@ -303,7 +303,6 @@
             btnSave.Text = "Save";
             btnSave.TextColor = Color.White;
             btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += yogaButton6_Click;
             // 
             // textBoxExt1
             // 

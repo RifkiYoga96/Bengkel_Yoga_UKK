@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKaryawan));
             dataGridView1 = new DataGridView();
-            label2 = new Label();
             yogaPanel1 = new YogaPanel();
             lblShowingEntries = new Label();
             comboFilter = new ComboBox();
@@ -59,22 +58,11 @@
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.GridColor = SystemColors.Control;
-            dataGridView1.Location = new Point(46, 125);
+            dataGridView1.Location = new Point(46, 77);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(995, 323);
+            dataGridView1.Size = new Size(995, 374);
             dataGridView1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(28, 25);
-            label2.Name = "label2";
-            label2.Size = new Size(107, 32);
-            label2.TabIndex = 10;
-            label2.Text = "ADMINS";
             // 
             // yogaPanel1
             // 
@@ -92,11 +80,10 @@
             yogaPanel1.Controls.Add(label1);
             yogaPanel1.Controls.Add(numericEntries);
             yogaPanel1.Controls.Add(dataGridView1);
-            yogaPanel1.Controls.Add(btnAddData);
             yogaPanel1.ForeColor = Color.White;
-            yogaPanel1.Location = new Point(28, 78);
+            yogaPanel1.Location = new Point(28, 75);
             yogaPanel1.Name = "yogaPanel1";
-            yogaPanel1.Size = new Size(1086, 528);
+            yogaPanel1.Size = new Size(1086, 531);
             yogaPanel1.TabIndex = 11;
             // 
             // lblShowingEntries
@@ -105,7 +92,7 @@
             lblShowingEntries.AutoSize = true;
             lblShowingEntries.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblShowingEntries.ForeColor = Color.DimGray;
-            lblShowingEntries.Location = new Point(46, 471);
+            lblShowingEntries.Location = new Point(46, 474);
             lblShowingEntries.Name = "lblShowingEntries";
             lblShowingEntries.Size = new Size(238, 23);
             lblShowingEntries.TabIndex = 13;
@@ -116,15 +103,15 @@
             comboFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             comboFilter.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             comboFilter.FormattingEnabled = true;
-            comboFilter.Location = new Point(308, 91);
+            comboFilter.Location = new Point(376, 33);
             comboFilter.Name = "comboFilter";
             comboFilter.Size = new Size(154, 28);
             comboFilter.TabIndex = 12;
             // 
             // btnSearch
             // 
-            btnSearch.BackColor = Color.MediumSlateBlue;
-            btnSearch.BackgroundColor = Color.MediumSlateBlue;
+            btnSearch.BackColor = Color.FromArgb(230, 126, 34);
+            btnSearch.BackgroundColor = Color.FromArgb(230, 126, 34);
             btnSearch.BorderColor = Color.PaleVioletRed;
             btnSearch.BorderRadius = 0;
             btnSearch.BorderSize = 0;
@@ -132,7 +119,7 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(255, 91);
+            btnSearch.Location = new Point(323, 33);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(47, 27);
             btnSearch.TabIndex = 12;
@@ -145,7 +132,7 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(btnNext);
             panel1.Controls.Add(btnPrevious);
-            panel1.Location = new Point(878, 464);
+            panel1.Location = new Point(878, 467);
             panel1.Name = "panel1";
             panel1.Size = new Size(165, 40);
             panel1.TabIndex = 9;
@@ -154,13 +141,14 @@
             // 
             panel2.BackColor = Color.RoyalBlue;
             panel2.Controls.Add(lblHalaman);
-            panel2.Location = new Point(67, 1);
+            panel2.Location = new Point(67, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(45, 39);
             panel2.TabIndex = 10;
             // 
             // lblHalaman
             // 
+            lblHalaman.BackColor = Color.FromArgb(230, 126, 34);
             lblHalaman.Dock = DockStyle.Fill;
             lblHalaman.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblHalaman.ForeColor = Color.White;
@@ -214,10 +202,10 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(46, 91);
+            txtSearch.Location = new Point(46, 33);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = " Search";
-            txtSearch.Size = new Size(203, 27);
+            txtSearch.Size = new Size(271, 27);
             txtSearch.TabIndex = 6;
             // 
             // label3
@@ -226,7 +214,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(978, 91);
+            label3.Location = new Point(978, 33);
             label3.Name = "label3";
             label3.Size = new Size(61, 23);
             label3.TabIndex = 5;
@@ -238,7 +226,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(860, 91);
+            label1.Location = new Point(860, 33);
             label1.Name = "label1";
             label1.Size = new Size(52, 23);
             label1.TabIndex = 4;
@@ -250,27 +238,27 @@
             numericEntries.BackColor = Color.White;
             numericEntries.BorderStyle = BorderStyle.FixedSingle;
             numericEntries.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            numericEntries.Location = new Point(912, 90);
+            numericEntries.Location = new Point(912, 32);
             numericEntries.Name = "numericEntries";
             numericEntries.Size = new Size(64, 27);
             numericEntries.TabIndex = 3;
             // 
             // btnAddData
             // 
-            btnAddData.BackColor = Color.RoyalBlue;
-            btnAddData.BackgroundColor = Color.RoyalBlue;
+            btnAddData.BackColor = Color.FromArgb(52, 152, 219);
+            btnAddData.BackgroundColor = Color.FromArgb(52, 152, 219);
             btnAddData.BorderColor = Color.PaleVioletRed;
             btnAddData.BorderRadius = 0;
             btnAddData.BorderSize = 0;
             btnAddData.FlatAppearance.BorderSize = 0;
             btnAddData.FlatStyle = FlatStyle.Flat;
-            btnAddData.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddData.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddData.ForeColor = Color.White;
             btnAddData.Image = (Image)resources.GetObject("btnAddData.Image");
-            btnAddData.Location = new Point(46, 16);
+            btnAddData.Location = new Point(28, 16);
             btnAddData.Name = "btnAddData";
             btnAddData.Padding = new Padding(10, 0, 0, 0);
-            btnAddData.Size = new Size(124, 37);
+            btnAddData.Size = new Size(132, 42);
             btnAddData.TabIndex = 1;
             btnAddData.Text = " Add Data";
             btnAddData.TextColor = Color.White;
@@ -284,7 +272,7 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(1143, 635);
             Controls.Add(yogaPanel1);
-            Controls.Add(label2);
+            Controls.Add(btnAddData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormKaryawan";
             Text = "Tabel";
@@ -295,13 +283,11 @@
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridView1;
-        private Label label2;
         private YogaPanel yogaPanel1;
         private YogaButton btnAddData;
         private NumericUpDown numericEntries;

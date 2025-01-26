@@ -21,6 +21,20 @@ CREATE TABLE Admins(
 	image_data VARBINARY(MAX)
 );
 
+CREATE TABLE Kendaraan(
+	no_pol VARCHAR(30) NOT NULL PRIMARY KEY,
+	merk VARCHAR(20),
+	tipe VARCHAR(20),
+	transmisi VARCHAR(20),
+	kapasitas INT,
+	tahun VARCHAR(5),
+	ktp_pelanggan VARCHAR(30),
+	FOREIGN KEY (ktp_pelanggan)
+		REFERENCES Pelanggan(ktp_pelanggan)
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE
+	);
+
 CREATE TABLE Bookings(
 	id_booking INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	ktp_pelanggan VARCHAR(30),
@@ -31,8 +45,8 @@ CREATE TABLE Bookings(
 	status VARCHAR(20),
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE
 	);
 
 CREATE TABLE Riwayat(
@@ -41,45 +55,22 @@ CREATE TABLE Riwayat(
 	no_pol VARCHAR(30),
 	tanggal DATE,
 	keluhan VARCHAR(100),
-	no_ktp_admin VARCHAR(30),
+	ktp_admin VARCHAR(30),
 						
 	FOREIGN KEY (ktp_pelanggan)
-		REFERENCES Pelanggan(ktp_pelanggan)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
+		REFERENCES Pelanggan(ktp_pelanggan),
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE,
 	FOREIGN KEY (no_pol)
-		REFERENCES Kendaraan(no_pol)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-);
-
-CREATE TABLE RiwayatSparepart(
-	id_riwayat INT,
-	kode_sparepart VARCHAR(20),
-	jumlah INT,
-	FOREIGN KEY (id_riwayat)
-		REFERENCES Riwayat(id_riwayat)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE,
-	FOREIGN KEY (kode_sparepart)
-		REFERENCES Sparepart(kode_sparepart)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
+		REFERENCES Kendaraan(no_pol),
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE,
+	FOREIGN KEY (ktp_admin)
+		REFERENCES Admins(ktp_admin)
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE
 	);
 
-CREATE TABLE Kendaraan(
-	no_pol VARCHAR NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	merk VARCHAR(20),
-	tipe VARCHAR(20),
-	transmisi VARCHAR(20),
-	kapasitas INT,
-	tahun VARCHAR(5),
-	ktp_pelanggan VARCHAR(30),
-	FOREIGN KEY (ktp_pelanggan)
-		REFERENCES Pelanggan(ktp_pelanggan)
-		ON DELETE CASCADE
-		ON UPDATE CASCADE
-	);
 
 CREATE TABLE Sparepart(
 	kode_sparepart VARCHAR(20) NOT NULL PRIMARY KEY,
@@ -89,6 +80,23 @@ CREATE TABLE Sparepart(
 	image_name NVARCHAR(100),
 	image_data VARBINARY(MAX)
 	);
+
+CREATE TABLE RiwayatSparepart(
+	id_riwayat INT,
+	kode_sparepart VARCHAR(20),
+	jumlah INT,
+	FOREIGN KEY (id_riwayat)
+		REFERENCES Riwayat(id_riwayat),
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE,
+	FOREIGN KEY (kode_sparepart)
+		REFERENCES Sparepart(kode_sparepart));
+		--ON DELETE CASCADE
+		--ON UPDATE CASCADE
+
+
+
+
 
 CREATE TABLE History(
 	id_history INT PRIMARY KEY IDENTITY(1,1),
@@ -111,3 +119,35 @@ CREATE TABLE change_history (
     changed_by NVARCHAR(100), -- User yang melakukan perubahan
     changed_at DATETIME DEFAULT GETDATE() -- Waktu perubahan
 );
+
+
+-- Insert data ke tabel Admins
+INSERT INTO Admins (
+    ktp_admin, 
+    nama_admin, 
+    email, 
+    password, 
+    alamat, 
+    no_telp, 
+    role, 
+    image_name, 
+    image_data
+)
+SELECT 
+    '1234567890123456', -- ktp_admin (contoh: 16 digit)
+    'John Doe', -- nama_admin
+    'john.doe@example.com', -- email
+    'password123', -- password
+    'Jl. Contoh No. 123', -- alamat
+    '081234567890', -- no_telp
+    1, -- role (contoh: 1 untuk admin)
+    'FotoSaya.jpg', -- image_name (nama file gambar)
+    BulkColumn -- image_data (data biner dari file gambar)
+FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\FotoSaya.jpg', SINGLE_BLOB) AS ImageFile;
+
+
+DROP TABLE Kendaraan;
+
+ALTER TABLE Riwayat ADD CONSTRAINT Fk_Riwayat_Admins FOREIGN KEY (no_pol)
+		REFERENCES Kendaraan(no_pol);
+
