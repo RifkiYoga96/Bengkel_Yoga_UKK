@@ -29,338 +29,459 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
-            DASHBOARD = new Panel();
-            label2 = new Label();
-            rjCircularPictureBox1 = new RJCircularPictureBox();
-            lblNama = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
+            btnDashboard = new YogaButton();
+            btnBooking = new YogaButton();
+            btnProduk = new YogaButton();
+            btnInvoice = new YogaButton();
+            btnService = new YogaButton();
+            btnPelanggan = new YogaButton();
+            btnKaryawan = new YogaButton();
+            panelLeft = new Panel();
+            panelLogOut = new Panel();
+            btnLogout = new YogaButton();
             panel2 = new Panel();
+            label2 = new Label();
             label1 = new Label();
-            rjButton1 = new YogaButton();
-            rjButton2 = new YogaButton();
-            rjButton3 = new YogaButton();
-            rjButton4 = new YogaButton();
-            rjButton5 = new YogaButton();
-            rjButton6 = new YogaButton();
-            rjButton7 = new YogaButton();
+            rjCircularPictureBox1 = new RJCircularPictureBox();
             panelMain = new Panel();
-            DASHBOARD.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
+            panelTop = new Panel();
+            label3 = new Label();
+            btnMin = new Button();
+            btnMax = new Button();
+            btnClose = new Button();
             flowLayoutPanel2.SuspendLayout();
+            panelLeft.SuspendLayout();
+            panelLogOut.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
+            panelTop.SuspendLayout();
             SuspendLayout();
-            // 
-            // DASHBOARD
-            // 
-            DASHBOARD.BackColor = Color.White;
-            DASHBOARD.Controls.Add(label2);
-            DASHBOARD.Controls.Add(rjCircularPictureBox1);
-            DASHBOARD.Controls.Add(lblNama);
-            DASHBOARD.Dock = DockStyle.Top;
-            DASHBOARD.Location = new Point(290, 0);
-            DASHBOARD.Name = "DASHBOARD";
-            DASHBOARD.Size = new Size(902, 59);
-            DASHBOARD.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.ForeColor = SystemColors.ControlText;
-            label2.Location = new Point(727, 24);
-            label2.Name = "label2";
-            label2.Size = new Size(110, 15);
-            label2.TabIndex = 9;
-            label2.Text = "Rifki Yoga Syahbani";
-            // 
-            // rjCircularPictureBox1
-            // 
-            rjCircularPictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            rjCircularPictureBox1.BackgroundImage = (Image)resources.GetObject("rjCircularPictureBox1.BackgroundImage");
-            rjCircularPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            rjCircularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            rjCircularPictureBox1.BorderColor = Color.RoyalBlue;
-            rjCircularPictureBox1.BorderColor2 = Color.HotPink;
-            rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            rjCircularPictureBox1.BorderSize = 2;
-            rjCircularPictureBox1.GradientAngle = 50F;
-            rjCircularPictureBox1.Location = new Point(841, 1);
-            rjCircularPictureBox1.Name = "rjCircularPictureBox1";
-            rjCircularPictureBox1.Size = new Size(55, 55);
-            rjCircularPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            rjCircularPictureBox1.TabIndex = 0;
-            rjCircularPictureBox1.TabStop = false;
-            // 
-            // lblNama
-            // 
-            lblNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblNama.AutoSize = true;
-            lblNama.Location = new Point(730, 22);
-            lblNama.Name = "lblNama";
-            lblNama.Size = new Size(110, 15);
-            lblNama.TabIndex = 8;
-            lblNama.Text = "Rifki Yoga Syahbani";
             // 
             // flowLayoutPanel2
             // 
             flowLayoutPanel2.AutoScroll = true;
-            flowLayoutPanel2.BackColor = Color.FromArgb(46, 134, 171);
-            flowLayoutPanel2.Controls.Add(panel2);
-            flowLayoutPanel2.Controls.Add(rjButton1);
-            flowLayoutPanel2.Controls.Add(rjButton2);
-            flowLayoutPanel2.Controls.Add(rjButton3);
-            flowLayoutPanel2.Controls.Add(rjButton4);
-            flowLayoutPanel2.Controls.Add(rjButton5);
-            flowLayoutPanel2.Controls.Add(rjButton6);
-            flowLayoutPanel2.Controls.Add(rjButton7);
-            flowLayoutPanel2.Dock = DockStyle.Left;
+            flowLayoutPanel2.BackColor = Color.FromArgb(44, 62, 80);
+            flowLayoutPanel2.Controls.Add(btnDashboard);
+            flowLayoutPanel2.Controls.Add(btnBooking);
+            flowLayoutPanel2.Controls.Add(btnProduk);
+            flowLayoutPanel2.Controls.Add(btnInvoice);
+            flowLayoutPanel2.Controls.Add(btnService);
+            flowLayoutPanel2.Controls.Add(btnPelanggan);
+            flowLayoutPanel2.Controls.Add(btnKaryawan);
+            flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.ForeColor = SystemColors.ControlText;
-            flowLayoutPanel2.Location = new Point(0, 0);
+            flowLayoutPanel2.Location = new Point(0, 139);
             flowLayoutPanel2.MaximumSize = new Size(290, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(15, 0, 10, 0);
-            flowLayoutPanel2.Size = new Size(290, 713);
+            flowLayoutPanel2.Size = new Size(290, 535);
             flowLayoutPanel2.TabIndex = 5;
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.BackColor = Color.FromArgb(44, 62, 80);
+            btnDashboard.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnDashboard.BorderColor = Color.PaleVioletRed;
+            btnDashboard.BorderRadius = 7;
+            btnDashboard.BorderSize = 0;
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 150, 50);
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDashboard.ForeColor = Color.White;
+            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(18, 3);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Padding = new Padding(20, 0, 0, 0);
+            btnDashboard.Size = new Size(255, 60);
+            btnDashboard.TabIndex = 14;
+            btnDashboard.Text = "    Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.TextColor = Color.White;
+            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDashboard.UseVisualStyleBackColor = false;
+            // 
+            // btnBooking
+            // 
+            btnBooking.BackColor = Color.FromArgb(44, 62, 80);
+            btnBooking.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnBooking.BorderColor = Color.PaleVioletRed;
+            btnBooking.BorderRadius = 7;
+            btnBooking.BorderSize = 0;
+            btnBooking.FlatAppearance.BorderSize = 0;
+            btnBooking.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnBooking.FlatStyle = FlatStyle.Flat;
+            btnBooking.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBooking.ForeColor = Color.White;
+            btnBooking.Image = (Image)resources.GetObject("btnBooking.Image");
+            btnBooking.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBooking.Location = new Point(18, 69);
+            btnBooking.Name = "btnBooking";
+            btnBooking.Padding = new Padding(20, 0, 0, 0);
+            btnBooking.Size = new Size(255, 60);
+            btnBooking.TabIndex = 15;
+            btnBooking.Text = "    Booking";
+            btnBooking.TextAlign = ContentAlignment.MiddleLeft;
+            btnBooking.TextColor = Color.White;
+            btnBooking.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBooking.UseVisualStyleBackColor = false;
+            // 
+            // btnProduk
+            // 
+            btnProduk.BackColor = Color.FromArgb(44, 62, 80);
+            btnProduk.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnProduk.BorderColor = Color.PaleVioletRed;
+            btnProduk.BorderRadius = 7;
+            btnProduk.BorderSize = 0;
+            btnProduk.FlatAppearance.BorderSize = 0;
+            btnProduk.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnProduk.FlatStyle = FlatStyle.Flat;
+            btnProduk.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnProduk.ForeColor = Color.White;
+            btnProduk.Image = (Image)resources.GetObject("btnProduk.Image");
+            btnProduk.ImageAlign = ContentAlignment.MiddleLeft;
+            btnProduk.Location = new Point(18, 135);
+            btnProduk.Name = "btnProduk";
+            btnProduk.Padding = new Padding(20, 0, 0, 0);
+            btnProduk.Size = new Size(255, 60);
+            btnProduk.TabIndex = 16;
+            btnProduk.Text = "    Produk";
+            btnProduk.TextAlign = ContentAlignment.MiddleLeft;
+            btnProduk.TextColor = Color.White;
+            btnProduk.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnProduk.UseVisualStyleBackColor = false;
+            // 
+            // btnInvoice
+            // 
+            btnInvoice.BackColor = Color.FromArgb(44, 62, 80);
+            btnInvoice.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnInvoice.BorderColor = Color.PaleVioletRed;
+            btnInvoice.BorderRadius = 7;
+            btnInvoice.BorderSize = 0;
+            btnInvoice.FlatAppearance.BorderSize = 0;
+            btnInvoice.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnInvoice.FlatStyle = FlatStyle.Flat;
+            btnInvoice.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnInvoice.ForeColor = Color.White;
+            btnInvoice.Image = (Image)resources.GetObject("btnInvoice.Image");
+            btnInvoice.ImageAlign = ContentAlignment.MiddleLeft;
+            btnInvoice.Location = new Point(18, 201);
+            btnInvoice.Name = "btnInvoice";
+            btnInvoice.Padding = new Padding(20, 0, 0, 0);
+            btnInvoice.Size = new Size(255, 60);
+            btnInvoice.TabIndex = 17;
+            btnInvoice.Text = "    Invoice";
+            btnInvoice.TextAlign = ContentAlignment.MiddleLeft;
+            btnInvoice.TextColor = Color.White;
+            btnInvoice.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnInvoice.UseVisualStyleBackColor = false;
+            // 
+            // btnService
+            // 
+            btnService.BackColor = Color.FromArgb(44, 62, 80);
+            btnService.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnService.BorderColor = Color.PaleVioletRed;
+            btnService.BorderRadius = 7;
+            btnService.BorderSize = 0;
+            btnService.FlatAppearance.BorderSize = 0;
+            btnService.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnService.FlatStyle = FlatStyle.Flat;
+            btnService.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnService.ForeColor = Color.White;
+            btnService.Image = (Image)resources.GetObject("btnService.Image");
+            btnService.ImageAlign = ContentAlignment.MiddleLeft;
+            btnService.Location = new Point(18, 267);
+            btnService.Name = "btnService";
+            btnService.Padding = new Padding(20, 0, 0, 0);
+            btnService.Size = new Size(255, 60);
+            btnService.TabIndex = 18;
+            btnService.Text = "    Jasa Servis";
+            btnService.TextAlign = ContentAlignment.MiddleLeft;
+            btnService.TextColor = Color.White;
+            btnService.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnService.UseVisualStyleBackColor = false;
+            // 
+            // btnPelanggan
+            // 
+            btnPelanggan.BackColor = Color.FromArgb(44, 62, 80);
+            btnPelanggan.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnPelanggan.BorderColor = Color.PaleVioletRed;
+            btnPelanggan.BorderRadius = 7;
+            btnPelanggan.BorderSize = 0;
+            btnPelanggan.FlatAppearance.BorderSize = 0;
+            btnPelanggan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnPelanggan.FlatStyle = FlatStyle.Flat;
+            btnPelanggan.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPelanggan.ForeColor = Color.White;
+            btnPelanggan.Image = (Image)resources.GetObject("btnPelanggan.Image");
+            btnPelanggan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPelanggan.Location = new Point(18, 333);
+            btnPelanggan.Name = "btnPelanggan";
+            btnPelanggan.Padding = new Padding(20, 0, 0, 0);
+            btnPelanggan.Size = new Size(255, 60);
+            btnPelanggan.TabIndex = 19;
+            btnPelanggan.Text = "    Pelanggan";
+            btnPelanggan.TextAlign = ContentAlignment.MiddleLeft;
+            btnPelanggan.TextColor = Color.White;
+            btnPelanggan.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnPelanggan.UseVisualStyleBackColor = false;
+            // 
+            // btnKaryawan
+            // 
+            btnKaryawan.BackColor = Color.FromArgb(44, 62, 80);
+            btnKaryawan.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnKaryawan.BorderColor = Color.PaleVioletRed;
+            btnKaryawan.BorderRadius = 7;
+            btnKaryawan.BorderSize = 0;
+            btnKaryawan.FlatAppearance.BorderSize = 0;
+            btnKaryawan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKaryawan.FlatStyle = FlatStyle.Flat;
+            btnKaryawan.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKaryawan.ForeColor = Color.White;
+            btnKaryawan.Image = (Image)resources.GetObject("btnKaryawan.Image");
+            btnKaryawan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnKaryawan.Location = new Point(18, 399);
+            btnKaryawan.Name = "btnKaryawan";
+            btnKaryawan.Padding = new Padding(20, 0, 0, 0);
+            btnKaryawan.Size = new Size(255, 60);
+            btnKaryawan.TabIndex = 20;
+            btnKaryawan.Text = "    Karyawan";
+            btnKaryawan.TextAlign = ContentAlignment.MiddleLeft;
+            btnKaryawan.TextColor = Color.White;
+            btnKaryawan.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnKaryawan.UseVisualStyleBackColor = false;
+            // 
+            // panelLeft
+            // 
+            panelLeft.Controls.Add(flowLayoutPanel2);
+            panelLeft.Controls.Add(panelLogOut);
+            panelLeft.Controls.Add(panel2);
+            panelLeft.Dock = DockStyle.Left;
+            panelLeft.Location = new Point(0, 0);
+            panelLeft.Name = "panelLeft";
+            panelLeft.Size = new Size(290, 756);
+            panelLeft.TabIndex = 7;
+            // 
+            // panelLogOut
+            // 
+            panelLogOut.BackColor = Color.FromArgb(44, 62, 80);
+            panelLogOut.Controls.Add(btnLogout);
+            panelLogOut.Dock = DockStyle.Bottom;
+            panelLogOut.Location = new Point(0, 674);
+            panelLogOut.Name = "panelLogOut";
+            panelLogOut.Padding = new Padding(15, 0, 10, 0);
+            panelLogOut.Size = new Size(290, 82);
+            panelLogOut.TabIndex = 13;
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.FromArgb(44, 62, 80);
+            btnLogout.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnLogout.BorderColor = Color.PaleVioletRed;
+            btnLogout.BorderRadius = 7;
+            btnLogout.BorderSize = 0;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
+            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogout.Location = new Point(18, 10);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new Padding(20, 0, 0, 0);
+            btnLogout.Size = new Size(255, 60);
+            btnLogout.TabIndex = 21;
+            btnLogout.Text = "    Logout";
+            btnLogout.TextAlign = ContentAlignment.MiddleLeft;
+            btnLogout.TextColor = Color.White;
+            btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLogout.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
+            panel2.BackColor = Color.FromArgb(44, 62, 80);
+            panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(18, 3);
+            panel2.Controls.Add(rjCircularPictureBox1);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(255, 109);
+            panel2.Size = new Size(290, 139);
             panel2.TabIndex = 12;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            label2.Location = new Point(97, 68);
+            label2.Name = "label2";
+            label2.Size = new Size(75, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Super Admin";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(71, 30);
+            label1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(95, 47);
             label1.Name = "label1";
-            label1.Size = new Size(104, 40);
-            label1.TabIndex = 12;
-            label1.Text = "ProFix";
+            label1.Size = new Size(144, 20);
+            label1.TabIndex = 1;
+            label1.Text = "Rifki Yoga Syahbani";
             // 
-            // rjButton1
+            // rjCircularPictureBox1
             // 
-            rjButton1.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton1.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton1.BorderColor = Color.PaleVioletRed;
-            rjButton1.BorderRadius = 7;
-            rjButton1.BorderSize = 0;
-            rjButton1.FlatAppearance.BorderSize = 0;
-            rjButton1.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 150, 50);
-            rjButton1.FlatStyle = FlatStyle.Flat;
-            rjButton1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton1.ForeColor = Color.White;
-            rjButton1.Image = (Image)resources.GetObject("rjButton1.Image");
-            rjButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton1.Location = new Point(18, 118);
-            rjButton1.Name = "rjButton1";
-            rjButton1.Padding = new Padding(20, 0, 0, 0);
-            rjButton1.Size = new Size(255, 60);
-            rjButton1.TabIndex = 14;
-            rjButton1.Text = "    Dashboard";
-            rjButton1.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton1.TextColor = Color.White;
-            rjButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton1.UseVisualStyleBackColor = false;
-            // 
-            // rjButton2
-            // 
-            rjButton2.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton2.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton2.BorderColor = Color.PaleVioletRed;
-            rjButton2.BorderRadius = 7;
-            rjButton2.BorderSize = 0;
-            rjButton2.FlatAppearance.BorderSize = 0;
-            rjButton2.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            rjButton2.FlatStyle = FlatStyle.Flat;
-            rjButton2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton2.ForeColor = Color.White;
-            rjButton2.Image = (Image)resources.GetObject("rjButton2.Image");
-            rjButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton2.Location = new Point(18, 184);
-            rjButton2.Name = "rjButton2";
-            rjButton2.Padding = new Padding(20, 0, 0, 0);
-            rjButton2.Size = new Size(255, 60);
-            rjButton2.TabIndex = 15;
-            rjButton2.Text = "    Booking";
-            rjButton2.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton2.TextColor = Color.White;
-            rjButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton2.UseVisualStyleBackColor = false;
-            // 
-            // rjButton3
-            // 
-            rjButton3.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton3.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton3.BorderColor = Color.PaleVioletRed;
-            rjButton3.BorderRadius = 7;
-            rjButton3.BorderSize = 0;
-            rjButton3.FlatAppearance.BorderSize = 0;
-            rjButton3.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            rjButton3.FlatStyle = FlatStyle.Flat;
-            rjButton3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton3.ForeColor = Color.White;
-            rjButton3.Image = (Image)resources.GetObject("rjButton3.Image");
-            rjButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton3.Location = new Point(18, 250);
-            rjButton3.Name = "rjButton3";
-            rjButton3.Padding = new Padding(20, 0, 0, 0);
-            rjButton3.Size = new Size(255, 60);
-            rjButton3.TabIndex = 16;
-            rjButton3.Text = "    Produk";
-            rjButton3.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton3.TextColor = Color.White;
-            rjButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton3.UseVisualStyleBackColor = false;
-            // 
-            // rjButton4
-            // 
-            rjButton4.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton4.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton4.BorderColor = Color.PaleVioletRed;
-            rjButton4.BorderRadius = 7;
-            rjButton4.BorderSize = 0;
-            rjButton4.FlatAppearance.BorderSize = 0;
-            rjButton4.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            rjButton4.FlatStyle = FlatStyle.Flat;
-            rjButton4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton4.ForeColor = Color.White;
-            rjButton4.Image = (Image)resources.GetObject("rjButton4.Image");
-            rjButton4.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton4.Location = new Point(18, 316);
-            rjButton4.Name = "rjButton4";
-            rjButton4.Padding = new Padding(20, 0, 0, 0);
-            rjButton4.Size = new Size(255, 60);
-            rjButton4.TabIndex = 17;
-            rjButton4.Text = "    Invoice";
-            rjButton4.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton4.TextColor = Color.White;
-            rjButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton4.UseVisualStyleBackColor = false;
-            // 
-            // rjButton5
-            // 
-            rjButton5.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton5.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton5.BorderColor = Color.PaleVioletRed;
-            rjButton5.BorderRadius = 7;
-            rjButton5.BorderSize = 0;
-            rjButton5.FlatAppearance.BorderSize = 0;
-            rjButton5.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            rjButton5.FlatStyle = FlatStyle.Flat;
-            rjButton5.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton5.ForeColor = Color.White;
-            rjButton5.Image = (Image)resources.GetObject("rjButton5.Image");
-            rjButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton5.Location = new Point(18, 382);
-            rjButton5.Name = "rjButton5";
-            rjButton5.Padding = new Padding(20, 0, 0, 0);
-            rjButton5.Size = new Size(255, 60);
-            rjButton5.TabIndex = 18;
-            rjButton5.Text = "    Jasa Servis";
-            rjButton5.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton5.TextColor = Color.White;
-            rjButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton5.UseVisualStyleBackColor = false;
-            // 
-            // rjButton6
-            // 
-            rjButton6.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton6.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton6.BorderColor = Color.PaleVioletRed;
-            rjButton6.BorderRadius = 7;
-            rjButton6.BorderSize = 0;
-            rjButton6.FlatAppearance.BorderSize = 0;
-            rjButton6.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            rjButton6.FlatStyle = FlatStyle.Flat;
-            rjButton6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton6.ForeColor = Color.White;
-            rjButton6.Image = (Image)resources.GetObject("rjButton6.Image");
-            rjButton6.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton6.Location = new Point(18, 448);
-            rjButton6.Name = "rjButton6";
-            rjButton6.Padding = new Padding(20, 0, 0, 0);
-            rjButton6.Size = new Size(255, 60);
-            rjButton6.TabIndex = 19;
-            rjButton6.Text = "    Pelanggan";
-            rjButton6.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton6.TextColor = Color.White;
-            rjButton6.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton6.UseVisualStyleBackColor = false;
-            // 
-            // rjButton7
-            // 
-            rjButton7.BackColor = Color.FromArgb(46, 134, 171);
-            rjButton7.BackgroundColor = Color.FromArgb(46, 134, 171);
-            rjButton7.BorderColor = Color.PaleVioletRed;
-            rjButton7.BorderRadius = 7;
-            rjButton7.BorderSize = 0;
-            rjButton7.FlatAppearance.BorderSize = 0;
-            rjButton7.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            rjButton7.FlatStyle = FlatStyle.Flat;
-            rjButton7.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            rjButton7.ForeColor = Color.White;
-            rjButton7.Image = (Image)resources.GetObject("rjButton7.Image");
-            rjButton7.ImageAlign = ContentAlignment.MiddleLeft;
-            rjButton7.Location = new Point(18, 514);
-            rjButton7.Name = "rjButton7";
-            rjButton7.Padding = new Padding(20, 0, 0, 0);
-            rjButton7.Size = new Size(255, 60);
-            rjButton7.TabIndex = 20;
-            rjButton7.Text = "    Setting";
-            rjButton7.TextAlign = ContentAlignment.MiddleLeft;
-            rjButton7.TextColor = Color.White;
-            rjButton7.TextImageRelation = TextImageRelation.ImageBeforeText;
-            rjButton7.UseVisualStyleBackColor = false;
+            rjCircularPictureBox1.BackgroundImage = (Image)resources.GetObject("rjCircularPictureBox1.BackgroundImage");
+            rjCircularPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            rjCircularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox1.BorderColor = Color.White;
+            rjCircularPictureBox1.BorderColor2 = Color.White;
+            rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox1.BorderSize = 2;
+            rjCircularPictureBox1.GradientAngle = 50F;
+            rjCircularPictureBox1.Location = new Point(18, 30);
+            rjCircularPictureBox1.Name = "rjCircularPictureBox1";
+            rjCircularPictureBox1.Size = new Size(70, 70);
+            rjCircularPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox1.TabIndex = 0;
+            rjCircularPictureBox1.TabStop = false;
             // 
             // panelMain
             // 
-            panelMain.BackColor = SystemColors.Control;
+            panelMain.BackColor = Color.Gainsboro;
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(290, 59);
+            panelMain.Location = new Point(290, 67);
+            panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(902, 654);
+            panelMain.Size = new Size(902, 689);
             panelMain.TabIndex = 6;
+            // 
+            // panelTop
+            // 
+            panelTop.BackColor = Color.White;
+            panelTop.Controls.Add(label3);
+            panelTop.Controls.Add(btnMin);
+            panelTop.Controls.Add(btnMax);
+            panelTop.Controls.Add(btnClose);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(290, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(902, 67);
+            panelTop.TabIndex = 9;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top;
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(44, 62, 80);
+            label3.Location = new Point(388, 18);
+            label3.Name = "label3";
+            label3.Size = new Size(114, 32);
+            label3.TabIndex = 19;
+            label3.Text = "PRODUK";
+            // 
+            // btnMin
+            // 
+            btnMin.BackgroundImageLayout = ImageLayout.Zoom;
+            btnMin.Dock = DockStyle.Right;
+            btnMin.FlatAppearance.BorderSize = 0;
+            btnMin.FlatStyle = FlatStyle.Flat;
+            btnMin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMin.Image = (Image)resources.GetObject("btnMin.Image");
+            btnMin.Location = new Point(737, 0);
+            btnMin.Name = "btnMin";
+            btnMin.Size = new Size(55, 67);
+            btnMin.TabIndex = 18;
+            btnMin.UseVisualStyleBackColor = true;
+            btnMin.Visible = false;
+            // 
+            // btnMax
+            // 
+            btnMax.BackgroundImageLayout = ImageLayout.Zoom;
+            btnMax.Dock = DockStyle.Right;
+            btnMax.FlatAppearance.BorderSize = 0;
+            btnMax.FlatStyle = FlatStyle.Flat;
+            btnMax.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMax.Image = (Image)resources.GetObject("btnMax.Image");
+            btnMax.Location = new Point(792, 0);
+            btnMax.Name = "btnMax";
+            btnMax.Size = new Size(55, 67);
+            btnMax.TabIndex = 17;
+            btnMax.UseVisualStyleBackColor = true;
+            btnMax.Visible = false;
+            // 
+            // btnClose
+            // 
+            btnClose.BackgroundImageLayout = ImageLayout.Zoom;
+            btnClose.Dock = DockStyle.Right;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
+            btnClose.FlatAppearance.MouseOverBackColor = Color.Red;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.Location = new Point(847, 0);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(55, 67);
+            btnClose.TabIndex = 16;
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Visible = false;
             // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(46, 134, 171);
-            ClientSize = new Size(1192, 713);
+            BackColor = Color.FromArgb(44, 62, 80);
+            ClientSize = new Size(1192, 756);
             Controls.Add(panelMain);
-            Controls.Add(DASHBOARD);
-            Controls.Add(flowLayoutPanel2);
+            Controls.Add(panelTop);
+            Controls.Add(panelLeft);
             ForeColor = Color.White;
             Name = "Form3";
-            Text = "ProFix";
-            DASHBOARD.ResumeLayout(false);
-            DASHBOARD.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
+            Padding = new Padding(0);
+            Style.BackColor = Color.FromArgb(44, 62, 80);
+            Style.ForeColor = Color.White;
+            Style.InactiveShadowOpacity = 0;
+            Style.MdiChild.IconHorizontalAlignment = HorizontalAlignment.Center;
+            Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
+            Text = "ProFix Application Management";
             flowLayoutPanel2.ResumeLayout(false);
+            panelLeft.ResumeLayout(false);
+            panelLogOut.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
+            panelTop.ResumeLayout(false);
+            panelTop.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel DASHBOARD;
         private FlowLayoutPanel flowLayoutPanel2;
-        private Label lblNama;
+        private YogaButton btnDashboard;
+        private YogaButton btnBooking;
+        private YogaButton btnProduk;
+        private YogaButton btnInvoice;
+        private YogaButton btnService;
+        private YogaButton btnPelanggan;
+        private YogaButton btnKaryawan;
+        private Panel panelLeft;
+        private Panel panelLogOut;
+        private YogaButton btnLogout;
+        private Panel panelMain;
+        private Panel panelTop;
         private Panel panel2;
         private Label label1;
-        private YogaButton rjButton1;
-        private YogaButton rjButton2;
-        private YogaButton rjButton3;
-        private YogaButton rjButton4;
-        private YogaButton rjButton5;
-        private YogaButton rjButton6;
-        private YogaButton rjButton7;
-        private Panel panelMain;
         private RJCircularPictureBox rjCircularPictureBox1;
         private Label label2;
+        private Button btnMin;
+        private Button btnMax;
+        private Button btnClose;
+        private Label label3;
     }
 }

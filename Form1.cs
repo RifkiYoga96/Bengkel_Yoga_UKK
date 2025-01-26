@@ -9,13 +9,12 @@ namespace Bengkel_Yoga_UKK
         public Dashboardd()
         {
             InitializeComponent();
+            btnClose.Click += (s, e) => Close();
+            btnMax.Click +=
+                (s, e) => WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
+            btnMin.Click += (s, e) => WindowState = FormWindowState.Minimized;
 
-           
         }
-
-
-        
-
     }
 }
 

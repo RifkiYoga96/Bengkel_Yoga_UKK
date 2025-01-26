@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class Tabel
+    partial class FormKaryawan
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Tabel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKaryawan));
             dataGridView1 = new DataGridView();
             label2 = new Label();
             yogaPanel1 = new YogaPanel();
-            label4 = new Label();
-            comboBox1 = new ComboBox();
-            yogaButton2 = new YogaButton();
+            lblShowingEntries = new Label();
+            comboFilter = new ComboBox();
+            btnSearch = new YogaButton();
             panel1 = new Panel();
             panel2 = new Panel();
             lblHalaman = new Label();
             btnNext = new YogaButton();
             btnPrevious = new YogaButton();
-            textBox1 = new TextBox();
+            txtSearch = new TextBox();
             label3 = new Label();
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            yogaButton1 = new YogaButton();
+            numericEntries = new NumericUpDown();
+            btnAddData = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericEntries).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -72,9 +72,9 @@
             label2.ForeColor = SystemColors.ControlDarkDark;
             label2.Location = new Point(28, 25);
             label2.Name = "label2";
-            label2.Size = new Size(110, 32);
+            label2.Size = new Size(107, 32);
             label2.TabIndex = 10;
-            label2.Text = "PRODUK";
+            label2.Text = "ADMINS";
             // 
             // yogaPanel1
             // 
@@ -83,61 +83,61 @@
             yogaPanel1.BorderColor = Color.PaleVioletRed;
             yogaPanel1.BorderRadius = 10;
             yogaPanel1.BorderSize = 0;
-            yogaPanel1.Controls.Add(label4);
-            yogaPanel1.Controls.Add(comboBox1);
-            yogaPanel1.Controls.Add(yogaButton2);
+            yogaPanel1.Controls.Add(lblShowingEntries);
+            yogaPanel1.Controls.Add(comboFilter);
+            yogaPanel1.Controls.Add(btnSearch);
             yogaPanel1.Controls.Add(panel1);
-            yogaPanel1.Controls.Add(textBox1);
+            yogaPanel1.Controls.Add(txtSearch);
             yogaPanel1.Controls.Add(label3);
             yogaPanel1.Controls.Add(label1);
-            yogaPanel1.Controls.Add(numericUpDown1);
+            yogaPanel1.Controls.Add(numericEntries);
             yogaPanel1.Controls.Add(dataGridView1);
-            yogaPanel1.Controls.Add(yogaButton1);
+            yogaPanel1.Controls.Add(btnAddData);
             yogaPanel1.ForeColor = Color.White;
             yogaPanel1.Location = new Point(28, 78);
             yogaPanel1.Name = "yogaPanel1";
             yogaPanel1.Size = new Size(1086, 528);
             yogaPanel1.TabIndex = 11;
             // 
-            // label4
+            // lblShowingEntries
             // 
-            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(46, 471);
-            label4.Name = "label4";
-            label4.Size = new Size(238, 23);
-            label4.TabIndex = 13;
-            label4.Text = "Showing 1 to 14 of 120 entries";
+            lblShowingEntries.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblShowingEntries.AutoSize = true;
+            lblShowingEntries.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblShowingEntries.ForeColor = Color.DimGray;
+            lblShowingEntries.Location = new Point(46, 471);
+            lblShowingEntries.Name = "lblShowingEntries";
+            lblShowingEntries.Size = new Size(238, 23);
+            lblShowingEntries.TabIndex = 13;
+            lblShowingEntries.Text = "Showing 1 to 14 of 120 entries";
             // 
-            // comboBox1
+            // comboFilter
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(308, 91);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(154, 28);
-            comboBox1.TabIndex = 12;
+            comboFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboFilter.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboFilter.FormattingEnabled = true;
+            comboFilter.Location = new Point(308, 91);
+            comboFilter.Name = "comboFilter";
+            comboFilter.Size = new Size(154, 28);
+            comboFilter.TabIndex = 12;
             // 
-            // yogaButton2
+            // btnSearch
             // 
-            yogaButton2.BackColor = Color.MediumSlateBlue;
-            yogaButton2.BackgroundColor = Color.MediumSlateBlue;
-            yogaButton2.BorderColor = Color.PaleVioletRed;
-            yogaButton2.BorderRadius = 0;
-            yogaButton2.BorderSize = 0;
-            yogaButton2.FlatAppearance.BorderSize = 0;
-            yogaButton2.FlatStyle = FlatStyle.Flat;
-            yogaButton2.ForeColor = Color.White;
-            yogaButton2.Image = (Image)resources.GetObject("yogaButton2.Image");
-            yogaButton2.Location = new Point(255, 91);
-            yogaButton2.Name = "yogaButton2";
-            yogaButton2.Size = new Size(47, 27);
-            yogaButton2.TabIndex = 12;
-            yogaButton2.TextColor = Color.White;
-            yogaButton2.UseVisualStyleBackColor = false;
+            btnSearch.BackColor = Color.MediumSlateBlue;
+            btnSearch.BackgroundColor = Color.MediumSlateBlue;
+            btnSearch.BorderColor = Color.PaleVioletRed;
+            btnSearch.BorderRadius = 0;
+            btnSearch.BorderSize = 0;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(255, 91);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(47, 27);
+            btnSearch.TabIndex = 12;
+            btnSearch.TextColor = Color.White;
+            btnSearch.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -161,21 +161,22 @@
             // 
             // lblHalaman
             // 
-            lblHalaman.AutoSize = true;
+            lblHalaman.Dock = DockStyle.Fill;
             lblHalaman.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblHalaman.ForeColor = Color.White;
-            lblHalaman.Location = new Point(13, 9);
+            lblHalaman.Location = new Point(0, 0);
             lblHalaman.Name = "lblHalaman";
-            lblHalaman.Size = new Size(18, 20);
+            lblHalaman.Size = new Size(45, 39);
             lblHalaman.TabIndex = 10;
             lblHalaman.Text = "1";
+            lblHalaman.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnNext
             // 
             btnNext.BackColor = Color.White;
             btnNext.BackgroundColor = Color.White;
             btnNext.BorderColor = Color.PaleVioletRed;
-            btnNext.BorderRadius = 5;
+            btnNext.BorderRadius = 0;
             btnNext.BorderSize = 2;
             btnNext.FlatAppearance.BorderSize = 0;
             btnNext.FlatStyle = FlatStyle.Flat;
@@ -195,7 +196,7 @@
             btnPrevious.BackColor = Color.White;
             btnPrevious.BackgroundColor = Color.White;
             btnPrevious.BorderColor = Color.PaleVioletRed;
-            btnPrevious.BorderRadius = 5;
+            btnPrevious.BorderRadius = 0;
             btnPrevious.BorderSize = 2;
             btnPrevious.FlatAppearance.BorderSize = 0;
             btnPrevious.FlatStyle = FlatStyle.Flat;
@@ -210,14 +211,14 @@
             btnPrevious.TextColor = SystemColors.ControlText;
             btnPrevious.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtSearch
             // 
-            textBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(46, 91);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = " Search";
-            textBox1.Size = new Size(203, 27);
-            textBox1.TabIndex = 6;
+            txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSearch.Location = new Point(46, 91);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = " Search";
+            txtSearch.Size = new Size(203, 27);
+            txtSearch.TabIndex = 6;
             // 
             // label3
             // 
@@ -243,40 +244,40 @@
             label1.TabIndex = 4;
             label1.Text = "Show";
             // 
-            // numericUpDown1
+            // numericEntries
             // 
-            numericUpDown1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            numericUpDown1.BackColor = Color.White;
-            numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDown1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(912, 90);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(64, 27);
-            numericUpDown1.TabIndex = 3;
+            numericEntries.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            numericEntries.BackColor = Color.White;
+            numericEntries.BorderStyle = BorderStyle.FixedSingle;
+            numericEntries.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            numericEntries.Location = new Point(912, 90);
+            numericEntries.Name = "numericEntries";
+            numericEntries.Size = new Size(64, 27);
+            numericEntries.TabIndex = 3;
             // 
-            // yogaButton1
+            // btnAddData
             // 
-            yogaButton1.BackColor = Color.RoyalBlue;
-            yogaButton1.BackgroundColor = Color.RoyalBlue;
-            yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 5;
-            yogaButton1.BorderSize = 0;
-            yogaButton1.FlatAppearance.BorderSize = 0;
-            yogaButton1.FlatStyle = FlatStyle.Flat;
-            yogaButton1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton1.ForeColor = Color.White;
-            yogaButton1.Image = (Image)resources.GetObject("yogaButton1.Image");
-            yogaButton1.Location = new Point(46, 16);
-            yogaButton1.Name = "yogaButton1";
-            yogaButton1.Padding = new Padding(10, 0, 0, 0);
-            yogaButton1.Size = new Size(124, 37);
-            yogaButton1.TabIndex = 1;
-            yogaButton1.Text = " Add Data";
-            yogaButton1.TextColor = Color.White;
-            yogaButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            yogaButton1.UseVisualStyleBackColor = false;
+            btnAddData.BackColor = Color.RoyalBlue;
+            btnAddData.BackgroundColor = Color.RoyalBlue;
+            btnAddData.BorderColor = Color.PaleVioletRed;
+            btnAddData.BorderRadius = 0;
+            btnAddData.BorderSize = 0;
+            btnAddData.FlatAppearance.BorderSize = 0;
+            btnAddData.FlatStyle = FlatStyle.Flat;
+            btnAddData.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddData.ForeColor = Color.White;
+            btnAddData.Image = (Image)resources.GetObject("btnAddData.Image");
+            btnAddData.Location = new Point(46, 16);
+            btnAddData.Name = "btnAddData";
+            btnAddData.Padding = new Padding(10, 0, 0, 0);
+            btnAddData.Size = new Size(124, 37);
+            btnAddData.TabIndex = 1;
+            btnAddData.Text = " Add Data";
+            btnAddData.TextColor = Color.White;
+            btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAddData.UseVisualStyleBackColor = false;
             // 
-            // Tabel
+            // FormKaryawan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -285,15 +286,14 @@
             Controls.Add(yogaPanel1);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Tabel";
+            Name = "FormKaryawan";
             Text = "Tabel";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             yogaPanel1.ResumeLayout(false);
             yogaPanel1.PerformLayout();
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -303,18 +303,18 @@
         private DataGridView dataGridView1;
         private Label label2;
         private YogaPanel yogaPanel1;
-        private YogaButton yogaButton1;
-        private NumericUpDown numericUpDown1;
+        private YogaButton btnAddData;
+        private NumericUpDown numericEntries;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txtSearch;
         private Label label3;
         private Panel panel1;
         private YogaButton btnNext;
         private YogaButton btnPrevious;
         private Panel panel2;
         private Label lblHalaman;
-        private YogaButton yogaButton2;
-        private ComboBox comboBox1;
-        private Label label4;
+        private YogaButton btnSearch;
+        private ComboBox comboFilter;
+        private Label lblShowingEntries;
     }
 }

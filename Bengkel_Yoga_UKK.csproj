@@ -9,8 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="User\**" />
+    <EmbeddedResource Remove="User\**" />
+    <None Remove="User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="Syncfusion.Chart.Windows" Version="28.1.41" />
     <PackageReference Include="Syncfusion.SfDataGrid.WinForms" Version="28.1.39" />
+    <PackageReference Include="Syncfusion.Shared.Base" Version="28.1.41" />
     <PackageReference Include="Syncfusion.Tools.Windows" Version="28.1.41" />
   </ItemGroup>
 
@@ -261,9 +269,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\" />
-    <Folder Include="User\" />
-    <Folder Include="Script Tabels\" />
+    <Folder Include="Admin\Dashboard\" />
+    <Folder Include="Admin\Booking\" />
+    <Folder Include="Admin\Invoice\" />
   </ItemGroup>
 
 </Project>

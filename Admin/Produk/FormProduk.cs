@@ -9,13 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Syncfusion.WinForms.Core.Enums;
+using Syncfusion.WinForms.Controls;
+using static Syncfusion.Windows.Forms.Tools.MenuDropDown;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class Tabel : Form
+    public partial class FormProduk : Form
     {
         private int page = 1;
-        public Tabel()
+        public FormProduk()
         {
             InitializeComponent();
             InitDataGrid();
@@ -31,6 +33,12 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
+            btnAddData.Click += BtnAddData_Click; ;
+        }
+
+        private void BtnAddData_Click(object? sender, EventArgs e)
+        {
+            new FormInputProduk().ShowDialog();
         }
 
         private void BtnPrevious_Click(object? sender, EventArgs e)
@@ -55,11 +63,9 @@ namespace Bengkel_Yoga_UKK
         {
             List<string> list = new List<string>() 
             {
-                "Semua (All)","Stok Tersedia","Stok Habis"
+                "Semua (All)","Stok Tersedia","Stok Menipis","Stok Habis"
             };
-            comboBox1.DataSource = list;
-
-
+            comboFilter.DataSource = list;
         }
         #endregion
 
@@ -79,15 +85,15 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(46, 134, 171); 
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219); 
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(46, 134, 171); 
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219); 
             dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White; 
             dataGridView1.ForeColor = Color.DimGray;
 
 
             // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = dataGridView1.DefaultCellStyle.BackColor;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240,240,240);
             dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
 
             dataGridView1.ColumnHeadersHeight = 40;
@@ -148,15 +154,16 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.DataSource = GetData();
         }
 
-        private SortableBindingList<DataItem> GetData()
+        private SortableBindingList<ProdukModel> GetData()
         {
-            byte[] ban1 = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg");
-            byte[] ban2 = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg");
-            byte[] velg = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg");
-            byte[] spion = ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg");
-            byte[] habis = ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Habis.png", 15);
-            byte[] menipis = ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Menipis.png", 15);
-            byte[] tersedia = ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Tersedia.png", 15);
+            byte[] ban1 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg", 55,55);
+            byte[] ban2 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg",55,55);
+            byte[] velg = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg", 55, 55);
+            byte[] rcb = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\rcb.jpg", 55, 55);
+            byte[] spion = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg",55,55);
+            byte[] habis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Habis.png", 15);
+            byte[] menipis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Menipis.png", 15);
+            byte[] tersedia = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Tersedia.png", 15);
 
             // Path gambar yang akan digunakan
             string pandingImg = @"D:\APenyimpanan\BENGKEL - UKK\Panding.png";
@@ -164,31 +171,31 @@ namespace Bengkel_Yoga_UKK
 
             // Ubah ukuran gambar menjadi maksimal 100x100
             Image originalImage = Image.FromFile(pandingImg);
-            Image resizedImage = ResizeImagePersentase(originalImage, 15); // Ubah ukuran gambar
+            Image resizedImage = ImageConvert.ResizeImagePersentase(originalImage, 15); // Ubah ukuran gambar
 
             Image selesaiImageOri = Image.FromFile(selesaiImg);
-            Image resizeSelesai = ResizeImagePersentase(selesaiImageOri, 15);
+            Image resizeSelesai = ImageConvert.ResizeImagePersentase(selesaiImageOri, 15);
 
             // Konversi gambar yang sudah diubah ukurannya ke byte[]
-            byte[] pandingBytes = ImageToByteArray(resizedImage);
-            byte[] selesaiBytes = ImageToByteArray(resizeSelesai);
+            byte[] pandingBytes = ImageConvert.ImageToByteArray(resizedImage);
+            byte[] selesaiBytes = ImageConvert.ImageToByteArray(resizeSelesai);
 
-            return new SortableBindingList<DataItem>
+            return new SortableBindingList<ProdukModel>
                 {
-                    new DataItem { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = ban1, PRODUK = "Ban Motor IRC DELVIRO", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
-                    new DataItem { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = 0,STOK_MINIMUM=15, HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
-                    new DataItem { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 9, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 10, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 11, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 12, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new DataItem { NO = 13, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
-                    new DataItem { NO = 14, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModel { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = rcb, PRODUK = "Ban Motor RCB", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
+                    new ProdukModel { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = 0,STOK_MINIMUM=15, HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
+                    new ProdukModel { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new ProdukModel { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new ProdukModel { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModel { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModel { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
+                    new ProdukModel { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModel { NO = 9, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new ProdukModel { NO = 10, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new ProdukModel { NO = 11, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModel { NO = 12, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModel { NO = 13, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
+                    new ProdukModel { NO = 14, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
                 };
         }
 
@@ -262,145 +269,5 @@ namespace Bengkel_Yoga_UKK
                 return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowUpKotak4.png");
         }
         #endregion
-
-        #region IMAGE
-        public Image ResizeImage(Image image, int maxWidth, int maxHeight)
-        {
-            // Hitung rasio aspek gambar
-            double ratioX = (double)maxWidth / image.Width;
-            double ratioY = (double)maxHeight / image.Height;
-            double ratio = Math.Min(ratioX, ratioY); // Gunakan rasio yang lebih kecil untuk mempertahankan aspek rasio
-
-            // Hitung ukuran baru
-            int newWidth = (int)(image.Width * ratio);
-            int newHeight = (int)(image.Height * ratio);
-
-            // Buat gambar baru dengan ukuran yang diubah
-            Bitmap newImage = new Bitmap(newWidth, newHeight);
-            using (Graphics g = Graphics.FromImage(newImage))
-            {
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; // Kualitas tinggi
-                g.DrawImage(image, 0, 0, newWidth, newHeight);
-            }
-
-            return newImage;
-        }
-
-        public Image ResizeImagePersentase(Image image, int persentase)
-        {
-            double persen = (double)persentase / 100;
-            // Hitung rasio aspek gambar
-            double ratioX = image.Width * persen;
-            double ratioY = image.Height * persen;
-
-            // Hitung ukuran baru
-            int newWidth = (int)Math.Round(ratioX);
-            int newHeight = (int)Math.Round(ratioY);
-
-            // Buat gambar baru dengan ukuran yang diubah
-            Bitmap newImage = new Bitmap(newWidth, newHeight);
-            using (Graphics g = Graphics.FromImage(newImage))
-            {
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; // Kualitas tinggi
-                g.DrawImage(image, 0, 0, newWidth, newHeight);
-            }
-
-            return newImage;
-        }
-
-        public byte[] ImageToByteArray(Image image)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.ToArray();
-            }
-        }
-
-        private byte[] ImageToByteMaxSize(string imgDirectory)
-        {
-            Image image = Image.FromFile(imgDirectory);
-            Image imageResize = ResizeImage(image, 55, 55);
-            byte[] byteimg = ImageToByteArray(imageResize);
-            return byteimg;
-        }
-        private byte[] ImageToBytePercent(string imgDirectory,int percent)
-        {
-            Image image = Image.FromFile(imgDirectory);
-            Image imageResize = ResizeImagePersentase(image,percent);
-            return ImageToByteArray(imageResize);
-        }
-        #endregion
-    }
-}
-
-
-public class DataItem
-{
-    public int NO {  get; set; }
-    public string KODE_SPAREPART {  get; set; }
-    public byte[] GAMBAR { get; set; }
-    public string PRODUK { get; set; }
-    public string HARGA { get; set; }
-    public int STOK { get; set; }
-    public int STOK_MINIMUM { get; set; }
-    public byte[] KETERANGAN_STOK { get; set; }
-    //public byte[] KETERANGAN { get; set; }
-}
-
-public class SortableBindingList<T> : BindingList<T>
-{
-    private bool _isSorted;
-    private ListSortDirection _sortDirection;
-    private PropertyDescriptor _sortProperty;
-
-    public SortableBindingList() : base(new List<T>()) { }
-
-    public SortableBindingList(IEnumerable<T> collection) : base(collection.ToList()) { }
-
-    protected override bool SupportsSortingCore => true;
-    protected override bool IsSortedCore => _isSorted;
-    protected override ListSortDirection SortDirectionCore => _sortDirection;
-    protected override PropertyDescriptor SortPropertyCore => _sortProperty;
-
-    protected override void ApplySortCore(PropertyDescriptor prop, ListSortDirection direction)
-    {
-        _sortProperty = prop;
-        _sortDirection = direction;
-        _isSorted = true;
-
-        var items = this.Items as List<T>;
-        if (items == null) return;
-
-        // Urutkan data
-        if (direction == ListSortDirection.Ascending)
-            items.Sort((x, y) => Compare(prop.GetValue(x), prop.GetValue(y)));
-        else
-            items.Sort((x, y) => Compare(prop.GetValue(y), prop.GetValue(x)));
-
-        // Beri tahu DataGridView bahwa data telah diurutkan
-        OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
-    }
-
-    protected override void RemoveSortCore()
-    {
-        _isSorted = false;
-        _sortDirection = ListSortDirection.Ascending;
-        _sortProperty = null;
-    }
-
-    private int Compare(object x, object y)
-    {
-        if (x == null && y == null) return 0;
-        if (x == null) return -1;
-        if (y == null) return 1;
-
-        if (x is IComparable xComparable)
-            return xComparable.CompareTo(y);
-
-        if (y is IComparable yComparable)
-            return yComparable.CompareTo(x);
-
-        return x.ToString().CompareTo(y.ToString());
     }
 }

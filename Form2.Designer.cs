@@ -30,8 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             panel1 = new Panel();
-            lblNama = new Label();
+            label2 = new Label();
             profilePicture = new PictureBox();
+            lblNama = new Label();
             button16 = new Button();
             btnHome = new Button();
             flowLayoutPanel2 = new FlowLayoutPanel();
@@ -42,7 +43,6 @@
             button2 = new Button();
             button15 = new Button();
             panelMain = new Panel();
-            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)profilePicture).BeginInit();
             flowLayoutPanel2.SuspendLayout();
@@ -56,31 +56,41 @@
             panel1.Controls.Add(lblNama);
             panel1.Controls.Add(button16);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1083, 59);
+            panel1.Size = new Size(1095, 59);
             panel1.TabIndex = 0;
             // 
-            // lblNama
+            // label2
             // 
-            lblNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblNama.AutoSize = true;
-            lblNama.Location = new Point(911, 22);
-            lblNama.Name = "lblNama";
-            lblNama.Size = new Size(110, 15);
-            lblNama.TabIndex = 8;
-            lblNama.Text = "Rifki Yoga Syahbani";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(64, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(81, 32);
+            label2.TabIndex = 0;
+            label2.Text = "ProFix";
             // 
             // profilePicture
             // 
             profilePicture.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             profilePicture.BackgroundImage = (Image)resources.GetObject("profilePicture.BackgroundImage");
             profilePicture.BackgroundImageLayout = ImageLayout.Stretch;
-            profilePicture.Location = new Point(1026, 7);
+            profilePicture.Location = new Point(1038, 7);
             profilePicture.Name = "profilePicture";
             profilePicture.Size = new Size(45, 45);
             profilePicture.TabIndex = 7;
             profilePicture.TabStop = false;
+            // 
+            // lblNama
+            // 
+            lblNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblNama.AutoSize = true;
+            lblNama.Location = new Point(923, 22);
+            lblNama.Name = "lblNama";
+            lblNama.Size = new Size(110, 15);
+            lblNama.TabIndex = 8;
+            lblNama.Text = "Rifki Yoga Syahbani";
             // 
             // button16
             // 
@@ -135,10 +145,10 @@
             flowLayoutPanel2.Controls.Add(button15);
             flowLayoutPanel2.Dock = DockStyle.Left;
             flowLayoutPanel2.ForeColor = SystemColors.ControlText;
-            flowLayoutPanel2.Location = new Point(0, 59);
+            flowLayoutPanel2.Location = new Point(2, 61);
             flowLayoutPanel2.MaximumSize = new Size(264, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(264, 562);
+            flowLayoutPanel2.Size = new Size(264, 597);
             flowLayoutPanel2.TabIndex = 5;
             // 
             // btnService
@@ -276,31 +286,22 @@
             // panelMain
             // 
             panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(0, 59);
+            panelMain.Location = new Point(2, 61);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(1083, 562);
+            panelMain.Size = new Size(1095, 597);
             panelMain.TabIndex = 6;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(64, 13);
-            label2.Name = "label2";
-            label2.Size = new Size(81, 32);
-            label2.TabIndex = 0;
-            label2.Text = "ProFix";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(1083, 621);
+            ClientSize = new Size(1099, 660);
             Controls.Add(flowLayoutPanel2);
             Controls.Add(panelMain);
             Controls.Add(panel1);
             Name = "Form2";
+            Style.MdiChild.IconHorizontalAlignment = HorizontalAlignment.Center;
+            Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
             Text = "Dashboard2";
             Load += Form2_Load;
             panel1.ResumeLayout(false);

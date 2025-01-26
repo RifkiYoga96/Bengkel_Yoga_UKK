@@ -8,10 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Syncfusion.WinForms.Controls;
+
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class Form2 : Form
+    public partial class Form2 : SfForm
     {
         private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.Timer _timerMenu2;
@@ -21,7 +23,7 @@ namespace Bengkel_Yoga_UKK
         {
             InitializeComponent();
 
-
+            this.Style.TitleBar.BackColor = Color.FromArgb(46, 134, 171);
 
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 1;
