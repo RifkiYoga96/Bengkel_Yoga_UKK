@@ -141,7 +141,7 @@
             // 
             panel2.BackColor = Color.RoyalBlue;
             panel2.Controls.Add(lblHalaman);
-            panel2.Location = new Point(67, 1);
+            panel2.Location = new Point(67, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(45, 39);
             panel2.TabIndex = 10;

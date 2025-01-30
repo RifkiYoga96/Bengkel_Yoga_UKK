@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class FormInputKaryawan : Form
+    
+    public partial class ucCalendar : UserControl
     {
-        public FormInputKaryawan()
+        string _day, _date, _weekday;
+        public ucCalendar(string day)
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            _day = day;
+            label1.Text = day;
         }
     }
 }

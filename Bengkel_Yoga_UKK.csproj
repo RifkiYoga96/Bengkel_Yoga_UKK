@@ -269,9 +269,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\Dashboard\" />
     <Folder Include="Admin\Booking\" />
     <Folder Include="Admin\Invoice\" />
+    <Folder Include="Admin\Pelanggan\" />
   </ItemGroup>
 
 </Project>

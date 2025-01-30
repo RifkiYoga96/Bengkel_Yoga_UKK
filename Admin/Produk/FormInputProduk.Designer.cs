@@ -38,22 +38,22 @@
             txtFile = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label4 = new Label();
             txtNamaProduk = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            txtStok = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label6 = new Label();
-            currencyHarga = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
+            txtHarga = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
             btnMinStok = new YogaButton();
             btnPlusStok = new YogaButton();
             btnPlusStokMinimum = new YogaButton();
             btnMinStokMinimum = new YogaButton();
             label5 = new Label();
             btnSave = new YogaButton();
-            textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtStok = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
+            txtStokMinimum = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtFile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNamaProduk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtHarga).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtStok).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)currencyHarga).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtStokMinimum).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -155,22 +155,6 @@
             txtNamaProduk.TabIndex = 26;
             txtNamaProduk.ThemeName = "Default";
             // 
-            // txtStok
-            // 
-            txtStok.BackColor = Color.White;
-            txtStok.BeforeTouchSize = new Size(201, 27);
-            txtStok.BorderColor = Color.FromArgb(209, 211, 212);
-            txtStok.BorderStyle = BorderStyle.FixedSingle;
-            txtStok.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtStok.Location = new Point(208, 312);
-            txtStok.MinimumSize = new Size(14, 10);
-            txtStok.Name = "txtStok";
-            txtStok.Size = new Size(201, 27);
-            txtStok.TabIndex = 29;
-            txtStok.TextAlign = HorizontalAlignment.Center;
-            txtStok.ThemeName = "Default";
-            txtStok.ThemeStyle.BorderColor = Color.Blue;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -183,21 +167,21 @@
             label6.Text = "Stok:";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // currencyHarga
+            // txtHarga
             // 
-            currencyHarga.AccessibilityEnabled = true;
-            currencyHarga.BeforeTouchSize = new Size(201, 27);
-            currencyHarga.BorderColor = Color.FromArgb(209, 211, 212);
-            currencyHarga.BorderStyle = BorderStyle.FixedSingle;
-            currencyHarga.DecimalValue = new decimal(new int[] { 1, 0, 0, 0 });
-            currencyHarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            currencyHarga.Location = new Point(162, 235);
-            currencyHarga.MinValue = new decimal(new int[] { 1, 0, 0, 0 });
-            currencyHarga.Name = "currencyHarga";
-            currencyHarga.Size = new Size(293, 27);
-            currencyHarga.TabIndex = 30;
-            currencyHarga.Text = "Rp1";
-            currencyHarga.ThemeName = "Metro";
+            txtHarga.AccessibilityEnabled = true;
+            txtHarga.BeforeTouchSize = new Size(201, 27);
+            txtHarga.BorderColor = Color.FromArgb(209, 211, 212);
+            txtHarga.BorderStyle = BorderStyle.FixedSingle;
+            txtHarga.DecimalValue = new decimal(new int[] { 1, 0, 0, 0 });
+            txtHarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtHarga.Location = new Point(162, 235);
+            txtHarga.MinValue = new decimal(new int[] { 1, 0, 0, 0 });
+            txtHarga.Name = "txtHarga";
+            txtHarga.Size = new Size(293, 27);
+            txtHarga.TabIndex = 30;
+            txtHarga.Text = "Rp1";
+            txtHarga.ThemeName = "Metro";
             // 
             // btnMinStok
             // 
@@ -304,36 +288,60 @@
             btnSave.TextColor = Color.White;
             btnSave.UseVisualStyleBackColor = false;
             // 
-            // textBoxExt1
+            // txtStok
             // 
-            textBoxExt1.BackColor = Color.White;
-            textBoxExt1.BeforeTouchSize = new Size(201, 27);
-            textBoxExt1.BorderColor = Color.FromArgb(209, 211, 212);
-            textBoxExt1.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt1.Location = new Point(208, 389);
-            textBoxExt1.MinimumSize = new Size(14, 10);
-            textBoxExt1.Name = "textBoxExt1";
-            textBoxExt1.Size = new Size(201, 27);
-            textBoxExt1.TabIndex = 38;
-            textBoxExt1.TextAlign = HorizontalAlignment.Center;
-            textBoxExt1.ThemeName = "Default";
-            textBoxExt1.ThemeStyle.BorderColor = Color.Blue;
+            txtStok.AccessibilityEnabled = true;
+            txtStok.BeforeTouchSize = new Size(201, 27);
+            txtStok.BorderColor = Color.FromArgb(209, 211, 212);
+            txtStok.BorderStyle = BorderStyle.FixedSingle;
+            txtStok.DoubleValue = 1D;
+            txtStok.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtStok.Location = new Point(208, 312);
+            txtStok.MaxValue = 10000D;
+            txtStok.MinValue = 0D;
+            txtStok.Name = "txtStok";
+            txtStok.NumberDecimalDigits = 2;
+            txtStok.Size = new Size(201, 27);
+            txtStok.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            txtStok.TabIndex = 39;
+            txtStok.Text = "1,00";
+            txtStok.TextAlign = HorizontalAlignment.Center;
+            txtStok.ThemeName = "Metro";
+            // 
+            // txtStokMinimum
+            // 
+            txtStokMinimum.AccessibilityEnabled = true;
+            txtStokMinimum.BeforeTouchSize = new Size(201, 27);
+            txtStokMinimum.BorderColor = Color.FromArgb(209, 211, 212);
+            txtStokMinimum.BorderStyle = BorderStyle.FixedSingle;
+            txtStokMinimum.DoubleValue = 1D;
+            txtStokMinimum.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtStokMinimum.Location = new Point(208, 389);
+            txtStokMinimum.MaxValue = 10000D;
+            txtStokMinimum.MinValue = 0D;
+            txtStokMinimum.Name = "txtStokMinimum";
+            txtStokMinimum.NumberDecimalDigits = 2;
+            txtStokMinimum.Size = new Size(201, 27);
+            txtStokMinimum.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
+            txtStokMinimum.TabIndex = 40;
+            txtStokMinimum.Text = "1,00";
+            txtStokMinimum.TextAlign = HorizontalAlignment.Center;
+            txtStokMinimum.ThemeName = "Metro";
             // 
             // FormInputProduk
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(476, 514);
-            Controls.Add(textBoxExt1);
+            Controls.Add(txtStokMinimum);
+            Controls.Add(txtStok);
             Controls.Add(btnSave);
             Controls.Add(label5);
             Controls.Add(btnPlusStokMinimum);
             Controls.Add(btnMinStokMinimum);
             Controls.Add(btnPlusStok);
             Controls.Add(btnMinStok);
-            Controls.Add(currencyHarga);
-            Controls.Add(txtStok);
+            Controls.Add(txtHarga);
             Controls.Add(label6);
             Controls.Add(txtNamaProduk);
             Controls.Add(label4);
@@ -347,9 +355,9 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)txtFile).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNamaProduk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtHarga).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtStok).EndInit();
-            ((System.ComponentModel.ISupportInitialize)currencyHarga).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtStokMinimum).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -364,15 +372,15 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtFile;
         private Label label4;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNamaProduk;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtStok;
         private Label label6;
-        private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currencyHarga;
+        private Syncfusion.Windows.Forms.Tools.CurrencyTextBox txtHarga;
         private YogaButton btnMinStok;
         private YogaButton btnPlusStok;
         private YogaButton btnPlusStokMinimum;
         private YogaButton btnMinStokMinimum;
         private Label label5;
         private YogaButton btnSave;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
+        private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtStok;
+        private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtStokMinimum;
     }
 }

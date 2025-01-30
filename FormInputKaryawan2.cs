@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class FormInputKaryawan : Form
+    public partial class FormInputKaryawan2 : Form
     {
-        public FormInputKaryawan()
+        public FormInputKaryawan2()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

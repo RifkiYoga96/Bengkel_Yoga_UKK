@@ -15,19 +15,18 @@ using Syncfusion.WinForms.Controls;
 
 namespace Bengkel_Yoga_UKK      
 {
-    public partial class Form3 : SfForm
+    public partial class MainFormAdmin : SfForm
     {   
         private Dictionary<int, Button> _listButton = new Dictionary<int, Button>();
         private int buttonActiveBefore = 0;
         private int buttonActiveAfter = 1;
         Color active = System.Drawing.Color.FromArgb(41, 128, 185);
-        //Color over = System.Drawing.Color.Transparent;
         Color over = System.Drawing.Color.FromArgb(44, 62, 80);
         Color hover = System.Drawing.Color.FromArgb(64, 82, 100);
 
 
         private Form formShow;
-        public Form3()
+        public MainFormAdmin()
         {
             InitializeComponent();
             InitComponen();
