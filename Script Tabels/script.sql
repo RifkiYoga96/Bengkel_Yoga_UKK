@@ -21,6 +21,20 @@ CREATE TABLE Admins(
 	image_data VARBINARY(MAX)
 );
 
+INSERT INTO Admins(ktp_admin,nama_admin,email,password,alamat,no_telp,role,image_name,image_data) 
+VALUES (
+	 '087719631265', 
+    'Rifki Yoga Syahbani', 
+    'yoga@gmail.com', 
+    'Yoga12345', 
+    'Jl. Merdeka No. 1', 
+    '08123456789', 
+	1,
+    'FotoSaya.jpg', 
+    (SELECT BulkColumn 
+     FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\FotoSaya.jpg', SINGLE_BLOB) AS img)
+);
+
 CREATE TABLE Kendaraan(
 	no_pol VARCHAR(30) NOT NULL PRIMARY KEY,
 	merk VARCHAR(20),
@@ -31,8 +45,8 @@ CREATE TABLE Kendaraan(
 	ktp_pelanggan VARCHAR(30),
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 	);
 
 CREATE TABLE Bookings(
@@ -45,8 +59,8 @@ CREATE TABLE Bookings(
 	status VARCHAR(20),
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 	);
 
 CREATE TABLE Riwayat(
@@ -59,16 +73,14 @@ CREATE TABLE Riwayat(
 						
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan),
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE,
 	FOREIGN KEY (no_pol)
-		REFERENCES Kendaraan(no_pol),
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE,
+		REFERENCES Kendaraan(no_pol)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	FOREIGN KEY (ktp_admin)
 		REFERENCES Admins(ktp_admin)
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 	);
 
 
@@ -86,13 +98,14 @@ CREATE TABLE RiwayatSparepart(
 	kode_sparepart VARCHAR(20),
 	jumlah INT,
 	FOREIGN KEY (id_riwayat)
-		REFERENCES Riwayat(id_riwayat),
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE,
+		REFERENCES Riwayat(id_riwayat)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	FOREIGN KEY (kode_sparepart)
-		REFERENCES Sparepart(kode_sparepart));
-		--ON DELETE CASCADE
-		--ON UPDATE CASCADE
+		REFERENCES Sparepart(kode_sparepart)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+        );
 
 
 
@@ -106,6 +119,62 @@ CREATE TABLE History(
 	json_data NVARCHAR(MAX),
 	diubah_oleh VARCHAR(100),
 					);
+
+
+INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp, image_name, image_data)
+VALUES 
+(
+    '087719631265', 
+    'Rifki Yoga Syahbani', 
+    'yoga@gmail.com', 
+    'Yoga12345@gmail.com', 
+    'Jl. Merdeka No. 1', 
+    '08123456789', 
+    'john.jpg', 
+    (SELECT BulkColumn 
+     FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\FotoSaya.jpg', SINGLE_BLOB) AS img)
+);
+
+INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp, image_name, image_data)
+VALUES 
+('1234567890', 'John Doe', 'john@example.com', 'password123', 'Jl. Merdeka No. 1', '08123456789', 'john.jpg', NULL),
+('0987654321', 'Jane Doe', 'jane@example.com', 'password456', 'Jl. Sudirman No. 2', '08234567890', 'jane.jpg', NULL);
+
+INSERT INTO Admins (ktp_admin, nama_admin, email, password, alamat, no_telp, role, image_name, image_data)
+VALUES 
+('1111111111', 'Admin One', 'admin1@example.com', 'adminpass1', 'Jl. Admin No. 1', '0811111111', 1, 'admin1.jpg', NULL),
+('2222222222', 'Admin Two', 'admin2@example.com', 'adminpass2', 'Jl. Admin No. 2', '0822222222', 2, 'admin2.jpg', NULL);
+
+INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan)
+VALUES 
+('B 1234 ABC', 'Toyota', 'Avanza', 'Manual', 7, '2018', '1234567890'),
+('B 5678 DEF', 'Honda', 'Jazz', 'Automatic', 5, '2020', '0987654321');
+
+INSERT INTO Bookings (ktp_pelanggan, no_pol, tanggal, keluhan, antrean, status)
+VALUES 
+('1234567890', 'B 1234 ABC', '2023-10-25', 'Mesin berbunyi aneh', 1, 'Pending'),
+('0987654321', 'B 5678 DEF', '2023-10-26', 'Rem kurang pakem', 2, 'On Progress');
+
+INSERT INTO Riwayat (ktp_pelanggan, no_pol, tanggal, keluhan, ktp_admin)
+VALUES 
+('1234567890', 'B 1234 ABC', '2023-10-25', 'Mesin berbunyi aneh', '1111111111'),
+('0987654321', 'B 5678 DEF', '2023-10-26', 'Rem kurang pakem', '2222222222');
+
+
+INSERT INTO Sparepart (kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
+VALUES 
+('SP001', 'Kampas Rem', 50, 150000, 'kampas_rem.jpg', NULL),
+('SP002', 'Oli Mesin', 100, 75000, 'oli_mesin.jpg', NULL);
+
+INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, jumlah)
+VALUES 
+(1, 'SP001', 2), -- Riwayat ID 1 menggunakan 2 kampas rem
+(2, 'SP002', 1); -- Riwayat ID 2 menggunakan 1 oli mesin
+
+
+
+
+
 
 
 
@@ -151,3 +220,6 @@ DROP TABLE Kendaraan;
 ALTER TABLE Riwayat ADD CONSTRAINT Fk_Riwayat_Admins FOREIGN KEY (no_pol)
 		REFERENCES Kendaraan(no_pol);
 
+
+
+		

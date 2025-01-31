@@ -8,8 +8,7 @@ namespace Bengkel_Yoga_UKK
 {
     public class KaryawanModel
     {
-        public int NO { get; set; }
-        public int ktp_admin { get; set; }
+        public string ktp_admin { get; set; }
         public string nama_admin { get; set; }
         public string email { get; set; }
         public string password { get; set; }

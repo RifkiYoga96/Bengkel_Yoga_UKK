@@ -15,11 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="Syncfusion.Chart.Windows" Version="28.1.41" />
     <PackageReference Include="Syncfusion.SfDataGrid.WinForms" Version="28.1.39" />
     <PackageReference Include="Syncfusion.Shared.Base" Version="28.1.41" />
     <PackageReference Include="Syncfusion.Tools.Windows" Version="28.1.41" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -271,7 +273,6 @@
   <ItemGroup>
     <Folder Include="Admin\Booking\" />
     <Folder Include="Admin\Invoice\" />
-    <Folder Include="Admin\Pelanggan\" />
   </ItemGroup>
 
 </Project>

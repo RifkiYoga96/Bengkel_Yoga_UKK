@@ -12,11 +12,14 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class FormKaryawan : Form
     {
+        private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private int page = 1;
         public FormKaryawan()
         {
             InitializeComponent();
             RegisterEvent();
+            LoadData();
+            CustomGrid();
         }
         private void RegisterEvent()
         {
@@ -61,7 +64,7 @@ namespace Bengkel_Yoga_UKK
         #endregion
 
         #region DATAGRID
-        private void CostumGrid()
+        private void CustomGrid()
         {
             dataGridView1.BackgroundColor = Color.White;
 
@@ -107,74 +110,51 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["NO"].FillWeight = 6;
-            dataGridView1.Columns["KODE_SPAREPART"].FillWeight = 8;
-            dataGridView1.Columns["GAMBAR"].FillWeight = 10;
-            dataGridView1.Columns["PRODUK"].FillWeight = 25;
-            dataGridView1.Columns["HARGA"].FillWeight = 15;
-            dataGridView1.Columns["STOK"].FillWeight = 10;
-            dataGridView1.Columns["STOK_MINIMUM"].FillWeight = 10;
-            dataGridView1.Columns["KETERANGAN_STOK"].FillWeight = 16;
+            dataGridView1.Columns["No"].FillWeight = 6;
+            dataGridView1.Columns["ktp_admin"].FillWeight = 11;
+            dataGridView1.Columns["foto"].FillWeight = 10;
+            dataGridView1.Columns["nama_admin"].FillWeight = 15;
+            dataGridView1.Columns["email"].FillWeight = 20;
+            dataGridView1.Columns["password"].FillWeight = 14;
+            dataGridView1.Columns["no_telp"].FillWeight = 12;
+            dataGridView1.Columns["role"].FillWeight = 12;
 
-            dataGridView1.Columns["NO"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["KODE_SPAREPART"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["GAMBAR"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["PRODUK"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["HARGA"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["STOK"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["STOK_MINIMUM"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["KETERANGAN_STOK"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["ktp_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["nama_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["no_telp"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
 
-            dataGridView1.Columns["GAMBAR"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["STOK"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["STOK_MINIMUM"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
+            /*dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
             dataGridView1.Columns["KETERANGAN_STOK"].HeaderText = "KETERANGAN";
-            dataGridView1.Columns["STOK_MINIMUM"].HeaderText = "STOK MINIMUM";
+            dataGridView1.Columns["STOK_MINIMUM"].HeaderText = "STOK MINIMUM";*/
 
-            dataGridView1.Columns["PRODUK"].SortMode = DataGridViewColumnSortMode.Automatic;
+            /*dataGridView1.Columns["PRODUK"].SortMode = DataGridViewColumnSortMode.Automatic;
             dataGridView1.Columns["STOK"].SortMode = DataGridViewColumnSortMode.Automatic;
-            dataGridView1.Columns["HARGA"].SortMode = DataGridViewColumnSortMode.Automatic;
+            dataGridView1.Columns["HARGA"].SortMode = DataGridViewColumnSortMode.Automatic;*/
         }
 
 
-        private void InitDataGrid()
+        private void LoadData()
         {
-            // Add data to DataGridView
-            dataGridView1.DataSource = GetData();
-        }
-
-        private SortableBindingList<ProdukModel> GetData()
-        {
-            byte[] ban1 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg", 55, 55);
-            byte[] ban2 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg", 55, 55);
-            byte[] velg = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg", 55, 55);
-            byte[] rcb = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\rcb.jpg", 55, 55);
-            byte[] spion = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg", 55, 55);
-            byte[] habis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Habis.png", 15);
-            byte[] menipis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Menipis.png", 15);
-            byte[] tersedia = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Tersedia.png", 15);
-
-            // Path gambar yang akan digunakan
-            string pandingImg = @"D:\APenyimpanan\BENGKEL - UKK\Panding.png";
-            string selesaiImg = @"D:\APenyimpanan\BENGKEL - UKK\selesai.png";
-
-            // Ubah ukuran gambar menjadi maksimal 100x100
-            Image originalImage = Image.FromFile(pandingImg);
-            Image resizedImage = ImageConvert.ResizeImagePersentase(originalImage, 15); // Ubah ukuran gambar
-
-            Image selesaiImageOri = Image.FromFile(selesaiImg);
-            Image resizeSelesai = ImageConvert.ResizeImagePersentase(selesaiImageOri, 15);
-
-            // Konversi gambar yang sudah diubah ukurannya ke byte[]
-            byte[] pandingBytes = ImageConvert.ImageToByteArray(resizedImage);
-            byte[] selesaiBytes = ImageConvert.ImageToByteArray(resizeSelesai);
-
-            return new SortableBindingList<ProdukModel>
+            int number = 1;
+            dataGridView1.DataSource = _karyawanDal.ListData()
+                .Select(x => new
                 {
-                    new ProdukModel { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = rcb, PRODUK = "Ban Motor RCB", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
-                };
+                    No = number ++,
+                    x.ktp_admin,
+                    foto = x.image_data != null ? ImageConvert.ResizeImageBytes(x.image_data,55,55) : null,
+                    x.nama_admin,
+                    x.email,
+                    x.password,
+                    x.no_telp,
+                    Role = x.role==1 ? "Admin" : "Super Admin",
+                }).ToList();
         }
 
 
@@ -217,7 +197,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "GAMBAR", "STOK", "STOK_MINIMUM", "KETERANGAN_STOK" };
+                    string[] targetColumns = { "foto","role" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))

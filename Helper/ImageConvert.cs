@@ -76,6 +76,36 @@ namespace Bengkel_Yoga_UKK
             Image imageResize = ResizeImagePersentase(image, percent);
             return ImageToByteArray(imageResize);
         }
+
+
+        public static byte[] ResizeImageBytes(byte[] imageBytes, int maxWidth, int maxHeight)
+        {
+            // Konversi byte[] menjadi Image
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                Image image = Image.FromStream(ms);
+
+                // Hitung rasio aspek gambar
+                double ratioX = (double)maxWidth / image.Width;
+                double ratioY = (double)maxHeight / image.Height;
+                double ratio = Math.Min(ratioX, ratioY); // Gunakan rasio yang lebih kecil untuk mempertahankan aspek rasio
+
+                // Hitung ukuran baru
+                int newWidth = (int)(image.Width * ratio);
+                int newHeight = (int)(image.Height * ratio);
+
+                // Resize gambar
+                Image resizedImage = new Bitmap(image, newWidth, newHeight);
+
+                // Konversi gambar yang sudah diresize ke byte[]
+                using (MemoryStream resizedStream = new MemoryStream())
+                {
+                    resizedImage.Save(resizedStream, System.Drawing.Imaging.ImageFormat.Png); // Simpan sebagai PNG atau format lain
+                    return resizedStream.ToArray(); // Kembalikan sebagai byte[]
+                }
+            }
+        }
+
         #endregion
     }
 }
