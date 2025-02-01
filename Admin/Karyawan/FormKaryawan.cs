@@ -113,8 +113,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["No"].FillWeight = 6;
             dataGridView1.Columns["ktp_admin"].FillWeight = 11;
             dataGridView1.Columns["foto"].FillWeight = 10;
-            dataGridView1.Columns["nama_admin"].FillWeight = 15;
-            dataGridView1.Columns["email"].FillWeight = 20;
+            dataGridView1.Columns["nama_admin"].FillWeight = 18;
+            dataGridView1.Columns["email"].FillWeight = 17;
             dataGridView1.Columns["password"].FillWeight = 14;
             dataGridView1.Columns["no_telp"].FillWeight = 12;
             dataGridView1.Columns["role"].FillWeight = 12;
