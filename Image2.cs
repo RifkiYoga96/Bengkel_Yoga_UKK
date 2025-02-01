@@ -31,17 +31,9 @@ namespace Bengkel_Yoga_UKK
 
                     if(new ImageCropTest(originalImage).ShowDialog(this) != DialogResult.OK) return;
 
-                    pictureBoxProfile.BackgroundImage = _imageResult;
+                    pictureBoxProfile.BackgroundImage = ImageDirectory._imageResult;
                     pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
 
-
-                    return;
-                    pictureBoxProfile.Image = originalImage;
-
-                    int size = Math.Min(pictureBoxProfile.Width, pictureBoxProfile.Height) / 3;
-                    //cropRect = new Rectangle((pictureBoxProfile.Width - size) / 2, (pictureBoxProfile.Height - size) / 2, size, size);
-
-                    pictureBoxProfile.Invalidate();
                 }
             }
         }

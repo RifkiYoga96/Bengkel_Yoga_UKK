@@ -14,8 +14,6 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class ImageCropTest : Form
     {
-
-
         private Image originalImage;
         private Rectangle cropRect;
         private bool isDragging = false;
@@ -34,7 +32,7 @@ namespace Bengkel_Yoga_UKK
             pictureBox1.MouseDown += pictureBox1_MouseDown;
             pictureBox1.MouseMove += pictureBox1_MouseMove;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
-            btnCrop.Click += btnCrop_Click;
+            btnSave.Click += btnCrop_Click;
 
             this.DoubleBuffered = true;
 
@@ -42,9 +40,13 @@ namespace Bengkel_Yoga_UKK
 
         private void InitPicture()
         {
+            
+
             originalImage = ImageConvert.ResizeImage(originalImage, pictureBox1.Width, pictureBox1.Height);
             AdjustPictureBoxSize(); // Sesuaikan ukuran PictureBox
-            int size = Math.Min(pictureBox1.Width, pictureBox1.Height) / 3;
+
+            int size = (Math.Min(pictureBox1.Width, pictureBox1.Height)) - 2;
+            maxCropSize = size;
             cropRect = new Rectangle((pictureBox1.Width - size) / 2, (pictureBox1.Height - size) / 2, size, size);
 
             pictureBox1.BackgroundImage = originalImage;
@@ -75,7 +77,7 @@ namespace Bengkel_Yoga_UKK
                 g.DrawImage(originalImage, new Rectangle(0, 0, cropRect.Width, cropRect.Height), adjustedCropRect, GraphicsUnit.Pixel);
             }
 
-            Image2._imageResult = croppedImage;
+            ImageDirectory.FillInTheImage(croppedImage);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -157,13 +159,13 @@ namespace Bengkel_Yoga_UKK
 
             Point offset = GetImageOffset(); // Hitung offset gambar
 
-            using (Pen pen = new Pen(Color.Red, 2))
+            using (Pen pen = new Pen(Color.LightGray, 2))
             {
                 // Sesuaikan koordinat cropRect dengan offset gambar
                 e.Graphics.DrawRectangle(pen, new Rectangle(cropRect.X + offset.X, cropRect.Y + offset.Y, cropRect.Width, cropRect.Height));
             }
 
-            using (Brush brush = new SolidBrush(Color.Blue))
+            using (Brush brush = new SolidBrush(Color.White))
             {
                 // Sesuaikan koordinat handle resize dengan offset gambar
                 e.Graphics.FillRectangle(brush, new Rectangle(cropRect.Left - resizeHandleSize / 2 + offset.X, cropRect.Top - resizeHandleSize / 2 + offset.Y, resizeHandleSize, resizeHandleSize));
@@ -198,14 +200,14 @@ namespace Bengkel_Yoga_UKK
             location = new Point(location.X - offset.X, location.Y - offset.Y); // Sesuaikan lokasi mouse dengan offset gambar
 
             int minSize = 20; // Ukuran minimum crop area
-            int maxWidth = pictureBox1.Width;
-            int maxHeight = pictureBox1.Height;
+            int maxWidth = pictureBox1.BackgroundImage.Width; // Lebar maksimum = lebar gambar
+            int maxHeight = pictureBox1.BackgroundImage.Height; // Tinggi maksimum = tinggi gambar
 
             if (activeResizeHandle == "bottom-right")
             {
                 int newSize = Math.Max(location.X - cropRect.Left, location.Y - cropRect.Top);
-                newSize = Math.Min(newSize, maxWidth - cropRect.Left); // Cegah melebihi PictureBox
-                newSize = Math.Min(newSize, maxHeight - cropRect.Top);
+                newSize = Math.Min(newSize, maxWidth - cropRect.Left - 2); // Cegah melebihi lebar gambar
+                newSize = Math.Min(newSize, maxHeight - cropRect.Top); // Cegah melebihi tinggi gambar
                 newSize = Math.Min(newSize, maxCropSize); // Cegah melebihi panjang sisi maksimum
                 cropRect.Width = cropRect.Height = Math.Max(newSize, minSize);
             }
@@ -230,21 +232,24 @@ namespace Bengkel_Yoga_UKK
             int newX = cropRect.Left + dx;
             int newY = cropRect.Top + dy;
 
+            // Batasi pergerakan cropRect agar tidak keluar dari gambar
             if (newX < 0) newX = 0;
             if (newY < 0) newY = 0;
-            if (newX + cropRect.Width > pictureBox1.Width) newX = pictureBox1.Width - cropRect.Width;
-            if (newY + cropRect.Height > pictureBox1.Height) newY = pictureBox1.Height - cropRect.Height;
+            if (newX + cropRect.Width > pictureBox1.BackgroundImage.Width)
+                newX = pictureBox1.BackgroundImage.Width - cropRect.Width - 2; // Batasi agar tidak melebihi batas kanan
+            if (newY + cropRect.Height > pictureBox1.BackgroundImage.Height)
+                newY = pictureBox1.BackgroundImage.Height - cropRect.Height; // Batasi agar tidak melebihi batas bawah
 
             // Pastikan ukuran crop area tidak melebihi panjang sisi maksimum
             if (cropRect.Width > maxCropSize)
             {
                 cropRect.Width = maxCropSize;
-                newX = Math.Min(newX, pictureBox1.Width - maxCropSize);
+                newX = Math.Min(newX, pictureBox1.BackgroundImage.Width - maxCropSize);
             }
             if (cropRect.Height > maxCropSize)
             {
                 cropRect.Height = maxCropSize;
-                newY = Math.Min(newY, pictureBox1.Height - maxCropSize);
+                newY = Math.Min(newY, pictureBox1.BackgroundImage.Height - maxCropSize);
             }
 
             cropRect.Location = new Point(newX, newY);

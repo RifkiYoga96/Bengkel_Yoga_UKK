@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            btnUpload = new Button();
-            btnCrop = new Button();
+            btnSave = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = SystemColors.ButtonFace;
+            pictureBox1.BackColor = SystemColors.Control;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
@@ -44,34 +43,34 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnUpload
+            // btnSave
             // 
-            btnUpload.Location = new Point(15, 368);
-            btnUpload.Name = "btnUpload";
-            btnUpload.Size = new Size(75, 23);
-            btnUpload.TabIndex = 1;
-            btnUpload.Text = "Upload";
-            btnUpload.UseVisualStyleBackColor = true;
-            // 
-            // btnCrop
-            // 
-            btnCrop.Location = new Point(277, 368);
-            btnCrop.Name = "btnCrop";
-            btnCrop.Size = new Size(75, 23);
-            btnCrop.TabIndex = 2;
-            btnCrop.Text = "Save";
-            btnCrop.UseVisualStyleBackColor = true;
+            btnSave.BackColor = Color.FromArgb(52, 152, 219);
+            btnSave.BackgroundColor = Color.FromArgb(52, 152, 219);
+            btnSave.BorderColor = Color.PaleVioletRed;
+            btnSave.BorderRadius = 0;
+            btnSave.BorderSize = 0;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(282, 368);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(80, 32);
+            btnSave.TabIndex = 1;
+            btnSave.Text = "Ok";
+            btnSave.TextColor = Color.White;
+            btnSave.UseVisualStyleBackColor = false;
             // 
             // ImageCropTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(374, 403);
-            Controls.Add(btnCrop);
-            Controls.Add(btnUpload);
+            ClientSize = new Size(374, 410);
+            Controls.Add(btnSave);
             Controls.Add(pictureBox1);
             Name = "ImageCropTest";
-            Text = "ImageCropTest";
+            Text = "Crop Image";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -79,7 +78,7 @@
         #endregion
 
         private PictureBox pictureBox1;
+        private YogaButton btnSave;
         private Button btnUpload;
-        private Button btnCrop;
     }
 }
