@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormInputKaryawan2
+    partial class FormInputPelanggan
     {
         /// <summary>
         /// Required designer variable.
@@ -32,14 +32,10 @@
             lblHeader = new Label();
             label1 = new Label();
             label3 = new Label();
-            btnFile = new YogaButton();
-            txtFile = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label4 = new Label();
             txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             btnSave = new YogaButton();
             txtNoKTP = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            radioKaryawan = new MaterialSkin.Controls.MaterialRadioButton();
-            radioSuperAdmin = new MaterialSkin.Controls.MaterialRadioButton();
             textBoxExt2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             textBoxExt3 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label9 = new Label();
@@ -48,12 +44,13 @@
             label12 = new Label();
             textBoxExt6 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label13 = new Label();
-            label2 = new Label();
             textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label5 = new Label();
             yogaButton1 = new YogaButton();
+            pictureBoxProfile = new RJCircularPictureBox();
+            btnChooseFile = new YogaButton();
+            yogaPanel1 = new YogaPanel();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txtFile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).BeginInit();
             ((System.ComponentModel.ISupportInitialize)textBoxExt2).BeginInit();
@@ -61,6 +58,8 @@
             ((System.ComponentModel.ISupportInitialize)textBoxExt5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)textBoxExt6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)textBoxExt1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
+            yogaPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -81,7 +80,7 @@
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(937, 43);
             lblHeader.TabIndex = 11;
-            lblHeader.Text = "Input Karyawan";
+            lblHeader.Text = "Input Pelanggan";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -89,7 +88,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(23, 80);
+            label1.Location = new Point(25, 196);
             label1.Name = "label1";
             label1.Size = new Size(54, 25);
             label1.TabIndex = 12;
@@ -101,48 +100,19 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ControlDarkDark;
-            label3.Location = new Point(23, 158);
+            label3.Location = new Point(25, 271);
             label3.Name = "label3";
             label3.Size = new Size(64, 25);
             label3.TabIndex = 15;
             label3.Text = "Nama:";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnFile
-            // 
-            btnFile.BackColor = Color.FromArgb(230, 126, 34);
-            btnFile.BackgroundColor = Color.FromArgb(230, 126, 34);
-            btnFile.BorderColor = Color.PaleVioletRed;
-            btnFile.BorderRadius = 0;
-            btnFile.BorderSize = 0;
-            btnFile.FlatAppearance.BorderSize = 0;
-            btnFile.FlatStyle = FlatStyle.Flat;
-            btnFile.ForeColor = Color.White;
-            btnFile.Location = new Point(348, 81);
-            btnFile.Name = "btnFile";
-            btnFile.Size = new Size(82, 27);
-            btnFile.TabIndex = 22;
-            btnFile.Text = "Choose File";
-            btnFile.TextColor = Color.White;
-            btnFile.UseVisualStyleBackColor = false;
-            // 
-            // txtFile
-            // 
-            txtFile.BackColor = SystemColors.Control;
-            txtFile.BeforeTouchSize = new Size(293, 93);
-            txtFile.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtFile.Location = new Point(137, 81);
-            txtFile.Name = "txtFile";
-            txtFile.ReadOnly = true;
-            txtFile.Size = new Size(205, 27);
-            txtFile.TabIndex = 23;
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ControlDarkDark;
-            label4.Location = new Point(23, 235);
+            label4.Location = new Point(25, 348);
             label4.Name = "label4";
             label4.Size = new Size(78, 25);
             label4.TabIndex = 24;
@@ -156,7 +126,7 @@
             txtNama.BorderColor = Color.FromArgb(209, 211, 212);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNama.Location = new Point(137, 158);
+            txtNama.Location = new Point(139, 271);
             txtNama.Name = "txtNama";
             txtNama.PlaceholderText = " Masukkan nama";
             txtNama.Size = new Size(293, 27);
@@ -174,7 +144,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(802, 462);
+            btnSave.Location = new Point(804, 485);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 36);
             btnSave.TabIndex = 37;
@@ -189,46 +159,12 @@
             txtNoKTP.BorderColor = Color.FromArgb(209, 211, 212);
             txtNoKTP.BorderStyle = BorderStyle.FixedSingle;
             txtNoKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNoKTP.Location = new Point(137, 235);
+            txtNoKTP.Location = new Point(139, 348);
             txtNoKTP.Name = "txtNoKTP";
             txtNoKTP.PlaceholderText = " Masukkan nomor KTP";
             txtNoKTP.Size = new Size(293, 27);
             txtNoKTP.TabIndex = 39;
             txtNoKTP.ThemeName = "Default";
-            // 
-            // radioKaryawan
-            // 
-            radioKaryawan.AutoSize = true;
-            radioKaryawan.Depth = 0;
-            radioKaryawan.ForeColor = SystemColors.ControlDarkDark;
-            radioKaryawan.Location = new Point(137, 386);
-            radioKaryawan.Margin = new Padding(0);
-            radioKaryawan.MouseLocation = new Point(-1, -1);
-            radioKaryawan.MouseState = MaterialSkin.MouseState.HOVER;
-            radioKaryawan.Name = "radioKaryawan";
-            radioKaryawan.Ripple = true;
-            radioKaryawan.Size = new Size(106, 37);
-            radioKaryawan.TabIndex = 44;
-            radioKaryawan.TabStop = true;
-            radioKaryawan.Text = "Karyawan";
-            radioKaryawan.UseVisualStyleBackColor = true;
-            // 
-            // radioSuperAdmin
-            // 
-            radioSuperAdmin.AutoSize = true;
-            radioSuperAdmin.Depth = 0;
-            radioSuperAdmin.ForeColor = SystemColors.ControlDarkDark;
-            radioSuperAdmin.Location = new Point(270, 386);
-            radioSuperAdmin.Margin = new Padding(0);
-            radioSuperAdmin.MouseLocation = new Point(-1, -1);
-            radioSuperAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            radioSuperAdmin.Name = "radioSuperAdmin";
-            radioSuperAdmin.Ripple = true;
-            radioSuperAdmin.Size = new Size(126, 37);
-            radioSuperAdmin.TabIndex = 45;
-            radioSuperAdmin.TabStop = true;
-            radioSuperAdmin.Text = "Super Admin";
-            radioSuperAdmin.UseVisualStyleBackColor = true;
             // 
             // textBoxExt2
             // 
@@ -237,7 +173,7 @@
             textBoxExt2.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt2.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt2.Location = new Point(617, 158);
+            textBoxExt2.Location = new Point(619, 151);
             textBoxExt2.Name = "textBoxExt2";
             textBoxExt2.PlaceholderText = " Masukkan password";
             textBoxExt2.Size = new Size(293, 27);
@@ -251,7 +187,7 @@
             textBoxExt3.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt3.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt3.Location = new Point(617, 81);
+            textBoxExt3.Location = new Point(619, 74);
             textBoxExt3.Name = "textBoxExt3";
             textBoxExt3.PlaceholderText = " Masukkan nama";
             textBoxExt3.Size = new Size(293, 27);
@@ -263,7 +199,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label9.ForeColor = SystemColors.ControlDarkDark;
-            label9.Location = new Point(503, 158);
+            label9.Location = new Point(505, 151);
             label9.Name = "label9";
             label9.Size = new Size(94, 25);
             label9.TabIndex = 50;
@@ -275,7 +211,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label10.ForeColor = SystemColors.ControlDarkDark;
-            label10.Location = new Point(503, 81);
+            label10.Location = new Point(505, 74);
             label10.Name = "label10";
             label10.Size = new Size(60, 25);
             label10.TabIndex = 49;
@@ -289,7 +225,7 @@
             textBoxExt5.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt5.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt5.Location = new Point(137, 312);
+            textBoxExt5.Location = new Point(139, 425);
             textBoxExt5.Name = "textBoxExt5";
             textBoxExt5.PlaceholderText = " Masukkan nomor telepon";
             textBoxExt5.Size = new Size(293, 27);
@@ -301,7 +237,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = SystemColors.ControlDarkDark;
-            label12.Location = new Point(23, 312);
+            label12.Location = new Point(25, 425);
             label12.Name = "label12";
             label12.Size = new Size(112, 25);
             label12.TabIndex = 53;
@@ -315,7 +251,7 @@
             textBoxExt6.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt6.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt6.Location = new Point(617, 235);
+            textBoxExt6.Location = new Point(619, 228);
             textBoxExt6.Name = "textBoxExt6";
             textBoxExt6.PlaceholderText = " Masukkan konfirmasi password";
             textBoxExt6.Size = new Size(293, 27);
@@ -327,24 +263,12 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label13.ForeColor = SystemColors.ControlDarkDark;
-            label13.Location = new Point(503, 222);
+            label13.Location = new Point(505, 215);
             label13.Name = "label13";
             label13.Size = new Size(106, 50);
             label13.TabIndex = 57;
             label13.Text = "Konfirmasi \r\nPassword:";
             label13.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(23, 390);
-            label2.Name = "label2";
-            label2.Size = new Size(79, 25);
-            label2.TabIndex = 59;
-            label2.Text = "Jabatan:";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // textBoxExt1
             // 
@@ -353,7 +277,7 @@
             textBoxExt1.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt1.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt1.Location = new Point(617, 312);
+            textBoxExt1.Location = new Point(619, 305);
             textBoxExt1.Multiline = true;
             textBoxExt1.Name = "textBoxExt1";
             textBoxExt1.PlaceholderText = " Masukkan alamat";
@@ -366,7 +290,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ControlDarkDark;
-            label5.Location = new Point(503, 312);
+            label5.Location = new Point(505, 305);
             label5.Name = "label5";
             label5.Size = new Size(74, 25);
             label5.TabIndex = 60;
@@ -384,7 +308,7 @@
             yogaButton1.FlatStyle = FlatStyle.Flat;
             yogaButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton1.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton1.Location = new Point(685, 462);
+            yogaButton1.Location = new Point(687, 485);
             yogaButton1.Name = "yogaButton1";
             yogaButton1.Size = new Size(108, 36);
             yogaButton1.TabIndex = 62;
@@ -392,15 +316,64 @@
             yogaButton1.TextColor = SystemColors.ControlDarkDark;
             yogaButton1.UseVisualStyleBackColor = false;
             // 
-            // FormInputKaryawan2
+            // pictureBoxProfile
+            // 
+            pictureBoxProfile.BackgroundImage = Properties.Resources.defaultProfile;
+            pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBoxProfile.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            pictureBoxProfile.BorderColor = Color.RoyalBlue;
+            pictureBoxProfile.BorderColor2 = Color.HotPink;
+            pictureBoxProfile.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            pictureBoxProfile.BorderSize = 2;
+            pictureBoxProfile.GradientAngle = 50F;
+            pictureBoxProfile.Location = new Point(63, 11);
+            pictureBoxProfile.Name = "pictureBoxProfile";
+            pictureBoxProfile.Size = new Size(106, 106);
+            pictureBoxProfile.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxProfile.TabIndex = 63;
+            pictureBoxProfile.TabStop = false;
+            // 
+            // btnChooseFile
+            // 
+            btnChooseFile.BackColor = Color.FromArgb(230, 126, 34);
+            btnChooseFile.BackgroundColor = Color.FromArgb(230, 126, 34);
+            btnChooseFile.BorderColor = Color.PaleVioletRed;
+            btnChooseFile.BorderRadius = 0;
+            btnChooseFile.BorderSize = 0;
+            btnChooseFile.FlatAppearance.BorderSize = 0;
+            btnChooseFile.FlatStyle = FlatStyle.Flat;
+            btnChooseFile.ForeColor = Color.White;
+            btnChooseFile.Location = new Point(74, 135);
+            btnChooseFile.Name = "btnChooseFile";
+            btnChooseFile.Size = new Size(82, 27);
+            btnChooseFile.TabIndex = 64;
+            btnChooseFile.Text = "Choose File";
+            btnChooseFile.TextColor = Color.White;
+            btnChooseFile.UseVisualStyleBackColor = false;
+            // 
+            // yogaPanel1
+            // 
+            yogaPanel1.BackColor = Color.White;
+            yogaPanel1.BorderColor = Color.PaleVioletRed;
+            yogaPanel1.BorderRadius = 0;
+            yogaPanel1.BorderSize = 0;
+            yogaPanel1.Controls.Add(pictureBoxProfile);
+            yogaPanel1.Controls.Add(btnChooseFile);
+            yogaPanel1.ForeColor = Color.White;
+            yogaPanel1.Location = new Point(139, 61);
+            yogaPanel1.Name = "yogaPanel1";
+            yogaPanel1.Size = new Size(232, 175);
+            yogaPanel1.TabIndex = 65;
+            // 
+            // FormInputPelanggan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 510);
+            ClientSize = new Size(937, 542);
+            Controls.Add(yogaPanel1);
             Controls.Add(yogaButton1);
             Controls.Add(textBoxExt1);
             Controls.Add(label5);
-            Controls.Add(label2);
             Controls.Add(textBoxExt6);
             Controls.Add(label13);
             Controls.Add(textBoxExt5);
@@ -409,22 +382,17 @@
             Controls.Add(textBoxExt3);
             Controls.Add(label9);
             Controls.Add(label10);
-            Controls.Add(radioSuperAdmin);
-            Controls.Add(radioKaryawan);
             Controls.Add(txtNoKTP);
             Controls.Add(btnSave);
             Controls.Add(txtNama);
             Controls.Add(label4);
-            Controls.Add(txtFile);
-            Controls.Add(btnFile);
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Name = "FormInputKaryawan2";
+            Name = "FormInputPelanggan";
             StartPosition = FormStartPosition.CenterParent;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)txtFile).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNama).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).EndInit();
             ((System.ComponentModel.ISupportInitialize)textBoxExt2).EndInit();
@@ -432,6 +400,8 @@
             ((System.ComponentModel.ISupportInitialize)textBoxExt5).EndInit();
             ((System.ComponentModel.ISupportInitialize)textBoxExt6).EndInit();
             ((System.ComponentModel.ISupportInitialize)textBoxExt1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
+            yogaPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -442,14 +412,10 @@
         private Label lblHeader;
         private Label label1;
         private Label label3;
-        private YogaButton btnFile;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtFile;
         private Label label4;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;
         private YogaButton btnSave;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoKTP;
-        private MaterialSkin.Controls.MaterialRadioButton radioKaryawan;
-        private MaterialSkin.Controls.MaterialRadioButton radioSuperAdmin;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
         private Label label9;
@@ -458,9 +424,11 @@
         private Label label12;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt6;
         private Label label13;
-        private Label label2;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
         private Label label5;
         private YogaButton yogaButton1;
+        private RJCircularPictureBox pictureBoxProfile;
+        private YogaButton btnChooseFile;
+        private YogaPanel yogaPanel1;
     }
 }

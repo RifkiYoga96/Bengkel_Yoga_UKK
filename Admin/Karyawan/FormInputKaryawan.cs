@@ -15,11 +15,31 @@ namespace Bengkel_Yoga_UKK
         public FormInputKaryawan()
         {
             InitializeComponent();
+            RegisterEvent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void RegisterEvent()
         {
+            btnChooseFile.Click += BtnChooseFile_Click;
+        }
 
+        private void BtnChooseFile_Click(object? sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Image originalImage = Image.FromFile(openFileDialog.FileName);
+
+
+                    if (new ImageCropTest(originalImage).ShowDialog(this) != DialogResult.OK) return;
+
+                    pictureBoxProfile.BackgroundImage = ImageDirectory._imageResult;
+                    pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
+
+                }
+            }
         }
     }
 }

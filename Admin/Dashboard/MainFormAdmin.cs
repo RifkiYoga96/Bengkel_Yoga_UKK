@@ -63,7 +63,7 @@ namespace Bengkel_Yoga_UKK
         private void RegisterEvent()
         {
             List<Button> btnStyle = new List<Button> { btnDashboard, btnBooking, btnProduk, btnInvoice, btnService, btnPelanggan, btnKaryawan };
-            foreach(var item in btnStyle)
+            foreach (var item in btnStyle)
             {
                 item.FlatAppearance.MouseDownBackColor = active;
                 item.FlatAppearance.MouseOverBackColor = hover;
@@ -86,7 +86,8 @@ namespace Bengkel_Yoga_UKK
 
             btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
             btnProduk.Click += (s, e) => ShowFormInPanel2(new FormProduk());
-            btnKaryawan.Click += (s,e) => ShowFormInPanel2(new FormKaryawan());
+            btnKaryawan.Click += (s, e) => ShowFormInPanel2(new FormKaryawan());
+            btnBooking.Click += (s, e) => ShowFormInPanel2(new FormBooking());
 
         }
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class FormInputKaryawan2 : Form
+    public partial class FormInputPelanggan : Form
     {
-        public FormInputKaryawan2()
+        public FormInputPelanggan()
         {
             InitializeComponent();
         }

@@ -136,19 +136,25 @@
   <data name="ArrowDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Selesai" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Selesai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Arroww" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arroww.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Arrow 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Arrow 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="defaultImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\defaultImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ArrowUpLL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowUpLL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Selesai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Selesai.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowUpL (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowUpL (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Arroww" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Arroww.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="defaultProfile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\defaultProfile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

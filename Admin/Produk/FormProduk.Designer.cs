@@ -69,7 +69,7 @@
             yogaPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             yogaPanel1.BackColor = Color.White;
             yogaPanel1.BorderColor = Color.PaleVioletRed;
-            yogaPanel1.BorderRadius = 10;
+            yogaPanel1.BorderRadius = 0;
             yogaPanel1.BorderSize = 0;
             yogaPanel1.Controls.Add(lblShowingEntries);
             yogaPanel1.Controls.Add(comboFilter);

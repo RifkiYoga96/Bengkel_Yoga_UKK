@@ -30,6 +30,7 @@
         {
             pictureBox1 = new PictureBox();
             btnSave = new YogaButton();
+            btnCancel = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             // 
             // btnSave
             // 
+            btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSave.BackColor = Color.FromArgb(52, 152, 219);
             btnSave.BackgroundColor = Color.FromArgb(52, 152, 219);
             btnSave.BorderColor = Color.PaleVioletRed;
@@ -54,7 +56,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(282, 368);
+            btnSave.Location = new Point(282, 377);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(80, 32);
             btnSave.TabIndex = 1;
@@ -62,11 +64,32 @@
             btnSave.TextColor = Color.White;
             btnSave.UseVisualStyleBackColor = false;
             // 
+            // btnCancel
+            // 
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancel.BackColor = Color.Transparent;
+            btnCancel.BackgroundColor = Color.Transparent;
+            btnCancel.BorderColor = Color.PaleVioletRed;
+            btnCancel.BorderRadius = 0;
+            btnCancel.BorderSize = 2;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.ForeColor = SystemColors.ControlDarkDark;
+            btnCancel.Location = new Point(196, 377);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(80, 32);
+            btnCancel.TabIndex = 2;
+            btnCancel.Text = "Cancel";
+            btnCancel.TextColor = SystemColors.ControlDarkDark;
+            btnCancel.UseVisualStyleBackColor = false;
+            // 
             // ImageCropTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(374, 410);
+            ClientSize = new Size(372, 419);
+            Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(pictureBox1);
             Name = "ImageCropTest";
@@ -80,5 +103,6 @@
         private PictureBox pictureBox1;
         private YogaButton btnSave;
         private Button btnUpload;
+        private YogaButton btnCancel;
     }
 }

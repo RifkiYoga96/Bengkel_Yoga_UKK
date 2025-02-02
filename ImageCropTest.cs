@@ -14,6 +14,9 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class ImageCropTest : Form
     {
+
+        private int maxPictureBoxWidth = 800;
+        private int maxPictureBoxHeight = 600;
         private Image originalImage;
         private Rectangle cropRect;
         private bool isDragging = false;
@@ -32,7 +35,12 @@ namespace Bengkel_Yoga_UKK
             pictureBox1.MouseDown += pictureBox1_MouseDown;
             pictureBox1.MouseMove += pictureBox1_MouseMove;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
-            btnSave.Click += btnCrop_Click;
+            btnSave.Click += btnSave_Click;
+            btnCancel.Click += (s,e) => 
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            };
 
             this.DoubleBuffered = true;
 
@@ -40,11 +48,9 @@ namespace Bengkel_Yoga_UKK
 
         private void InitPicture()
         {
-            
-
             originalImage = ImageConvert.ResizeImage(originalImage, pictureBox1.Width, pictureBox1.Height);
-            AdjustPictureBoxSize(); // Sesuaikan ukuran PictureBox
-
+            AdjustPictureBoxSize();
+            MessageBox.Show($"{originalImage.Width.ToString()} {originalImage.Height.ToString()}");
             int size = (Math.Min(pictureBox1.Width, pictureBox1.Height)) - 2;
             maxCropSize = size;
             cropRect = new Rectangle((pictureBox1.Width - size) / 2, (pictureBox1.Height - size) / 2, size, size);
@@ -54,7 +60,7 @@ namespace Bengkel_Yoga_UKK
             pictureBox1.Invalidate();
         }
 
-        private void btnCrop_Click(object? sender, EventArgs e)
+        private void btnSave_Click(object? sender, EventArgs e)
         {
             if (originalImage == null || cropRect.Width == 0 || cropRect.Height == 0) return;
 
@@ -264,24 +270,23 @@ namespace Bengkel_Yoga_UKK
             double imageRatio = (double)originalImage.Width / originalImage.Height;
             double pictureBoxRatio = (double)pictureBox1.Width / pictureBox1.Height;
 
+            MessageBox.Show(imageRatio.ToString() + " " + pictureBoxRatio.ToString());
+
             // Sesuaikan ukuran PictureBox berdasarkan rasio gambar
             if (imageRatio > pictureBoxRatio)
             {
                 // Gambar lebih lebar dari PictureBox
-                pictureBox1.Height = (int)(pictureBox1.Width / imageRatio);
+                pictureBox1.Height = (int)(originalImage.Height);
             }
             else
             {
                 // Gambar lebih tinggi dari PictureBox
-                pictureBox1.Width = (int)(pictureBox1.Height * imageRatio);
+                pictureBox1.Width = (int)(originalImage.Width);
             }
 
             // Atur PictureBox ke tengah form atau parent container
             pictureBox1.Anchor = AnchorStyles.None; // Non-aktifkan anchor
-            pictureBox1.Location = new Point(
-                (this.ClientSize.Width - pictureBox1.Width) / 2,
-                (this.ClientSize.Height - pictureBox1.Height) / 2
-            );
+            pictureBox1.Location = new Point((this.ClientSize.Width - pictureBox1.Width) / 2,pictureBox1.Location.Y);
         }
 
         public static Image ResizeImage(Image image, int maxWidth, int maxHeight)

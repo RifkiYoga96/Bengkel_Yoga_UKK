@@ -32,7 +32,7 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            new FormInputKaryawan2().ShowDialog();
+            new FormInputKaryawan().ShowDialog();
         }
 
         private void BtnPrevious_Click(object? sender, EventArgs e)

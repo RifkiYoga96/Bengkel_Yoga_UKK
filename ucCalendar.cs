@@ -13,12 +13,35 @@ namespace Bengkel_Yoga_UKK
     
     public partial class ucCalendar : UserControl
     {
-        string _day, _date, _weekday;
-        public ucCalendar(string day)
+        int _date;
+        string _day;
+        public ucCalendar(int date,DateTime dateTime, bool show)
         {
             InitializeComponent();
-            _day = day;
-            label1.Text = day;
+            if (!show)
+            {
+                this.BackColor = Color.Transparent;
+                label1.Text = "";
+                return;
+            }
+            _date = date;
+            if (dateTime.DayOfWeek.ToString() == "Sunday")
+            {
+                label1.Text = date.ToString();
+                label1.ForeColor = Color.Red;
+            }
+            else
+            {
+                label1.Text = date.ToString();
+                label1.ForeColor = Color.Black;
+            }
+
+            if(DateTime.Today == dateTime)
+            {
+                this.BackColor = Color.LightGray;
+            }
+
+            btnBooking1.Click += (s, e) => MessageBox.Show($"{date.ToString()}");
         }
     }
 }
