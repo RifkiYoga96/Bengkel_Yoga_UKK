@@ -68,8 +68,20 @@
             lblBulan = new Label();
             btnNext = new YogaButton();
             btnPrevious = new YogaButton();
+            panel30 = new Panel();
+            yogaButton1 = new YogaButton();
+            lblDetails = new Label();
+            yogaButton2 = new YogaButton();
+            yogaButton3 = new YogaButton();
+            lblDone = new Label();
+            lblPending = new Label();
+            lblCancel = new Label();
+            yogaButton4 = new YogaButton();
+            panel31 = new Panel();
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
+            panel30.SuspendLayout();
+            panel31.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -103,7 +115,7 @@
             flowLayoutPanel1.Controls.Add(panel27);
             flowLayoutPanel1.Controls.Add(panel28);
             flowLayoutPanel1.Controls.Add(panel29);
-            flowLayoutPanel1.Location = new Point(23, 182);
+            flowLayoutPanel1.Location = new Point(37, 168);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(3);
             flowLayoutPanel1.Size = new Size(1231, 671);
@@ -315,7 +327,7 @@
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
-            panel1.Location = new Point(23, 126);
+            panel1.Location = new Point(37, 112);
             panel1.Name = "panel1";
             panel1.Size = new Size(1231, 55);
             panel1.TabIndex = 0;
@@ -399,13 +411,13 @@
             // 
             // lblBulan
             // 
-            lblBulan.AutoSize = true;
             lblBulan.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblBulan.Location = new Point(70, 36);
+            lblBulan.Location = new Point(393, 55);
             lblBulan.Name = "lblBulan";
-            lblBulan.Size = new Size(181, 37);
+            lblBulan.Size = new Size(519, 37);
             lblBulan.TabIndex = 8;
             lblBulan.Text = "Januari 2024";
+            lblBulan.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnNext
             // 
@@ -418,13 +430,14 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnNext.ForeColor = Color.White;
-            btnNext.Location = new Point(416, 36);
+            btnNext.Location = new Point(152, 52);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(69, 40);
             btnNext.TabIndex = 9;
             btnNext.Text = "Next";
             btnNext.TextColor = Color.White;
             btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
             // 
             // btnPrevious
             // 
@@ -437,7 +450,7 @@
             btnPrevious.FlatStyle = FlatStyle.Flat;
             btnPrevious.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnPrevious.ForeColor = Color.White;
-            btnPrevious.Location = new Point(301, 36);
+            btnPrevious.Location = new Point(39, 52);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.Size = new Size(97, 40);
             btnPrevious.TabIndex = 10;
@@ -445,24 +458,173 @@
             btnPrevious.TextColor = Color.White;
             btnPrevious.UseVisualStyleBackColor = false;
             // 
+            // panel30
+            // 
+            panel30.Anchor = AnchorStyles.Left;
+            panel30.BackColor = Color.White;
+            panel30.Controls.Add(yogaButton1);
+            panel30.Controls.Add(flowLayoutPanel1);
+            panel30.Controls.Add(panel1);
+            panel30.Controls.Add(btnNext);
+            panel30.Controls.Add(lblBulan);
+            panel30.Controls.Add(btnPrevious);
+            panel30.Location = new Point(191, 32);
+            panel30.Name = "panel30";
+            panel30.Size = new Size(1306, 875);
+            panel30.TabIndex = 11;
+            // 
+            // yogaButton1
+            // 
+            yogaButton1.BackColor = Color.FromArgb(230, 126, 34);
+            yogaButton1.BackgroundColor = Color.FromArgb(230, 126, 34);
+            yogaButton1.BorderColor = Color.PaleVioletRed;
+            yogaButton1.BorderRadius = 0;
+            yogaButton1.BorderSize = 0;
+            yogaButton1.FlatAppearance.BorderSize = 0;
+            yogaButton1.FlatStyle = FlatStyle.Flat;
+            yogaButton1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton1.ForeColor = Color.White;
+            yogaButton1.Location = new Point(1117, 52);
+            yogaButton1.Name = "yogaButton1";
+            yogaButton1.Size = new Size(145, 40);
+            yogaButton1.TabIndex = 11;
+            yogaButton1.Text = "Jadwal Libur";
+            yogaButton1.TextColor = Color.White;
+            yogaButton1.UseVisualStyleBackColor = false;
+            yogaButton1.Click += yogaButton1_Click;
+            // 
+            // lblDetails
+            // 
+            lblDetails.Anchor = AnchorStyles.None;
+            lblDetails.AutoSize = true;
+            lblDetails.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDetails.Location = new Point(21, 12);
+            lblDetails.Name = "lblDetails";
+            lblDetails.Size = new Size(94, 32);
+            lblDetails.TabIndex = 12;
+            lblDetails.Text = "Details:";
+            // 
+            // yogaButton2
+            // 
+            yogaButton2.Anchor = AnchorStyles.None;
+            yogaButton2.BackColor = Color.FromArgb(0, 192, 0);
+            yogaButton2.BackgroundColor = Color.FromArgb(0, 192, 0);
+            yogaButton2.BorderColor = Color.PaleVioletRed;
+            yogaButton2.BorderRadius = 5;
+            yogaButton2.BorderSize = 0;
+            yogaButton2.FlatAppearance.BorderSize = 0;
+            yogaButton2.FlatStyle = FlatStyle.Flat;
+            yogaButton2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton2.ForeColor = Color.White;
+            yogaButton2.Location = new Point(21, 64);
+            yogaButton2.Name = "yogaButton2";
+            yogaButton2.Size = new Size(62, 34);
+            yogaButton2.TabIndex = 12;
+            yogaButton2.TextColor = Color.White;
+            yogaButton2.UseVisualStyleBackColor = false;
+            // 
+            // yogaButton3
+            // 
+            yogaButton3.Anchor = AnchorStyles.None;
+            yogaButton3.BackColor = Color.FromArgb(31, 133, 235);
+            yogaButton3.BackgroundColor = Color.FromArgb(31, 133, 235);
+            yogaButton3.BorderColor = Color.PaleVioletRed;
+            yogaButton3.BorderRadius = 5;
+            yogaButton3.BorderSize = 0;
+            yogaButton3.FlatAppearance.BorderSize = 0;
+            yogaButton3.FlatStyle = FlatStyle.Flat;
+            yogaButton3.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton3.ForeColor = Color.White;
+            yogaButton3.Location = new Point(21, 104);
+            yogaButton3.Name = "yogaButton3";
+            yogaButton3.Size = new Size(62, 34);
+            yogaButton3.TabIndex = 13;
+            yogaButton3.TextColor = Color.White;
+            yogaButton3.UseVisualStyleBackColor = false;
+            // 
+            // lblDone
+            // 
+            lblDone.Anchor = AnchorStyles.None;
+            lblDone.AutoSize = true;
+            lblDone.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblDone.Location = new Point(89, 72);
+            lblDone.Name = "lblDone";
+            lblDone.Size = new Size(47, 21);
+            lblDone.TabIndex = 14;
+            lblDone.Text = "Done";
+            // 
+            // lblPending
+            // 
+            lblPending.Anchor = AnchorStyles.None;
+            lblPending.AutoSize = true;
+            lblPending.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPending.Location = new Point(89, 110);
+            lblPending.Name = "lblPending";
+            lblPending.Size = new Size(66, 21);
+            lblPending.TabIndex = 15;
+            lblPending.Text = "Pending";
+            // 
+            // lblCancel
+            // 
+            lblCancel.Anchor = AnchorStyles.None;
+            lblCancel.AutoSize = true;
+            lblCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCancel.Location = new Point(89, 150);
+            lblCancel.Name = "lblCancel";
+            lblCancel.Size = new Size(56, 21);
+            lblCancel.TabIndex = 17;
+            lblCancel.Text = "Cancel";
+            // 
+            // yogaButton4
+            // 
+            yogaButton4.Anchor = AnchorStyles.None;
+            yogaButton4.BackColor = Color.FromArgb(210, 60, 60);
+            yogaButton4.BackgroundColor = Color.FromArgb(210, 60, 60);
+            yogaButton4.BorderColor = Color.PaleVioletRed;
+            yogaButton4.BorderRadius = 5;
+            yogaButton4.BorderSize = 0;
+            yogaButton4.FlatAppearance.BorderSize = 0;
+            yogaButton4.FlatStyle = FlatStyle.Flat;
+            yogaButton4.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton4.ForeColor = Color.White;
+            yogaButton4.Location = new Point(21, 144);
+            yogaButton4.Name = "yogaButton4";
+            yogaButton4.Size = new Size(62, 34);
+            yogaButton4.TabIndex = 16;
+            yogaButton4.TextColor = Color.White;
+            yogaButton4.UseVisualStyleBackColor = false;
+            // 
+            // panel31
+            // 
+            panel31.Controls.Add(yogaButton2);
+            panel31.Controls.Add(lblCancel);
+            panel31.Controls.Add(lblDetails);
+            panel31.Controls.Add(yogaButton4);
+            panel31.Controls.Add(yogaButton3);
+            panel31.Controls.Add(lblPending);
+            panel31.Controls.Add(lblDone);
+            panel31.Location = new Point(12, 144);
+            panel31.Name = "panel31";
+            panel31.Size = new Size(173, 191);
+            panel31.TabIndex = 18;
+            // 
             // FormBooking
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(1276, 888);
-            Controls.Add(panel1);
-            Controls.Add(btnPrevious);
-            Controls.Add(btnNext);
-            Controls.Add(lblBulan);
-            Controls.Add(flowLayoutPanel1);
+            BackColor = Color.FromArgb(224, 224, 224);
+            ClientSize = new Size(1531, 938);
+            Controls.Add(panel31);
+            Controls.Add(panel30);
             Name = "FormBooking";
             Text = "FormBooking";
             flowLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel30.ResumeLayout(false);
+            panel31.ResumeLayout(false);
+            panel31.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -507,5 +669,15 @@
         private Panel panel27;
         private Panel panel28;
         private Panel panel29;
+        private Panel panel30;
+        private YogaButton yogaButton1;
+        private Label lblDetails;
+        private YogaButton yogaButton2;
+        private YogaButton yogaButton3;
+        private Label lblDone;
+        private Label lblPending;
+        private Label lblCancel;
+        private YogaButton yogaButton4;
+        private Panel panel31;
     }
 }

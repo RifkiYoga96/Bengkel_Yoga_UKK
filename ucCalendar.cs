@@ -41,7 +41,10 @@ namespace Bengkel_Yoga_UKK
                 this.BackColor = Color.LightGray;
             }
 
-            btnBooking1.Click += (s, e) => MessageBox.Show($"{date.ToString()}");
+            btnBooking1.Click += (s, e) => 
+            {
+                MainFormAdmin.ShowFormInPanel2(new DaftarBookingForm());
+            };
         }
     }
 }

@@ -271,7 +271,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\Booking\" />
     <Folder Include="Admin\Invoice\" />
   </ItemGroup>
 

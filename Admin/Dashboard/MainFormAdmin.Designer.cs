@@ -47,6 +47,7 @@
             panelMain = new Panel();
             panelTop = new Panel();
             label3 = new Label();
+            btnCalendar = new YogaButton();
             flowLayoutPanel2.SuspendLayout();
             panelLeft.SuspendLayout();
             panelLogOut.SuspendLayout();
@@ -61,6 +62,7 @@
             flowLayoutPanel2.BackColor = Color.FromArgb(44, 62, 80);
             flowLayoutPanel2.Controls.Add(btnDashboard);
             flowLayoutPanel2.Controls.Add(btnBooking);
+            flowLayoutPanel2.Controls.Add(btnCalendar);
             flowLayoutPanel2.Controls.Add(btnProduk);
             flowLayoutPanel2.Controls.Add(btnInvoice);
             flowLayoutPanel2.Controls.Add(btnService);
@@ -139,7 +141,7 @@
             btnProduk.ForeColor = Color.White;
             btnProduk.Image = (Image)resources.GetObject("btnProduk.Image");
             btnProduk.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProduk.Location = new Point(18, 135);
+            btnProduk.Location = new Point(18, 201);
             btnProduk.Name = "btnProduk";
             btnProduk.Padding = new Padding(20, 0, 0, 0);
             btnProduk.Size = new Size(255, 60);
@@ -164,7 +166,7 @@
             btnInvoice.ForeColor = Color.White;
             btnInvoice.Image = (Image)resources.GetObject("btnInvoice.Image");
             btnInvoice.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInvoice.Location = new Point(18, 201);
+            btnInvoice.Location = new Point(18, 267);
             btnInvoice.Name = "btnInvoice";
             btnInvoice.Padding = new Padding(20, 0, 0, 0);
             btnInvoice.Size = new Size(255, 60);
@@ -189,7 +191,7 @@
             btnService.ForeColor = Color.White;
             btnService.Image = (Image)resources.GetObject("btnService.Image");
             btnService.ImageAlign = ContentAlignment.MiddleLeft;
-            btnService.Location = new Point(18, 267);
+            btnService.Location = new Point(18, 333);
             btnService.Name = "btnService";
             btnService.Padding = new Padding(20, 0, 0, 0);
             btnService.Size = new Size(255, 60);
@@ -214,7 +216,7 @@
             btnPelanggan.ForeColor = Color.White;
             btnPelanggan.Image = (Image)resources.GetObject("btnPelanggan.Image");
             btnPelanggan.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPelanggan.Location = new Point(18, 333);
+            btnPelanggan.Location = new Point(18, 399);
             btnPelanggan.Name = "btnPelanggan";
             btnPelanggan.Padding = new Padding(20, 0, 0, 0);
             btnPelanggan.Size = new Size(255, 60);
@@ -239,7 +241,7 @@
             btnKaryawan.ForeColor = Color.White;
             btnKaryawan.Image = (Image)resources.GetObject("btnKaryawan.Image");
             btnKaryawan.ImageAlign = ContentAlignment.MiddleLeft;
-            btnKaryawan.Location = new Point(18, 399);
+            btnKaryawan.Location = new Point(18, 465);
             btnKaryawan.Name = "btnKaryawan";
             btnKaryawan.Padding = new Padding(20, 0, 0, 0);
             btnKaryawan.Size = new Size(255, 60);
@@ -379,7 +381,32 @@
             label3.TabIndex = 19;
             label3.Text = "PRODUK";
             // 
-            // Form3
+            // btnCalendar
+            // 
+            btnCalendar.BackColor = Color.FromArgb(44, 62, 80);
+            btnCalendar.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnCalendar.BorderColor = Color.PaleVioletRed;
+            btnCalendar.BorderRadius = 7;
+            btnCalendar.BorderSize = 0;
+            btnCalendar.FlatAppearance.BorderSize = 0;
+            btnCalendar.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnCalendar.FlatStyle = FlatStyle.Flat;
+            btnCalendar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCalendar.ForeColor = Color.White;
+            btnCalendar.Image = (Image)resources.GetObject("btnCalendar.Image");
+            btnCalendar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCalendar.Location = new Point(18, 135);
+            btnCalendar.Name = "btnCalendar";
+            btnCalendar.Padding = new Padding(20, 0, 0, 0);
+            btnCalendar.Size = new Size(255, 60);
+            btnCalendar.TabIndex = 16;
+            btnCalendar.Text = "    Calendar";
+            btnCalendar.TextAlign = ContentAlignment.MiddleLeft;
+            btnCalendar.TextColor = Color.White;
+            btnCalendar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCalendar.UseVisualStyleBackColor = false;
+            // 
+            // MainFormAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -389,7 +416,7 @@
             Controls.Add(panelTop);
             Controls.Add(panelLeft);
             ForeColor = Color.White;
-            Name = "Form3";
+            Name = "MainFormAdmin";
             Padding = new Padding(0);
             Style.BackColor = Color.FromArgb(44, 62, 80);
             Style.ForeColor = Color.White;
@@ -427,5 +454,6 @@
         private RJCircularPictureBox rjCircularPictureBox1;
         private Label label2;
         private Label label3;
+        private YogaButton btnCalendar;
     }
 }

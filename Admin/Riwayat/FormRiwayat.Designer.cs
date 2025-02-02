@@ -1,10 +1,8 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormProduk
+    partial class FormRiwayat
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        // </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
@@ -28,7 +26,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProduk));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRiwayat));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
             lblShowingEntries = new Label();
@@ -44,8 +42,6 @@
             label1 = new Label();
             numericEntries = new NumericUpDown();
             btnAddData = new YogaButton();
-            printPreviewDialog1 = new PrintPreviewDialog();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -260,28 +256,14 @@
             btnAddData.Location = new Point(28, 16);
             btnAddData.Name = "btnAddData";
             btnAddData.Padding = new Padding(10, 0, 0, 0);
-            btnAddData.Size = new Size(132, 42);
+            btnAddData.Size = new Size(145, 42);
             btnAddData.TabIndex = 1;
-            btnAddData.Text = " Add Data";
+            btnAddData.Text = " Add Invoice";
             btnAddData.TextColor = Color.White;
             btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddData.UseVisualStyleBackColor = false;
             // 
-            // printPreviewDialog1
-            // 
-            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
-            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
-            printPreviewDialog1.ClientSize = new Size(400, 300);
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Enabled = true;
-            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
-            printPreviewDialog1.Name = "printPreviewDialog1";
-            printPreviewDialog1.Visible = false;
-            // 
-            // printDocument1
-            // 
-            // 
-            // FormProduk
+            // FormRiwayat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -290,7 +272,7 @@
             Controls.Add(yogaPanel1);
             Controls.Add(btnAddData);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "FormProduk";
+            Name = "FormRiwayat";
             Text = "Tabel";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             yogaPanel1.ResumeLayout(false);
@@ -318,7 +300,5 @@
         private YogaButton btnSearch;
         private ComboBox comboFilter;
         private Label lblShowingEntries;
-        private PrintPreviewDialog printPreviewDialog1;
-        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

@@ -29,52 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboardd));
-            panelTop = new Panel();
-            btnMin = new Button();
-            btnMax = new Button();
             btnClose = new Button();
+            btnMax = new Button();
+            btnMin = new Button();
+            panelTop = new Panel();
             panelTop.SuspendLayout();
             SuspendLayout();
-            // 
-            // panelTop
-            // 
-            panelTop.BackColor = Color.FromArgb(26, 124, 151);
-            panelTop.Controls.Add(btnMin);
-            panelTop.Controls.Add(btnMax);
-            panelTop.Controls.Add(btnClose);
-            panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
-            panelTop.Name = "panelTop";
-            panelTop.Size = new Size(855, 39);
-            panelTop.TabIndex = 10;
-            // 
-            // btnMin
-            // 
-            btnMin.BackgroundImageLayout = ImageLayout.Zoom;
-            btnMin.Dock = DockStyle.Right;
-            btnMin.FlatAppearance.BorderSize = 0;
-            btnMin.FlatStyle = FlatStyle.Flat;
-            btnMin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMin.Image = (Image)resources.GetObject("btnMin.Image");
-            btnMin.Location = new Point(690, 0);
-            btnMin.Name = "btnMin";
-            btnMin.Size = new Size(55, 39);
-            btnMin.TabIndex = 15;
-            btnMin.UseVisualStyleBackColor = true;
-            // 
-            // btnMax
-            // 
-            btnMax.BackgroundImageLayout = ImageLayout.Zoom;
-            btnMax.Dock = DockStyle.Right;
-            btnMax.FlatAppearance.BorderSize = 0;
-            btnMax.FlatStyle = FlatStyle.Flat;
-            btnMax.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMax.Image = (Image)resources.GetObject("btnMax.Image");
-            btnMax.Location = new Point(745, 0);
-            btnMax.Name = "btnMax";
-            btnMax.Size = new Size(55, 39);
-            btnMax.TabIndex = 14;
-            btnMax.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -92,6 +52,46 @@
             btnClose.TabIndex = 13;
             btnClose.UseVisualStyleBackColor = true;
             // 
+            // btnMax
+            // 
+            btnMax.BackgroundImageLayout = ImageLayout.Zoom;
+            btnMax.Dock = DockStyle.Right;
+            btnMax.FlatAppearance.BorderSize = 0;
+            btnMax.FlatStyle = FlatStyle.Flat;
+            btnMax.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMax.Image = (Image)resources.GetObject("btnMax.Image");
+            btnMax.Location = new Point(745, 0);
+            btnMax.Name = "btnMax";
+            btnMax.Size = new Size(55, 39);
+            btnMax.TabIndex = 14;
+            btnMax.UseVisualStyleBackColor = true;
+            // 
+            // btnMin
+            // 
+            btnMin.BackgroundImageLayout = ImageLayout.Zoom;
+            btnMin.Dock = DockStyle.Right;
+            btnMin.FlatAppearance.BorderSize = 0;
+            btnMin.FlatStyle = FlatStyle.Flat;
+            btnMin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMin.Image = (Image)resources.GetObject("btnMin.Image");
+            btnMin.Location = new Point(690, 0);
+            btnMin.Name = "btnMin";
+            btnMin.Size = new Size(55, 39);
+            btnMin.TabIndex = 15;
+            btnMin.UseVisualStyleBackColor = true;
+            // 
+            // panelTop
+            // 
+            panelTop.BackColor = Color.FromArgb(26, 124, 151);
+            panelTop.Controls.Add(btnMin);
+            panelTop.Controls.Add(btnMax);
+            panelTop.Controls.Add(btnClose);
+            panelTop.Dock = DockStyle.Top;
+            panelTop.Location = new Point(0, 0);
+            panelTop.Name = "panelTop";
+            panelTop.Size = new Size(855, 39);
+            panelTop.TabIndex = 10;
+            // 
             // Dashboardd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -107,9 +107,9 @@
 
         #endregion
 
-        private Panel panelTop;
-        private Button btnMin;
-        private Button btnMax;
         private Button btnClose;
+        private Button btnMax;
+        private Button btnMin;
+        private Panel panelTop;
     }
 }

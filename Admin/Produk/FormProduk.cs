@@ -11,12 +11,14 @@ using System.Windows.Forms;
 using Syncfusion.WinForms.Core.Enums;
 using Syncfusion.WinForms.Controls;
 using static Syncfusion.Windows.Forms.Tools.MenuDropDown;
+using Syncfusion.Windows.Forms.Tools.Win32API;
 
 namespace Bengkel_Yoga_UKK
 {
     public partial class FormProduk : Form
     {
         private int page = 1;
+        Bitmap bitmap;
         public FormProduk()
         {
             InitializeComponent();
@@ -34,7 +36,10 @@ namespace Bengkel_Yoga_UKK
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
             btnAddData.Click += BtnAddData_Click; ;
+
+            btnSearch.Click += BtnSearch_Click;
         }
+
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
@@ -52,7 +57,7 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnNext_Click(object? sender, EventArgs e)
         {
-            if(page <= 10)
+            if (page <= 10)
             {
                 page++;
             }
@@ -61,7 +66,7 @@ namespace Bengkel_Yoga_UKK
         #region COMBO BOX
         private void InitCombo()
         {
-            List<string> list = new List<string>() 
+            List<string> list = new List<string>()
             {
                 "Semua (All)","Stok Tersedia","Stok Menipis","Stok Habis"
             };
@@ -85,15 +90,15 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219); 
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219); 
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White; 
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
+            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView1.ForeColor = Color.DimGray;
 
 
             // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240,240,240);
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
             dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
 
             dataGridView1.ColumnHeadersHeight = 40;
@@ -156,11 +161,11 @@ namespace Bengkel_Yoga_UKK
 
         private SortableBindingList<ProdukModel> GetData()
         {
-            byte[] ban1 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg", 55,55);
-            byte[] ban2 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg",55,55);
+            byte[] ban1 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg", 55, 55);
+            byte[] ban2 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg", 55, 55);
             byte[] velg = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg", 55, 55);
             byte[] rcb = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\rcb.jpg", 55, 55);
-            byte[] spion = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg",55,55);
+            byte[] spion = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg", 55, 55);
             byte[] habis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Habis.png", 15);
             byte[] menipis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Menipis.png", 15);
             byte[] tersedia = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Tersedia.png", 15);
@@ -239,7 +244,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "GAMBAR","STOK","STOK_MINIMUM","KETERANGAN_STOK" };
+                    string[] targetColumns = { "GAMBAR", "STOK", "STOK_MINIMUM", "KETERANGAN_STOK" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))
@@ -256,7 +261,7 @@ namespace Bengkel_Yoga_UKK
                 }
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
-                    dataGridView1.Rows[i].Cells["NO"].Value = i +1;
+                    dataGridView1.Rows[i].Cells["NO"].Value = i + 1;
                 }
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
@@ -269,5 +274,60 @@ namespace Bengkel_Yoga_UKK
                 return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowUpKotak4.png");
         }
         #endregion
+
+
+        private void BtnSearch_Click(object? sender, EventArgs e)
+        {
+            // Ukuran asli panel
+            int originalWidth = yogaPanel1.Width;
+            int originalHeight = yogaPanel1.Height;
+
+            // Skala yang diinginkan (misalnya, 50% dari ukuran asli)
+            float scaleFactor = 0.5f;
+            int newWidth = (int)(originalWidth * scaleFactor);
+            int newHeight = (int)(originalHeight * scaleFactor);
+
+            // Buat bitmap dengan ukuran asli panel
+            using (Bitmap originalBitmap = new Bitmap(originalWidth, originalHeight))
+            {
+                using (Graphics g = Graphics.FromImage(originalBitmap))
+                {
+                    // Menangkap seluruh isi panel (termasuk yang tidak terlihat di viewport)
+                    g.CopyFromScreen(yogaPanel1.PointToScreen(Point.Empty), Point.Empty, new Size(originalWidth, originalHeight));
+                }
+
+                // Resize gambar ke ukuran lebih kecil
+                bitmap = new Bitmap(newWidth, newHeight);
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(originalBitmap, new Rectangle(0, 0, newWidth, newHeight));
+                }
+            }
+
+            // Hubungkan dokumen ke PrintPreview
+            printDocument1.PrintPage -= printDocument1_PrintPage; // Hindari event berulang
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            printPreviewDialog1.Document = printDocument1;
+
+            // Tampilkan preview cetak
+            printPreviewDialog1.ShowDialog();
+        }
+
+
+        private Size GetScaledSize(int originalWidth, int originalHeight, int maxSize)
+        {
+            float scale = Math.Min((float)maxSize / originalWidth, (float)maxSize / originalHeight);
+            return new Size((int)(originalWidth * scale), (int)(originalHeight * scale));
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            if (bitmap != null)
+            {
+                // Cetak gambar dengan ukuran yang sudah di-scaling
+                e.Graphics.DrawImage(bitmap, 0, 0, bitmap.Width, bitmap.Height);
+            }
+        }
     }
 }

@@ -23,12 +23,14 @@ namespace Bengkel_Yoga_UKK
         Color active = System.Drawing.Color.FromArgb(41, 128, 185);
         Color over = System.Drawing.Color.FromArgb(44, 62, 80);
         Color hover = System.Drawing.Color.FromArgb(64, 82, 100);
+        public static MainFormAdmin _mainForm { get; private set; }
 
 
         private Form formShow;
         public MainFormAdmin()
         {
             InitializeComponent();
+            _mainForm = this;
             InitComponen();
             RegisterEvent();
             Image originalImage = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Profile (5).png");
@@ -87,7 +89,9 @@ namespace Bengkel_Yoga_UKK
             btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
             btnProduk.Click += (s, e) => ShowFormInPanel2(new FormProduk());
             btnKaryawan.Click += (s, e) => ShowFormInPanel2(new FormKaryawan());
-            btnBooking.Click += (s, e) => ShowFormInPanel2(new FormBooking());
+            btnCalendar.Click += (s, e) => ShowFormInPanel2(new FormBooking());
+            btnBooking.Click += (s, e) => ShowFormInPanel2(new DaftarBookingForm());
+
 
         }
 
@@ -119,7 +123,7 @@ namespace Bengkel_Yoga_UKK
         }
 
 
-        private void ShowFormInPanel2(Form form)
+       /* public void ShowFormInPanel2(Form form)
         {
             if (panelMain.Controls.Count > 0)
                 panelMain.Controls.RemoveAt(0);
@@ -133,6 +137,31 @@ namespace Bengkel_Yoga_UKK
             panelMain.Tag = form;
 
             panelMain.Controls.Add(form);
+            //form.BringToFront();
+            form.Show();
+        }*/
+
+        public static void ShowFormInPanel2(Form form)
+        {
+            if (MainFormAdmin._mainForm == null || MainFormAdmin._mainForm.panelMain == null)
+                return; // Pastikan instance dan panelMain ada
+
+            Panel panelMain = MainFormAdmin._mainForm.panelMain; // Akses panel dari instance FormUtama
+
+            if (panelMain.Controls.Count > 0)
+            {
+                panelMain.Controls[0].Dispose(); // Hapus form lama dari memory
+                panelMain.Controls.Clear(); // Bersihkan semua controls di panel
+            }
+
+            if (form == null) return;
+
+            form.TopLevel = false;
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+
+            panelMain.Controls.Add(form);
+            panelMain.Tag = form;
             form.Show();
         }
 

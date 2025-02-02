@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormProduk
+    partial class DaftarBookingForm
     {
         /// <summary>
         /// Required designer variable.

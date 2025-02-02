@@ -65,7 +65,6 @@
             btnBooking1.Text = "Nama Pelanggan";
             btnBooking1.TextColor = Color.White;
             btnBooking1.UseVisualStyleBackColor = false;
-            btnBooking1.Visible = false;
             // 
             // btnCountNotif
             // 
