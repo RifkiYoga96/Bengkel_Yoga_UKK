@@ -32,6 +32,7 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             btnDashboard = new YogaButton();
             btnBooking = new YogaButton();
+            btnKalender = new YogaButton();
             btnProduk = new YogaButton();
             btnInvoice = new YogaButton();
             btnService = new YogaButton();
@@ -46,8 +47,7 @@
             rjCircularPictureBox1 = new RJCircularPictureBox();
             panelMain = new Panel();
             panelTop = new Panel();
-            label3 = new Label();
-            btnCalendar = new YogaButton();
+            lblDisplay = new Label();
             flowLayoutPanel2.SuspendLayout();
             panelLeft.SuspendLayout();
             panelLogOut.SuspendLayout();
@@ -62,7 +62,7 @@
             flowLayoutPanel2.BackColor = Color.FromArgb(44, 62, 80);
             flowLayoutPanel2.Controls.Add(btnDashboard);
             flowLayoutPanel2.Controls.Add(btnBooking);
-            flowLayoutPanel2.Controls.Add(btnCalendar);
+            flowLayoutPanel2.Controls.Add(btnKalender);
             flowLayoutPanel2.Controls.Add(btnProduk);
             flowLayoutPanel2.Controls.Add(btnInvoice);
             flowLayoutPanel2.Controls.Add(btnService);
@@ -126,6 +126,31 @@
             btnBooking.TextColor = Color.White;
             btnBooking.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBooking.UseVisualStyleBackColor = false;
+            // 
+            // btnKalender
+            // 
+            btnKalender.BackColor = Color.FromArgb(44, 62, 80);
+            btnKalender.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnKalender.BorderColor = Color.PaleVioletRed;
+            btnKalender.BorderRadius = 7;
+            btnKalender.BorderSize = 0;
+            btnKalender.FlatAppearance.BorderSize = 0;
+            btnKalender.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKalender.FlatStyle = FlatStyle.Flat;
+            btnKalender.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKalender.ForeColor = Color.White;
+            btnKalender.Image = (Image)resources.GetObject("btnKalender.Image");
+            btnKalender.ImageAlign = ContentAlignment.MiddleLeft;
+            btnKalender.Location = new Point(18, 135);
+            btnKalender.Name = "btnKalender";
+            btnKalender.Padding = new Padding(20, 0, 0, 0);
+            btnKalender.Size = new Size(255, 60);
+            btnKalender.TabIndex = 16;
+            btnKalender.Text = "    Kalender";
+            btnKalender.TextAlign = ContentAlignment.MiddleLeft;
+            btnKalender.TextColor = Color.White;
+            btnKalender.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnKalender.UseVisualStyleBackColor = false;
             // 
             // btnProduk
             // 
@@ -246,7 +271,7 @@
             btnKaryawan.Padding = new Padding(20, 0, 0, 0);
             btnKaryawan.Size = new Size(255, 60);
             btnKaryawan.TabIndex = 20;
-            btnKaryawan.Text = "    Karyawan";
+            btnKaryawan.Text = "    Pegawai";
             btnKaryawan.TextAlign = ContentAlignment.MiddleLeft;
             btnKaryawan.TextColor = Color.White;
             btnKaryawan.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -361,50 +386,25 @@
             // panelTop
             // 
             panelTop.BackColor = Color.White;
-            panelTop.Controls.Add(label3);
+            panelTop.Controls.Add(lblDisplay);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(290, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(902, 67);
             panelTop.TabIndex = 9;
             // 
-            // label3
+            // lblDisplay
             // 
-            label3.Anchor = AnchorStyles.Top;
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.FromArgb(44, 62, 80);
-            label3.Location = new Point(388, 18);
-            label3.Name = "label3";
-            label3.Size = new Size(114, 32);
-            label3.TabIndex = 19;
-            label3.Text = "PRODUK";
-            // 
-            // btnCalendar
-            // 
-            btnCalendar.BackColor = Color.FromArgb(44, 62, 80);
-            btnCalendar.BackgroundColor = Color.FromArgb(44, 62, 80);
-            btnCalendar.BorderColor = Color.PaleVioletRed;
-            btnCalendar.BorderRadius = 7;
-            btnCalendar.BorderSize = 0;
-            btnCalendar.FlatAppearance.BorderSize = 0;
-            btnCalendar.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnCalendar.FlatStyle = FlatStyle.Flat;
-            btnCalendar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCalendar.ForeColor = Color.White;
-            btnCalendar.Image = (Image)resources.GetObject("btnCalendar.Image");
-            btnCalendar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCalendar.Location = new Point(18, 135);
-            btnCalendar.Name = "btnCalendar";
-            btnCalendar.Padding = new Padding(20, 0, 0, 0);
-            btnCalendar.Size = new Size(255, 60);
-            btnCalendar.TabIndex = 16;
-            btnCalendar.Text = "    Calendar";
-            btnCalendar.TextAlign = ContentAlignment.MiddleLeft;
-            btnCalendar.TextColor = Color.White;
-            btnCalendar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCalendar.UseVisualStyleBackColor = false;
+            lblDisplay.Anchor = AnchorStyles.Top;
+            lblDisplay.BackColor = Color.Transparent;
+            lblDisplay.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplay.ForeColor = Color.FromArgb(44, 62, 80);
+            lblDisplay.Location = new Point(292, 18);
+            lblDisplay.Name = "lblDisplay";
+            lblDisplay.Size = new Size(318, 32);
+            lblDisplay.TabIndex = 19;
+            lblDisplay.Text = "PRODUK";
+            lblDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // MainFormAdmin
             // 
@@ -431,7 +431,6 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
             panelTop.ResumeLayout(false);
-            panelTop.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -453,7 +452,7 @@
         private Label label1;
         private RJCircularPictureBox rjCircularPictureBox1;
         private Label label2;
-        private Label label3;
-        private YogaButton btnCalendar;
+        private Label lblDisplay;
+        private YogaButton btnKalender;
     }
 }

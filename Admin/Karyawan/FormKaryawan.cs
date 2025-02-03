@@ -112,49 +112,54 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns["No"].FillWeight = 6;
             dataGridView1.Columns["ktp_admin"].FillWeight = 11;
-            dataGridView1.Columns["foto"].FillWeight = 10;
-            dataGridView1.Columns["nama_admin"].FillWeight = 18;
-            dataGridView1.Columns["email"].FillWeight = 17;
-            dataGridView1.Columns["password"].FillWeight = 14;
-            dataGridView1.Columns["no_telp"].FillWeight = 12;
-            dataGridView1.Columns["role"].FillWeight = 12;
+            dataGridView1.Columns["Foto"].FillWeight = 10;
+            dataGridView1.Columns["Nama"].FillWeight = 18;
+            dataGridView1.Columns["Email"].FillWeight = 17;
+            dataGridView1.Columns["Password"].FillWeight = 14;
+            dataGridView1.Columns["Telepon"].FillWeight = 12;
+            dataGridView1.Columns["Role"].FillWeight = 12;
 
             dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["ktp_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["nama_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["no_telp"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["Foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["Nama"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Telepon"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
 
-            dataGridView1.Columns["foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             /*dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
             dataGridView1.Columns["KETERANGAN_STOK"].HeaderText = "KETERANGAN";
             dataGridView1.Columns["STOK_MINIMUM"].HeaderText = "STOK MINIMUM";*/
 
-            /*dataGridView1.Columns["PRODUK"].SortMode = DataGridViewColumnSortMode.Automatic;
-            dataGridView1.Columns["STOK"].SortMode = DataGridViewColumnSortMode.Automatic;
-            dataGridView1.Columns["HARGA"].SortMode = DataGridViewColumnSortMode.Automatic;*/
+
+            dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["ktp_admin"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Password"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Telepon"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Role"].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
 
         private void LoadData()
         {
             int number = 1;
-            dataGridView1.DataSource = _karyawanDal.ListData()
-                .Select(x => new
+            var list = _karyawanDal.ListData()
+                .Select(x => new KaryawanDto()
                 {
                     No = number ++,
-                    x.ktp_admin,
-                    foto = x.image_data != null ? ImageConvert.ResizeImageBytes(x.image_data,55,55) : null,
-                    x.nama_admin,
-                    x.email,
-                    x.password,
-                    x.no_telp,
+                    ktp_admin = x.ktp_admin,
+                    Foto = x.image_data != null ? ImageConvert.ResizeImageBytes(x.image_data,55,55) : null,
+                    Nama = x.nama_admin,
+                    Email = x.email,
+                    Password = x.password,
+                    Telepon = x.no_telp,
                     Role = x.role==1 ? "Admin" : "Super Admin",
                 }).ToList();
+            dataGridView1.DataSource = new SortableBindingList<KaryawanDto>(list);
         }
 
 
@@ -197,7 +202,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "foto","role" };
+                    string[] targetColumns = { "Foto","Role" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))
@@ -219,13 +224,27 @@ namespace Bengkel_Yoga_UKK
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
         }
+
         private Bitmap CreateSortGlyph(SortOrder sortOrder)
         {
             if (sortOrder == SortOrder.Ascending)
-                return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowDownKotak4.png");
+                return (Bitmap)Properties.Resources.ArrowUp;
             else
-                return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowUpKotak4.png");
+                return (Bitmap)Properties.Resources.ArrowDown;
+
         }
         #endregion
     }
+}
+
+public class KaryawanDto
+{
+    public int No { get; set; }
+    public string ktp_admin { get; set; }
+    public byte[] Foto { get; set; }
+    public string Nama { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public string Telepon { get; set; }
+    public string Role { get; set; }
 }

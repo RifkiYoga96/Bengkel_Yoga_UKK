@@ -17,16 +17,15 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class MainFormAdmin : SfForm
     {   
-        private Dictionary<int, Button> _listButton = new Dictionary<int, Button>();
-        private int buttonActiveBefore = 0;
-        private int buttonActiveAfter = 1;
-        Color active = System.Drawing.Color.FromArgb(41, 128, 185);
-        Color over = System.Drawing.Color.FromArgb(44, 62, 80);
-        Color hover = System.Drawing.Color.FromArgb(64, 82, 100);
         public static MainFormAdmin _mainForm { get; private set; }
+        private static Dictionary<int, Button> _listButton = new Dictionary<int, Button>();
+        private static Label _lblDisplay;
+        private static int buttonActiveBefore = 0;
+        public static int buttonActiveAfter = 1;
+        private static Color active = System.Drawing.Color.FromArgb(41, 128, 185);
+        private static Color over = System.Drawing.Color.FromArgb(44, 62, 80);
+        private static Color hover = System.Drawing.Color.FromArgb(64, 82, 100);
 
-
-        private Form formShow;
         public MainFormAdmin()
         {
             InitializeComponent();
@@ -34,7 +33,6 @@ namespace Bengkel_Yoga_UKK
             InitComponen();
             RegisterEvent();
             Image originalImage = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Profile (5).png");
-            //SetProfilePicture(originalImage, profilePicture);
         }
 
         private void InitComponen()
@@ -46,6 +44,7 @@ namespace Bengkel_Yoga_UKK
             AddButton(5, btnService);
             AddButton(6, btnPelanggan);
             AddButton(7, btnKaryawan);
+            AddButton(8, btnKalender);
 
             flowLayoutPanel2.AutoScroll = true;
             flowLayoutPanel2.HorizontalScroll.Enabled = false; // Matikan horizontal scroll bar
@@ -64,7 +63,7 @@ namespace Bengkel_Yoga_UKK
         }
         private void RegisterEvent()
         {
-            List<Button> btnStyle = new List<Button> { btnDashboard, btnBooking, btnProduk, btnInvoice, btnService, btnPelanggan, btnKaryawan };
+            List<Button> btnStyle = new List<Button> { btnDashboard, btnBooking, btnProduk, btnInvoice, btnService, btnPelanggan, btnKaryawan, btnKalender };
             foreach (var item in btnStyle)
             {
                 item.FlatAppearance.MouseDownBackColor = active;
@@ -85,20 +84,16 @@ namespace Bengkel_Yoga_UKK
             btnPelanggan.Click += BtnSideBar_Click;
             btnKaryawan.Click += (s, e) => buttonActiveAfter = 7;
             btnKaryawan.Click += BtnSideBar_Click;
+            btnKalender.Click += (s, e) => buttonActiveAfter = 8;
+            btnKalender.Click += BtnSideBar_Click;
 
             btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
             btnProduk.Click += (s, e) => ShowFormInPanel2(new FormProduk());
             btnKaryawan.Click += (s, e) => ShowFormInPanel2(new FormKaryawan());
-            btnCalendar.Click += (s, e) => ShowFormInPanel2(new FormBooking());
+            btnKalender.Click += (s, e) => ShowFormInPanel2(new FormKelender());
             btnBooking.Click += (s, e) => ShowFormInPanel2(new DaftarBookingForm());
-
-
         }
 
-        private void Form3_Load(object? sender, EventArgs e)
-        {
-
-        }
 
         private void AddButton(int key, Button value)
         {
@@ -107,6 +102,13 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnSideBar_Click(object? sender, EventArgs e)
         {
+            ControlSideBar();
+        }
+
+        public static void ControlSideBar()
+        {
+            if (MainFormAdmin._mainForm == null) return;
+
             if (_listButton.ContainsKey(buttonActiveAfter) && buttonActiveBefore != buttonActiveAfter)
             {
                 var button = _listButton[buttonActiveAfter];
@@ -120,26 +122,37 @@ namespace Bengkel_Yoga_UKK
                 }
                 buttonActiveBefore = buttonActiveAfter;
             }
+            string text = "";
+            switch (buttonActiveAfter)
+            {
+                case 1:
+                    text = "DASHBOARD";
+                    break;
+                case 2:
+                    text ="BOOKING";
+                    break;
+                case 3:
+                    text = "PRODUK";
+                    break;
+                case 4:
+                    text = "INVOICE";
+                    break;
+                case 5:
+                    text = "SERVIS";
+                    break;
+                case 6:
+                    text = "PELANGGAN";
+                    break;
+                case 7:
+                    text = "PEGAWAI";
+                    break;
+                case 8:
+                    text = "KALENDER";
+                    break;
+            }
+            _mainForm.lblDisplay.Text = text;
         }
 
-
-       /* public void ShowFormInPanel2(Form form)
-        {
-            if (panelMain.Controls.Count > 0)
-                panelMain.Controls.RemoveAt(0);
-
-            if (form == null) return;
-
-            form.TopLevel = false;
-            form.Dock = DockStyle.Fill;
-            form.FormBorderStyle = FormBorderStyle.None;
-
-            panelMain.Tag = form;
-
-            panelMain.Controls.Add(form);
-            //form.BringToFront();
-            form.Show();
-        }*/
 
         public static void ShowFormInPanel2(Form form)
         {
@@ -150,8 +163,8 @@ namespace Bengkel_Yoga_UKK
 
             if (panelMain.Controls.Count > 0)
             {
-                panelMain.Controls[0].Dispose(); // Hapus form lama dari memory
-                panelMain.Controls.Clear(); // Bersihkan semua controls di panel
+                panelMain.Controls[0].Dispose();
+                panelMain.Controls.Clear(); 
             }
 
             if (form == null) return;
@@ -165,25 +178,6 @@ namespace Bengkel_Yoga_UKK
             form.Show();
         }
 
-
-        // Method untuk menampilkan Form2 di atas Panel
-        private void ShowFormOverPanel()
-        {
-            formShow = new DashboardForm();
-
-            // Atur Form2 agar tidak ditampilkan sebagai jendela terpisah
-            formShow.TopLevel = false;
-
-            // Atur Parent dari Form2 ke panelMain
-            formShow.Parent = panelMain;
-
-            // Atur ukuran dan posisi Form2 di dalam panelMain
-            formShow.Location = new Point(0, 0); // Posisi relatif terhadap panelMain
-            formShow.Size = new Size(panelMain.Width, panelMain.Height); // Ukuran Form2
-
-            // Tampilkan Form2
-            formShow.Show();
-        }
 
         private void SetProfilePicture(Image image, PictureBox pictureBox)
         {

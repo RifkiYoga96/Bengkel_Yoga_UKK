@@ -43,6 +43,8 @@ namespace Bengkel_Yoga_UKK
 
             btnBooking1.Click += (s, e) => 
             {
+                MainFormAdmin.buttonActiveAfter = 2;
+                MainFormAdmin.ControlSideBar();
                 MainFormAdmin.ShowFormInPanel2(new DaftarBookingForm());
             };
         }

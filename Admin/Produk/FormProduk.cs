@@ -17,6 +17,7 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class FormProduk : Form
     {
+        private BindingSource _bindingSource = new BindingSource();
         private int page = 1;
         Bitmap bitmap;
         public FormProduk()

@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormBooking
+    partial class FormKelender
     {
         /// <summary>
         /// Required designer variable.
@@ -437,7 +437,6 @@
             btnNext.Text = "Next";
             btnNext.TextColor = Color.White;
             btnNext.UseVisualStyleBackColor = false;
-            btnNext.Click += btnNext_Click;
             // 
             // btnPrevious
             // 
@@ -491,7 +490,6 @@
             yogaButton1.Text = "Jadwal Libur";
             yogaButton1.TextColor = Color.White;
             yogaButton1.UseVisualStyleBackColor = false;
-            yogaButton1.Click += yogaButton1_Click;
             // 
             // lblDetails
             // 

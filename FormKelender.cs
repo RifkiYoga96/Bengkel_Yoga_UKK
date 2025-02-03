@@ -1,5 +1,4 @@
-﻿using Syncfusion.UI.Xaml.Charts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +11,10 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class FormBooking : Form
+    public partial class FormKelender : Form
     {
         public static int _year, _month;
-
-        public FormBooking()
+        public FormKelender()
         {
             InitializeComponent();
             InitComponent();
@@ -87,16 +85,6 @@ namespace Bengkel_Yoga_UKK
                 ucCalendar uc = new ucCalendar(i, tanggal, true);
                 flowLayoutPanel1.Controls.Add(uc);
             }
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void yogaButton1_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }
