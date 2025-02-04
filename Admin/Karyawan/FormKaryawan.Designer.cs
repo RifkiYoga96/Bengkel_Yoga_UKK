@@ -69,7 +69,7 @@
             yogaPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             yogaPanel1.BackColor = Color.White;
             yogaPanel1.BorderColor = Color.PaleVioletRed;
-            yogaPanel1.BorderRadius = 10;
+            yogaPanel1.BorderRadius = 0;
             yogaPanel1.BorderSize = 0;
             yogaPanel1.Controls.Add(lblShowingEntries);
             yogaPanel1.Controls.Add(comboFilter);
@@ -254,7 +254,7 @@
             btnAddData.FlatStyle = FlatStyle.Flat;
             btnAddData.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddData.ForeColor = Color.White;
-            btnAddData.Image = (Image)resources.GetObject("btnAddData.Image");
+            btnAddData.Image = Properties.Resources.Dibatalkan;
             btnAddData.Location = new Point(28, 16);
             btnAddData.Name = "btnAddData";
             btnAddData.Padding = new Padding(10, 0, 0, 0);

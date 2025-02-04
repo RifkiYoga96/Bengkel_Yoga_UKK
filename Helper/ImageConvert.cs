@@ -9,7 +9,7 @@ namespace Bengkel_Yoga_UKK
     public static class ImageConvert
     {
         #region IMAGE
-        public static Image ResizeImage(Image image, int maxWidth, int maxHeight)
+        public static Image ResizeImageMax(Image image, int maxWidth, int maxHeight)
         {
             // Hitung rasio aspek gambar
             double ratioX = (double)maxWidth / image.Width;
@@ -66,7 +66,7 @@ namespace Bengkel_Yoga_UKK
         public static byte[] ImageToByteMaxSize(string imgDirectory, int width, int height)
         {
             Image image = Image.FromFile(imgDirectory);
-            Image imageResize = ResizeImage(image, width, height);
+            Image imageResize = ResizeImageMax(image, width, height);
             byte[] byteimg = ImageToByteArray(imageResize);
             return byteimg;
         }

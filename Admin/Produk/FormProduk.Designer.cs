@@ -278,9 +278,6 @@
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
             // 
-            // printDocument1
-            // 
-            // 
             // FormProduk
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -289,6 +286,7 @@
             ClientSize = new Size(1143, 635);
             Controls.Add(yogaPanel1);
             Controls.Add(btnAddData);
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormProduk";
             Text = "Tabel";

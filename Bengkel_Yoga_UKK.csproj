@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Admin\Invoice\**" />
     <Compile Remove="User\**" />
+    <EmbeddedResource Remove="Admin\Invoice\**" />
     <EmbeddedResource Remove="User\**" />
+    <None Remove="Admin\Invoice\**" />
     <None Remove="User\**" />
   </ItemGroup>
 
@@ -268,10 +271,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Admin\Invoice\" />
   </ItemGroup>
 
 </Project>

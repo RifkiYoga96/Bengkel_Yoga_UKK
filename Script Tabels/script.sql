@@ -5,8 +5,6 @@
 	password VARCHAR(50),
 	alamat VARCHAR(100),
 	no_telp VARCHAR(20),
-	image_name NVARCHAR(100),
-	image_data VARBINARY(MAX)
 	);
 
 CREATE TABLE Admins(
@@ -21,19 +19,7 @@ CREATE TABLE Admins(
 	image_data VARBINARY(MAX)
 );
 
-INSERT INTO Admins(ktp_admin,nama_admin,email,password,alamat,no_telp,role,image_name,image_data) 
-VALUES (
-	 '087719631265', 
-    'Rifki Yoga Syahbani', 
-    'yoga@gmail.com', 
-    'Yoga12345', 
-    'Jl. Merdeka No. 1', 
-    '08123456789', 
-	1,
-    'FotoSaya.jpg', 
-    (SELECT BulkColumn 
-     FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\FotoSaya.jpg', SINGLE_BLOB) AS img)
-);
+
 
 CREATE TABLE Kendaraan(
 	no_pol VARCHAR(30) NOT NULL PRIMARY KEY,
@@ -43,6 +29,7 @@ CREATE TABLE Kendaraan(
 	kapasitas INT,
 	tahun VARCHAR(5),
 	ktp_pelanggan VARCHAR(30),
+	total_servis INT,
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
 		ON DELETE CASCADE
@@ -68,8 +55,11 @@ CREATE TABLE Riwayat(
 	ktp_pelanggan VARCHAR(30),
 	no_pol VARCHAR(30),
 	tanggal DATE,
-	keluhan VARCHAR(100),
 	ktp_admin VARCHAR(30),
+	keluhan VARCHAR(100),
+	catatan VARCHAR(100),
+	total_harga INT,
+	status VARCHAR(20)
 						
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan),
@@ -96,7 +86,6 @@ CREATE TABLE Sparepart(
 CREATE TABLE RiwayatSparepart(
 	id_riwayat INT,
 	kode_sparepart VARCHAR(20),
-	jumlah INT,
 	FOREIGN KEY (id_riwayat)
 		REFERENCES Riwayat(id_riwayat)
 		ON DELETE CASCADE
@@ -106,10 +95,6 @@ CREATE TABLE RiwayatSparepart(
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
         );
-
-
-
-
 
 CREATE TABLE History(
 	id_history INT PRIMARY KEY IDENTITY(1,1),
@@ -121,60 +106,61 @@ CREATE TABLE History(
 					);
 
 
-INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp, image_name, image_data)
-VALUES 
-(
-    '087719631265', 
+INSERT INTO Admins(ktp_admin,nama_admin,email,password,alamat,no_telp,role,image_name,image_data) 
+VALUES (
+	 '087719631265', 
     'Rifki Yoga Syahbani', 
     'yoga@gmail.com', 
-    'Yoga12345@gmail.com', 
+    'Yoga12345', 
     'Jl. Merdeka No. 1', 
     '08123456789', 
-    'john.jpg', 
+	1,
+    'FotoSaya.jpg', 
     (SELECT BulkColumn 
      FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\FotoSaya.jpg', SINGLE_BLOB) AS img)
 );
 
-INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp, image_name, image_data)
+
+INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp)
 VALUES 
-('1234567890', 'John Doe', 'john@example.com', 'password123', 'Jl. Merdeka No. 1', '08123456789', 'john.jpg', NULL),
-('0987654321', 'Jane Doe', 'jane@example.com', 'password456', 'Jl. Sudirman No. 2', '08234567890', 'jane.jpg', NULL);
+('1234567890123456', 'John Doe', 'john.doe@example.com', 'password123', 'Jl. Merdeka No. 123', '081234567890'),
+('2345678901234567', 'Jane Smith', 'jane.smith@example.com', 'password456', 'Jl. Sudirman No. 456', '081234567891'),
+('3456789012345678', 'Alice Johnson', 'alice.johnson@example.com', 'password789', 'Jl. Thamrin No. 789', '081234567892');
 
 INSERT INTO Admins (ktp_admin, nama_admin, email, password, alamat, no_telp, role, image_name, image_data)
 VALUES 
-('1111111111', 'Admin One', 'admin1@example.com', 'adminpass1', 'Jl. Admin No. 1', '0811111111', 1, 'admin1.jpg', NULL),
-('2222222222', 'Admin Two', 'admin2@example.com', 'adminpass2', 'Jl. Admin No. 2', '0822222222', 2, 'admin2.jpg', NULL);
+('9876543210987654', 'Admin One', 'admin.one@example.com', 'admin123', 'Jl. Admin No. 1', '081234567893', 1, 'admin1.jpg', NULL),
+('8765432109876543', 'Admin Two', 'admin.two@example.com', 'admin456', 'Jl. Admin No. 2', '081234567894', 2, 'admin2.jpg', NULL);
 
-INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan)
+INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan, total_servis)
 VALUES 
-('B 1234 ABC', 'Toyota', 'Avanza', 'Manual', 7, '2018', '1234567890'),
-('B 5678 DEF', 'Honda', 'Jazz', 'Automatic', 5, '2020', '0987654321');
+('B 1234 ABC', 'Toyota', 'Avanza', 'Manual', 7, '2018', '1234567890123456', 3),
+('B 5678 DEF', 'Honda', 'Jazz', 'Automatic', 5, '2019', '2345678901234567', 2),
+('B 9101 GHI', 'Suzuki', 'Ertiga', 'Manual', 7, '2020', '3456789012345678', 1);
 
 INSERT INTO Bookings (ktp_pelanggan, no_pol, tanggal, keluhan, antrean, status)
 VALUES 
-('1234567890', 'B 1234 ABC', '2023-10-25', 'Mesin berbunyi aneh', 1, 'Pending'),
-('0987654321', 'B 5678 DEF', '2023-10-26', 'Rem kurang pakem', 2, 'On Progress');
+('1234567890123456', 'B 1234 ABC', '2023-10-01', 'Mesin berbunyi aneh', 1, 'Pending'),
+('2345678901234567', 'B 5678 DEF', '2023-10-02', 'Rem kurang pakem', 2, 'On Progress'),
+('3456789012345678', 'B 9101 GHI', '2023-10-03', 'AC tidak dingin', 3, 'Completed');
 
-INSERT INTO Riwayat (ktp_pelanggan, no_pol, tanggal, keluhan, ktp_admin)
+INSERT INTO Riwayat (ktp_pelanggan, no_pol, tanggal, ktp_admin, keluhan, catatan, total_harga, status)
 VALUES 
-('1234567890', 'B 1234 ABC', '2023-10-25', 'Mesin berbunyi aneh', '1111111111'),
-('0987654321', 'B 5678 DEF', '2023-10-26', 'Rem kurang pakem', '2222222222');
-
+('1234567890123456', 'B 1234 ABC', '2023-10-01', '9876543210987654', 'Mesin berbunyi aneh', 'Ganti oli dan tune-up', 500000, 'Completed'),
+('2345678901234567', 'B 5678 DEF', '2023-10-02', '8765432109876543', 'Rem kurang pakem', 'Ganti kampas rem', 300000, 'Completed'),
+('3456789012345678', 'B 9101 GHI', '2023-10-03', '9876543210987654', 'AC tidak dingin', 'Isi freon dan bersihkan filter', 400000, 'Completed');
 
 INSERT INTO Sparepart (kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
 VALUES 
-('SP001', 'Kampas Rem', 50, 150000, 'kampas_rem.jpg', NULL),
-('SP002', 'Oli Mesin', 100, 75000, 'oli_mesin.jpg', NULL);
+('SP001', 'Oli Mesin', 50, 100000, 'oli_mesin.jpg', NULL),
+('SP002', 'Kampas Rem', 30, 150000, 'kampas_rem.jpg', NULL),
+('SP003', 'Freon AC', 20, 200000, 'freon_ac.jpg', NULL);
 
-INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, jumlah)
+INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart)
 VALUES 
-(1, 'SP001', 2), -- Riwayat ID 1 menggunakan 2 kampas rem
-(2, 'SP002', 1); -- Riwayat ID 2 menggunakan 1 oli mesin
-
-
-
-
-
+(1, 'SP001'),  -- Riwayat 1 menggunakan 2 Oli Mesin
+(2, 'SP002'),  -- Riwayat 2 menggunakan 1 Kampas Rem
+(3, 'SP003');  -- Riwayat 3 menggunakan 1 Freon AC
 
 
 

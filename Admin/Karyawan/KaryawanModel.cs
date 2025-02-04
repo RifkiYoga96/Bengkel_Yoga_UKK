@@ -13,6 +13,7 @@ namespace Bengkel_Yoga_UKK
         public string email { get; set; }
         public string password { get; set; }
         public string no_telp { get; set; }
+        public string alamat {  get; set; }
         public int role { get; set; }
         public string image_name { get; set; }
         public byte[] image_data { get; set; }

@@ -606,7 +606,7 @@
             panel31.Size = new Size(173, 191);
             panel31.TabIndex = 18;
             // 
-            // FormBooking
+            // FormKelender
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -614,7 +614,8 @@
             ClientSize = new Size(1531, 938);
             Controls.Add(panel31);
             Controls.Add(panel30);
-            Name = "FormBooking";
+            DoubleBuffered = true;
+            Name = "FormKelender";
             Text = "FormBooking";
             flowLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);

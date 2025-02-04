@@ -11,11 +11,11 @@ using System.Windows.Forms;
 namespace Bengkel_Yoga_UKK
 {
     
-    public partial class ucCalendar : UserControl
+    public partial class ucKalender : UserControl
     {
         int _date;
         string _day;
-        public ucCalendar(int date,DateTime dateTime, bool show)
+        public ucKalender(int date,DateTime dateTime, bool show)
         {
             InitializeComponent();
             if (!show)

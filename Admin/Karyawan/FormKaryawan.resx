@@ -121,22 +121,13 @@
   <data name="btnSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEvSURBVDhPnZLB
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEvSURBVDhPnZLB
         KkRhGIaP2VnYYshaWSlbEW5A2JrGBWhkY2VpKRcgbmBYkdyAhRswygVIQxQpxPG853snczin8NTT9D//
         /51Oc/6kjDRNR3AHr/AF7/AUl7DHx4rhwAI+4Tue4R42sY3iGPt8PA8bM/iKLRx3zmDdi1v4gUeYfxNC
         BS/xGgedf8CeHiIWnQLCdPS04VQI+3qTWzxxCgjrKEadSuHMIba9DAibmoaqUymc2cdnLwNCTdMw61QK
         Z86x5WVAGMA3bDoVwv4E6ktsO31B1KuJVacc9CHUl3rEYeeAUEfdug4HOIdVHEP9yTeoezLvsYCgYd08
         oYfo9ungdy5wymMBoXtYv3X3flzGDVzDSaxkQx18oHt4xVu/g4GHbPQ/w4KhXbzHmtMfSJJPhIWfOhKO
         HnkAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="btnAddData.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAAc0lEQVQ4T+WT0QnAIAxEs4dOV6E4WIeyXcbeafwRAsH2o9AHDyThArVRLGqtEV7whEHLfhBKcJC0
-        7Aeh3LONrGU/DPVs48sD0ORtb3CfPOCA57nPTOQA/qZVyisDAlz9BHvB0PzNHlgg9PgxccGKaty2yA2V
-        ZJyxgaxtyAAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

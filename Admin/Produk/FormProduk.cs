@@ -86,7 +86,7 @@ namespace Bengkel_Yoga_UKK
             // Mengatur ukuran font header kolom
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -111,7 +111,7 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.AllowUserToOrderColumns = false;
 
             // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeColumns = true;
 
             // Mencegah pengubahan ukuran baris
             dataGridView1.AllowUserToResizeRows = false;
@@ -270,9 +270,9 @@ namespace Bengkel_Yoga_UKK
         private Bitmap CreateSortGlyph(SortOrder sortOrder)
         {
             if (sortOrder == SortOrder.Ascending)
-                return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowDownKotak4.png");
+                return (Bitmap)Properties.Resources.ArrowUp;
             else
-                return (Bitmap)Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\ArrowUpKotak4.png");
+                return (Bitmap)Properties.Resources.ArrowDown;
         }
         #endregion
 

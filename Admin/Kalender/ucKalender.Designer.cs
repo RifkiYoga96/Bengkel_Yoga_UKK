@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class ucCalendar
+    partial class ucKalender
     {
         /// <summary> 
         /// Required designer variable.

@@ -76,13 +76,13 @@ namespace Bengkel_Yoga_UKK
             int week = Convert.ToInt32(startodTheMonth.DayOfWeek.ToString("d")) + 1; // sabtu = 6, minggu = 0, senin = 1 => 0-6
             for (int i = 1; i < week; i++)
             {
-                ucCalendar uc = new ucCalendar(0, startodTheMonth, false);
+                ucKalender uc = new ucKalender(0, startodTheMonth, false);
                 flowLayoutPanel1.Controls.Add(uc);
             }
             for (int i = 1; i < day; i++)
             {
                 DateTime tanggal = new DateTime(year, month, i);
-                ucCalendar uc = new ucCalendar(i, tanggal, true);
+                ucKalender uc = new ucKalender(i, tanggal, true);
                 flowLayoutPanel1.Controls.Add(uc);
             }
         }

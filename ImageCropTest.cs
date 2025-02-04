@@ -48,7 +48,7 @@ namespace Bengkel_Yoga_UKK
 
         private void InitPicture()
         {
-            originalImage = ImageConvert.ResizeImage(originalImage, pictureBox1.Width, pictureBox1.Height);
+            originalImage = ImageConvert.ResizeImageMax(originalImage, pictureBox1.Width, pictureBox1.Height);
             AdjustPictureBoxSize();
             MessageBox.Show($"{originalImage.Width.ToString()} {originalImage.Height.ToString()}");
             int size = (Math.Min(pictureBox1.Width, pictureBox1.Height)) - 2;

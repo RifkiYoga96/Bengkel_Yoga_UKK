@@ -99,7 +99,7 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.AllowUserToOrderColumns = false;
 
             // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeColumns = true;
 
             // Mencegah pengubahan ukuran baris
             dataGridView1.AllowUserToResizeRows = false;
@@ -111,13 +111,14 @@ namespace Bengkel_Yoga_UKK
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["ktp_admin"].FillWeight = 11;
+            dataGridView1.Columns["ktp_admin"].FillWeight = 9;
             dataGridView1.Columns["Foto"].FillWeight = 10;
-            dataGridView1.Columns["Nama"].FillWeight = 18;
-            dataGridView1.Columns["Email"].FillWeight = 17;
-            dataGridView1.Columns["Password"].FillWeight = 14;
+            dataGridView1.Columns["Nama"].FillWeight = 16;
+            dataGridView1.Columns["Email"].FillWeight = 15;
+            dataGridView1.Columns["Password"].FillWeight = 10;
             dataGridView1.Columns["Telepon"].FillWeight = 12;
-            dataGridView1.Columns["Role"].FillWeight = 12;
+            dataGridView1.Columns["Alamat"].FillWeight = 12;
+            dataGridView1.Columns["Role"].FillWeight = 10;
 
             dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["ktp_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
@@ -126,14 +127,11 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["Email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Telepon"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
 
             dataGridView1.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            /*dataGridView1.Columns["KODE_SPAREPART"].HeaderText = "KODE";
-            dataGridView1.Columns["KETERANGAN_STOK"].HeaderText = "KETERANGAN";
-            dataGridView1.Columns["STOK_MINIMUM"].HeaderText = "STOK MINIMUM";*/
 
 
             dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -141,6 +139,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["Password"].SortMode = DataGridViewColumnSortMode.NotSortable;
             dataGridView1.Columns["Telepon"].SortMode = DataGridViewColumnSortMode.NotSortable;
             dataGridView1.Columns["Role"].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            dataGridView1.Columns["ktp_admin"].HeaderText = "No KTP";
         }
 
 
@@ -157,6 +157,7 @@ namespace Bengkel_Yoga_UKK
                     Email = x.email,
                     Password = x.password,
                     Telepon = x.no_telp,
+                    Alamat = x.alamat,
                     Role = x.role==1 ? "Admin" : "Super Admin",
                 }).ToList();
             dataGridView1.DataSource = new SortableBindingList<KaryawanDto>(list);
@@ -246,5 +247,6 @@ public class KaryawanDto
     public string Email { get; set; }
     public string Password { get; set; }
     public string Telepon { get; set; }
+    public string Alamat { get; set; }
     public string Role { get; set; }
 }
