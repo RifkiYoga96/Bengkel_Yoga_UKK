@@ -158,9 +158,8 @@ VALUES
 
 INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart)
 VALUES 
-(1, 'SP001'),  -- Riwayat 1 menggunakan 2 Oli Mesin
-(2, 'SP002'),  -- Riwayat 2 menggunakan 1 Kampas Rem
-(3, 'SP003');  -- Riwayat 3 menggunakan 1 Freon AC
+(3, 'SP002'),
+(3, 'SP001'); 
 
 
 

@@ -34,7 +34,7 @@
             btnBooking = new YogaButton();
             btnKalender = new YogaButton();
             btnProduk = new YogaButton();
-            btnInvoice = new YogaButton();
+            btnRiwayat = new YogaButton();
             btnService = new YogaButton();
             btnPelanggan = new YogaButton();
             btnKaryawan = new YogaButton();
@@ -64,7 +64,7 @@
             flowLayoutPanel2.Controls.Add(btnBooking);
             flowLayoutPanel2.Controls.Add(btnKalender);
             flowLayoutPanel2.Controls.Add(btnProduk);
-            flowLayoutPanel2.Controls.Add(btnInvoice);
+            flowLayoutPanel2.Controls.Add(btnRiwayat);
             flowLayoutPanel2.Controls.Add(btnService);
             flowLayoutPanel2.Controls.Add(btnPelanggan);
             flowLayoutPanel2.Controls.Add(btnKaryawan);
@@ -177,30 +177,30 @@
             btnProduk.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnProduk.UseVisualStyleBackColor = false;
             // 
-            // btnInvoice
+            // btnRiwayat
             // 
-            btnInvoice.BackColor = Color.FromArgb(44, 62, 80);
-            btnInvoice.BackgroundColor = Color.FromArgb(44, 62, 80);
-            btnInvoice.BorderColor = Color.PaleVioletRed;
-            btnInvoice.BorderRadius = 7;
-            btnInvoice.BorderSize = 0;
-            btnInvoice.FlatAppearance.BorderSize = 0;
-            btnInvoice.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnInvoice.FlatStyle = FlatStyle.Flat;
-            btnInvoice.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnInvoice.ForeColor = Color.White;
-            btnInvoice.Image = (Image)resources.GetObject("btnInvoice.Image");
-            btnInvoice.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInvoice.Location = new Point(18, 267);
-            btnInvoice.Name = "btnInvoice";
-            btnInvoice.Padding = new Padding(20, 0, 0, 0);
-            btnInvoice.Size = new Size(255, 60);
-            btnInvoice.TabIndex = 17;
-            btnInvoice.Text = "    Invoice";
-            btnInvoice.TextAlign = ContentAlignment.MiddleLeft;
-            btnInvoice.TextColor = Color.White;
-            btnInvoice.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnInvoice.UseVisualStyleBackColor = false;
+            btnRiwayat.BackColor = Color.FromArgb(44, 62, 80);
+            btnRiwayat.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnRiwayat.BorderColor = Color.PaleVioletRed;
+            btnRiwayat.BorderRadius = 7;
+            btnRiwayat.BorderSize = 0;
+            btnRiwayat.FlatAppearance.BorderSize = 0;
+            btnRiwayat.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnRiwayat.FlatStyle = FlatStyle.Flat;
+            btnRiwayat.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRiwayat.ForeColor = Color.White;
+            btnRiwayat.Image = (Image)resources.GetObject("btnRiwayat.Image");
+            btnRiwayat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRiwayat.Location = new Point(18, 267);
+            btnRiwayat.Name = "btnRiwayat";
+            btnRiwayat.Padding = new Padding(20, 0, 0, 0);
+            btnRiwayat.Size = new Size(255, 60);
+            btnRiwayat.TabIndex = 17;
+            btnRiwayat.Text = "    Riwayat";
+            btnRiwayat.TextAlign = ContentAlignment.MiddleLeft;
+            btnRiwayat.TextColor = Color.White;
+            btnRiwayat.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRiwayat.UseVisualStyleBackColor = false;
             // 
             // btnService
             // 
@@ -439,7 +439,7 @@
         private YogaButton btnDashboard;
         private YogaButton btnBooking;
         private YogaButton btnProduk;
-        private YogaButton btnInvoice;
+        private YogaButton btnRiwayat;
         private YogaButton btnService;
         private YogaButton btnPelanggan;
         private YogaButton btnKaryawan;

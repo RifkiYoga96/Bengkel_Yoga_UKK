@@ -20,12 +20,14 @@ namespace Bengkel_Yoga_UKK
             InitializeComponent();
             RegisterEvent();
             LoadData();
+            CustomGrid();
         }
 
         private void RegisterEvent()
         {
-
+            dataGridView1.CellPainting += DataGridView1_CellPainting;
         }
+
 
         #region DATAGRID
         private void CustomGrid()
@@ -38,7 +40,7 @@ namespace Bengkel_Yoga_UKK
             // Mengatur ukuran font header kolom
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -71,59 +73,77 @@ namespace Bengkel_Yoga_UKK
             // Mencegah penambahan baris baru
             dataGridView1.AllowUserToAddRows = false;
 
-            dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["id_riwayat"].Width = 10;
+            dataGridView1.Columns["No"].Width = 70;
+            dataGridView1.Columns["ktp_pelanggan"].Width = 200;
+            dataGridView1.Columns["Pelanggan"].Width = 200;
+            dataGridView1.Columns["no_pol"].Width = 170;
+            dataGridView1.Columns["Kendaraan"].Width = 200;
+            dataGridView1.Columns["Keluhan"].Width = 250;
+            dataGridView1.Columns["Tanggal"].Width = 200;
+            dataGridView1.Columns["Pegawai"].Width = 200;
+            dataGridView1.Columns["Catatan"].Width = 200;
+            dataGridView1.Columns["Sparepart"].Width = 250;
+            dataGridView1.Columns["total_harga"].Width = 180;
+            dataGridView1.Columns["Status"].Width = 150;
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["ktp_admin"].FillWeight = 9;
-            dataGridView1.Columns["Foto"].FillWeight = 10;
-            dataGridView1.Columns["Nama"].FillWeight = 16;
-            dataGridView1.Columns["Email"].FillWeight = 15;
-            dataGridView1.Columns["Password"].FillWeight = 10;
-            dataGridView1.Columns["Telepon"].FillWeight = 12;
-            dataGridView1.Columns["Alamat"].FillWeight = 12;
-            dataGridView1.Columns["Role"].FillWeight = 10;
+            dataGridView1.Columns["id_riwayat"].Visible = false;
 
+            dataGridView1.Columns["No"].Frozen = true;
+            dataGridView1.Columns["ktp_pelanggan"].Frozen = true;
+            dataGridView1.Columns["Pelanggan"].Frozen = true;
+
+            dataGridView1.Columns["id_riwayat"].DefaultCellStyle.Padding = new Padding(0,0,0,0);
             dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["ktp_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["Nama"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Telepon"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dataGridView1.Columns["ktp_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Kendaraan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["no_pol"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Keluhan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Tanggal"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Pegawai"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Catatan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Sparepart"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["total_harga"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["Status"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
 
-            dataGridView1.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
 
             dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["ktp_admin"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["Password"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["Telepon"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["Role"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["ktp_pelanggan"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["no_pol"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Keluhan"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Catatan"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Sparepart"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridView1.Columns["Status"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-            dataGridView1.Columns["ktp_admin"].HeaderText = "No KTP";
+            dataGridView1.Columns["ktp_pelanggan"].HeaderText = "KTP Pelanggan";
+            dataGridView1.Columns["total_harga"].HeaderText = "Total Harga";
+            dataGridView1.Columns["no_pol"].HeaderText = "Nomor Polisi";
         }
         private void LoadData()
         {
+            int i = 1;
+            var listSparepart = _riwayatDal.ListDataSparepart();
             var list = _riwayatDal.ListData()
-                .Select(x => new RiwayatModel()
-                {
+                .Select(x => new RiwayatDto{
+                    No = i++,
                     id_riwayat = x.id_riwayat,
                     ktp_pelanggan = x.ktp_pelanggan,
-                    nama_pelanggan = x.nama_pelanggan,
+                    Pelanggan = x.nama_pelanggan,
                     no_pol = x.no_pol,
-                    nama_kendaraan = $"{x.merk} {x.tipe} {x.kapasitas} ({x.tahun})",
-                    keluhan = x.keluhan,
-                    tanggal = x.tanggal,
-                    nama_admin = x.nama_admin,
-                    catatan = x.catatan,
-                    statusImg = x.status == "selesai" ? _selesai : _dibatalkan
+                    Kendaraan = $"{x.merk} {x.tipe} {x.kapasitas} ({x.tahun})",
+                    Keluhan = x.keluhan,
+                    Tanggal = x.tanggal,
+                    Pegawai = x.nama_admin,
+                    Catatan = x.catatan,
+                    Sparepart = string.Join(", ",listSparepart.Where(a => a.id_riwayat == x.id_riwayat).Select(a => a.nama_sparepart)),
+                    total_harga = x.total_harga,
+                    Status = x.status == "selesai" ? _selesai : _dibatalkan
                 }).ToList();
 
-            dataGridView1.DataSource = new SortableBindingList<RiwayatModel>(list);
+            dataGridView1.DataSource = new SortableBindingList<RiwayatDto>(list);
         }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
@@ -165,7 +185,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "Foto", "Role" };
+                    string[] targetColumns = { "Status" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))

@@ -8,6 +8,7 @@ namespace Bengkel_Yoga_UKK
 {
     public class RiwayatModel
     {
+        public int No {  get; set; }
         public int id_riwayat {  get; set; }
         public string ktp_pelanggan {  get; set; }
         public string nama_pelanggan { get; set; }
@@ -28,5 +29,36 @@ namespace Bengkel_Yoga_UKK
         public int total_harga { get; set; }
         public string status {  get; set; }
         public byte[] statusImg {  get; set; }
+    }
+
+    public class RiwayatSparepartModel
+    {
+        public int id_riwayat { get; set; }
+        public string kode_sparepart { get; set; }
+        public string nama_sparepart { get; set; }
+        public int jumlah { get; set; }
+        public int harga { get; set; }
+        public string image_name { get; set; }
+        public byte[] image_data { get; set; }
+    }
+
+    public class RiwayatDto
+    {
+        public int No { get; set; }
+        public int id_riwayat { get; set; }
+        public string ktp_pelanggan { get; set; }
+        public string Pelanggan { get; set; }
+
+        public string no_pol { get; set; }
+        public string Kendaraan { get; set; }
+
+        public DateTime Tanggal { get; set; }
+        public string Pegawai { get; set; }
+        public string Keluhan { get; set; }
+        public string Catatan { get; set; }
+        public string Sparepart {  get; set; }
+        public int total_harga { get; set; }
+        public byte[] Status { get; set; }
+
     }
 }

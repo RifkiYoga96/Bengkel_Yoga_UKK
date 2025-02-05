@@ -40,7 +40,7 @@ namespace Bengkel_Yoga_UKK
             AddButton(1, btnDashboard);
             AddButton(2, btnBooking);
             AddButton(3, btnProduk);
-            AddButton(4, btnInvoice);
+            AddButton(4, btnRiwayat);
             AddButton(5, btnService);
             AddButton(6, btnPelanggan);
             AddButton(7, btnKaryawan);
@@ -63,7 +63,7 @@ namespace Bengkel_Yoga_UKK
         }
         private void RegisterEvent()
         {
-            List<Button> btnStyle = new List<Button> { btnDashboard, btnBooking, btnProduk, btnInvoice, btnService, btnPelanggan, btnKaryawan, btnKalender };
+            List<Button> btnStyle = new List<Button> { btnDashboard, btnBooking, btnProduk, btnRiwayat, btnService, btnPelanggan, btnKaryawan, btnKalender };
             foreach (var item in btnStyle)
             {
                 item.FlatAppearance.MouseDownBackColor = active;
@@ -76,8 +76,8 @@ namespace Bengkel_Yoga_UKK
             btnBooking.Click += BtnSideBar_Click;
             btnProduk.Click += (s, e) => buttonActiveAfter = 3;
             btnProduk.Click += BtnSideBar_Click;
-            btnInvoice.Click += (s, e) => buttonActiveAfter = 4;
-            btnInvoice.Click += BtnSideBar_Click;
+            btnRiwayat.Click += (s, e) => buttonActiveAfter = 4;
+            btnRiwayat.Click += BtnSideBar_Click;
             btnService.Click += (s, e) => buttonActiveAfter = 5;
             btnService.Click += BtnSideBar_Click;
             btnPelanggan.Click += (s, e) => buttonActiveAfter = 6;
@@ -93,6 +93,7 @@ namespace Bengkel_Yoga_UKK
             btnKalender.Click += (s, e) => ShowFormInPanel2(new FormKelender());
             btnBooking.Click += (s, e) => ShowFormInPanel2(new DaftarBookingForm());
             btnPelanggan.Click += (s, e) => ShowFormInPanel2(new FormPelanggan());
+            btnRiwayat.Click += (s, e) => ShowFormInPanel2(new FormRiwayat());
         }
 
 
@@ -136,7 +137,7 @@ namespace Bengkel_Yoga_UKK
                     text = "PRODUK";
                     break;
                 case 4:
-                    text = "INVOICE";
+                    text = "RIWAYAT";
                     break;
                 case 5:
                     text = "SERVIS";
