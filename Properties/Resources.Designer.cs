@@ -93,16 +93,6 @@ namespace Bengkel_Yoga_UKK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BelumBayar {
-            get {
-                object obj = ResourceManager.GetObject("BelumBayar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap defaultImage {
             get {
                 object obj = ResourceManager.GetObject("defaultImage", resourceCulture);
@@ -133,6 +123,56 @@ namespace Bengkel_Yoga_UKK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dikerjakan {
+            get {
+                object obj = ResourceManager.GetObject("Dikerjakan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Habis {
+            get {
+                object obj = ResourceManager.GetObject("Habis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Menipis {
+            get {
+                object obj = ResourceManager.GetObject("Menipis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pending {
+            get {
+                object obj = ResourceManager.GetObject("Pending", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus {
+            get {
+                object obj = ResourceManager.GetObject("plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Selesai {
             get {
                 object obj = ResourceManager.GetObject("Selesai", resourceCulture);
@@ -143,9 +183,9 @@ namespace Bengkel_Yoga_UKK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Selesai2 {
+        internal static System.Drawing.Bitmap Tersedia {
             get {
-                object obj = ResourceManager.GetObject("Selesai2", resourceCulture);
+                object obj = ResourceManager.GetObject("Tersedia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

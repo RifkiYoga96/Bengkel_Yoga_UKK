@@ -65,9 +65,7 @@
             label15 = new Label();
             yogaButton5 = new YogaButton();
             yogaButton6 = new YogaButton();
-            yogaButton7 = new YogaButton();
             yogaButton8 = new YogaButton();
-            yogaButton3 = new YogaButton();
             yogaButton4 = new YogaButton();
             yogaButton2 = new YogaButton();
             yogaButton1 = new YogaButton();
@@ -80,6 +78,10 @@
             label11 = new Label();
             label10 = new Label();
             button1 = new Button();
+            yogaButton3 = new YogaButton();
+            yogaButton7 = new YogaButton();
+            label24 = new Label();
+            textBoxExt8 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sfComboBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sfComboBox1).BeginInit();
@@ -99,12 +101,15 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)textBoxExt8).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(label24);
+            panel1.Controls.Add(textBoxExt8);
             panel1.Controls.Add(sfComboBox2);
             panel1.Controls.Add(sfComboBox1);
             panel1.Controls.Add(label8);
@@ -125,9 +130,9 @@
             panel1.Controls.Add(textBoxExt2);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(26, 76);
+            panel1.Location = new Point(26, 66);
             panel1.Name = "panel1";
-            panel1.Size = new Size(463, 648);
+            panel1.Size = new Size(463, 684);
             panel1.TabIndex = 13;
             // 
             // sfComboBox2
@@ -173,12 +178,12 @@
             label8.Name = "label8";
             label8.Size = new Size(85, 46);
             label8.TabIndex = 44;
-            label8.Text = "Perkiraan \r\nSelesai:";
+            label8.Text = "Perkiraan \r\nSelesai";
             // 
             // textBoxExt7
             // 
             textBoxExt7.BackColor = Color.White;
-            textBoxExt7.BeforeTouchSize = new Size(293, 93);
+            textBoxExt7.BeforeTouchSize = new Size(233, 27);
             textBoxExt7.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt7.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -198,9 +203,9 @@
             label9.ForeColor = SystemColors.ControlDarkDark;
             label9.Location = new Point(47, 538);
             label9.Name = "label9";
-            label9.Size = new Size(108, 23);
+            label9.Size = new Size(104, 23);
             label9.TabIndex = 42;
-            label9.Text = "Jenis Service:";
+            label9.Text = "Jenis Service";
             // 
             // label7
             // 
@@ -209,14 +214,14 @@
             label7.ForeColor = SystemColors.ControlDarkDark;
             label7.Location = new Point(47, 364);
             label7.Name = "label7";
-            label7.Size = new Size(73, 23);
+            label7.Size = new Size(69, 23);
             label7.TabIndex = 40;
-            label7.Text = "Tanggal:";
+            label7.Text = "Tanggal";
             // 
             // textBoxExt6
             // 
             textBoxExt6.BackColor = Color.White;
-            textBoxExt6.BeforeTouchSize = new Size(293, 93);
+            textBoxExt6.BeforeTouchSize = new Size(233, 27);
             textBoxExt6.BorderColor = Color.FromArgb(128, 128, 255);
             textBoxExt6.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -232,7 +237,7 @@
             // textBoxExt5
             // 
             textBoxExt5.BackColor = Color.White;
-            textBoxExt5.BeforeTouchSize = new Size(293, 93);
+            textBoxExt5.BeforeTouchSize = new Size(233, 27);
             textBoxExt5.BorderColor = Color.FromArgb(128, 128, 255);
             textBoxExt5.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -253,9 +258,9 @@
             label12.ForeColor = SystemColors.ControlDarkDark;
             label12.Location = new Point(47, 412);
             label12.Name = "label12";
-            label12.Size = new Size(76, 23);
+            label12.Size = new Size(72, 23);
             label12.TabIndex = 38;
-            label12.Text = "Keluhan:";
+            label12.Text = "Keluhan";
             // 
             // label6
             // 
@@ -264,14 +269,14 @@
             label6.ForeColor = SystemColors.ControlDarkDark;
             label6.Location = new Point(47, 316);
             label6.Name = "label6";
-            label6.Size = new Size(65, 23);
+            label6.Size = new Size(61, 23);
             label6.TabIndex = 32;
-            label6.Text = "No Pol:";
+            label6.Text = "No Pol";
             // 
             // txtNamaProduk
             // 
             txtNamaProduk.BackColor = Color.White;
-            txtNamaProduk.BeforeTouchSize = new Size(293, 93);
+            txtNamaProduk.BeforeTouchSize = new Size(233, 27);
             txtNamaProduk.BorderColor = Color.FromArgb(209, 211, 212);
             txtNamaProduk.BorderStyle = BorderStyle.FixedSingle;
             txtNamaProduk.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -291,14 +296,14 @@
             label5.ForeColor = SystemColors.ControlDarkDark;
             label5.Location = new Point(47, 268);
             label5.Name = "label5";
-            label5.Size = new Size(96, 23);
+            label5.Size = new Size(92, 23);
             label5.TabIndex = 4;
-            label5.Text = "Kendaraan:";
+            label5.Text = "Kendaraan";
             // 
             // textBoxExt4
             // 
             textBoxExt4.BackColor = Color.White;
-            textBoxExt4.BeforeTouchSize = new Size(293, 93);
+            textBoxExt4.BeforeTouchSize = new Size(233, 27);
             textBoxExt4.BorderColor = Color.FromArgb(128, 128, 255);
             textBoxExt4.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -314,7 +319,7 @@
             // textBoxExt1
             // 
             textBoxExt1.BackColor = Color.White;
-            textBoxExt1.BeforeTouchSize = new Size(293, 93);
+            textBoxExt1.BeforeTouchSize = new Size(233, 27);
             textBoxExt1.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt1.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -334,14 +339,14 @@
             label4.ForeColor = SystemColors.ControlDarkDark;
             label4.Location = new Point(47, 189);
             label4.Name = "label4";
-            label4.Size = new Size(71, 23);
+            label4.Size = new Size(67, 23);
             label4.TabIndex = 3;
-            label4.Text = "No KTP:";
+            label4.Text = "No KTP";
             // 
             // textBoxExt3
             // 
             textBoxExt3.BackColor = Color.White;
-            textBoxExt3.BeforeTouchSize = new Size(293, 93);
+            textBoxExt3.BeforeTouchSize = new Size(233, 27);
             textBoxExt3.BorderColor = Color.FromArgb(128, 128, 255);
             textBoxExt3.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -361,14 +366,14 @@
             label3.ForeColor = SystemColors.ControlDarkDark;
             label3.Location = new Point(47, 142);
             label3.Name = "label3";
-            label3.Size = new Size(60, 23);
+            label3.Size = new Size(56, 23);
             label3.TabIndex = 2;
-            label3.Text = "Nama:";
+            label3.Text = "Nama";
             // 
             // textBoxExt2
             // 
             textBoxExt2.BackColor = Color.White;
-            textBoxExt2.BeforeTouchSize = new Size(293, 93);
+            textBoxExt2.BeforeTouchSize = new Size(233, 27);
             textBoxExt2.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt2.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -388,9 +393,9 @@
             label2.ForeColor = SystemColors.ControlDarkDark;
             label2.Location = new Point(47, 95);
             label2.Name = "label2";
-            label2.Size = new Size(96, 23);
+            label2.Size = new Size(94, 23);
             label2.TabIndex = 1;
-            label2.Text = "Booking Id:";
+            label2.Text = "ID Booking";
             // 
             // label1
             // 
@@ -400,12 +405,13 @@
             label1.Name = "label1";
             label1.Size = new Size(186, 30);
             label1.TabIndex = 0;
-            label1.Text = "BOOKING DETAIL";
+            label1.Text = "DETAIL BOOKING";
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(yogaButton3);
             panel2.Controls.Add(pictureBox4);
             panel2.Controls.Add(pictureBox3);
             panel2.Controls.Add(pictureBox2);
@@ -420,9 +426,7 @@
             panel2.Controls.Add(label15);
             panel2.Controls.Add(yogaButton5);
             panel2.Controls.Add(yogaButton6);
-            panel2.Controls.Add(yogaButton7);
             panel2.Controls.Add(yogaButton8);
-            panel2.Controls.Add(yogaButton3);
             panel2.Controls.Add(yogaButton4);
             panel2.Controls.Add(yogaButton2);
             panel2.Controls.Add(yogaButton1);
@@ -434,16 +438,16 @@
             panel2.Controls.Add(rjCircularPictureBox1);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(label10);
-            panel2.Location = new Point(519, 76);
+            panel2.Location = new Point(519, 66);
             panel2.Name = "panel2";
-            panel2.Size = new Size(821, 648);
+            panel2.Size = new Size(821, 684);
             panel2.TabIndex = 14;
             // 
             // pictureBox4
             // 
             pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
             pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(672, 119);
+            pictureBox4.Location = new Point(680, 124);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(50, 50);
             pictureBox4.TabIndex = 76;
@@ -453,7 +457,7 @@
             // 
             pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
             pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(478, 119);
+            pictureBox3.Location = new Point(486, 124);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(50, 50);
             pictureBox3.TabIndex = 75;
@@ -463,7 +467,7 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(283, 119);
+            pictureBox2.Location = new Point(291, 124);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(50, 50);
             pictureBox2.TabIndex = 73;
@@ -474,40 +478,40 @@
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label23.ForeColor = SystemColors.ControlDarkDark;
-            label23.Location = new Point(108, 536);
+            label23.Location = new Point(112, 554);
             label23.Name = "label23";
-            label23.Size = new Size(57, 25);
+            label23.Size = new Size(116, 25);
             label23.TabIndex = 71;
-            label23.Text = "Done";
+            label23.Text = "Pembayaran";
             // 
             // label22
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label22.ForeColor = SystemColors.ControlDarkDark;
-            label22.Location = new Point(108, 465);
+            label22.Location = new Point(112, 483);
             label22.Name = "label22";
-            label22.Size = new Size(109, 25);
+            label22.Size = new Size(113, 25);
             label22.TabIndex = 70;
-            label22.Text = "Re-Cheking";
+            label22.Text = "Pengecekan";
             // 
             // label21
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label21.ForeColor = SystemColors.ControlDarkDark;
-            label21.Location = new Point(108, 399);
+            label21.Location = new Point(112, 417);
             label21.Name = "label21";
-            label21.Size = new Size(135, 25);
+            label21.Size = new Size(61, 25);
             label21.TabIndex = 69;
-            label21.Text = "Start Repairing";
+            label21.Text = "Servis";
             // 
             // label20
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label20.ForeColor = SystemColors.ControlDarkDark;
-            label20.Location = new Point(108, 335);
+            label20.Location = new Point(112, 353);
             label20.Name = "label20";
             label20.Size = new Size(81, 25);
             label20.TabIndex = 68;
@@ -518,7 +522,7 @@
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI Semibold", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
             label19.ForeColor = SystemColors.ControlDarkDark;
-            label19.Location = new Point(108, 297);
+            label19.Location = new Point(112, 315);
             label19.Name = "label19";
             label19.Size = new Size(73, 30);
             label19.TabIndex = 67;
@@ -529,40 +533,40 @@
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label18.ForeColor = SystemColors.ControlDarkDark;
-            label18.Location = new Point(664, 210);
+            label18.Location = new Point(673, 215);
             label18.Name = "label18";
-            label18.Size = new Size(58, 25);
+            label18.Size = new Size(70, 25);
             label18.TabIndex = 66;
-            label18.Text = "Done";
+            label18.Text = "Selesai";
             // 
             // label17
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label17.ForeColor = SystemColors.ControlDarkDark;
-            label17.Location = new Point(448, 210);
+            label17.Location = new Point(457, 215);
             label17.Name = "label17";
-            label17.Size = new Size(120, 25);
+            label17.Size = new Size(114, 25);
             label17.TabIndex = 65;
-            label17.Text = "Re-Checking";
+            label17.Text = "Pengecekan";
             // 
             // label16
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label16.ForeColor = SystemColors.ControlDarkDark;
-            label16.Location = new Point(240, 210);
+            label16.Location = new Point(286, 215);
             label16.Name = "label16";
-            label16.Size = new Size(139, 25);
+            label16.Size = new Size(63, 25);
             label16.TabIndex = 64;
-            label16.Text = "Start Repairing";
+            label16.Text = "Servis";
             // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label15.ForeColor = SystemColors.ControlDarkDark;
-            label15.Location = new Point(76, 210);
+            label15.Location = new Point(84, 215);
             label15.Name = "label15";
             label15.Size = new Size(82, 25);
             label15.TabIndex = 63;
@@ -579,11 +583,11 @@
             yogaButton5.FlatStyle = FlatStyle.Flat;
             yogaButton5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton5.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton5.Location = new Point(516, 394);
+            yogaButton5.Location = new Point(520, 412);
             yogaButton5.Name = "yogaButton5";
             yogaButton5.Size = new Size(88, 37);
             yogaButton5.TabIndex = 62;
-            yogaButton5.Text = "Process";
+            yogaButton5.Text = "Proses";
             yogaButton5.TextColor = SystemColors.ControlDarkDark;
             yogaButton5.UseVisualStyleBackColor = false;
             // 
@@ -598,32 +602,13 @@
             yogaButton6.FlatStyle = FlatStyle.Flat;
             yogaButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton6.ForeColor = Color.White;
-            yogaButton6.Location = new Point(626, 394);
+            yogaButton6.Location = new Point(630, 412);
             yogaButton6.Name = "yogaButton6";
             yogaButton6.Size = new Size(88, 37);
             yogaButton6.TabIndex = 61;
-            yogaButton6.Text = "Done";
+            yogaButton6.Text = "Selesai";
             yogaButton6.TextColor = Color.White;
             yogaButton6.UseVisualStyleBackColor = false;
-            // 
-            // yogaButton7
-            // 
-            yogaButton7.BackColor = Color.White;
-            yogaButton7.BackgroundColor = Color.White;
-            yogaButton7.BorderColor = Color.PaleVioletRed;
-            yogaButton7.BorderRadius = 3;
-            yogaButton7.BorderSize = 2;
-            yogaButton7.FlatAppearance.BorderSize = 0;
-            yogaButton7.FlatStyle = FlatStyle.Flat;
-            yogaButton7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton7.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton7.Location = new Point(516, 330);
-            yogaButton7.Name = "yogaButton7";
-            yogaButton7.Size = new Size(88, 37);
-            yogaButton7.TabIndex = 60;
-            yogaButton7.Text = "Process";
-            yogaButton7.TextColor = SystemColors.ControlDarkDark;
-            yogaButton7.UseVisualStyleBackColor = false;
             // 
             // yogaButton8
             // 
@@ -636,32 +621,13 @@
             yogaButton8.FlatStyle = FlatStyle.Flat;
             yogaButton8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton8.ForeColor = Color.White;
-            yogaButton8.Location = new Point(626, 330);
+            yogaButton8.Location = new Point(630, 348);
             yogaButton8.Name = "yogaButton8";
             yogaButton8.Size = new Size(88, 37);
             yogaButton8.TabIndex = 59;
-            yogaButton8.Text = "Done";
+            yogaButton8.Text = "Selesai";
             yogaButton8.TextColor = Color.White;
             yogaButton8.UseVisualStyleBackColor = false;
-            // 
-            // yogaButton3
-            // 
-            yogaButton3.BackColor = Color.White;
-            yogaButton3.BackgroundColor = Color.White;
-            yogaButton3.BorderColor = Color.PaleVioletRed;
-            yogaButton3.BorderRadius = 3;
-            yogaButton3.BorderSize = 2;
-            yogaButton3.FlatAppearance.BorderSize = 0;
-            yogaButton3.FlatStyle = FlatStyle.Flat;
-            yogaButton3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton3.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton3.Location = new Point(516, 524);
-            yogaButton3.Name = "yogaButton3";
-            yogaButton3.Size = new Size(88, 37);
-            yogaButton3.TabIndex = 58;
-            yogaButton3.Text = "Process";
-            yogaButton3.TextColor = SystemColors.ControlDarkDark;
-            yogaButton3.UseVisualStyleBackColor = false;
             // 
             // yogaButton4
             // 
@@ -674,11 +640,11 @@
             yogaButton4.FlatStyle = FlatStyle.Flat;
             yogaButton4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton4.ForeColor = Color.White;
-            yogaButton4.Location = new Point(626, 524);
+            yogaButton4.Location = new Point(630, 542);
             yogaButton4.Name = "yogaButton4";
             yogaButton4.Size = new Size(88, 37);
             yogaButton4.TabIndex = 57;
-            yogaButton4.Text = "Done";
+            yogaButton4.Text = "Selesai";
             yogaButton4.TextColor = Color.White;
             yogaButton4.UseVisualStyleBackColor = false;
             // 
@@ -693,11 +659,11 @@
             yogaButton2.FlatStyle = FlatStyle.Flat;
             yogaButton2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton2.ForeColor = Color.White;
-            yogaButton2.Location = new Point(516, 460);
+            yogaButton2.Location = new Point(520, 478);
             yogaButton2.Name = "yogaButton2";
             yogaButton2.Size = new Size(88, 37);
             yogaButton2.TabIndex = 56;
-            yogaButton2.Text = "Process";
+            yogaButton2.Text = "Proses";
             yogaButton2.TextColor = Color.White;
             yogaButton2.UseVisualStyleBackColor = false;
             // 
@@ -712,11 +678,11 @@
             yogaButton1.FlatStyle = FlatStyle.Flat;
             yogaButton1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton1.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton1.Location = new Point(626, 460);
+            yogaButton1.Location = new Point(630, 478);
             yogaButton1.Name = "yogaButton1";
             yogaButton1.Size = new Size(88, 37);
             yogaButton1.TabIndex = 55;
-            yogaButton1.Text = "Done";
+            yogaButton1.Text = "Selesai";
             yogaButton1.TextColor = SystemColors.ControlDarkDark;
             yogaButton1.UseVisualStyleBackColor = false;
             // 
@@ -728,7 +694,7 @@
             rjCircularPictureBox4.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             rjCircularPictureBox4.BorderSize = 2;
             rjCircularPictureBox4.GradientAngle = 50F;
-            rjCircularPictureBox4.Location = new Point(487, 173);
+            rjCircularPictureBox4.Location = new Point(495, 178);
             rjCircularPictureBox4.Name = "rjCircularPictureBox4";
             rjCircularPictureBox4.Size = new Size(34, 34);
             rjCircularPictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -743,7 +709,7 @@
             rjCircularPictureBox2.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             rjCircularPictureBox2.BorderSize = 2;
             rjCircularPictureBox2.GradientAngle = 50F;
-            rjCircularPictureBox2.Location = new Point(291, 173);
+            rjCircularPictureBox2.Location = new Point(299, 178);
             rjCircularPictureBox2.Name = "rjCircularPictureBox2";
             rjCircularPictureBox2.Size = new Size(34, 34);
             rjCircularPictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -755,7 +721,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label14.ForeColor = SystemColors.ControlDarkDark;
-            label14.Location = new Point(319, 175);
+            label14.Location = new Point(327, 180);
             label14.Name = "label14";
             label14.Size = new Size(177, 25);
             label14.TabIndex = 54;
@@ -769,7 +735,7 @@
             rjCircularPictureBox3.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             rjCircularPictureBox3.BorderSize = 2;
             rjCircularPictureBox3.GradientAngle = 50F;
-            rjCircularPictureBox3.Location = new Point(680, 173);
+            rjCircularPictureBox3.Location = new Point(688, 178);
             rjCircularPictureBox3.Name = "rjCircularPictureBox3";
             rjCircularPictureBox3.Size = new Size(34, 34);
             rjCircularPictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -781,7 +747,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label13.ForeColor = SystemColors.ControlDarkDark;
-            label13.Location = new Point(512, 175);
+            label13.Location = new Point(520, 180);
             label13.Name = "label13";
             label13.Size = new Size(177, 25);
             label13.TabIndex = 52;
@@ -795,7 +761,7 @@
             rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             rjCircularPictureBox1.BorderSize = 2;
             rjCircularPictureBox1.GradientAngle = 50F;
-            rjCircularPictureBox1.Location = new Point(98, 173);
+            rjCircularPictureBox1.Location = new Point(106, 178);
             rjCircularPictureBox1.Name = "rjCircularPictureBox1";
             rjCircularPictureBox1.Size = new Size(34, 34);
             rjCircularPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -807,7 +773,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label11.ForeColor = SystemColors.ControlDarkDark;
-            label11.Location = new Point(123, 175);
+            label11.Location = new Point(131, 180);
             label11.Name = "label11";
             label11.Size = new Size(177, 25);
             label11.TabIndex = 49;
@@ -817,11 +783,11 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(319, 26);
+            label10.Location = new Point(330, 26);
             label10.Name = "label10";
-            label10.Size = new Size(209, 30);
+            label10.Size = new Size(184, 30);
             label10.TabIndex = 47;
-            label10.Text = "SERVICE PROGRESS";
+            label10.Text = "PROGRES SERVIS";
             // 
             // button1
             // 
@@ -831,15 +797,81 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Location = new Point(12, 12);
             button1.Name = "button1";
-            button1.Size = new Size(64, 54);
+            button1.Size = new Size(52, 46);
             button1.TabIndex = 15;
             button1.UseVisualStyleBackColor = true;
+            // 
+            // yogaButton3
+            // 
+            yogaButton3.BackColor = Color.FromArgb(52, 152, 219);
+            yogaButton3.BackgroundColor = Color.FromArgb(52, 152, 219);
+            yogaButton3.BorderColor = Color.PaleVioletRed;
+            yogaButton3.BorderRadius = 3;
+            yogaButton3.BorderSize = 0;
+            yogaButton3.FlatAppearance.BorderSize = 0;
+            yogaButton3.FlatStyle = FlatStyle.Flat;
+            yogaButton3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton3.ForeColor = Color.White;
+            yogaButton3.Location = new Point(520, 542);
+            yogaButton3.Name = "yogaButton3";
+            yogaButton3.Size = new Size(88, 37);
+            yogaButton3.TabIndex = 77;
+            yogaButton3.Text = "Invoice";
+            yogaButton3.TextColor = Color.White;
+            yogaButton3.UseVisualStyleBackColor = false;
+            // 
+            // yogaButton7
+            // 
+            yogaButton7.Anchor = AnchorStyles.None;
+            yogaButton7.BackColor = Color.FromArgb(52, 152, 219);
+            yogaButton7.BackgroundColor = Color.FromArgb(52, 152, 219);
+            yogaButton7.BorderColor = Color.PaleVioletRed;
+            yogaButton7.BorderRadius = 0;
+            yogaButton7.BorderSize = 0;
+            yogaButton7.FlatAppearance.BorderSize = 0;
+            yogaButton7.FlatStyle = FlatStyle.Flat;
+            yogaButton7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton7.ForeColor = Color.White;
+            yogaButton7.Location = new Point(1211, 765);
+            yogaButton7.Name = "yogaButton7";
+            yogaButton7.Size = new Size(129, 46);
+            yogaButton7.TabIndex = 78;
+            yogaButton7.Text = "Save";
+            yogaButton7.TextColor = Color.White;
+            yogaButton7.UseVisualStyleBackColor = false;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.ForeColor = SystemColors.ControlDarkDark;
+            label24.Location = new Point(47, 632);
+            label24.Name = "label24";
+            label24.Size = new Size(70, 23);
+            label24.TabIndex = 47;
+            label24.Text = "Catatan";
+            // 
+            // textBoxExt8
+            // 
+            textBoxExt8.BackColor = Color.White;
+            textBoxExt8.BeforeTouchSize = new Size(233, 27);
+            textBoxExt8.BorderColor = Color.FromArgb(209, 211, 212);
+            textBoxExt8.BorderStyle = BorderStyle.FixedSingle;
+            textBoxExt8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxExt8.ForeColor = SystemColors.ControlText;
+            textBoxExt8.Location = new Point(177, 634);
+            textBoxExt8.Name = "textBoxExt8";
+            textBoxExt8.ReadOnly = true;
+            textBoxExt8.Size = new Size(233, 27);
+            textBoxExt8.TabIndex = 48;
+            textBoxExt8.ThemeName = "Default";
             // 
             // FormBookingDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1376, 798);
+            ClientSize = new Size(1376, 823);
+            Controls.Add(yogaButton7);
             Controls.Add(button1);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -866,6 +898,7 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)textBoxExt8).EndInit();
             ResumeLayout(false);
         }
 
@@ -905,9 +938,7 @@
         private YogaButton yogaButton2;
         private YogaButton yogaButton5;
         private YogaButton yogaButton6;
-        private YogaButton yogaButton7;
         private YogaButton yogaButton8;
-        private YogaButton yogaButton3;
         private YogaButton yogaButton4;
         private Label label15;
         private Label label20;
@@ -922,5 +953,9 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
         private Button button1;
+        private YogaButton yogaButton3;
+        private YogaButton yogaButton7;
+        private Label label24;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt8;
     }
 }

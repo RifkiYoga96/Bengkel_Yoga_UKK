@@ -91,7 +91,7 @@ namespace Bengkel_Yoga_UKK
             btnProduk.Click += (s, e) => ShowFormInPanel2(new FormProduk());
             btnKaryawan.Click += (s, e) => ShowFormInPanel2(new FormKaryawan());
             btnKalender.Click += (s, e) => ShowFormInPanel2(new FormKelender());
-            btnBooking.Click += (s, e) => ShowFormInPanel2(new DaftarBookingForm());
+            btnBooking.Click += (s, e) => ShowFormInPanel2(new FormBooking());
             btnPelanggan.Click += (s, e) => ShowFormInPanel2(new FormPelanggan());
             btnRiwayat.Click += (s, e) => ShowFormInPanel2(new FormRiwayat());
             btnService.Click += (s, e) => ShowFormInPanel2(new JasaServisForm());

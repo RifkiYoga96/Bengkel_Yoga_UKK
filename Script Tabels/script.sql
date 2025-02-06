@@ -42,6 +42,7 @@ CREATE TABLE Bookings(
 	no_pol VARCHAR(30),
 	tanggal DATE,
 	keluhan VARCHAR(100),
+	catatan VARCHAR(100),
 	antrean INT,
 	status VARCHAR(20),
 	FOREIGN KEY (ktp_pelanggan)
