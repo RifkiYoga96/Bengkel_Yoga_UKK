@@ -96,6 +96,12 @@ CREATE TABLE RiwayatSparepart(
 		ON UPDATE CASCADE
         );
 
+CREATE TABLE JasaServis(
+	id_jasaServis INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	nama_jasaServis VARCHAR(100),
+	harga INT
+	);
+
 CREATE TABLE History(
 	id_history INT PRIMARY KEY IDENTITY(1,1),
 	nama_tabel VARCHAR(20) NOT NULL,
@@ -160,6 +166,13 @@ INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart)
 VALUES 
 (3, 'SP002'),
 (3, 'SP001'); 
+
+INSERT INTO JasaServis(nama_jasaServis,harga)
+VALUES
+('Ringan',20000),
+('Sedang',35000),
+('Berat',50000),
+('Ganti Oli',10000);
 
 
 
