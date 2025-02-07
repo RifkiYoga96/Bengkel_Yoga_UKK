@@ -30,27 +30,30 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBookingDetail));
             panel1 = new Panel();
-            sfComboBox2 = new Syncfusion.WinForms.ListView.SfComboBox();
-            sfComboBox1 = new Syncfusion.WinForms.ListView.SfComboBox();
+            label24 = new Label();
+            txtCatatan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            comboEstimasi = new Syncfusion.WinForms.ListView.SfComboBox();
+            comboServis = new Syncfusion.WinForms.ListView.SfComboBox();
             label8 = new Label();
-            textBoxExt7 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtEstimasi = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label9 = new Label();
             label7 = new Label();
-            textBoxExt6 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            textBoxExt5 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtTanggal = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtKeluhan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label12 = new Label();
             label6 = new Label();
-            txtNamaProduk = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtIdBooking = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label5 = new Label();
-            textBoxExt4 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtNoPol = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label4 = new Label();
-            textBoxExt3 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtKendaraan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label3 = new Label();
-            textBoxExt2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtKTP = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            yogaButton3 = new YogaButton();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -78,21 +81,21 @@
             label11 = new Label();
             label10 = new Label();
             button1 = new Button();
-            yogaButton3 = new YogaButton();
             yogaButton7 = new YogaButton();
-            label24 = new Label();
-            textBoxExt8 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            sfComboBox1 = new Syncfusion.WinForms.ListView.SfComboBox();
+            label25 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)sfComboBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)sfComboBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtNamaProduk).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCatatan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboEstimasi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)comboServis).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtEstimasi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtTanggal).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtKeluhan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtIdBooking).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNoPol).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtKendaraan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtKTP).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -101,73 +104,101 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sfComboBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.None;
+            panel1.Anchor = AnchorStyles.Left;
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(label24);
-            panel1.Controls.Add(textBoxExt8);
-            panel1.Controls.Add(sfComboBox2);
             panel1.Controls.Add(sfComboBox1);
+            panel1.Controls.Add(label25);
+            panel1.Controls.Add(label24);
+            panel1.Controls.Add(txtCatatan);
+            panel1.Controls.Add(comboEstimasi);
+            panel1.Controls.Add(comboServis);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(textBoxExt7);
+            panel1.Controls.Add(txtEstimasi);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(textBoxExt6);
-            panel1.Controls.Add(textBoxExt5);
+            panel1.Controls.Add(txtTanggal);
+            panel1.Controls.Add(txtKeluhan);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(txtNamaProduk);
+            panel1.Controls.Add(txtIdBooking);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(textBoxExt4);
-            panel1.Controls.Add(textBoxExt1);
+            panel1.Controls.Add(txtNoPol);
+            panel1.Controls.Add(txtNama);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(textBoxExt3);
+            panel1.Controls.Add(txtKendaraan);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(textBoxExt2);
+            panel1.Controls.Add(txtKTP);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(26, 66);
+            panel1.Location = new Point(26, 48);
             panel1.Name = "panel1";
-            panel1.Size = new Size(463, 684);
+            panel1.Size = new Size(487, 743);
             panel1.TabIndex = 13;
             // 
-            // sfComboBox2
+            // label24
             // 
-            sfComboBox2.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            sfComboBox2.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            sfComboBox2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox2.ForeColor = SystemColors.ControlText;
-            sfComboBox2.Location = new Point(324, 586);
-            sfComboBox2.Name = "sfComboBox2";
-            sfComboBox2.Size = new Size(86, 27);
-            sfComboBox2.Style.DropDownStyle.BorderColor = Color.FromArgb(100, 100, 100);
-            sfComboBox2.Style.EditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox2.Style.EditorStyle.ForeColor = SystemColors.ControlText;
-            sfComboBox2.Style.ReadOnlyEditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox2.Style.TokenStyle.CloseButtonBackColor = Color.FromArgb(255, 255, 255);
-            sfComboBox2.Style.TokenStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox2.TabIndex = 46;
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.ForeColor = SystemColors.ControlDarkDark;
+            label24.Location = new Point(47, 632);
+            label24.Name = "label24";
+            label24.Size = new Size(70, 23);
+            label24.TabIndex = 47;
+            label24.Text = "Catatan";
             // 
-            // sfComboBox1
+            // txtCatatan
             // 
-            sfComboBox1.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            sfComboBox1.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
-            sfComboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox1.ForeColor = SystemColors.ControlText;
-            sfComboBox1.Location = new Point(177, 538);
-            sfComboBox1.Name = "sfComboBox1";
-            sfComboBox1.Size = new Size(233, 27);
-            sfComboBox1.Style.DropDownStyle.BorderColor = Color.FromArgb(100, 100, 100);
-            sfComboBox1.Style.EditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox1.Style.EditorStyle.ForeColor = SystemColors.ControlText;
-            sfComboBox1.Style.ReadOnlyEditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox1.Style.TokenStyle.CloseButtonBackColor = Color.FromArgb(255, 255, 255);
-            sfComboBox1.Style.TokenStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            sfComboBox1.TabIndex = 45;
+            txtCatatan.BackColor = Color.White;
+            txtCatatan.BeforeTouchSize = new Size(257, 27);
+            txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
+            txtCatatan.BorderStyle = BorderStyle.FixedSingle;
+            txtCatatan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCatatan.ForeColor = SystemColors.ControlText;
+            txtCatatan.Location = new Point(177, 634);
+            txtCatatan.Name = "txtCatatan";
+            txtCatatan.ReadOnly = true;
+            txtCatatan.Size = new Size(257, 27);
+            txtCatatan.TabIndex = 48;
+            txtCatatan.ThemeName = "Default";
+            // 
+            // comboEstimasi
+            // 
+            comboEstimasi.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            comboEstimasi.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            comboEstimasi.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboEstimasi.ForeColor = SystemColors.ControlText;
+            comboEstimasi.Location = new Point(348, 586);
+            comboEstimasi.Name = "comboEstimasi";
+            comboEstimasi.Size = new Size(86, 27);
+            comboEstimasi.Style.DropDownStyle.BorderColor = Color.FromArgb(100, 100, 100);
+            comboEstimasi.Style.EditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboEstimasi.Style.EditorStyle.ForeColor = SystemColors.ControlText;
+            comboEstimasi.Style.ReadOnlyEditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboEstimasi.Style.TokenStyle.CloseButtonBackColor = Color.FromArgb(255, 255, 255);
+            comboEstimasi.Style.TokenStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboEstimasi.TabIndex = 46;
+            // 
+            // comboServis
+            // 
+            comboServis.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            comboServis.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            comboServis.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboServis.ForeColor = SystemColors.ControlText;
+            comboServis.Location = new Point(177, 538);
+            comboServis.Name = "comboServis";
+            comboServis.Size = new Size(257, 27);
+            comboServis.Style.DropDownStyle.BorderColor = Color.FromArgb(100, 100, 100);
+            comboServis.Style.EditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboServis.Style.EditorStyle.ForeColor = SystemColors.ControlText;
+            comboServis.Style.ReadOnlyEditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboServis.Style.TokenStyle.CloseButtonBackColor = Color.FromArgb(255, 255, 255);
+            comboServis.Style.TokenStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboServis.TabIndex = 45;
             // 
             // label8
             // 
@@ -180,21 +211,21 @@
             label8.TabIndex = 44;
             label8.Text = "Perkiraan \r\nSelesai";
             // 
-            // textBoxExt7
+            // txtEstimasi
             // 
-            textBoxExt7.BackColor = Color.White;
-            textBoxExt7.BeforeTouchSize = new Size(233, 27);
-            textBoxExt7.BorderColor = Color.FromArgb(209, 211, 212);
-            textBoxExt7.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt7.ForeColor = SystemColors.ControlText;
-            textBoxExt7.Location = new Point(177, 586);
-            textBoxExt7.Name = "textBoxExt7";
-            textBoxExt7.Size = new Size(141, 27);
-            textBoxExt7.TabIndex = 43;
-            textBoxExt7.Text = "3";
-            textBoxExt7.TextAlign = HorizontalAlignment.Center;
-            textBoxExt7.ThemeName = "Default";
+            txtEstimasi.BackColor = Color.White;
+            txtEstimasi.BeforeTouchSize = new Size(257, 27);
+            txtEstimasi.BorderColor = Color.FromArgb(209, 211, 212);
+            txtEstimasi.BorderStyle = BorderStyle.FixedSingle;
+            txtEstimasi.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtEstimasi.ForeColor = SystemColors.ControlText;
+            txtEstimasi.Location = new Point(177, 586);
+            txtEstimasi.Name = "txtEstimasi";
+            txtEstimasi.Size = new Size(165, 27);
+            txtEstimasi.TabIndex = 43;
+            txtEstimasi.Text = "3";
+            txtEstimasi.TextAlign = HorizontalAlignment.Center;
+            txtEstimasi.ThemeName = "Default";
             // 
             // label9
             // 
@@ -203,9 +234,9 @@
             label9.ForeColor = SystemColors.ControlDarkDark;
             label9.Location = new Point(47, 538);
             label9.Name = "label9";
-            label9.Size = new Size(104, 23);
+            label9.Size = new Size(94, 23);
             label9.TabIndex = 42;
-            label9.Text = "Jenis Service";
+            label9.Text = "Jenis Servis";
             // 
             // label7
             // 
@@ -218,38 +249,38 @@
             label7.TabIndex = 40;
             label7.Text = "Tanggal";
             // 
-            // textBoxExt6
+            // txtTanggal
             // 
-            textBoxExt6.BackColor = Color.White;
-            textBoxExt6.BeforeTouchSize = new Size(233, 27);
-            textBoxExt6.BorderColor = Color.FromArgb(128, 128, 255);
-            textBoxExt6.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt6.ForeColor = SystemColors.ControlText;
-            textBoxExt6.Location = new Point(177, 364);
-            textBoxExt6.Name = "textBoxExt6";
-            textBoxExt6.ReadOnly = true;
-            textBoxExt6.Size = new Size(233, 27);
-            textBoxExt6.TabIndex = 39;
-            textBoxExt6.Text = "2 Februari 2024";
-            textBoxExt6.ThemeName = "Default";
+            txtTanggal.BackColor = Color.White;
+            txtTanggal.BeforeTouchSize = new Size(257, 27);
+            txtTanggal.BorderColor = Color.FromArgb(128, 128, 255);
+            txtTanggal.BorderStyle = BorderStyle.FixedSingle;
+            txtTanggal.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtTanggal.ForeColor = SystemColors.ControlText;
+            txtTanggal.Location = new Point(177, 364);
+            txtTanggal.Name = "txtTanggal";
+            txtTanggal.ReadOnly = true;
+            txtTanggal.Size = new Size(257, 27);
+            txtTanggal.TabIndex = 39;
+            txtTanggal.Text = "2 Februari 2024";
+            txtTanggal.ThemeName = "Default";
             // 
-            // textBoxExt5
+            // txtKeluhan
             // 
-            textBoxExt5.BackColor = Color.White;
-            textBoxExt5.BeforeTouchSize = new Size(233, 27);
-            textBoxExt5.BorderColor = Color.FromArgb(128, 128, 255);
-            textBoxExt5.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt5.ForeColor = SystemColors.ControlText;
-            textBoxExt5.Location = new Point(177, 412);
-            textBoxExt5.Multiline = true;
-            textBoxExt5.Name = "textBoxExt5";
-            textBoxExt5.ReadOnly = true;
-            textBoxExt5.Size = new Size(233, 76);
-            textBoxExt5.TabIndex = 33;
-            textBoxExt5.Text = "Lampu injeksi nyala dan tarikan bawah loyo";
-            textBoxExt5.ThemeName = "Default";
+            txtKeluhan.BackColor = Color.White;
+            txtKeluhan.BeforeTouchSize = new Size(257, 27);
+            txtKeluhan.BorderColor = Color.FromArgb(128, 128, 255);
+            txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
+            txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKeluhan.ForeColor = SystemColors.ControlText;
+            txtKeluhan.Location = new Point(177, 412);
+            txtKeluhan.Multiline = true;
+            txtKeluhan.Name = "txtKeluhan";
+            txtKeluhan.ReadOnly = true;
+            txtKeluhan.Size = new Size(257, 76);
+            txtKeluhan.TabIndex = 33;
+            txtKeluhan.Text = "Lampu injeksi nyala dan tarikan bawah loyo";
+            txtKeluhan.ThemeName = "Default";
             // 
             // label12
             // 
@@ -273,21 +304,21 @@
             label6.TabIndex = 32;
             label6.Text = "No Pol";
             // 
-            // txtNamaProduk
+            // txtIdBooking
             // 
-            txtNamaProduk.BackColor = Color.White;
-            txtNamaProduk.BeforeTouchSize = new Size(233, 27);
-            txtNamaProduk.BorderColor = Color.FromArgb(209, 211, 212);
-            txtNamaProduk.BorderStyle = BorderStyle.FixedSingle;
-            txtNamaProduk.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNamaProduk.ForeColor = SystemColors.ControlText;
-            txtNamaProduk.Location = new Point(177, 95);
-            txtNamaProduk.Name = "txtNamaProduk";
-            txtNamaProduk.ReadOnly = true;
-            txtNamaProduk.Size = new Size(233, 27);
-            txtNamaProduk.TabIndex = 27;
-            txtNamaProduk.Text = "1277";
-            txtNamaProduk.ThemeName = "Default";
+            txtIdBooking.BackColor = Color.White;
+            txtIdBooking.BeforeTouchSize = new Size(257, 27);
+            txtIdBooking.BorderColor = Color.FromArgb(209, 211, 212);
+            txtIdBooking.BorderStyle = BorderStyle.FixedSingle;
+            txtIdBooking.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtIdBooking.ForeColor = SystemColors.ControlText;
+            txtIdBooking.Location = new Point(177, 95);
+            txtIdBooking.Name = "txtIdBooking";
+            txtIdBooking.ReadOnly = true;
+            txtIdBooking.Size = new Size(257, 27);
+            txtIdBooking.TabIndex = 27;
+            txtIdBooking.Text = "1277";
+            txtIdBooking.ThemeName = "Default";
             // 
             // label5
             // 
@@ -300,37 +331,37 @@
             label5.TabIndex = 4;
             label5.Text = "Kendaraan";
             // 
-            // textBoxExt4
+            // txtNoPol
             // 
-            textBoxExt4.BackColor = Color.White;
-            textBoxExt4.BeforeTouchSize = new Size(233, 27);
-            textBoxExt4.BorderColor = Color.FromArgb(128, 128, 255);
-            textBoxExt4.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt4.ForeColor = SystemColors.ControlText;
-            textBoxExt4.Location = new Point(177, 316);
-            textBoxExt4.Name = "textBoxExt4";
-            textBoxExt4.ReadOnly = true;
-            textBoxExt4.Size = new Size(233, 27);
-            textBoxExt4.TabIndex = 31;
-            textBoxExt4.Text = "AB 5567 FC";
-            textBoxExt4.ThemeName = "Default";
+            txtNoPol.BackColor = Color.White;
+            txtNoPol.BeforeTouchSize = new Size(257, 27);
+            txtNoPol.BorderColor = Color.FromArgb(128, 128, 255);
+            txtNoPol.BorderStyle = BorderStyle.FixedSingle;
+            txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNoPol.ForeColor = SystemColors.ControlText;
+            txtNoPol.Location = new Point(177, 316);
+            txtNoPol.Name = "txtNoPol";
+            txtNoPol.ReadOnly = true;
+            txtNoPol.Size = new Size(257, 27);
+            txtNoPol.TabIndex = 31;
+            txtNoPol.Text = "AB 5567 FC";
+            txtNoPol.ThemeName = "Default";
             // 
-            // textBoxExt1
+            // txtNama
             // 
-            textBoxExt1.BackColor = Color.White;
-            textBoxExt1.BeforeTouchSize = new Size(233, 27);
-            textBoxExt1.BorderColor = Color.FromArgb(209, 211, 212);
-            textBoxExt1.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt1.ForeColor = SystemColors.ControlText;
-            textBoxExt1.Location = new Point(177, 143);
-            textBoxExt1.Name = "textBoxExt1";
-            textBoxExt1.ReadOnly = true;
-            textBoxExt1.Size = new Size(233, 27);
-            textBoxExt1.TabIndex = 28;
-            textBoxExt1.Text = "Rifki Yoga Syahbani";
-            textBoxExt1.ThemeName = "Default";
+            txtNama.BackColor = Color.White;
+            txtNama.BeforeTouchSize = new Size(257, 27);
+            txtNama.BorderColor = Color.FromArgb(209, 211, 212);
+            txtNama.BorderStyle = BorderStyle.FixedSingle;
+            txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNama.ForeColor = SystemColors.ControlText;
+            txtNama.Location = new Point(177, 143);
+            txtNama.Name = "txtNama";
+            txtNama.ReadOnly = true;
+            txtNama.Size = new Size(257, 27);
+            txtNama.TabIndex = 28;
+            txtNama.Text = "Rifki Yoga Syahbani";
+            txtNama.ThemeName = "Default";
             // 
             // label4
             // 
@@ -343,21 +374,21 @@
             label4.TabIndex = 3;
             label4.Text = "No KTP";
             // 
-            // textBoxExt3
+            // txtKendaraan
             // 
-            textBoxExt3.BackColor = Color.White;
-            textBoxExt3.BeforeTouchSize = new Size(233, 27);
-            textBoxExt3.BorderColor = Color.FromArgb(128, 128, 255);
-            textBoxExt3.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt3.ForeColor = SystemColors.ControlText;
-            textBoxExt3.Location = new Point(177, 268);
-            textBoxExt3.Name = "textBoxExt3";
-            textBoxExt3.ReadOnly = true;
-            textBoxExt3.Size = new Size(233, 27);
-            textBoxExt3.TabIndex = 30;
-            textBoxExt3.Text = "Vario 125";
-            textBoxExt3.ThemeName = "Default";
+            txtKendaraan.BackColor = Color.White;
+            txtKendaraan.BeforeTouchSize = new Size(257, 27);
+            txtKendaraan.BorderColor = Color.FromArgb(128, 128, 255);
+            txtKendaraan.BorderStyle = BorderStyle.FixedSingle;
+            txtKendaraan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKendaraan.ForeColor = SystemColors.ControlText;
+            txtKendaraan.Location = new Point(177, 268);
+            txtKendaraan.Name = "txtKendaraan";
+            txtKendaraan.ReadOnly = true;
+            txtKendaraan.Size = new Size(257, 27);
+            txtKendaraan.TabIndex = 30;
+            txtKendaraan.Text = "Vario 125";
+            txtKendaraan.ThemeName = "Default";
             // 
             // label3
             // 
@@ -370,21 +401,21 @@
             label3.TabIndex = 2;
             label3.Text = "Nama";
             // 
-            // textBoxExt2
+            // txtKTP
             // 
-            textBoxExt2.BackColor = Color.White;
-            textBoxExt2.BeforeTouchSize = new Size(233, 27);
-            textBoxExt2.BorderColor = Color.FromArgb(209, 211, 212);
-            textBoxExt2.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt2.ForeColor = SystemColors.ControlText;
-            textBoxExt2.Location = new Point(177, 191);
-            textBoxExt2.Name = "textBoxExt2";
-            textBoxExt2.ReadOnly = true;
-            textBoxExt2.Size = new Size(233, 27);
-            textBoxExt2.TabIndex = 29;
-            textBoxExt2.Text = "0183831031831831";
-            textBoxExt2.ThemeName = "Default";
+            txtKTP.BackColor = Color.White;
+            txtKTP.BeforeTouchSize = new Size(257, 27);
+            txtKTP.BorderColor = Color.FromArgb(209, 211, 212);
+            txtKTP.BorderStyle = BorderStyle.FixedSingle;
+            txtKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKTP.ForeColor = SystemColors.ControlText;
+            txtKTP.Location = new Point(177, 191);
+            txtKTP.Name = "txtKTP";
+            txtKTP.ReadOnly = true;
+            txtKTP.Size = new Size(257, 27);
+            txtKTP.TabIndex = 29;
+            txtKTP.Text = "0183831031831831";
+            txtKTP.ThemeName = "Default";
             // 
             // label2
             // 
@@ -409,7 +440,7 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.None;
+            panel2.Anchor = AnchorStyles.Right;
             panel2.BackColor = Color.White;
             panel2.Controls.Add(yogaButton3);
             panel2.Controls.Add(pictureBox4);
@@ -438,10 +469,29 @@
             panel2.Controls.Add(rjCircularPictureBox1);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(label10);
-            panel2.Location = new Point(519, 66);
+            panel2.Location = new Point(545, 48);
             panel2.Name = "panel2";
-            panel2.Size = new Size(821, 684);
+            panel2.Size = new Size(821, 743);
             panel2.TabIndex = 14;
+            // 
+            // yogaButton3
+            // 
+            yogaButton3.BackColor = Color.FromArgb(52, 152, 219);
+            yogaButton3.BackgroundColor = Color.FromArgb(52, 152, 219);
+            yogaButton3.BorderColor = Color.PaleVioletRed;
+            yogaButton3.BorderRadius = 3;
+            yogaButton3.BorderSize = 0;
+            yogaButton3.FlatAppearance.BorderSize = 0;
+            yogaButton3.FlatStyle = FlatStyle.Flat;
+            yogaButton3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            yogaButton3.ForeColor = Color.White;
+            yogaButton3.Location = new Point(520, 542);
+            yogaButton3.Name = "yogaButton3";
+            yogaButton3.Size = new Size(88, 37);
+            yogaButton3.TabIndex = 77;
+            yogaButton3.Text = "Invoice";
+            yogaButton3.TextColor = Color.White;
+            yogaButton3.UseVisualStyleBackColor = false;
             // 
             // pictureBox4
             // 
@@ -801,25 +851,6 @@
             button1.TabIndex = 15;
             button1.UseVisualStyleBackColor = true;
             // 
-            // yogaButton3
-            // 
-            yogaButton3.BackColor = Color.FromArgb(52, 152, 219);
-            yogaButton3.BackgroundColor = Color.FromArgb(52, 152, 219);
-            yogaButton3.BorderColor = Color.PaleVioletRed;
-            yogaButton3.BorderRadius = 3;
-            yogaButton3.BorderSize = 0;
-            yogaButton3.FlatAppearance.BorderSize = 0;
-            yogaButton3.FlatStyle = FlatStyle.Flat;
-            yogaButton3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton3.ForeColor = Color.White;
-            yogaButton3.Location = new Point(520, 542);
-            yogaButton3.Name = "yogaButton3";
-            yogaButton3.Size = new Size(88, 37);
-            yogaButton3.TabIndex = 77;
-            yogaButton3.Text = "Invoice";
-            yogaButton3.TextColor = Color.White;
-            yogaButton3.UseVisualStyleBackColor = false;
-            // 
             // yogaButton7
             // 
             yogaButton7.Anchor = AnchorStyles.None;
@@ -832,7 +863,7 @@
             yogaButton7.FlatStyle = FlatStyle.Flat;
             yogaButton7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton7.ForeColor = Color.White;
-            yogaButton7.Location = new Point(1211, 765);
+            yogaButton7.Location = new Point(1237, 800);
             yogaButton7.Name = "yogaButton7";
             yogaButton7.Size = new Size(129, 46);
             yogaButton7.TabIndex = 78;
@@ -840,37 +871,40 @@
             yogaButton7.TextColor = Color.White;
             yogaButton7.UseVisualStyleBackColor = false;
             // 
-            // label24
+            // sfComboBox1
             // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.ForeColor = SystemColors.ControlDarkDark;
-            label24.Location = new Point(47, 632);
-            label24.Name = "label24";
-            label24.Size = new Size(70, 23);
-            label24.TabIndex = 47;
-            label24.Text = "Catatan";
+            sfComboBox1.ComboBoxMode = Syncfusion.WinForms.ListView.Enums.ComboBoxMode.MultiSelection;
+            sfComboBox1.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            sfComboBox1.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            sfComboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            sfComboBox1.ForeColor = SystemColors.ControlText;
+            sfComboBox1.Location = new Point(177, 682);
+            sfComboBox1.Name = "sfComboBox1";
+            sfComboBox1.Size = new Size(257, 27);
+            sfComboBox1.Style.DropDownStyle.BorderColor = Color.FromArgb(100, 100, 100);
+            sfComboBox1.Style.EditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            sfComboBox1.Style.EditorStyle.ForeColor = SystemColors.ControlText;
+            sfComboBox1.Style.ReadOnlyEditorStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            sfComboBox1.Style.TokenStyle.CloseButtonBackColor = Color.FromArgb(255, 255, 255);
+            sfComboBox1.Style.TokenStyle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            sfComboBox1.TabIndex = 50;
             // 
-            // textBoxExt8
+            // label25
             // 
-            textBoxExt8.BackColor = Color.White;
-            textBoxExt8.BeforeTouchSize = new Size(233, 27);
-            textBoxExt8.BorderColor = Color.FromArgb(209, 211, 212);
-            textBoxExt8.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt8.ForeColor = SystemColors.ControlText;
-            textBoxExt8.Location = new Point(177, 634);
-            textBoxExt8.Name = "textBoxExt8";
-            textBoxExt8.ReadOnly = true;
-            textBoxExt8.Size = new Size(233, 27);
-            textBoxExt8.TabIndex = 48;
-            textBoxExt8.ThemeName = "Default";
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.ForeColor = SystemColors.ControlDarkDark;
+            label25.Location = new Point(47, 682);
+            label25.Name = "label25";
+            label25.Size = new Size(94, 23);
+            label25.TabIndex = 49;
+            label25.Text = "Jenis Servis";
             // 
             // FormBookingDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1376, 823);
+            ClientSize = new Size(1403, 855);
             Controls.Add(yogaButton7);
             Controls.Add(button1);
             Controls.Add(panel2);
@@ -879,16 +913,17 @@
             Text = "FormBookingDetail";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)sfComboBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)sfComboBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtNamaProduk).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCatatan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboEstimasi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)comboServis).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtEstimasi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtTanggal).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtKeluhan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtIdBooking).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNoPol).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNama).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtKendaraan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtKTP).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -898,7 +933,7 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sfComboBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -911,20 +946,20 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt5;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt4;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNamaProduk;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKeluhan;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoPol;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKendaraan;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKTP;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtIdBooking;
         private Label label12;
         private Label label7;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt6;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtTanggal;
         private Label label8;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt7;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtEstimasi;
         private Label label9;
-        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox1;
-        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox2;
+        private Syncfusion.WinForms.ListView.SfComboBox comboServis;
+        private Syncfusion.WinForms.ListView.SfComboBox comboEstimasi;
         private Panel panel2;
         private RJCircularPictureBox rjCircularPictureBox1;
         private Label label10;
@@ -956,6 +991,8 @@
         private YogaButton yogaButton3;
         private YogaButton yogaButton7;
         private Label label24;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt8;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtCatatan;
+        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox1;
+        private Label label25;
     }
 }

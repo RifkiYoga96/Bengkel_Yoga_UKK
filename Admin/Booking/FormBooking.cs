@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Forms.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,8 @@ namespace Bengkel_Yoga_UKK
     public partial class FormBooking : Form
     {
         private readonly BookingDal _bookingDal = new BookingDal();
-        private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending,55,55));
-        private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan,55,55));
+        private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending, 90, 90));
+        private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan, 90, 90));
         public FormBooking()
         {
             InitializeComponent();
@@ -27,20 +28,39 @@ namespace Bengkel_Yoga_UKK
         {
             btnSearch.Click += (s, e) =>
             {
-                MainFormAdmin.ShowFormInPanel2(new FormBookingDetail());
+                
             };
             dataGridView1.CellPainting += DataGridView1_CellPainting;
+            dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
+            detailBookingToolStripMenuItem.Click += DetailBookingToolStripMenuItem_Click;
         }
 
+        private void DetailBookingToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            MainFormAdmin.ShowFormInPanel2(new FormBookingDetail(id));
+        }
+
+        private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
+                contextMenuStrip.Show(Cursor.Position);
+            }
+        }
+
+        #region DATAGRID
         private void LoadData()
         {
             int i = 1;
             var list = _bookingDal.ListData()
-                .Select(x => new BookingModel
+                .Select(x => new BookingDto
                 {
+                    id_booking = x.id_booking,
                     No = i++,
                     antrean = x.antrean,
-                    id_booking = x.id_booking,
                     ktp_pelanggan = x.ktp_pelanggan,
                     nama_pelanggan = x.nama_pelanggan,
                     no_pol = x.no_pol,
@@ -51,7 +71,7 @@ namespace Bengkel_Yoga_UKK
                     statusImg = x.status == "pending" ? _pending : _dikerjakan
                 }).ToList();
 
-            dataGridView1.DataSource = new SortableBindingList<BookingModel>(list);
+            dataGridView1.DataSource = new SortableBindingList<BookingDto>(list);
         }
 
         private void CustomGrid()
@@ -64,7 +84,7 @@ namespace Bengkel_Yoga_UKK
             // Mengatur ukuran font header kolom
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
             dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -98,17 +118,17 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.AllowUserToAddRows = false;
 
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["antrean"].FillWeight = 13;
-            dataGridView1.Columns["ktp_pelanggan"].FillWeight = 18;
-            dataGridView1.Columns["nama_pelanggan"].FillWeight = 17;
-            dataGridView1.Columns["no_pol"].FillWeight = 14;
-            dataGridView1.Columns["nama_kendaraan"].FillWeight = 18;
-            dataGridView1.Columns["tanggal"].FillWeight = 14;
-            dataGridView1.Columns["keluhan"].FillWeight = 14;
-            dataGridView1.Columns["catatan"].FillWeight = 14;
-            dataGridView1.Columns["statusImg"].FillWeight = 14;
+            dataGridView1.Columns["id_booking"].Width = 10;
+            dataGridView1.Columns["No"].Width = 70;
+            dataGridView1.Columns["antrean"].Width = 100;
+            dataGridView1.Columns["ktp_pelanggan"].Width = 200;
+            dataGridView1.Columns["nama_pelanggan"].Width = 250;
+            dataGridView1.Columns["no_pol"].Width = 150;
+            dataGridView1.Columns["nama_kendaraan"].Width = 250;
+            dataGridView1.Columns["tanggal"].Width = 200;
+            dataGridView1.Columns["keluhan"].Width = 250;
+            dataGridView1.Columns["catatan"].Width = 250;
+            dataGridView1.Columns["statusImg"].Width = 180;
 
             dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["antrean"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
@@ -121,6 +141,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["catatan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["statusImg"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
 
+            dataGridView1.Columns["id_booking"].Visible = false;
+
             dataGridView1.Columns["statusImg"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dataGridView1.Columns["antrean"].HeaderText = "Antrean";
@@ -132,6 +154,11 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["keluhan"].HeaderText = "Keluhan";
             dataGridView1.Columns["catatan"].HeaderText = "Catatan";
             dataGridView1.Columns["statusImg"].HeaderText = "Status";
+
+            dataGridView1.Columns["id_booking"].Frozen = true;
+            dataGridView1.Columns["No"].Frozen = true;
+            dataGridView1.Columns["ktp_pelanggan"].Frozen = true;
+            dataGridView1.Columns["nama_pelanggan"].Frozen = true;
 
 
             dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -213,5 +240,6 @@ namespace Bengkel_Yoga_UKK
                 return (Bitmap)Properties.Resources.ArrowDown;
 
         }
+        #endregion
     }
 }

@@ -26,6 +26,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRiwayat));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
@@ -42,11 +43,16 @@
             label1 = new Label();
             numericEntries = new NumericUpDown();
             btnAddData = new YogaButton();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            nNToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericEntries).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -263,6 +269,33 @@
             btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddData.UseVisualStyleBackColor = false;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { nNToolStripMenuItem, editToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.RenderMode = ToolStripRenderMode.Professional;
+            contextMenuStrip1.Size = new Size(188, 82);
+            // 
+            // nNToolStripMenuItem
+            // 
+            nNToolStripMenuItem.Name = "nNToolStripMenuItem";
+            nNToolStripMenuItem.Size = new Size(187, 26);
+            nNToolStripMenuItem.Text = "Detail Booking";
+            nNToolStripMenuItem.Click += nNToolStripMenuItem_Click;
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(187, 26);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(187, 26);
+            deleteToolStripMenuItem.Text = "Delete";
+            // 
             // FormRiwayat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -280,6 +313,7 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -300,5 +334,9 @@
         private YogaButton btnSearch;
         private ComboBox comboFilter;
         private Label lblShowingEntries;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem nNToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

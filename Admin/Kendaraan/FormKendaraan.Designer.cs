@@ -1,8 +1,6 @@
-﻿using Syncfusion.Windows.Forms.Tools;
-
-namespace Bengkel_Yoga_UKK
+﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormBooking
+    partial class FormKendaraan
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +28,7 @@ namespace Bengkel_Yoga_UKK
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBooking));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKendaraan));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
             lblShowingEntries = new Label();
@@ -46,17 +44,12 @@ namespace Bengkel_Yoga_UKK
             label1 = new Label();
             numericEntries = new NumericUpDown();
             btnAddData = new YogaButton();
-            printPreviewDialog1 = new PrintPreviewDialog();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
-            contextMenuStrip = new ContextMenuStripEx();
-            detailBookingToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip = new Syncfusion.Windows.Forms.Tools.ContextMenuStripEx();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericEntries).BeginInit();
-            contextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -77,7 +70,7 @@ namespace Bengkel_Yoga_UKK
             yogaPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             yogaPanel1.BackColor = Color.White;
             yogaPanel1.BorderColor = Color.PaleVioletRed;
-            yogaPanel1.BorderRadius = 0;
+            yogaPanel1.BorderRadius = 10;
             yogaPanel1.BorderSize = 0;
             yogaPanel1.Controls.Add(lblShowingEntries);
             yogaPanel1.Controls.Add(comboFilter);
@@ -273,44 +266,15 @@ namespace Bengkel_Yoga_UKK
             btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddData.UseVisualStyleBackColor = false;
             // 
-            // printPreviewDialog1
-            // 
-            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
-            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
-            printPreviewDialog1.ClientSize = new Size(400, 300);
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Enabled = true;
-            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
-            printPreviewDialog1.Name = "printPreviewDialog1";
-            printPreviewDialog1.Visible = false;
-            // 
             // contextMenuStrip
             // 
             contextMenuStrip.DropShadowEnabled = false;
-            contextMenuStrip.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            contextMenuStrip.Items.AddRange(new ToolStripItem[] { detailBookingToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip.MetroColor = Color.FromArgb(204, 236, 249);
             contextMenuStrip.Name = "contextMenuStrip";
-            contextMenuStrip.Size = new Size(188, 56);
-            contextMenuStrip.ThemeName = "Office2016Colorful";
-            contextMenuStrip.ThemeStyle.BackColor = Color.FromArgb(52, 152, 219);
-            contextMenuStrip.ThemeStyle.DisabledForeColor = Color.FromArgb(52, 152, 219);
-            contextMenuStrip.ThemeStyle.HoverBackColor = Color.FromArgb(52, 152, 219);
-            contextMenuStrip.ThemeStyle.PressedBackColor = Color.FromArgb(52, 152, 219);
+            contextMenuStrip.Size = new Size(61, 4);
+            contextMenuStrip.ThemeName = "Metro";
             // 
-            // detailBookingToolStripMenuItem
-            // 
-            detailBookingToolStripMenuItem.Name = "detailBookingToolStripMenuItem";
-            detailBookingToolStripMenuItem.Size = new Size(187, 26);
-            detailBookingToolStripMenuItem.Text = "Detail Booking";
-            // 
-            // deleteToolStripMenuItem
-            // 
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(187, 26);
-            deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // FormBooking
+            // FormKendaraan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -319,7 +283,7 @@ namespace Bengkel_Yoga_UKK
             Controls.Add(yogaPanel1);
             Controls.Add(btnAddData);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "FormBooking";
+            Name = "FormKendaraan";
             Text = "Tabel";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             yogaPanel1.ResumeLayout(false);
@@ -327,7 +291,6 @@ namespace Bengkel_Yoga_UKK
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
-            contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -348,10 +311,6 @@ namespace Bengkel_Yoga_UKK
         private YogaButton btnSearch;
         private ComboBox comboFilter;
         private Label lblShowingEntries;
-        private PrintPreviewDialog printPreviewDialog1;
-        private System.Drawing.Printing.PrintDocument printDocument1;
         private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStrip;
-        private ToolStripMenuItem detailBookingToolStripMenuItem;
-        private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

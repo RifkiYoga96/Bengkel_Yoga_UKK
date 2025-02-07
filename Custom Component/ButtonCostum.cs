@@ -306,5 +306,20 @@ namespace Bengkel_Yoga_UKK
         }
     }
 
+    public class CustomContextMenuRenderer : ToolStripProfessionalRenderer
+    {
+        protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+        {
+            if (e.Item.Selected)
+            {
+                e.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), e.Item.Bounds); // Warna hover
+            }
+            else
+            {
+                base.OnRenderMenuItemBackground(e);
+            }
+        }
+    }
+
 
 }
