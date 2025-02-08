@@ -101,7 +101,6 @@ namespace Bengkel_Yoga_UKK
             yogaPanel1.Name = "yogaPanel1";
             yogaPanel1.Size = new Size(1270, 531);
             yogaPanel1.TabIndex = 11;
-            yogaPanel1.Paint += yogaPanel1_Paint;
             // 
             // lblShowingEntries
             // 

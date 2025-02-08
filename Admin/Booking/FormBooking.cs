@@ -34,9 +34,9 @@ namespace Bengkel_Yoga_UKK
         #region EVENT
         private void RegisterEvent()
         {
-            btnSearch.Click += (s, e) =>
-            {
-
+            btnSearch.Click += (s, e) => 
+            { 
+                if (txtSearch.Text.Length > 0) LoadData();
             };
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
@@ -181,6 +181,7 @@ namespace Bengkel_Yoga_UKK
             comboFilterWaktu.DisplayMember = "nama";
         }
         #endregion
+
 
         #region DATAGRID CUSTOM
         private void CustomGrid()
@@ -350,11 +351,6 @@ namespace Bengkel_Yoga_UKK
 
         }
         #endregion
-
-        private void yogaPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
 

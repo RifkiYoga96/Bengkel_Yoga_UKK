@@ -23,6 +23,8 @@ namespace Bengkel_Yoga_UKK
 
             _id_booking = id;
             RegisterEvent();
+
+            GetData();
         }
 
         private void RegisterEvent()
@@ -42,6 +44,8 @@ namespace Bengkel_Yoga_UKK
 
             comboEstimasi.DataSource = new List<string>() { "Menit","Jam" };
 
+           
+
         }
 
         private void GetData()
@@ -55,11 +59,6 @@ namespace Bengkel_Yoga_UKK
             txtKendaraan.Text = $"{data.merk} {data.tipe} {data.kapasitas} ({data.tahun})";
             txtNoPol.Text = data.tanggal.ToString("d MMMM yyyy", new CultureInfo("id-ID"));
             txtKeluhan.Text = data.keluhan;
-           /* foreach(var item in comboServis.CheckedItems)
-                if(item is JasaServisModel jasaServis)
-                    if(jasaServis.nama_jasaServis == )*/
-
-
         }
     }
 }
