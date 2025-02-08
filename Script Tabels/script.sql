@@ -1,4 +1,13 @@
-﻿CREATE TABLE Pelanggan(
+﻿CREATE TABLE Sparepart(
+	kode_sparepart VARCHAR(20) NOT NULL PRIMARY KEY,
+	nama_sparepart VARCHAR(50),
+	jumlah INT,
+	jumlah_minimum INT,
+	harga INT,
+	image_name NVARCHAR(100),
+	image_data VARBINARY(MAX)
+	);
+CREATE TABLE Pelanggan(
 	ktp_pelanggan VARCHAR(30) NOT NULL PRIMARY KEY,
 	nama_pelanggan VARCHAR(100),
 	email VARCHAR(50),
@@ -51,6 +60,19 @@ CREATE TABLE Bookings(
 		ON UPDATE CASCADE
 	);
 
+CREATE TABLE BookingsSparepart(
+	id_booking INT,
+	kode_sparepart VARCHAR(20),
+	FOREIGN KEY (id_booking)
+		REFERENCES Bookings(id_booking)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (kode_sparepart)
+		REFERENCES Sparepart(kode_sparepart)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
+        );
+
 CREATE TABLE Riwayat(
 	id_riwayat INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	ktp_pelanggan VARCHAR(30),
@@ -75,14 +97,6 @@ CREATE TABLE Riwayat(
 	);
 
 
-CREATE TABLE Sparepart(
-	kode_sparepart VARCHAR(20) NOT NULL PRIMARY KEY,
-	nama_sparepart VARCHAR(50),
-	jumlah INT,
-	harga INT,
-	image_name NVARCHAR(100),
-	image_data VARBINARY(MAX)
-	);
 
 CREATE TABLE RiwayatSparepart(
 	id_riwayat INT,
@@ -159,14 +173,30 @@ VALUES
 
 INSERT INTO Sparepart (kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
 VALUES 
-('SP001', 'Oli Mesin', 50, 100000, 'oli_mesin.jpg', NULL),
-('SP002', 'Kampas Rem', 30, 150000, 'kampas_rem.jpg', NULL),
-('SP003', 'Freon AC', 20, 200000, 'freon_ac.jpg', NULL);
+('SP001', 'Oli Mesin', 50, 100000, 'oli_mesin.jpg', (SELECT BulkColumn 
+     FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\velg.jpeg', SINGLE_BLOB) AS img)),
+('SP002', 'Kampas Rem', 30, 150000, 'kampas_rem.jpg', (SELECT BulkColumn 
+     FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg', SINGLE_BLOB) AS img)),
+('SP003', 'Freon AC', 20, 200000, 'freon_ac.jpg', (SELECT BulkColumn 
+     FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg', SINGLE_BLOB) AS img));
+
+INSERT INTO BookingsSparepart (id_booking, kode_sparepart)
+VALUES 
+(1, 'SP002'),
+(2, 'SP001'),
+(2, 'SP002'),
+(3, 'SP001'),
+(3, 'SP002'),
+(3, 'SP003');
 
 INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart)
 VALUES 
+(1, 'SP002'),
+(2, 'SP001'),
+(2, 'SP002'),
+(3, 'SP001'),
 (3, 'SP002'),
-(3, 'SP001'); 
+(3, 'SP003'); 
 
 INSERT INTO JasaServis(nama_jasaServis,harga)
 VALUES

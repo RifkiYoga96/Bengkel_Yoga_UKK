@@ -18,12 +18,14 @@ namespace Bengkel_Yoga_UKK
     public partial class FormProduk : Form
     {
         private BindingSource _bindingSource = new BindingSource();
+
+        private readonly ProdukDal _produkDal = new ProdukDal();
         private int page = 1;
         Bitmap bitmap;
         public FormProduk()
         {
             InitializeComponent();
-            InitDataGrid();
+            LoadData();
             InitCombo();
             CostumGrid();
             //ImageGrid();
@@ -154,13 +156,13 @@ namespace Bengkel_Yoga_UKK
         }
 
 
-        private void InitDataGrid()
+        private void LoadData()
         {
-            // Add data to DataGridView
-            dataGridView1.DataSource = GetData();
+            /*var list = _produkDal.ListData()
+                .Select();*/
         }
 
-        private SortableBindingList<ProdukModel> GetData()
+        private SortableBindingList<ProdukModelS> GetData()
         {
             byte[] ban1 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg", 55, 55);
             byte[] ban2 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg", 55, 55);
@@ -186,22 +188,22 @@ namespace Bengkel_Yoga_UKK
             byte[] pandingBytes = ImageConvert.ImageToByteArray(resizedImage);
             byte[] selesaiBytes = ImageConvert.ImageToByteArray(resizeSelesai);
 
-            return new SortableBindingList<ProdukModel>
+            return new SortableBindingList<ProdukModelS>
                 {
-                    new ProdukModel { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = rcb, PRODUK = "Ban Motor RCB", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
-                    new ProdukModel { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = 0,STOK_MINIMUM=15, HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
-                    new ProdukModel { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new ProdukModel { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new ProdukModel { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModel { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModel { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
-                    new ProdukModel { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModel { NO = 9, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new ProdukModel { NO = 10, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new ProdukModel { NO = 11, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModel { NO = 12, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModel { NO = 13, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
-                    new ProdukModel { NO = 14, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModelS { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = rcb, PRODUK = "Ban Motor RCB", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
+                    new ProdukModelS { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = 0,STOK_MINIMUM=15, HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
+                    new ProdukModelS { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new ProdukModelS { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new ProdukModelS { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModelS { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModelS { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
+                    new ProdukModelS { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModelS { NO = 9, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
+                    new ProdukModelS { NO = 10, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
+                    new ProdukModelS { NO = 11, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModelS { NO = 12, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
+                    new ProdukModelS { NO = 13, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
+                    new ProdukModelS { NO = 14, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
                 };
         }
 
@@ -245,7 +247,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "GAMBAR", "STOK", "STOK_MINIMUM", "KETERANGAN_STOK" };
+                    string[] targetColumns = { "statusImg" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))
@@ -267,12 +269,14 @@ namespace Bengkel_Yoga_UKK
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
         }
+
         private Bitmap CreateSortGlyph(SortOrder sortOrder)
         {
             if (sortOrder == SortOrder.Ascending)
                 return (Bitmap)Properties.Resources.ArrowUp;
             else
                 return (Bitmap)Properties.Resources.ArrowDown;
+
         }
         #endregion
 
