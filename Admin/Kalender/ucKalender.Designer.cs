@@ -31,8 +31,8 @@
             label1 = new Label();
             btnBooking1 = new YogaButton();
             btnCountNotif = new YogaButton();
-            yogaButton1 = new YogaButton();
-            yogaButton2 = new YogaButton();
+            btnBooking2 = new YogaButton();
+            btnBooking3 = new YogaButton();
             SuspendLayout();
             // 
             // label1
@@ -65,6 +65,7 @@
             btnBooking1.Text = "Nama Pelanggan";
             btnBooking1.TextColor = Color.White;
             btnBooking1.UseVisualStyleBackColor = false;
+            btnBooking1.Visible = false;
             // 
             // btnCountNotif
             // 
@@ -87,59 +88,59 @@
             btnCountNotif.UseVisualStyleBackColor = false;
             btnCountNotif.Visible = false;
             // 
-            // yogaButton1
+            // btnBooking2
             // 
-            yogaButton1.BackColor = Color.MediumSlateBlue;
-            yogaButton1.BackgroundColor = Color.MediumSlateBlue;
-            yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 3;
-            yogaButton1.BorderSize = 0;
-            yogaButton1.FlatAppearance.BorderSize = 0;
-            yogaButton1.FlatStyle = FlatStyle.Flat;
-            yogaButton1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            yogaButton1.ForeColor = Color.White;
-            yogaButton1.Location = new Point(3, 65);
-            yogaButton1.Margin = new Padding(0);
-            yogaButton1.Name = "yogaButton1";
-            yogaButton1.Size = new Size(163, 28);
-            yogaButton1.TabIndex = 8;
-            yogaButton1.Text = "Nama Pelanggan";
-            yogaButton1.TextColor = Color.White;
-            yogaButton1.UseVisualStyleBackColor = false;
-            yogaButton1.Visible = false;
+            btnBooking2.BackColor = Color.FromArgb(0, 192, 0);
+            btnBooking2.BackgroundColor = Color.FromArgb(0, 192, 0);
+            btnBooking2.BorderColor = Color.PaleVioletRed;
+            btnBooking2.BorderRadius = 3;
+            btnBooking2.BorderSize = 0;
+            btnBooking2.FlatAppearance.BorderSize = 0;
+            btnBooking2.FlatStyle = FlatStyle.Flat;
+            btnBooking2.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBooking2.ForeColor = Color.White;
+            btnBooking2.Location = new Point(3, 65);
+            btnBooking2.Margin = new Padding(0);
+            btnBooking2.Name = "btnBooking2";
+            btnBooking2.Size = new Size(163, 28);
+            btnBooking2.TabIndex = 8;
+            btnBooking2.Text = "Nama Pelanggan";
+            btnBooking2.TextColor = Color.White;
+            btnBooking2.UseVisualStyleBackColor = false;
+            btnBooking2.Visible = false;
             // 
-            // yogaButton2
+            // btnBooking3
             // 
-            yogaButton2.BackColor = Color.MediumSlateBlue;
-            yogaButton2.BackgroundColor = Color.MediumSlateBlue;
-            yogaButton2.BorderColor = Color.PaleVioletRed;
-            yogaButton2.BorderRadius = 3;
-            yogaButton2.BorderSize = 0;
-            yogaButton2.FlatAppearance.BorderSize = 0;
-            yogaButton2.FlatStyle = FlatStyle.Flat;
-            yogaButton2.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            yogaButton2.ForeColor = Color.White;
-            yogaButton2.Location = new Point(3, 93);
-            yogaButton2.Margin = new Padding(0);
-            yogaButton2.Name = "yogaButton2";
-            yogaButton2.Size = new Size(163, 28);
-            yogaButton2.TabIndex = 9;
-            yogaButton2.Text = "Nama Pelanggan";
-            yogaButton2.TextColor = Color.White;
-            yogaButton2.UseVisualStyleBackColor = false;
-            yogaButton2.Visible = false;
+            btnBooking3.BackColor = Color.MediumSlateBlue;
+            btnBooking3.BackgroundColor = Color.MediumSlateBlue;
+            btnBooking3.BorderColor = Color.PaleVioletRed;
+            btnBooking3.BorderRadius = 3;
+            btnBooking3.BorderSize = 0;
+            btnBooking3.FlatAppearance.BorderSize = 0;
+            btnBooking3.FlatStyle = FlatStyle.Flat;
+            btnBooking3.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnBooking3.ForeColor = Color.White;
+            btnBooking3.Location = new Point(3, 93);
+            btnBooking3.Margin = new Padding(0);
+            btnBooking3.Name = "btnBooking3";
+            btnBooking3.Size = new Size(163, 28);
+            btnBooking3.TabIndex = 9;
+            btnBooking3.Text = "Nama Pelanggan";
+            btnBooking3.TextColor = Color.White;
+            btnBooking3.UseVisualStyleBackColor = false;
+            btnBooking3.Visible = false;
             // 
-            // ucCalendar
+            // ucKalender
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(btnCountNotif);
-            Controls.Add(yogaButton2);
-            Controls.Add(yogaButton1);
+            Controls.Add(btnBooking3);
+            Controls.Add(btnBooking2);
             Controls.Add(btnBooking1);
             Controls.Add(label1);
-            Name = "ucCalendar";
+            Name = "ucKalender";
             Size = new Size(169, 127);
             ResumeLayout(false);
             PerformLayout();
@@ -150,7 +151,7 @@
         private Label label1;
         private YogaButton btnBooking1;
         private YogaButton btnCountNotif;
-        private YogaButton yogaButton1;
-        private YogaButton yogaButton2;
+        private YogaButton btnBooking2;
+        private YogaButton btnBooking3;
     }
 }

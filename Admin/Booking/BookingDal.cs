@@ -10,17 +10,18 @@ namespace Bengkel_Yoga_UKK
 {
     public class BookingDal
     {
-        public IEnumerable<BookingModel> ListData()
+        public IEnumerable<BookingModel> ListData(FilterDto filter)
         {
-            const string sql = @"SELECT b.*, p.nama_pelanggan, k.merk, k.tipe,
+            string sql = $@"SELECT b.*, p.nama_pelanggan, k.merk, k.tipe,
                                 k.kapasitas, k.tahun
                                 FROM Bookings b 
                                 INNER JOIN Pelanggan p
                                     ON b.ktp_pelanggan = p.ktp_pelanggan
                                 INNER JOIN Kendaraan k
-                                    ON b.no_pol = k.no_pol";
+                                    ON b.no_pol = k.no_pol
+                                {filter.sql}";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<BookingModel>(sql);
+            return koneksi.Query<BookingModel>(sql,filter.param);
         }
 
         public BookingModel? GetData(int id_booking)

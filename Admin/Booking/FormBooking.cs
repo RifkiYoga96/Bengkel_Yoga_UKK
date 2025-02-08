@@ -1,8 +1,11 @@
-﻿using Syncfusion.Windows.Forms.Tools;
+﻿using Dapper;
+using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,23 +19,54 @@ namespace Bengkel_Yoga_UKK
         private readonly BookingDal _bookingDal = new BookingDal();
         private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending, 90, 90));
         private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan, 90, 90));
-        public FormBooking()
+        private bool _rangeTanggal = false;
+        public FormBooking(DateTime tanggal = default)
         {
             InitializeComponent();
+            if (tanggal == default)
+                tanggal = new DateTime(2025, 1, 1);
+            InitComponen();
             RegisterEvent();
             LoadData();
             CustomGrid();
         }
 
+        #region EVENT
         private void RegisterEvent()
         {
             btnSearch.Click += (s, e) =>
             {
-                
+
             };
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             detailBookingToolStripMenuItem.Click += DetailBookingToolStripMenuItem_Click;
+
+
+            //Filter
+            txtSearch.KeyDown += (s, e) =>
+            {
+                if(e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    LoadData();
+                }
+            };
+            tgl1.ValueChanged += Tgl_ValueChanged;
+            tgl2.ValueChanged += Tgl_ValueChanged;
+            comboFilterWaktu.SelectedValueChanged += ComboFilterWaktu_SelectedValueChanged;
+        }
+
+        private void ComboFilterWaktu_SelectedValueChanged(object? sender, EventArgs e)
+        {
+            _rangeTanggal = false;
+            LoadData();
+        }
+
+        private void Tgl_ValueChanged(object? sender, EventArgs e)
+        {
+            _rangeTanggal = true;
+            LoadData();
         }
 
         private void DetailBookingToolStripMenuItem_Click(object? sender, EventArgs e)
@@ -50,12 +84,66 @@ namespace Bengkel_Yoga_UKK
                 contextMenuStrip.Show(Cursor.Position);
             }
         }
+        #endregion
 
-        #region DATAGRID
+        #region DATAGRID LOAD
+        private FilterDto? Filter()
+        {
+            string search = txtSearch.Text;
+            string status = comboFilterStatus.SelectedItem?.ToString()?.ToLower() ?? string.Empty;
+
+            DateTime filterWaktu1 = ((FilterWaktu)comboFilterWaktu.SelectedItem).waktu1;
+            DateTime filterWaktu2 = ((FilterWaktu)comboFilterWaktu.SelectedItem).waktu2;
+
+            DateTime tanggal1 = tgl1.Value.Date;
+            DateTime tanggal2 = tgl2.Value.Date;
+
+
+            string sql = @"";
+            var dp = new DynamicParameters();
+            List<string> fltr = new List<string>();
+
+            if (search != string.Empty)
+            {
+                fltr.Add("(b.ktp_pelanggan LIKE @search + '%' OR b.no_pol LIKE '%' + @search + '%' OR p.nama_pelanggan LIKE '%' + @search + '%')");
+                dp.Add(@"search",search);
+            }
+            if(status != string.Empty && comboFilterStatus.SelectedIndex != 0)
+            {
+                fltr.Add("(b.status = @status)");
+                dp.Add(@"status",status);
+            }
+            if(comboFilterWaktu.SelectedIndex != 0 && !_rangeTanggal)
+            {
+                fltr.Add("(b.tanggal BETWEEN @filterWaktu1 AND @filterWaktu2)");
+                dp.Add(@"filterWaktu1",filterWaktu1);
+                dp.Add(@"filterWaktu2",filterWaktu2);
+            }
+            if (_rangeTanggal)
+            {
+                fltr.Add("(b.tanggal BETWEEN @tanggal1 AND @tanggal2)");
+                dp.Add(@"tanggal1",tanggal1);
+                dp.Add(@"tanggal2",tanggal2);
+            }
+
+
+            if (fltr.Count > 0)
+                sql += " WHERE " + string.Join(" AND ",fltr);
+
+
+            var filterResult = new FilterDto
+            {
+                sql = sql,
+                param = dp
+            };
+            MessageBox.Show($"{sql} --- {dp}");
+            return filterResult;
+        }
+
         private void LoadData()
         {
             int i = 1;
-            var list = _bookingDal.ListData()
+            var list = _bookingDal.ListData(Filter() ?? new FilterDto())
                 .Select(x => new BookingDto
                 {
                     id_booking = x.id_booking,
@@ -73,7 +161,28 @@ namespace Bengkel_Yoga_UKK
 
             dataGridView1.DataSource = new SortableBindingList<BookingDto>(list);
         }
+        #endregion
 
+        #region INIT COMPONENT
+        private void InitComponen()
+        {
+            comboFilterStatus.DataSource = new List<string>() { "Semua(All)","Pending","Dikerjakan" };
+
+            DateTime now = DateTime.Today;
+            var listFilterWaktu = new List<FilterWaktu>()
+            {
+                new FilterWaktu{ nama = "--Pilih Waktu--", waktu1= now,waktu2=now},
+                new FilterWaktu{ nama = "Hari ini", waktu1 = now, waktu2 = now },
+                new FilterWaktu{ nama = "Kemarin", waktu1 = now.AddDays(-1), waktu2 = now.AddDays(-1) },
+                new FilterWaktu{ nama = "7 hari sebelumnya", waktu1 = now.AddDays(-6), waktu2 = now },
+                new FilterWaktu{ nama = "30 hari sebelumnya", waktu1 = now.AddDays(-29), waktu2 = now }
+            };
+            comboFilterWaktu.DataSource = listFilterWaktu;
+            comboFilterWaktu.DisplayMember = "nama";
+        }
+        #endregion
+
+        #region DATAGRID CUSTOM
         private void CustomGrid()
         {
             dataGridView1.BackgroundColor = Color.White;
@@ -241,5 +350,23 @@ namespace Bengkel_Yoga_UKK
 
         }
         #endregion
+
+        private void yogaPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
+}
+
+public class FilterDto
+{
+    public string sql { get; set; } = string.Empty;
+    public object param { get; set; } = new DynamicParameters();
+}
+
+public class FilterWaktu
+{
+    public string nama { get; set; }
+    public DateTime waktu1 { get; set; }
+    public DateTime waktu2 { get; set; }
 }

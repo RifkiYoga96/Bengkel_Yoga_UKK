@@ -15,9 +15,11 @@ namespace Bengkel_Yoga_UKK
         private readonly RiwayatDal _riwayatDal = new RiwayatDal();
         private byte[] _selesai = ImageConvert.ImageToByteArray(ImageConvert.ResizeImagePersentase(Properties.Resources.Selesai, 15));
         private byte[] _dibatalkan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImagePersentase(Properties.Resources.Dibatalkan, 15));
-        public FormRiwayat()
+        public FormRiwayat(DateTime tanggal = default)
         {
             InitializeComponent();
+            if (tanggal == default)
+                tanggal = new DateTime(2025,1,1);
             RegisterEvent();
             LoadData();
             CustomGrid();

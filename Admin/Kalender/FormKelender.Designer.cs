@@ -547,9 +547,9 @@
             lblDone.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblDone.Location = new Point(89, 72);
             lblDone.Name = "lblDone";
-            lblDone.Size = new Size(47, 21);
+            lblDone.Size = new Size(58, 21);
             lblDone.TabIndex = 14;
-            lblDone.Text = "Done";
+            lblDone.Text = "Selesai";
             // 
             // lblPending
             // 
@@ -569,9 +569,9 @@
             lblCancel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblCancel.Location = new Point(89, 150);
             lblCancel.Name = "lblCancel";
-            lblCancel.Size = new Size(56, 21);
+            lblCancel.Size = new Size(84, 21);
             lblCancel.TabIndex = 17;
-            lblCancel.Text = "Cancel";
+            lblCancel.Text = "Dibatalkan";
             // 
             // yogaButton4
             // 
