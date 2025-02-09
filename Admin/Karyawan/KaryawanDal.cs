@@ -17,6 +17,13 @@ namespace Bengkel_Yoga_UKK
             return koneksi.Query<KaryawanModel>(sql);
         }
 
+        public KaryawanModel? GetData(string ktp_admin)
+        {
+            const string sql = @"SELECT * FROM Admins WHERE ktp_admin = @ktp_admin";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new {ktp_admin = ktp_admin});
+        }
+
         public void InsertData()
         {
             const string sql = @"INSERT INTO Admins(js,s,s,s,)";

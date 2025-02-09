@@ -28,6 +28,13 @@ namespace Bengkel_Yoga_UKK
         public ImageCropTest(Image image)
         {
             InitializeComponent();
+
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ControlBox = false;
+
+
+
             originalImage = image;
             InitPicture();
 
@@ -286,7 +293,7 @@ namespace Bengkel_Yoga_UKK
 
             // Atur PictureBox ke tengah form atau parent container
             pictureBox1.Anchor = AnchorStyles.None; // Non-aktifkan anchor
-            pictureBox1.Location = new Point((this.ClientSize.Width - pictureBox1.Width) / 2,pictureBox1.Location.Y);
+            pictureBox1.Location = new Point((panel1.Width - pictureBox1.Width) / 2, (panel1.Height - pictureBox1.Height)/2);
         }
 
         public static Image ResizeImage(Image image, int maxWidth, int maxHeight)
@@ -302,11 +309,6 @@ namespace Bengkel_Yoga_UKK
                 g.DrawImage(image, 0, 0, newWidth, newHeight);
             }
             return newImage;
-        }
-
-        private void btnCrop_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

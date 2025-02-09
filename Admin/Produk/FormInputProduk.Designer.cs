@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInputProduk));
             panel1 = new Panel();
             lblHeader = new Label();
-            label1 = new Label();
             label3 = new Label();
             label4 = new Label();
             txtNamaProduk = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -48,16 +47,15 @@
             txtStokMinimum = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
             btnChooseFile = new YogaButton();
             pictureBox1 = new PictureBox();
-            panel2 = new Panel();
-            txtImage = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            lblErrorProduk = new Label();
+            lblErrorHarga = new Label();
+            lblErrorStokMin = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtNamaProduk).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtHarga).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtStok).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtStokMinimum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txtImage).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -78,31 +76,19 @@
             lblHeader.Name = "lblHeader";
             lblHeader.Size = new Size(476, 43);
             lblHeader.TabIndex = 11;
-            lblHeader.Text = "Input Produk";
+            lblHeader.Text = "Input Sparepart";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(21, 177);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 25);
-            label1.TabIndex = 12;
-            label1.Text = "Foto:";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ControlDarkDark;
-            label3.Location = new Point(20, 250);
+            label3.Location = new Point(16, 250);
             label3.Name = "label3";
-            label3.Size = new Size(130, 25);
+            label3.Size = new Size(155, 25);
             label3.TabIndex = 15;
-            label3.Text = "Nama Produk:";
+            label3.Text = "Nama Sparepart*";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -110,23 +96,23 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ControlDarkDark;
-            label4.Location = new Point(20, 327);
+            label4.Location = new Point(16, 327);
             label4.Name = "label4";
-            label4.Size = new Size(65, 25);
+            label4.Size = new Size(69, 25);
             label4.TabIndex = 24;
-            label4.Text = "Harga:";
+            label4.Text = "Harga*";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtNamaProduk
             // 
             txtNamaProduk.BackColor = Color.White;
-            txtNamaProduk.BeforeTouchSize = new Size(157, 27);
+            txtNamaProduk.BeforeTouchSize = new Size(186, 27);
             txtNamaProduk.BorderColor = Color.FromArgb(209, 211, 212);
             txtNamaProduk.BorderStyle = BorderStyle.FixedSingle;
             txtNamaProduk.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNamaProduk.Location = new Point(162, 250);
+            txtNamaProduk.Location = new Point(177, 250);
             txtNamaProduk.Name = "txtNamaProduk";
-            txtNamaProduk.Size = new Size(293, 27);
+            txtNamaProduk.Size = new Size(278, 27);
             txtNamaProduk.TabIndex = 26;
             txtNamaProduk.ThemeName = "Default";
             // 
@@ -135,27 +121,27 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlDarkDark;
-            label6.Location = new Point(20, 404);
+            label6.Location = new Point(16, 404);
             label6.Name = "label6";
-            label6.Size = new Size(53, 25);
+            label6.Size = new Size(56, 25);
             label6.TabIndex = 28;
-            label6.Text = "Stok:";
+            label6.Text = "Stok*";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtHarga
             // 
             txtHarga.AccessibilityEnabled = true;
-            txtHarga.BeforeTouchSize = new Size(157, 27);
+            txtHarga.BeforeTouchSize = new Size(186, 27);
             txtHarga.BorderColor = Color.FromArgb(209, 211, 212);
             txtHarga.BorderStyle = BorderStyle.FixedSingle;
-            txtHarga.DecimalValue = new decimal(new int[] { 1, 0, 0, 0 });
+            txtHarga.DecimalValue = new decimal(new int[] { 0, 0, 0, 0 });
             txtHarga.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtHarga.Location = new Point(162, 327);
-            txtHarga.MinValue = new decimal(new int[] { 1, 0, 0, 0 });
+            txtHarga.Location = new Point(177, 327);
+            txtHarga.MinValue = new decimal(new int[] { 0, 0, 0, 0 });
             txtHarga.Name = "txtHarga";
-            txtHarga.Size = new Size(293, 27);
+            txtHarga.Size = new Size(278, 27);
             txtHarga.TabIndex = 30;
-            txtHarga.Text = "Rp1";
+            txtHarga.Text = "Rp0";
             txtHarga.ThemeName = "Metro";
             // 
             // btnMinStok
@@ -169,7 +155,7 @@
             btnMinStok.FlatStyle = FlatStyle.Flat;
             btnMinStok.ForeColor = Color.White;
             btnMinStok.Image = (Image)resources.GetObject("btnMinStok.Image");
-            btnMinStok.Location = new Point(162, 404);
+            btnMinStok.Location = new Point(177, 404);
             btnMinStok.Name = "btnMinStok";
             btnMinStok.Size = new Size(40, 27);
             btnMinStok.TabIndex = 31;
@@ -225,7 +211,7 @@
             btnMinStokMinimum.FlatStyle = FlatStyle.Flat;
             btnMinStokMinimum.ForeColor = Color.White;
             btnMinStokMinimum.Image = (Image)resources.GetObject("btnMinStokMinimum.Image");
-            btnMinStokMinimum.Location = new Point(162, 481);
+            btnMinStokMinimum.Location = new Point(177, 481);
             btnMinStokMinimum.Name = "btnMinStokMinimum";
             btnMinStokMinimum.Size = new Size(40, 27);
             btnMinStokMinimum.TabIndex = 34;
@@ -237,11 +223,11 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ControlDarkDark;
-            label5.Location = new Point(21, 481);
+            label5.Location = new Point(16, 481);
             label5.Name = "label5";
-            label5.Size = new Size(138, 25);
+            label5.Size = new Size(142, 25);
             label5.TabIndex = 36;
-            label5.Text = "Stok Minimum:";
+            label5.Text = "Stok Minimum*";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnSave
@@ -266,17 +252,17 @@
             // txtStok
             // 
             txtStok.AccessibilityEnabled = true;
-            txtStok.BeforeTouchSize = new Size(157, 27);
+            txtStok.BeforeTouchSize = new Size(186, 27);
             txtStok.BorderColor = Color.FromArgb(209, 211, 212);
             txtStok.BorderStyle = BorderStyle.FixedSingle;
             txtStok.DoubleValue = 1D;
             txtStok.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtStok.Location = new Point(208, 404);
+            txtStok.Location = new Point(223, 404);
             txtStok.MaxValue = 10000D;
             txtStok.MinValue = 0D;
             txtStok.Name = "txtStok";
             txtStok.NumberDecimalDigits = 2;
-            txtStok.Size = new Size(201, 27);
+            txtStok.Size = new Size(186, 27);
             txtStok.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             txtStok.TabIndex = 39;
             txtStok.Text = "1,00";
@@ -286,17 +272,17 @@
             // txtStokMinimum
             // 
             txtStokMinimum.AccessibilityEnabled = true;
-            txtStokMinimum.BeforeTouchSize = new Size(157, 27);
+            txtStokMinimum.BeforeTouchSize = new Size(186, 27);
             txtStokMinimum.BorderColor = Color.FromArgb(209, 211, 212);
             txtStokMinimum.BorderStyle = BorderStyle.FixedSingle;
             txtStokMinimum.DoubleValue = 1D;
             txtStokMinimum.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtStokMinimum.Location = new Point(208, 481);
+            txtStokMinimum.Location = new Point(223, 481);
             txtStokMinimum.MaxValue = 10000D;
             txtStokMinimum.MinValue = 0D;
             txtStokMinimum.Name = "txtStokMinimum";
             txtStokMinimum.NumberDecimalDigits = 2;
-            txtStokMinimum.Size = new Size(201, 27);
+            txtStokMinimum.Size = new Size(186, 27);
             txtStokMinimum.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Metro;
             txtStokMinimum.TabIndex = 40;
             txtStokMinimum.Text = "1,00";
@@ -313,11 +299,11 @@
             btnChooseFile.FlatAppearance.BorderSize = 0;
             btnChooseFile.FlatStyle = FlatStyle.Flat;
             btnChooseFile.ForeColor = Color.White;
-            btnChooseFile.Location = new Point(199, 80);
+            btnChooseFile.Location = new Point(177, 175);
             btnChooseFile.Name = "btnChooseFile";
-            btnChooseFile.Size = new Size(82, 27);
+            btnChooseFile.Size = new Size(115, 27);
             btnChooseFile.TabIndex = 64;
-            btnChooseFile.Text = "Choose File";
+            btnChooseFile.Text = "Upload Foto";
             btnChooseFile.TextColor = Color.White;
             btnChooseFile.UseVisualStyleBackColor = false;
             // 
@@ -326,43 +312,55 @@
             pictureBox1.BackgroundImage = Properties.Resources.defaultImage;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Location = new Point(177, 54);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(115, 115);
             pictureBox1.TabIndex = 67;
             pictureBox1.TabStop = false;
             // 
-            // panel2
+            // lblErrorProduk
             // 
-            panel2.BackColor = Color.White;
-            panel2.Controls.Add(txtImage);
-            panel2.Controls.Add(btnChooseFile);
-            panel2.Controls.Add(pictureBox1);
-            panel2.Location = new Point(162, 81);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(293, 121);
-            panel2.TabIndex = 68;
+            lblErrorProduk.AutoSize = true;
+            lblErrorProduk.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorProduk.ForeColor = Color.Red;
+            lblErrorProduk.Location = new Point(280, 228);
+            lblErrorProduk.Name = "lblErrorProduk";
+            lblErrorProduk.Size = new Size(175, 19);
+            lblErrorProduk.TabIndex = 68;
+            lblErrorProduk.Text = "Nama sparepart wajib diisi*";
             // 
-            // txtImage
+            // lblErrorHarga
             // 
-            txtImage.BackColor = Color.Gainsboro;
-            txtImage.BeforeTouchSize = new Size(157, 27);
-            txtImage.BorderColor = Color.Gray;
-            txtImage.BorderStyle = BorderStyle.FixedSingle;
-            txtImage.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtImage.Location = new Point(124, 3);
-            txtImage.Name = "txtImage";
-            txtImage.ReadOnly = true;
-            txtImage.Size = new Size(157, 27);
-            txtImage.TabIndex = 69;
-            txtImage.ThemeName = "Default";
+            lblErrorHarga.AutoSize = true;
+            lblErrorHarga.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorHarga.ForeColor = Color.Red;
+            lblErrorHarga.Location = new Point(325, 305);
+            lblErrorHarga.Name = "lblErrorHarga";
+            lblErrorHarga.Size = new Size(130, 19);
+            lblErrorHarga.TabIndex = 69;
+            lblErrorHarga.Text = "Harga tidak boleh 0";
+            // 
+            // lblErrorStokMin
+            // 
+            lblErrorStokMin.AutoSize = true;
+            lblErrorStokMin.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorStokMin.ForeColor = Color.Red;
+            lblErrorStokMin.Location = new Point(267, 459);
+            lblErrorStokMin.Name = "lblErrorStokMin";
+            lblErrorStokMin.Size = new Size(188, 19);
+            lblErrorStokMin.TabIndex = 71;
+            lblErrorStokMin.Text = "Stok minimum harus diatas 0";
             // 
             // FormInputProduk
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(476, 600);
-            Controls.Add(panel2);
+            Controls.Add(lblErrorStokMin);
+            Controls.Add(lblErrorHarga);
+            Controls.Add(lblErrorProduk);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnChooseFile);
             Controls.Add(txtStokMinimum);
             Controls.Add(txtStok);
             Controls.Add(btnSave);
@@ -376,7 +374,6 @@
             Controls.Add(txtNamaProduk);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FormInputProduk";
@@ -386,9 +383,6 @@
             ((System.ComponentModel.ISupportInitialize)txtStok).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtStokMinimum).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)txtImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -397,7 +391,6 @@
 
         private Panel panel1;
         private Label lblHeader;
-        private Label label1;
         private Label label3;
         private Label label4;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNamaProduk;
@@ -413,7 +406,8 @@
         private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtStokMinimum;
         private YogaButton btnChooseFile;
         private PictureBox pictureBox1;
-        private Panel panel2;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtImage;
+        private Label lblErrorProduk;
+        private Label lblErrorHarga;
+        private Label lblErrorStokMin;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKaryawan));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
@@ -44,11 +45,15 @@
             label1 = new Label();
             numericEntries = new NumericUpDown();
             btnAddData = new YogaButton();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            editToolStripMenuItem = new ToolStripMenuItem();
+            hapisToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericEntries).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -254,7 +259,7 @@
             btnAddData.FlatStyle = FlatStyle.Flat;
             btnAddData.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddData.ForeColor = Color.White;
-            btnAddData.Image = Properties.Resources.Dibatalkan;
+            btnAddData.Image = Properties.Resources.plus;
             btnAddData.Location = new Point(28, 16);
             btnAddData.Name = "btnAddData";
             btnAddData.Padding = new Padding(10, 0, 0, 0);
@@ -264,6 +269,25 @@
             btnAddData.TextColor = Color.White;
             btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddData.UseVisualStyleBackColor = false;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, hapisToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(129, 56);
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(128, 26);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // hapisToolStripMenuItem
+            // 
+            hapisToolStripMenuItem.Name = "hapisToolStripMenuItem";
+            hapisToolStripMenuItem.Size = new Size(128, 26);
+            hapisToolStripMenuItem.Text = "Delete";
             // 
             // FormKaryawan
             // 
@@ -282,6 +306,7 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -302,5 +327,8 @@
         private YogaButton btnSearch;
         private ComboBox comboFilter;
         private Label lblShowingEntries;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem hapisToolStripMenuItem;
     }
 }

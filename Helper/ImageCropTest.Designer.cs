@@ -31,7 +31,9 @@
             pictureBox1 = new PictureBox();
             btnSave = new YogaButton();
             btnCancel = new YogaButton();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -84,17 +86,28 @@
             btnCancel.TextColor = SystemColors.ControlDarkDark;
             btnCancel.UseVisualStyleBackColor = false;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(pictureBox1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(372, 372);
+            panel1.TabIndex = 3;
+            // 
             // ImageCropTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(372, 419);
+            Controls.Add(panel1);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
-            Controls.Add(pictureBox1);
             Name = "ImageCropTest";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Crop Image";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -104,5 +117,6 @@
         private YogaButton btnSave;
         private Button btnUpload;
         private YogaButton btnCancel;
+        private Panel panel1;
     }
 }

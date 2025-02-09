@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             lblHeader = new Label();
-            label1 = new Label();
             label3 = new Label();
             label4 = new Label();
             txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -82,18 +81,6 @@
             lblHeader.TabIndex = 11;
             lblHeader.Text = "Input Pelanggan";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(25, 196);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 25);
-            label1.TabIndex = 12;
-            label1.Text = "Foto:";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -387,7 +374,6 @@
             Controls.Add(txtNama);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FormInputPelanggan";
@@ -410,7 +396,6 @@
 
         private Panel panel1;
         private Label lblHeader;
-        private Label label1;
         private Label label3;
         private Label label4;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;

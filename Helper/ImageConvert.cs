@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,12 @@ namespace Bengkel_Yoga_UKK
             }
         }
 
+        public static Image Image_ByteToImage(byte[] image_data)
+        {
+            using MemoryStream ms = new MemoryStream(image_data);
+            return Image.FromStream(ms);
+        }
+
 
         public static byte[] ImageToByteMaxSize(string imgDirectory, int width, int height)
         {
@@ -105,6 +112,39 @@ namespace Bengkel_Yoga_UKK
                 }
             }
         }
+
+        #endregion
+
+        #region IMAGE CIRCLE
+        public static Image CropToCircle(Image srcImage)
+        {
+            int size = Math.Min(srcImage.Width, srcImage.Height);
+            Bitmap bmp = new Bitmap(size, size, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias; // Pastikan anti-aliasing aktif
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic; // Buat tepi lebih halus
+                g.CompositingQuality = CompositingQuality.HighQuality; // Hindari artefak pecah
+                g.Clear(Color.Transparent); // Pastikan background transparan
+
+                using (GraphicsPath path = new GraphicsPath())
+                {
+                    path.AddEllipse(0, 0, size, size);
+
+                    // Buat tepi lebih halus dengan FillPath
+                    using (SolidBrush brush = new SolidBrush(Color.Black))
+                    {
+                        g.FillPath(brush, path);
+                    }
+                    g.SetClip(path);
+
+                    g.DrawImage(srcImage, 0, 0, size, size);
+                }
+            }
+            return bmp;
+        }
+
 
         #endregion
     }

@@ -14,6 +14,7 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private int page = 1;
+        private byte[] _defaultProfile = ImageDirectory._defaultProfile;
         public FormKaryawan()
         {
             InitializeComponent();
@@ -28,11 +29,26 @@ namespace Bengkel_Yoga_UKK
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
             btnAddData.Click += BtnAddData_Click;
+            dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
+            editToolStripMenuItem.Click += EditToolStripMenuItem_Click;
+            
+        }
+
+        private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            string ktp_admin = dataGridView1.CurrentRow.Cells[1].Value?.ToString() ?? string.Empty;
+            if (new FormInputKaryawan(ktp_admin, false).ShowDialog() != DialogResult.OK) return;
+        }
+
+        private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                contextMenuStrip1.Show(Cursor.Position);
         }
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            new FormInputKaryawan().ShowDialog();
+            new FormInputKaryawan("",true).ShowDialog();
         }
 
         private void BtnPrevious_Click(object? sender, EventArgs e)
@@ -152,7 +168,8 @@ namespace Bengkel_Yoga_UKK
                 {
                     No = number ++,
                     ktp_admin = x.ktp_admin,
-                    Foto = x.image_data != null ? ImageConvert.ResizeImageBytes(x.image_data,55,55) : null,
+                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.CropToCircle(ImageConvert.ResizeImageMax(ImageConvert.Image_ByteToImage(x.image_data),55,55))) 
+                        : _defaultProfile,
                     Nama = x.nama_admin,
                     Email = x.email,
                     Password = x.password,
