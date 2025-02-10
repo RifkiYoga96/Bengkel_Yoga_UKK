@@ -136,7 +136,6 @@ namespace Bengkel_Yoga_UKK
                 sql = sql,
                 param = dp
             };
-            MessageBox.Show($"{sql} --- {dp}");
             return filterResult;
         }
 
