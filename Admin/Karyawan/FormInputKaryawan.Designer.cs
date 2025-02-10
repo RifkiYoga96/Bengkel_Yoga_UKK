@@ -36,8 +36,6 @@
             txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             btnSave = new YogaButton();
             txtNoKTP = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            radioKaryawan = new MaterialSkin.Controls.MaterialRadioButton();
-            radioSuperAdmin = new MaterialSkin.Controls.MaterialRadioButton();
             txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             txtEmail = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label9 = new Label();
@@ -59,7 +57,7 @@
             label7 = new Label();
             label8 = new Label();
             label11 = new Label();
-            label15 = new Label();
+            comboPegawai = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).BeginInit();
@@ -142,7 +140,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(804, 485);
+            btnSave.Location = new Point(804, 504);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 36);
             btnSave.TabIndex = 37;
@@ -163,40 +161,6 @@
             txtNoKTP.Size = new Size(293, 27);
             txtNoKTP.TabIndex = 39;
             txtNoKTP.ThemeName = "Default";
-            // 
-            // radioKaryawan
-            // 
-            radioKaryawan.AutoSize = true;
-            radioKaryawan.Depth = 0;
-            radioKaryawan.ForeColor = SystemColors.ControlDarkDark;
-            radioKaryawan.Location = new Point(619, 415);
-            radioKaryawan.Margin = new Padding(0);
-            radioKaryawan.MouseLocation = new Point(-1, -1);
-            radioKaryawan.MouseState = MaterialSkin.MouseState.HOVER;
-            radioKaryawan.Name = "radioKaryawan";
-            radioKaryawan.Ripple = true;
-            radioKaryawan.Size = new Size(106, 37);
-            radioKaryawan.TabIndex = 44;
-            radioKaryawan.TabStop = true;
-            radioKaryawan.Text = "Karyawan";
-            radioKaryawan.UseVisualStyleBackColor = true;
-            // 
-            // radioSuperAdmin
-            // 
-            radioSuperAdmin.AutoSize = true;
-            radioSuperAdmin.Depth = 0;
-            radioSuperAdmin.ForeColor = SystemColors.ControlDarkDark;
-            radioSuperAdmin.Location = new Point(752, 415);
-            radioSuperAdmin.Margin = new Padding(0);
-            radioSuperAdmin.MouseLocation = new Point(-1, -1);
-            radioSuperAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            radioSuperAdmin.Name = "radioSuperAdmin";
-            radioSuperAdmin.Ripple = true;
-            radioSuperAdmin.Size = new Size(126, 37);
-            radioSuperAdmin.TabIndex = 45;
-            radioSuperAdmin.TabStop = true;
-            radioSuperAdmin.Text = "Super Admin";
-            radioSuperAdmin.UseVisualStyleBackColor = true;
             // 
             // txtPassword
             // 
@@ -352,7 +316,7 @@
             yogaButton1.FlatStyle = FlatStyle.Flat;
             yogaButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton1.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton1.Location = new Point(687, 485);
+            yogaButton1.Location = new Point(687, 504);
             yogaButton1.Name = "yogaButton1";
             yogaButton1.Size = new Size(108, 36);
             yogaButton1.TabIndex = 62;
@@ -391,7 +355,7 @@
             btnChooseFile.Name = "btnChooseFile";
             btnChooseFile.Size = new Size(82, 27);
             btnChooseFile.TabIndex = 64;
-            btnChooseFile.Text = "Choose File";
+            btnChooseFile.Text = "Upload Foto";
             btnChooseFile.TextColor = Color.White;
             btnChooseFile.UseVisualStyleBackColor = false;
             // 
@@ -487,25 +451,22 @@
             label11.TextAlign = ContentAlignment.MiddleRight;
             label11.Visible = false;
             // 
-            // label15
+            // comboPegawai
             // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.ForeColor = Color.Red;
-            label15.Location = new Point(619, 452);
-            label15.Name = "label15";
-            label15.Size = new Size(140, 17);
-            label15.TabIndex = 84;
-            label15.Text = "Pilih salah satu jabatan";
-            label15.TextAlign = ContentAlignment.MiddleRight;
-            label15.Visible = false;
+            comboPegawai.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboPegawai.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboPegawai.FormattingEnabled = true;
+            comboPegawai.Location = new Point(619, 419);
+            comboPegawai.Name = "comboPegawai";
+            comboPegawai.Size = new Size(293, 28);
+            comboPegawai.TabIndex = 83;
             // 
             // FormInputKaryawan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 542);
-            Controls.Add(label15);
+            ClientSize = new Size(937, 561);
+            Controls.Add(comboPegawai);
             Controls.Add(label11);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -525,8 +486,6 @@
             Controls.Add(txtEmail);
             Controls.Add(label9);
             Controls.Add(label10);
-            Controls.Add(radioSuperAdmin);
-            Controls.Add(radioKaryawan);
             Controls.Add(txtNoKTP);
             Controls.Add(btnSave);
             Controls.Add(txtNama);
@@ -559,8 +518,6 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;
         private YogaButton btnSave;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoKTP;
-        private MaterialSkin.Controls.MaterialRadioButton radioKaryawan;
-        private MaterialSkin.Controls.MaterialRadioButton radioSuperAdmin;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtPassword;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtEmail;
         private Label label9;
@@ -582,6 +539,6 @@
         private Label label7;
         private Label label8;
         private Label label11;
-        private Label label15;
+        private ComboBox comboPegawai;
     }
 }

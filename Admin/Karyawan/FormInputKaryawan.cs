@@ -17,9 +17,13 @@ namespace Bengkel_Yoga_UKK
         public FormInputKaryawan(string ktp_admin,bool IsInsert = true)
         {
             InitializeComponent();
+            InitComponen();
             RegisterEvent();
             if (!IsInsert)
+            {
                 GetData(ktp_admin);
+                lblHeader.Text = "Edit Pegawai";
+            } 
         }
 
         private void RegisterEvent()
@@ -30,7 +34,7 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnSave_Click(object? sender, EventArgs e)
         {
-            
+            SaveData();
         }
 
         private void BtnChooseFile_Click(object? sender, EventArgs e)
@@ -42,24 +46,38 @@ namespace Bengkel_Yoga_UKK
                 {
                     Image originalImage = Image.FromFile(openFileDialog.FileName);
 
-
                     if (new ImageCropTest(originalImage).ShowDialog(this) != DialogResult.OK) return;
 
                     pictureBoxProfile.BackgroundImage = ImageDirectory._imageResult;
                     pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
-
                 }
             }
         }
 
+        #region INIT COMPONEN
 
+        private void InitComponen()
+        {
+            comboPegawai.DataSource = new List<string>() { "Mekanik","Petugas","Super Admin" };
+        }
+
+        #endregion
 
         #region SAVE DATA
 
         private void SaveData()
         {
-            string nama = txtNama.Text;
-            string noKtp = txtNoKTP.Text;
+            string nama = txtNama.Text.Trim();
+            string noKtp = txtNoKTP.Text.Trim();
+            string telepon = txtTelepon.Text;
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
+            string konfirmPass = txtKonfirPassword.Text;
+            string alamat = txtAlamat.Text;
+            int jabatan = comboPegawai.SelectedIndex == 0 ? 0
+                :comboPegawai.SelectedIndex == 1 ? 1
+                : 2;
+            byte[] profile = ImageConvert.ImageToByteArray(pictureBoxProfile.BackgroundImage);
         }
 
         private void GetData(string ktp_admin)
@@ -77,8 +95,6 @@ namespace Bengkel_Yoga_UKK
             txtPassword.Text = data.password;
             txtKonfirPassword.Text = data.password;
             txtAlamat.Text = data.alamat;
-            radioSuperAdmin.Checked = data.role == 2 ? true: false;
-            radioKaryawan.Checked = data.role == 1 ? true: false;
             pictureBoxProfile.BackgroundImage = data.image_data != null ? ImageConvert.Image_ByteToImage(data.image_data) : _fotoKaryawan;
         }
 

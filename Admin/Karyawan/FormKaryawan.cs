@@ -19,6 +19,8 @@ namespace Bengkel_Yoga_UKK
         {
             InitializeComponent();
             RegisterEvent();
+            InitCombo();
+
             LoadData();
             CustomGrid();
         }
@@ -168,14 +170,14 @@ namespace Bengkel_Yoga_UKK
                 {
                     No = number ++,
                     ktp_admin = x.ktp_admin,
-                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.CropToCircle(ImageConvert.ResizeImageMax(ImageConvert.Image_ByteToImage(x.image_data),55,55))) 
+                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(ImageConvert.CropToCircle(ImageConvert.ResizeImageMax(ImageConvert.Image_ByteToImage(x.image_data),400,400)), 45,45)) 
                         : _defaultProfile,
                     Nama = x.nama_admin,
                     Email = x.email,
                     Password = x.password,
                     Telepon = x.no_telp,
                     Alamat = x.alamat,
-                    Role = x.role==1 ? "Admin" : "Super Admin",
+                    Role = x.role==1 ? "Petugas" : "Super Admin",
                 }).ToList();
             dataGridView1.DataSource = new SortableBindingList<KaryawanDto>(list);
         }

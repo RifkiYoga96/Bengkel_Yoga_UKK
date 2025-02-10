@@ -15,6 +15,7 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly BookingDal _bookingDal = new BookingDal();
         private readonly JasaServisDal _jasaServisDal = new JasaServisDal();
+        private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private int _id_booking;
         public FormBookingDetail(int id)
         {
@@ -44,7 +45,15 @@ namespace Bengkel_Yoga_UKK
 
             comboEstimasi.DataSource = new List<string>() { "Menit","Jam" };
 
-           
+            var listMekanik = _karyawanDal.ListData()
+               .Where(x => x.role == 0)
+               .Select(x => new
+               {
+                   ktp_admin = x.ktp_admin,
+                   nama_admin = x.nama_admin
+               }).ToList();
+
+            
 
         }
 

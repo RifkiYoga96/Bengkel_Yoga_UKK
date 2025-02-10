@@ -171,7 +171,7 @@ namespace Bengkel_Yoga_UKK
             DateTime now = DateTime.Today;
             var listFilterWaktu = new List<FilterWaktu>()
             {
-                new FilterWaktu{ nama = "--Pilih Waktu--", waktu1= now,waktu2=now},
+                new FilterWaktu{ nama = "Semua (All)", waktu1= now,waktu2=now},
                 new FilterWaktu{ nama = "Hari ini", waktu1 = now, waktu2 = now },
                 new FilterWaktu{ nama = "Kemarin", waktu1 = now.AddDays(-1), waktu2 = now.AddDays(-1) },
                 new FilterWaktu{ nama = "7 hari sebelumnya", waktu1 = now.AddDays(-6), waktu2 = now },

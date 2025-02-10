@@ -375,6 +375,7 @@
             // 
             // panelMain
             // 
+            panelMain.AutoScroll = true;
             panelMain.BackColor = Color.Gainsboro;
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(290, 67);
