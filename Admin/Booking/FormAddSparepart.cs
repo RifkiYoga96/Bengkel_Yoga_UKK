@@ -12,9 +12,23 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class FormAddSparepart : Form
     {
+        private readonly ProdukDal _produkDal = new ProdukDal();
         public FormAddSparepart()
         {
             InitializeComponent();
+            InitComponent();
+            LoadData();
+        }
+
+        private void InitComponent()
+        {
+            this.ControlBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+        }
+
+        private void LoadData()
+        {
+
         }
     }
 }

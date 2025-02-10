@@ -30,7 +30,10 @@ namespace Bengkel_Yoga_UKK
 
         private void RegisterEvent()
         {
-            
+            btnSparepart.Click += (s,e) => 
+            {
+                if (new FormAddSparepart().ShowDialog() != DialogResult.OK) return;
+            };
         }
 
         private void InitComponent()
@@ -43,7 +46,7 @@ namespace Bengkel_Yoga_UKK
             comboServis.DisplayMember = "nama_jasaServis";
             comboServis.ValueMember = "id_jasaServis";
 
-            comboEstimasi.DataSource = new List<string>() { "Menit","Jam" };
+            comboEstimasi.DataSource = new List<string>() { "Menit", "Jam" };
 
             var listMekanik = _karyawanDal.ListData()
                .Where(x => x.role == 0)
@@ -53,7 +56,7 @@ namespace Bengkel_Yoga_UKK
                    nama_admin = x.nama_admin
                }).ToList();
 
-            
+
 
         }
 
@@ -68,6 +71,11 @@ namespace Bengkel_Yoga_UKK
             txtKendaraan.Text = $"{data.merk} {data.tipe} {data.kapasitas} ({data.tahun})";
             txtNoPol.Text = data.tanggal.ToString("d MMMM yyyy", new CultureInfo("id-ID"));
             txtKeluhan.Text = data.keluhan;
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

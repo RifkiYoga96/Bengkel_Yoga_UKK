@@ -88,6 +88,11 @@
             button1 = new Button();
             yogaButton7 = new YogaButton();
             panel3 = new Panel();
+            panel4 = new Panel();
+            rjCircularPictureBox5 = new RJCircularPictureBox();
+            rjCircularPictureBox6 = new RJCircularPictureBox();
+            rjCircularPictureBox7 = new RJCircularPictureBox();
+            rjCircularPictureBox8 = new RJCircularPictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)textBoxExt1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtCatatan).BeginInit();
@@ -108,6 +113,10 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox8).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -185,7 +194,7 @@
             // textBoxExt1
             // 
             textBoxExt1.BackColor = Color.White;
-            textBoxExt1.BeforeTouchSize = new Size(257, 27);
+            textBoxExt1.BeforeTouchSize = new Size(238, 27);
             textBoxExt1.BorderColor = Color.FromArgb(209, 211, 212);
             textBoxExt1.BorderStyle = BorderStyle.FixedSingle;
             textBoxExt1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -242,7 +251,7 @@
             // txtCatatan
             // 
             txtCatatan.BackColor = Color.White;
-            txtCatatan.BeforeTouchSize = new Size(257, 27);
+            txtCatatan.BeforeTouchSize = new Size(238, 27);
             txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -268,7 +277,7 @@
             // txtEstimasi
             // 
             txtEstimasi.BackColor = Color.White;
-            txtEstimasi.BeforeTouchSize = new Size(257, 27);
+            txtEstimasi.BeforeTouchSize = new Size(238, 27);
             txtEstimasi.BorderColor = Color.FromArgb(209, 211, 212);
             txtEstimasi.BorderStyle = BorderStyle.FixedSingle;
             txtEstimasi.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -306,7 +315,7 @@
             // txtTanggal
             // 
             txtTanggal.BackColor = Color.White;
-            txtTanggal.BeforeTouchSize = new Size(257, 27);
+            txtTanggal.BeforeTouchSize = new Size(238, 27);
             txtTanggal.BorderColor = Color.FromArgb(128, 128, 255);
             txtTanggal.BorderStyle = BorderStyle.FixedSingle;
             txtTanggal.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -322,7 +331,7 @@
             // txtKeluhan
             // 
             txtKeluhan.BackColor = Color.White;
-            txtKeluhan.BeforeTouchSize = new Size(257, 27);
+            txtKeluhan.BeforeTouchSize = new Size(238, 27);
             txtKeluhan.BorderColor = Color.FromArgb(128, 128, 255);
             txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
             txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -361,7 +370,7 @@
             // txtIdBooking
             // 
             txtIdBooking.BackColor = Color.White;
-            txtIdBooking.BeforeTouchSize = new Size(257, 27);
+            txtIdBooking.BeforeTouchSize = new Size(238, 27);
             txtIdBooking.BorderColor = Color.FromArgb(209, 211, 212);
             txtIdBooking.BorderStyle = BorderStyle.FixedSingle;
             txtIdBooking.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -388,7 +397,7 @@
             // txtNoPol
             // 
             txtNoPol.BackColor = Color.White;
-            txtNoPol.BeforeTouchSize = new Size(257, 27);
+            txtNoPol.BeforeTouchSize = new Size(238, 27);
             txtNoPol.BorderColor = Color.FromArgb(128, 128, 255);
             txtNoPol.BorderStyle = BorderStyle.FixedSingle;
             txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -404,7 +413,7 @@
             // txtNama
             // 
             txtNama.BackColor = Color.White;
-            txtNama.BeforeTouchSize = new Size(257, 27);
+            txtNama.BeforeTouchSize = new Size(238, 27);
             txtNama.BorderColor = Color.FromArgb(209, 211, 212);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -431,7 +440,7 @@
             // txtKendaraan
             // 
             txtKendaraan.BackColor = Color.White;
-            txtKendaraan.BeforeTouchSize = new Size(257, 27);
+            txtKendaraan.BeforeTouchSize = new Size(238, 27);
             txtKendaraan.BorderColor = Color.FromArgb(128, 128, 255);
             txtKendaraan.BorderStyle = BorderStyle.FixedSingle;
             txtKendaraan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -458,7 +467,7 @@
             // txtKTP
             // 
             txtKTP.BackColor = Color.White;
-            txtKTP.BeforeTouchSize = new Size(257, 27);
+            txtKTP.BeforeTouchSize = new Size(238, 27);
             txtKTP.BorderColor = Color.FromArgb(209, 211, 212);
             txtKTP.BorderStyle = BorderStyle.FixedSingle;
             txtKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -486,7 +495,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(135, 26);
+            label1.Location = new Point(146, 26);
             label1.Name = "label1";
             label1.Size = new Size(186, 30);
             label1.TabIndex = 0;
@@ -496,6 +505,11 @@
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(rjCircularPictureBox8);
+            panel2.Controls.Add(rjCircularPictureBox7);
+            panel2.Controls.Add(rjCircularPictureBox6);
+            panel2.Controls.Add(rjCircularPictureBox5);
+            panel2.Controls.Add(panel4);
             panel2.Controls.Add(yogaButton3);
             panel2.Controls.Add(pictureBox4);
             panel2.Controls.Add(pictureBox3);
@@ -527,6 +541,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(821, 793);
             panel2.TabIndex = 14;
+            panel2.Paint += panel2_Paint;
             // 
             // yogaButton3
             // 
@@ -582,7 +597,7 @@
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label23.ForeColor = SystemColors.ControlDarkDark;
-            label23.Location = new Point(112, 554);
+            label23.Location = new Point(153, 552);
             label23.Name = "label23";
             label23.Size = new Size(116, 25);
             label23.TabIndex = 71;
@@ -593,7 +608,7 @@
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label22.ForeColor = SystemColors.ControlDarkDark;
-            label22.Location = new Point(112, 483);
+            label22.Location = new Point(153, 483);
             label22.Name = "label22";
             label22.Size = new Size(113, 25);
             label22.TabIndex = 70;
@@ -604,7 +619,7 @@
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label21.ForeColor = SystemColors.ControlDarkDark;
-            label21.Location = new Point(112, 417);
+            label21.Location = new Point(153, 417);
             label21.Name = "label21";
             label21.Size = new Size(61, 25);
             label21.TabIndex = 69;
@@ -615,7 +630,7 @@
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             label20.ForeColor = SystemColors.ControlDarkDark;
-            label20.Location = new Point(112, 353);
+            label20.Location = new Point(153, 351);
             label20.Name = "label20";
             label20.Size = new Size(81, 25);
             label20.TabIndex = 68;
@@ -937,6 +952,75 @@
             panel3.Size = new Size(1403, 927);
             panel3.TabIndex = 79;
             // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.ControlDarkDark;
+            panel4.ForeColor = SystemColors.ControlDarkDark;
+            panel4.Location = new Point(132, 353);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(2, 226);
+            panel4.TabIndex = 78;
+            // 
+            // rjCircularPictureBox5
+            // 
+            rjCircularPictureBox5.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox5.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox5.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox5.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox5.BorderSize = 2;
+            rjCircularPictureBox5.GradientAngle = 50F;
+            rjCircularPictureBox5.Location = new Point(117, 349);
+            rjCircularPictureBox5.Name = "rjCircularPictureBox5";
+            rjCircularPictureBox5.Size = new Size(30, 30);
+            rjCircularPictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox5.TabIndex = 79;
+            rjCircularPictureBox5.TabStop = false;
+            // 
+            // rjCircularPictureBox6
+            // 
+            rjCircularPictureBox6.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox6.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox6.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox6.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox6.BorderSize = 2;
+            rjCircularPictureBox6.GradientAngle = 50F;
+            rjCircularPictureBox6.Location = new Point(117, 414);
+            rjCircularPictureBox6.Name = "rjCircularPictureBox6";
+            rjCircularPictureBox6.Size = new Size(30, 30);
+            rjCircularPictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox6.TabIndex = 80;
+            rjCircularPictureBox6.TabStop = false;
+            // 
+            // rjCircularPictureBox7
+            // 
+            rjCircularPictureBox7.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox7.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox7.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox7.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox7.BorderSize = 2;
+            rjCircularPictureBox7.GradientAngle = 50F;
+            rjCircularPictureBox7.Location = new Point(117, 480);
+            rjCircularPictureBox7.Name = "rjCircularPictureBox7";
+            rjCircularPictureBox7.Size = new Size(30, 30);
+            rjCircularPictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox7.TabIndex = 81;
+            rjCircularPictureBox7.TabStop = false;
+            // 
+            // rjCircularPictureBox8
+            // 
+            rjCircularPictureBox8.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox8.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox8.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox8.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox8.BorderSize = 2;
+            rjCircularPictureBox8.GradientAngle = 50F;
+            rjCircularPictureBox8.Location = new Point(117, 550);
+            rjCircularPictureBox8.Name = "rjCircularPictureBox8";
+            rjCircularPictureBox8.Size = new Size(30, 30);
+            rjCircularPictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox8.TabIndex = 82;
+            rjCircularPictureBox8.TabStop = false;
+            // 
             // FormBookingDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -967,6 +1051,10 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox8).EndInit();
             ResumeLayout(false);
         }
 
@@ -1031,5 +1119,10 @@
         private ComboBox comboBox1;
         private Label label26;
         private Panel panel3;
+        private Panel panel4;
+        private RJCircularPictureBox rjCircularPictureBox8;
+        private RJCircularPictureBox rjCircularPictureBox7;
+        private RJCircularPictureBox rjCircularPictureBox6;
+        private RJCircularPictureBox rjCircularPictureBox5;
     }
 }

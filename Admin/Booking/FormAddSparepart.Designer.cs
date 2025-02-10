@@ -45,7 +45,7 @@
             // 
             // gridSparepart
             // 
-            gridSparepart.BackgroundColor = Color.Silver;
+            gridSparepart.BackgroundColor = Color.Gainsboro;
             gridSparepart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridSparepart.Location = new Point(12, 50);
             gridSparepart.Name = "gridSparepart";
@@ -89,7 +89,7 @@
             // 
             // gridSparepartUse
             // 
-            gridSparepartUse.BackgroundColor = Color.Silver;
+            gridSparepartUse.BackgroundColor = Color.Gainsboro;
             gridSparepartUse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridSparepartUse.Location = new Point(313, 50);
             gridSparepartUse.Name = "gridSparepartUse";
