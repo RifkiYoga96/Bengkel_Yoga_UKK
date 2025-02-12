@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class FormKelender : Form
+    public partial class FormKalender : Form
     {
         public static int _year, _month;
         private readonly RiwayatDal _riwayatDal = new RiwayatDal();
@@ -23,7 +23,7 @@ namespace Bengkel_Yoga_UKK
         private Color _dikerjakan = Color.FromArgb(240, 177, 0);
         private Color _selesai = Color.FromArgb(0, 192, 0);
         private Color _dibatalkan = Color.FromArgb(210, 60, 60);
-        public FormKelender()
+        public FormKalender()
         {
             InitializeComponent();
             InitComponent();

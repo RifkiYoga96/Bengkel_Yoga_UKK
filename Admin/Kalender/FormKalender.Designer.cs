@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormKelender
+    partial class FormKalender
     {
         /// <summary>
         /// Required designer variable.

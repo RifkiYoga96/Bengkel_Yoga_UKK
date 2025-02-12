@@ -47,73 +47,31 @@ namespace Bengkel_Yoga_UKK
 
         private void CustomGrid()
         {
-            dataGridView1.BackgroundColor = Color.White;
+            DataGridView dgv = dataGridView1;
+            CustomGrids.CustomDataGrid(dgv);
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["No"].FillWeight = 6;
+            dgv.Columns["ktp_pelanggan"].FillWeight = 13;
+            dgv.Columns["nama_pelanggan"].FillWeight = 18;
+            dgv.Columns["email"].FillWeight = 17;
+            dgv.Columns["password"].FillWeight = 14;
+            dgv.Columns["alamat"].FillWeight = 18;
+            dgv.Columns["no_telp"].FillWeight = 14;
 
-            // Mengatur ukuran font header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView1.ForeColor = Color.DimGray;
-
-
-            // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
-
-            dataGridView1.ColumnHeadersHeight = 40;
-            dataGridView1.RowTemplate.Height = 55;
-
-            dataGridView1.RowHeadersVisible = false;
-
-            // Mencegah penggeseran kolom
-            dataGridView1.AllowUserToOrderColumns = false;
-
-            // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = true;
-
-            // Mencegah pengubahan ukuran baris
-            dataGridView1.AllowUserToResizeRows = false;
-
-            // Mencegah penambahan baris baru
-            dataGridView1.AllowUserToAddRows = false;
+            dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["ktp_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["nama_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["no_telp"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
 
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["ktp_pelanggan"].FillWeight = 13;
-            dataGridView1.Columns["nama_pelanggan"].FillWeight = 18;
-            dataGridView1.Columns["email"].FillWeight = 17;
-            dataGridView1.Columns["password"].FillWeight = 14;
-            dataGridView1.Columns["alamat"].FillWeight = 18;
-            dataGridView1.Columns["no_telp"].FillWeight = 14;
-
-            dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["ktp_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["nama_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["no_telp"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-
-            //dataGridView1.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //dataGridView1.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-
-            dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["ktp_pelanggan"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["password"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["no_telp"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["ktp_pelanggan"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["password"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["no_telp"].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

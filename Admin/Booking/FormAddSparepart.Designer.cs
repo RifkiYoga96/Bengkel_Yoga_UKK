@@ -50,13 +50,13 @@
             gridSparepart.Location = new Point(12, 50);
             gridSparepart.Name = "gridSparepart";
             gridSparepart.RowTemplate.Height = 25;
-            gridSparepart.Size = new Size(285, 217);
+            gridSparepart.Size = new Size(316, 217);
             gridSparepart.TabIndex = 0;
             // 
             // txtSearch
             // 
             txtSearch.BackColor = Color.White;
-            txtSearch.BeforeTouchSize = new Size(232, 27);
+            txtSearch.BeforeTouchSize = new Size(263, 27);
             txtSearch.BorderColor = Color.FromArgb(209, 211, 212);
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -65,7 +65,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = " Cari Sparepart";
             txtSearch.ReadOnly = true;
-            txtSearch.Size = new Size(232, 27);
+            txtSearch.Size = new Size(263, 27);
             txtSearch.TabIndex = 49;
             txtSearch.ThemeName = "Default";
             // 
@@ -80,7 +80,7 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
             btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(250, 12);
+            btnSearch.Location = new Point(281, 12);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(47, 27);
             btnSearch.TabIndex = 50;
@@ -91,10 +91,10 @@
             // 
             gridSparepartUse.BackgroundColor = Color.Gainsboro;
             gridSparepartUse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridSparepartUse.Location = new Point(313, 50);
+            gridSparepartUse.Location = new Point(344, 50);
             gridSparepartUse.Name = "gridSparepartUse";
             gridSparepartUse.RowTemplate.Height = 25;
-            gridSparepartUse.Size = new Size(242, 217);
+            gridSparepartUse.Size = new Size(316, 217);
             gridSparepartUse.TabIndex = 51;
             // 
             // btnSave
@@ -108,7 +108,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(467, 285);
+            btnSave.Location = new Point(572, 285);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(88, 37);
             btnSave.TabIndex = 78;
@@ -127,7 +127,7 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancel.ForeColor = SystemColors.ControlDarkDark;
-            btnCancel.Location = new Point(373, 285);
+            btnCancel.Location = new Point(478, 285);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(88, 37);
             btnCancel.TabIndex = 79;
@@ -142,7 +142,7 @@
             label1.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(242, 33);
+            label1.Size = new Size(316, 33);
             label1.TabIndex = 80;
             label1.Text = "Sparepart digunakan";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -150,16 +150,16 @@
             // panel1
             // 
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(313, 12);
+            panel1.Location = new Point(344, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(242, 33);
+            panel1.Size = new Size(316, 33);
             panel1.TabIndex = 81;
             // 
             // FormAddSparepart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(570, 334);
+            ClientSize = new Size(672, 334);
             Controls.Add(panel1);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);

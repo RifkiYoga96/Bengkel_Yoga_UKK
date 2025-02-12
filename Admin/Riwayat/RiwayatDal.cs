@@ -17,7 +17,7 @@ namespace Bengkel_Yoga_UKK
                         k.tipe,k.kapasitas,k.tahun,a.nama_admin
                         FROM Riwayat r
                         INNER JOIN Pelanggan p ON r.ktp_pelanggan = p.ktp_pelanggan
-                        INNER JOIN Kendaraan k ON r.no_pol = k.no_pol
+                        INNER JOIN Kendaraan k ON r.id_kendaraan = k.id_kendaraan
                         INNER JOIN Admins a ON r.ktp_admin = a.ktp_admin";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<RiwayatModel>(sql);
@@ -25,9 +25,7 @@ namespace Bengkel_Yoga_UKK
 
         public IEnumerable<RiwayatSparepartModel> ListDataSparepart()
         {
-            const string sql = @"SELECT rs.*, s.* 
-                                FROM RiwayatSparepart rs 
-                                INNER JOIN Sparepart s ON rs.kode_sparepart = s.kode_sparepart";
+            const string sql = @"SELECT * FROM RiwayatSparepart";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<RiwayatSparepartModel>(sql);
         }

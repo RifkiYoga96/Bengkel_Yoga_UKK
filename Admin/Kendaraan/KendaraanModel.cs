@@ -11,6 +11,7 @@ namespace Bengkel_Yoga_UKK
         public int No {  get; set; }
         public string ktp_pelanggan { get; set; }
         public string nama_pelanggan { get; set; }
+        public int id_kendaraan {  get; set; }
         public string no_pol { get; set; }
         public string merk { get; set; }
         public string tipe { get; set; }

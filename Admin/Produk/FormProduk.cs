@@ -167,10 +167,10 @@ namespace Bengkel_Yoga_UKK
                     Foto = ImageConvert.ResizeImageBytes(x.image_data,55,55),
                     Sparepart = x.nama_sparepart,
                     Harga = x.harga,
-                    Stok = x.jumlah,
-                    stok_minimum = x.jumlah_minimum,
-                    keterangan_stok = x.jumlah == 0 ? _habis
-                        : x.jumlah < x.jumlah_minimum ? _menipis
+                    Stok = x.stok,
+                    stok_minimum = x.stok_minimum,
+                    keterangan_stok = x.stok == 0 ? _habis
+                        : x.stok < x.stok_minimum ? _menipis
                         : _tersedia
                 }).ToList();
             dataGridView1.DataSource = new SortableBindingList<ProdukDto>(list);

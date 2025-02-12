@@ -32,6 +32,7 @@ namespace Bengkel_Yoga_UKK
             var list = _kendaraanDal.ListData()
                 .Select(x => new KendaraanModel
                 {
+                    id_kendaraan = x.id_kendaraan,
                     No = i++,
                     ktp_pelanggan = x.ktp_pelanggan,
                     nama_pelanggan = x.nama_pelanggan,
@@ -124,6 +125,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["Role"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             dataGridView1.Columns["ktp_admin"].HeaderText = "No KTP";
+
+            dataGridView1.Columns["id_kendaraan"].Visible = false;
         }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

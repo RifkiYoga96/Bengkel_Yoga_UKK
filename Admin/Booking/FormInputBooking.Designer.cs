@@ -189,9 +189,9 @@
             label16.ForeColor = Color.Red;
             label16.Location = new Point(142, 104);
             label16.Name = "label16";
-            label16.Size = new Size(131, 17);
+            label16.Size = new Size(174, 17);
             label16.TabIndex = 77;
-            label16.Text = "⚠️ Nama wajib diisi*";
+            label16.Text = "⚠️ No KTP tidak ditemukan!";
             label16.TextAlign = ContentAlignment.MiddleRight;
             label16.Visible = false;
             // 
@@ -309,9 +309,9 @@
             label2.ForeColor = Color.Red;
             label2.Location = new Point(142, 294);
             label2.Name = "label2";
-            label2.Size = new Size(109, 17);
+            label2.Size = new Size(185, 17);
             label2.TabIndex = 92;
-            label2.Text = "Nama wajib diisi*";
+            label2.Text = "⚠️ Pilih kendaraan yang valid!";
             label2.TextAlign = ContentAlignment.MiddleRight;
             label2.Visible = false;
             // 
@@ -322,9 +322,9 @@
             label5.ForeColor = Color.Red;
             label5.Location = new Point(142, 587);
             label5.Name = "label5";
-            label5.Size = new Size(109, 17);
+            label5.Size = new Size(134, 17);
             label5.TabIndex = 93;
-            label5.Text = "Nama wajib diisi*";
+            label5.Text = "⚠️ Harap isi keluhan!";
             label5.TextAlign = ContentAlignment.MiddleRight;
             label5.Visible = false;
             // 

@@ -135,6 +135,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["ktp_pelanggan"].HeaderText = "KTP Pelanggan";
             dataGridView1.Columns["total_harga"].HeaderText = "Total Harga";
             dataGridView1.Columns["no_pol"].HeaderText = "Nomor Polisi";
+
+            dataGridView1.Columns["id_kendaraan"].Visible = false;
         }
         private void LoadData()
         {
@@ -143,6 +145,7 @@ namespace Bengkel_Yoga_UKK
             var list = _riwayatDal.ListData()
                 .Select(x => new RiwayatDto
                 {
+                    id_kendaraan = x.id_kendaraan,
                     No = i++,
                     id_riwayat = x.id_riwayat,
                     ktp_pelanggan = x.ktp_pelanggan,

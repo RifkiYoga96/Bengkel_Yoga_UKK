@@ -41,6 +41,7 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             detailBookingToolStripMenuItem.Click += DetailBookingToolStripMenuItem_Click;
+            btnAddData.Click += BtnAddData_Click;
 
 
             //Filter
@@ -55,6 +56,12 @@ namespace Bengkel_Yoga_UKK
             tgl1.ValueChanged += Tgl_ValueChanged;
             tgl2.ValueChanged += Tgl_ValueChanged;
             comboFilterWaktu.SelectedValueChanged += ComboFilterWaktu_SelectedValueChanged;
+        }
+
+        private void BtnAddData_Click(object? sender, EventArgs e)
+        {
+            if (new FormInputBooking2().ShowDialog() != DialogResult.OK) return;
+            LoadData();
         }
 
         private void ComboFilterWaktu_SelectedValueChanged(object? sender, EventArgs e)
@@ -185,98 +192,49 @@ namespace Bengkel_Yoga_UKK
         #region DATAGRID CUSTOM
         private void CustomGrid()
         {
-            dataGridView1.BackgroundColor = Color.White;
+            DataGridView dgv = dataGridView1;
+            CustomGrids.CustomDataGrid(dgv);
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.Columns["id_kendaraan"].Visible = false;
 
-            // Mengatur ukuran font header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.Columns["id_booking"].Width = 10;
+            dgv.Columns["No"].Width = 70;
+            dgv.Columns["antrean"].Width = 100;
+            dgv.Columns["ktp_pelanggan"].Width = 200;
+            dgv.Columns["nama_pelanggan"].Width = 250;
+            dgv.Columns["no_pol"].Width = 150;
+            dgv.Columns["nama_kendaraan"].Width = 250;
+            dgv.Columns["tanggal"].Width = 200;
+            dgv.Columns["keluhan"].Width = 250;
+            dgv.Columns["catatan"].Width = 250;
+            dgv.Columns["statusImg"].Width = 180;
 
-            // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView1.ForeColor = Color.DimGray;
+            dgv.Columns["antrean"].HeaderText = "Antrean";
+            dgv.Columns["ktp_pelanggan"].HeaderText = "KTP Pelanggan";
+            dgv.Columns["nama_pelanggan"].HeaderText = "Pelanggan";
+            dgv.Columns["no_pol"].HeaderText = "Nomor Polisi";
+            dgv.Columns["nama_kendaraan"].HeaderText = "Kendaraan";
+            dgv.Columns["tanggal"].HeaderText = "Tanggal";
+            dgv.Columns["keluhan"].HeaderText = "Keluhan";
+            dgv.Columns["catatan"].HeaderText = "Catatan";
+            dgv.Columns["statusImg"].HeaderText = "Status";
 
+            string[] columnPadding = { "No", "antrean", "ktp_pelanggan", "nama_pelanggan", "no_pol", "nama_kendaraan", "tanggal", "keluhan", "catatan"};
+            foreach (var col in columnPadding)
+                dgv.Columns[col].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            
 
-            // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+            dgv.Columns["id_booking"].Visible = false;
+            dgv.Columns["statusImg"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dataGridView1.ColumnHeadersHeight = 40;
-            dataGridView1.RowTemplate.Height = 55;
+            dgv.Columns["id_booking"].Frozen = true;
+            dgv.Columns["No"].Frozen = true;
+            dgv.Columns["ktp_pelanggan"].Frozen = true;
+            dgv.Columns["nama_pelanggan"].Frozen = true;
 
-            dataGridView1.RowHeadersVisible = false;
-
-            // Mencegah penggeseran kolom
-            dataGridView1.AllowUserToOrderColumns = false;
-
-            // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = true;
-
-            // Mencegah pengubahan ukuran baris
-            dataGridView1.AllowUserToResizeRows = false;
-
-            // Mencegah penambahan baris baru
-            dataGridView1.AllowUserToAddRows = false;
-
-
-            dataGridView1.Columns["id_booking"].Width = 10;
-            dataGridView1.Columns["No"].Width = 70;
-            dataGridView1.Columns["antrean"].Width = 100;
-            dataGridView1.Columns["ktp_pelanggan"].Width = 200;
-            dataGridView1.Columns["nama_pelanggan"].Width = 250;
-            dataGridView1.Columns["no_pol"].Width = 150;
-            dataGridView1.Columns["nama_kendaraan"].Width = 250;
-            dataGridView1.Columns["tanggal"].Width = 200;
-            dataGridView1.Columns["keluhan"].Width = 250;
-            dataGridView1.Columns["catatan"].Width = 250;
-            dataGridView1.Columns["statusImg"].Width = 180;
-
-            dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["antrean"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["ktp_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["nama_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["no_pol"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["nama_kendaraan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["tanggal"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["keluhan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["catatan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["statusImg"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-
-            dataGridView1.Columns["id_booking"].Visible = false;
-
-            dataGridView1.Columns["statusImg"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dataGridView1.Columns["antrean"].HeaderText = "Antrean";
-            dataGridView1.Columns["ktp_pelanggan"].HeaderText = "KTP Pelanggan";
-            dataGridView1.Columns["nama_pelanggan"].HeaderText = "Pelanggan";
-            dataGridView1.Columns["no_pol"].HeaderText = "Nomor Polisi";
-            dataGridView1.Columns["nama_kendaraan"].HeaderText = "Kendaraan";
-            dataGridView1.Columns["tanggal"].HeaderText = "Tanggal";
-            dataGridView1.Columns["keluhan"].HeaderText = "Keluhan";
-            dataGridView1.Columns["catatan"].HeaderText = "Catatan";
-            dataGridView1.Columns["statusImg"].HeaderText = "Status";
-
-            dataGridView1.Columns["id_booking"].Frozen = true;
-            dataGridView1.Columns["No"].Frozen = true;
-            dataGridView1.Columns["ktp_pelanggan"].Frozen = true;
-            dataGridView1.Columns["nama_pelanggan"].Frozen = true;
-
-
-            dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["antrean"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["ktp_pelanggan"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["no_pol"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["keluhan"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["catatan"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["statusImg"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            string[] columnSort = { "No","antrean","ktp_pelanggan","no_pol","keluhan","catatan","statusImg" };
+            foreach (var col in columnSort)
+                dgv.Columns[col].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

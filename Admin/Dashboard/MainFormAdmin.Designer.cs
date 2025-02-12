@@ -425,6 +425,7 @@
             Style.MdiChild.IconHorizontalAlignment = HorizontalAlignment.Center;
             Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
             Text = "ProFix Application Management";
+            WindowState = FormWindowState.Maximized;
             flowLayoutPanel2.ResumeLayout(false);
             panelLeft.ResumeLayout(false);
             panelLogOut.ResumeLayout(false);

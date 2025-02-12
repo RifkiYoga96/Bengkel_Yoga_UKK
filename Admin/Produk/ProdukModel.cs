@@ -22,8 +22,8 @@ namespace Bengkel_Yoga_UKK
     {
         public string kode_sparepart {  get; set; }
         public string nama_sparepart { get; set; }
-        public int jumlah {  get; set; }
-        public int jumlah_minimum {  get; set; }
+        public int stok {  get; set; }
+        public int stok_minimum {  get; set; }
         public int harga {  get; set; }
         public string image_name {  get; set; }
         public byte[] image_data {  get; set; }
