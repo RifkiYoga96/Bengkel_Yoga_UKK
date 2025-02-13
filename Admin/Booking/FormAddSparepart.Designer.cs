@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddSparepart));
             gridSparepart = new DataGridView();
             txtSearch = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            btnSearch = new YogaButton();
             gridSparepartUse = new DataGridView();
             btnSave = new YogaButton();
             btnCancel = new YogaButton();
@@ -56,36 +54,18 @@
             // txtSearch
             // 
             txtSearch.BackColor = Color.White;
-            txtSearch.BeforeTouchSize = new Size(263, 27);
+            txtSearch.BeforeTouchSize = new Size(177, 27);
             txtSearch.BorderColor = Color.FromArgb(209, 211, 212);
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtSearch.ForeColor = SystemColors.ControlText;
             txtSearch.Location = new Point(12, 12);
+            txtSearch.Metrocolor = SystemColors.ControlDarkDark;
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = " Cari Sparepart";
-            txtSearch.ReadOnly = true;
-            txtSearch.Size = new Size(263, 27);
+            txtSearch.Size = new Size(177, 27);
             txtSearch.TabIndex = 49;
             txtSearch.ThemeName = "Default";
-            // 
-            // btnSearch
-            // 
-            btnSearch.BackColor = Color.FromArgb(230, 126, 34);
-            btnSearch.BackgroundColor = Color.FromArgb(230, 126, 34);
-            btnSearch.BorderColor = Color.PaleVioletRed;
-            btnSearch.BorderRadius = 0;
-            btnSearch.BorderSize = 0;
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.ForeColor = Color.White;
-            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
-            btnSearch.Location = new Point(281, 12);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(47, 27);
-            btnSearch.TabIndex = 50;
-            btnSearch.TextColor = Color.White;
-            btnSearch.UseVisualStyleBackColor = false;
             // 
             // gridSparepartUse
             // 
@@ -164,7 +144,6 @@
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(gridSparepartUse);
-            Controls.Add(btnSearch);
             Controls.Add(txtSearch);
             Controls.Add(gridSparepart);
             Name = "FormAddSparepart";
@@ -182,7 +161,6 @@
 
         private DataGridView gridSparepart;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtSearch;
-        private YogaButton btnSearch;
         private DataGridView gridSparepartUse;
         private YogaButton btnSave;
         private YogaButton btnCancel;

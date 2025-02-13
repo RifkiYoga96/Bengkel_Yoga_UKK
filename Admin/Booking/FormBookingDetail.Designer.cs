@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBookingDetail));
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
+            txtEstimasi = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
+            comboMekanik = new ComboBox();
             label26 = new Label();
             btnSparepart = new Button();
-            textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtSparepart = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             comboEstimasi = new ComboBox();
             comboServis = new ComboBox();
             label25 = new Label();
             label24 = new Label();
             txtCatatan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label8 = new Label();
-            txtEstimasi = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label9 = new Label();
             label7 = new Label();
             txtTanggal = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -58,6 +59,11 @@
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            rjCircularPictureBox8 = new RJCircularPictureBox();
+            rjCircularPictureBox7 = new RJCircularPictureBox();
+            rjCircularPictureBox6 = new RJCircularPictureBox();
+            rjCircularPictureBox5 = new RJCircularPictureBox();
+            panel4 = new Panel();
             yogaButton3 = new YogaButton();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -88,15 +94,10 @@
             button1 = new Button();
             yogaButton7 = new YogaButton();
             panel3 = new Panel();
-            panel4 = new Panel();
-            rjCircularPictureBox5 = new RJCircularPictureBox();
-            rjCircularPictureBox6 = new RJCircularPictureBox();
-            rjCircularPictureBox7 = new RJCircularPictureBox();
-            rjCircularPictureBox8 = new RJCircularPictureBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtCatatan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtEstimasi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtSparepart).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtCatatan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtTanggal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtKeluhan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtIdBooking).BeginInit();
@@ -105,6 +106,10 @@
             ((System.ComponentModel.ISupportInitialize)txtKendaraan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtKTP).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -113,27 +118,23 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox8).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(txtEstimasi);
+            panel1.Controls.Add(comboMekanik);
             panel1.Controls.Add(label26);
             panel1.Controls.Add(btnSparepart);
-            panel1.Controls.Add(textBoxExt1);
+            panel1.Controls.Add(txtSparepart);
             panel1.Controls.Add(comboEstimasi);
             panel1.Controls.Add(comboServis);
             panel1.Controls.Add(label25);
             panel1.Controls.Add(label24);
             panel1.Controls.Add(txtCatatan);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(txtEstimasi);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(txtTanggal);
@@ -155,15 +156,29 @@
             panel1.Size = new Size(487, 793);
             panel1.TabIndex = 13;
             // 
-            // comboBox1
+            // txtEstimasi
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(177, 723);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(257, 28);
-            comboBox1.TabIndex = 56;
+            txtEstimasi.AccessibilityEnabled = true;
+            txtEstimasi.BeforeTouchSize = new Size(257, 27);
+            txtEstimasi.DoubleValue = 0D;
+            txtEstimasi.Font = new Font("Segoe UI", 11.28F, FontStyle.Regular, GraphicsUnit.Point);
+            txtEstimasi.Location = new Point(177, 586);
+            txtEstimasi.Name = "txtEstimasi";
+            txtEstimasi.NumberDecimalDigits = 2;
+            txtEstimasi.Size = new Size(165, 28);
+            txtEstimasi.TabIndex = 57;
+            txtEstimasi.Text = "0,00";
+            txtEstimasi.TextAlign = HorizontalAlignment.Center;
+            // 
+            // comboMekanik
+            // 
+            comboMekanik.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboMekanik.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboMekanik.FormattingEnabled = true;
+            comboMekanik.Location = new Point(177, 723);
+            comboMekanik.Name = "comboMekanik";
+            comboMekanik.Size = new Size(257, 28);
+            comboMekanik.TabIndex = 56;
             // 
             // label26
             // 
@@ -191,27 +206,27 @@
             btnSparepart.Text = "...";
             btnSparepart.UseVisualStyleBackColor = false;
             // 
-            // textBoxExt1
+            // txtSparepart
             // 
-            textBoxExt1.BackColor = Color.White;
-            textBoxExt1.BeforeTouchSize = new Size(238, 27);
-            textBoxExt1.BorderColor = Color.FromArgb(209, 211, 212);
-            textBoxExt1.BorderStyle = BorderStyle.FixedSingle;
-            textBoxExt1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt1.ForeColor = SystemColors.ControlText;
-            textBoxExt1.Location = new Point(177, 677);
-            textBoxExt1.Name = "textBoxExt1";
-            textBoxExt1.ReadOnly = true;
-            textBoxExt1.Size = new Size(206, 27);
-            textBoxExt1.TabIndex = 53;
-            textBoxExt1.ThemeName = "Default";
+            txtSparepart.BackColor = Color.White;
+            txtSparepart.BeforeTouchSize = new Size(257, 27);
+            txtSparepart.BorderColor = Color.FromArgb(209, 211, 212);
+            txtSparepart.BorderStyle = BorderStyle.FixedSingle;
+            txtSparepart.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSparepart.ForeColor = SystemColors.ControlText;
+            txtSparepart.Location = new Point(177, 677);
+            txtSparepart.Name = "txtSparepart";
+            txtSparepart.ReadOnly = true;
+            txtSparepart.Size = new Size(206, 27);
+            txtSparepart.TabIndex = 53;
+            txtSparepart.ThemeName = "Default";
             // 
             // comboEstimasi
             // 
             comboEstimasi.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboEstimasi.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboEstimasi.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             comboEstimasi.FormattingEnabled = true;
-            comboEstimasi.Location = new Point(348, 585);
+            comboEstimasi.Location = new Point(348, 586);
             comboEstimasi.Name = "comboEstimasi";
             comboEstimasi.Size = new Size(86, 28);
             comboEstimasi.TabIndex = 52;
@@ -251,7 +266,7 @@
             // txtCatatan
             // 
             txtCatatan.BackColor = Color.White;
-            txtCatatan.BeforeTouchSize = new Size(238, 27);
+            txtCatatan.BeforeTouchSize = new Size(257, 27);
             txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -273,22 +288,6 @@
             label8.Size = new Size(85, 46);
             label8.TabIndex = 44;
             label8.Text = "Perkiraan \r\nSelesai*";
-            // 
-            // txtEstimasi
-            // 
-            txtEstimasi.BackColor = Color.White;
-            txtEstimasi.BeforeTouchSize = new Size(238, 27);
-            txtEstimasi.BorderColor = Color.FromArgb(209, 211, 212);
-            txtEstimasi.BorderStyle = BorderStyle.FixedSingle;
-            txtEstimasi.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtEstimasi.ForeColor = SystemColors.ControlText;
-            txtEstimasi.Location = new Point(177, 585);
-            txtEstimasi.Name = "txtEstimasi";
-            txtEstimasi.Size = new Size(165, 27);
-            txtEstimasi.TabIndex = 43;
-            txtEstimasi.Text = "3";
-            txtEstimasi.TextAlign = HorizontalAlignment.Center;
-            txtEstimasi.ThemeName = "Default";
             // 
             // label9
             // 
@@ -315,7 +314,7 @@
             // txtTanggal
             // 
             txtTanggal.BackColor = Color.White;
-            txtTanggal.BeforeTouchSize = new Size(238, 27);
+            txtTanggal.BeforeTouchSize = new Size(257, 27);
             txtTanggal.BorderColor = Color.FromArgb(128, 128, 255);
             txtTanggal.BorderStyle = BorderStyle.FixedSingle;
             txtTanggal.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -331,7 +330,7 @@
             // txtKeluhan
             // 
             txtKeluhan.BackColor = Color.White;
-            txtKeluhan.BeforeTouchSize = new Size(238, 27);
+            txtKeluhan.BeforeTouchSize = new Size(257, 27);
             txtKeluhan.BorderColor = Color.FromArgb(128, 128, 255);
             txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
             txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -370,7 +369,7 @@
             // txtIdBooking
             // 
             txtIdBooking.BackColor = Color.White;
-            txtIdBooking.BeforeTouchSize = new Size(238, 27);
+            txtIdBooking.BeforeTouchSize = new Size(257, 27);
             txtIdBooking.BorderColor = Color.FromArgb(209, 211, 212);
             txtIdBooking.BorderStyle = BorderStyle.FixedSingle;
             txtIdBooking.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -397,7 +396,7 @@
             // txtNoPol
             // 
             txtNoPol.BackColor = Color.White;
-            txtNoPol.BeforeTouchSize = new Size(238, 27);
+            txtNoPol.BeforeTouchSize = new Size(257, 27);
             txtNoPol.BorderColor = Color.FromArgb(128, 128, 255);
             txtNoPol.BorderStyle = BorderStyle.FixedSingle;
             txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -413,7 +412,7 @@
             // txtNama
             // 
             txtNama.BackColor = Color.White;
-            txtNama.BeforeTouchSize = new Size(238, 27);
+            txtNama.BeforeTouchSize = new Size(257, 27);
             txtNama.BorderColor = Color.FromArgb(209, 211, 212);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -440,7 +439,7 @@
             // txtKendaraan
             // 
             txtKendaraan.BackColor = Color.White;
-            txtKendaraan.BeforeTouchSize = new Size(238, 27);
+            txtKendaraan.BeforeTouchSize = new Size(257, 27);
             txtKendaraan.BorderColor = Color.FromArgb(128, 128, 255);
             txtKendaraan.BorderStyle = BorderStyle.FixedSingle;
             txtKendaraan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -467,7 +466,7 @@
             // txtKTP
             // 
             txtKTP.BackColor = Color.White;
-            txtKTP.BeforeTouchSize = new Size(238, 27);
+            txtKTP.BeforeTouchSize = new Size(257, 27);
             txtKTP.BorderColor = Color.FromArgb(209, 211, 212);
             txtKTP.BorderStyle = BorderStyle.FixedSingle;
             txtKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -541,7 +540,75 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(821, 793);
             panel2.TabIndex = 14;
-            panel2.Paint += panel2_Paint;
+            // 
+            // rjCircularPictureBox8
+            // 
+            rjCircularPictureBox8.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox8.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox8.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox8.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox8.BorderSize = 2;
+            rjCircularPictureBox8.GradientAngle = 50F;
+            rjCircularPictureBox8.Location = new Point(117, 550);
+            rjCircularPictureBox8.Name = "rjCircularPictureBox8";
+            rjCircularPictureBox8.Size = new Size(30, 30);
+            rjCircularPictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox8.TabIndex = 82;
+            rjCircularPictureBox8.TabStop = false;
+            // 
+            // rjCircularPictureBox7
+            // 
+            rjCircularPictureBox7.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox7.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox7.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox7.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox7.BorderSize = 2;
+            rjCircularPictureBox7.GradientAngle = 50F;
+            rjCircularPictureBox7.Location = new Point(117, 480);
+            rjCircularPictureBox7.Name = "rjCircularPictureBox7";
+            rjCircularPictureBox7.Size = new Size(30, 30);
+            rjCircularPictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox7.TabIndex = 81;
+            rjCircularPictureBox7.TabStop = false;
+            // 
+            // rjCircularPictureBox6
+            // 
+            rjCircularPictureBox6.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox6.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox6.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox6.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox6.BorderSize = 2;
+            rjCircularPictureBox6.GradientAngle = 50F;
+            rjCircularPictureBox6.Location = new Point(117, 414);
+            rjCircularPictureBox6.Name = "rjCircularPictureBox6";
+            rjCircularPictureBox6.Size = new Size(30, 30);
+            rjCircularPictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox6.TabIndex = 80;
+            rjCircularPictureBox6.TabStop = false;
+            // 
+            // rjCircularPictureBox5
+            // 
+            rjCircularPictureBox5.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            rjCircularPictureBox5.BorderColor = SystemColors.ControlDarkDark;
+            rjCircularPictureBox5.BorderColor2 = SystemColors.ControlDarkDark;
+            rjCircularPictureBox5.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            rjCircularPictureBox5.BorderSize = 2;
+            rjCircularPictureBox5.GradientAngle = 50F;
+            rjCircularPictureBox5.Location = new Point(117, 349);
+            rjCircularPictureBox5.Name = "rjCircularPictureBox5";
+            rjCircularPictureBox5.Size = new Size(30, 30);
+            rjCircularPictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            rjCircularPictureBox5.TabIndex = 79;
+            rjCircularPictureBox5.TabStop = false;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.ControlDarkDark;
+            panel4.ForeColor = SystemColors.ControlDarkDark;
+            panel4.Location = new Point(132, 353);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(2, 226);
+            panel4.TabIndex = 78;
             // 
             // yogaButton3
             // 
@@ -952,75 +1019,6 @@
             panel3.Size = new Size(1403, 927);
             panel3.TabIndex = 79;
             // 
-            // panel4
-            // 
-            panel4.BackColor = SystemColors.ControlDarkDark;
-            panel4.ForeColor = SystemColors.ControlDarkDark;
-            panel4.Location = new Point(132, 353);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(2, 226);
-            panel4.TabIndex = 78;
-            // 
-            // rjCircularPictureBox5
-            // 
-            rjCircularPictureBox5.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            rjCircularPictureBox5.BorderColor = SystemColors.ControlDarkDark;
-            rjCircularPictureBox5.BorderColor2 = SystemColors.ControlDarkDark;
-            rjCircularPictureBox5.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            rjCircularPictureBox5.BorderSize = 2;
-            rjCircularPictureBox5.GradientAngle = 50F;
-            rjCircularPictureBox5.Location = new Point(117, 349);
-            rjCircularPictureBox5.Name = "rjCircularPictureBox5";
-            rjCircularPictureBox5.Size = new Size(30, 30);
-            rjCircularPictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            rjCircularPictureBox5.TabIndex = 79;
-            rjCircularPictureBox5.TabStop = false;
-            // 
-            // rjCircularPictureBox6
-            // 
-            rjCircularPictureBox6.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            rjCircularPictureBox6.BorderColor = SystemColors.ControlDarkDark;
-            rjCircularPictureBox6.BorderColor2 = SystemColors.ControlDarkDark;
-            rjCircularPictureBox6.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            rjCircularPictureBox6.BorderSize = 2;
-            rjCircularPictureBox6.GradientAngle = 50F;
-            rjCircularPictureBox6.Location = new Point(117, 414);
-            rjCircularPictureBox6.Name = "rjCircularPictureBox6";
-            rjCircularPictureBox6.Size = new Size(30, 30);
-            rjCircularPictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
-            rjCircularPictureBox6.TabIndex = 80;
-            rjCircularPictureBox6.TabStop = false;
-            // 
-            // rjCircularPictureBox7
-            // 
-            rjCircularPictureBox7.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            rjCircularPictureBox7.BorderColor = SystemColors.ControlDarkDark;
-            rjCircularPictureBox7.BorderColor2 = SystemColors.ControlDarkDark;
-            rjCircularPictureBox7.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            rjCircularPictureBox7.BorderSize = 2;
-            rjCircularPictureBox7.GradientAngle = 50F;
-            rjCircularPictureBox7.Location = new Point(117, 480);
-            rjCircularPictureBox7.Name = "rjCircularPictureBox7";
-            rjCircularPictureBox7.Size = new Size(30, 30);
-            rjCircularPictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
-            rjCircularPictureBox7.TabIndex = 81;
-            rjCircularPictureBox7.TabStop = false;
-            // 
-            // rjCircularPictureBox8
-            // 
-            rjCircularPictureBox8.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            rjCircularPictureBox8.BorderColor = SystemColors.ControlDarkDark;
-            rjCircularPictureBox8.BorderColor2 = SystemColors.ControlDarkDark;
-            rjCircularPictureBox8.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            rjCircularPictureBox8.BorderSize = 2;
-            rjCircularPictureBox8.GradientAngle = 50F;
-            rjCircularPictureBox8.Location = new Point(117, 550);
-            rjCircularPictureBox8.Name = "rjCircularPictureBox8";
-            rjCircularPictureBox8.Size = new Size(30, 30);
-            rjCircularPictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
-            rjCircularPictureBox8.TabIndex = 82;
-            rjCircularPictureBox8.TabStop = false;
-            // 
             // FormBookingDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1031,9 +1029,9 @@
             Text = "FormBookingDetail";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtCatatan).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtEstimasi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtSparepart).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtCatatan).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtTanggal).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtKeluhan).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtIdBooking).EndInit();
@@ -1043,6 +1041,10 @@
             ((System.ComponentModel.ISupportInitialize)txtKTP).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -1051,10 +1053,6 @@
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
             panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox8).EndInit();
             ResumeLayout(false);
         }
 
@@ -1077,7 +1075,6 @@
         private Label label7;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtTanggal;
         private Label label8;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtEstimasi;
         private Label label9;
         private Panel panel2;
         private RJCircularPictureBox rjCircularPictureBox1;
@@ -1115,8 +1112,8 @@
         private ComboBox comboServis;
         private ComboBox comboEstimasi;
         private Button btnSparepart;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
-        private ComboBox comboBox1;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtSparepart;
+        private ComboBox comboMekanik;
         private Label label26;
         private Panel panel3;
         private Panel panel4;
@@ -1124,5 +1121,6 @@
         private RJCircularPictureBox rjCircularPictureBox7;
         private RJCircularPictureBox rjCircularPictureBox6;
         private RJCircularPictureBox rjCircularPictureBox5;
+        private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtEstimasi;
     }
 }

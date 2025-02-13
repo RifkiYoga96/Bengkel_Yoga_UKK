@@ -11,7 +11,6 @@ namespace Bengkel_Yoga_UKK
         public int id_booking {  get; set; }
         public string ktp_pelanggan { get; set; } = string.Empty;
         public string nama_pelanggan { get; set;}
-        public bool anonimPelanggan {  get; set; }
         
         public int id_kendaraan {  get; set; }
         public string no_pol {  get; set; }
@@ -19,11 +18,12 @@ namespace Bengkel_Yoga_UKK
         public string tipe {  get; set; }
         public int kapasitas {  get; set; }
         public string tahun {  get; set; }
-        public bool anonimKendaraan {  get; set; }
 
         public DateTime tanggal {  get; set; }
         public string keluhan {  get; set; }
         public string catatan {  get; set; }
+        public string ktp_mekanik {  get; set; }
+        public string nama_mekanik { get; set;}
 
         public int antrean {  get; set; }
         public string status {  get; set; }
@@ -42,6 +42,10 @@ namespace Bengkel_Yoga_UKK
         public DateTime tanggal { get; set; }
         public string keluhan { get; set; }
         public string catatan { get; set; }
+        public int id_jasaServis {  get; set; }
+        public string ktp_mekanik { get; set; }
+        public string nama_mekanik { get; set; }
+        public int estimasi { get; set; } = 0;
 
         public int antrean { get; set; }
         public string status { get; set; }
@@ -53,6 +57,7 @@ namespace Bengkel_Yoga_UKK
         public int id_booking { get; set; }
         public int No { get; set; }
         public int antrean { get; set; }
+        public byte[] statusImg { get; set; }
         public string ktp_pelanggan { get; set; }
         public string nama_pelanggan { get; set; }
 
@@ -64,6 +69,13 @@ namespace Bengkel_Yoga_UKK
         public string keluhan { get; set; }
         public string catatan { get; set; }
 
-        public byte[] statusImg { get; set; }
+    }
+
+    public class BookingSparepartModel
+    {
+        public int id_booking { set; get; }
+        public string kode_sparepart { set; get; }
+        public int jumlah { set; get; }
+
     }
 }

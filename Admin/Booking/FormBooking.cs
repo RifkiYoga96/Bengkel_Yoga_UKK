@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,17 +46,30 @@ namespace Bengkel_Yoga_UKK
 
 
             //Filter
-            txtSearch.KeyDown += (s, e) =>
+            /*txtSearch.KeyDown += (s, e) =>
             {
                 if(e.KeyCode == Keys.Enter)
                 {
                     e.SuppressKeyPress = true;
                     LoadData();
                 }
-            };
+            };*/
+            txtSearch.KeyDown += TxtSearch_KeyDown;
             tgl1.ValueChanged += Tgl_ValueChanged;
             tgl2.ValueChanged += Tgl_ValueChanged;
             comboFilterWaktu.SelectedValueChanged += ComboFilterWaktu_SelectedValueChanged;
+            comboFilterStatus.SelectedIndexChanged += ComboFilterStatus_SelectedIndexChanged;
+        }
+
+        private void ComboFilterStatus_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private async void TxtSearch_KeyDown(object? sender, KeyEventArgs e)
+        {
+            await Task.Delay(500);
+            LoadData();
         }
 
         private void BtnAddData_Click(object? sender, EventArgs e)
@@ -112,7 +126,7 @@ namespace Bengkel_Yoga_UKK
 
             if (search != string.Empty)
             {
-                fltr.Add("(b.ktp_pelanggan LIKE @search + '%' OR b.no_pol LIKE '%' + @search + '%' OR p.nama_pelanggan LIKE '%' + @search + '%')");
+                fltr.Add("(b.ktp_pelanggan LIKE @search + '%' OR COALESCE(b.no_pol, k.no_pol) LIKE '%' + @search + '%' OR COALESCE(b.nama_pelanggan, p.nama_pelanggan) LIKE '%' + @search + '%')");
                 dp.Add(@"search",search);
             }
             if(status != string.Empty && comboFilterStatus.SelectedIndex != 0)
@@ -153,15 +167,15 @@ namespace Bengkel_Yoga_UKK
                 .Select(x => new BookingDto
                 {
                     id_booking = x.id_booking,
-                    No = i++,
                     antrean = x.antrean,
-                    ktp_pelanggan = x.ktp_pelanggan,
+                    No = i++,
+                    ktp_pelanggan = x.ktp_pelanggan == null ? "(Tamu)" : x.ktp_pelanggan,
                     nama_pelanggan = x.nama_pelanggan,
                     no_pol = x.no_pol,
-                    nama_kendaraan = $"{x.merk} {x.tipe} {x.kapasitas} {x.tahun}",
+                    nama_kendaraan = x.nama_kendaraan,
                     tanggal = x.tanggal,
                     keluhan = x.keluhan,
-                    catatan = x.catatan,
+                    catatan = x.catatan == null ? "(Belum ada catatan)" : x.catatan,
                     statusImg = x.status == "pending" ? _pending : _dikerjakan
                 }).ToList();
 
@@ -232,7 +246,7 @@ namespace Bengkel_Yoga_UKK
             dgv.Columns["ktp_pelanggan"].Frozen = true;
             dgv.Columns["nama_pelanggan"].Frozen = true;
 
-            string[] columnSort = { "No","antrean","ktp_pelanggan","no_pol","keluhan","catatan","statusImg" };
+            string[] columnSort = { "No","ktp_pelanggan","nama_pelanggan","no_pol","keluhan","catatan","statusImg" };
             foreach (var col in columnSort)
                 dgv.Columns[col].SortMode = DataGridViewColumnSortMode.NotSortable;
         }

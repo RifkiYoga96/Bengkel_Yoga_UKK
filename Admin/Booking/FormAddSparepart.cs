@@ -15,11 +15,12 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly ProdukDal _produkDal = new ProdukDal();
         private BindingList<ProdukAddDto> _bindingList = new BindingList<ProdukAddDto>();
+        private BindingList<ProdukAddDto> _bindingListFilter = new BindingList<ProdukAddDto>();
         private BindingSource _bindingSource = new BindingSource();
         private BindingList<ProdukAddDto> _bindingListUse = new BindingList<ProdukAddDto>();
         private BindingSource _bindingSourceUse = new BindingSource();
-        private CancellationTokenSource _cts;
-        private int _click = 0;
+        private readonly BookingDal _bookingDal = new BookingDal();
+
         public FormAddSparepart()
         {
             InitializeComponent();
@@ -94,8 +95,13 @@ namespace Bengkel_Yoga_UKK
 
         private void LoadData()
         {
+            string search = txtSearch.Text.ToLower();
+
+            var listBookingSparepart = _bookingDal.ListDataProduk(FormBookingDetail._id_booking);
+            var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
+
             var listSparepart = _produkDal.ListData()
-                .OrderBy(x =>  x.nama_sparepart)
+                .OrderBy(x => x.nama_sparepart)
                 .Select(x => new ProdukAddDto
                 {
                     Kode = x.kode_sparepart,
@@ -104,9 +110,20 @@ namespace Bengkel_Yoga_UKK
                     Jumlah = 1
                 }).ToList();
 
+            var listNoUse = listSparepart
+                .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
+                .ToList();
+
+
+            var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
+
             _bindingList.Clear();
-            foreach (var item in listSparepart)
+            foreach (var item in listNoUse)
                 _bindingList.Add(item);
+
+            _bindingListUse.Clear();
+            foreach(var item in listUse)
+                _bindingListUse.Add(item);
         }
 
 
@@ -115,6 +132,22 @@ namespace Bengkel_Yoga_UKK
             btnCancel.Click += (s, e) => this.Close();
             gridSparepart.CellDoubleClick += GridSparepart_CellDoubleClick;
             gridSparepartUse.CellDoubleClick += GridSparepartUse_CellDoubleClick;
+            txtSearch.TextChanged += async (s, e) =>
+            {
+                await Task.Delay(800);
+                if(txtSearch.Text.Length > 0)
+                {
+                    var filter = _bindingList.Where(x => x.Sparepart.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                    _bindingListFilter.Clear();
+                    foreach (var item in filter)
+                        _bindingListFilter.Add(item);
+                    _bindingSource.DataSource = _bindingListFilter;
+                }
+                else
+                {
+                    _bindingSource.DataSource = _bindingList;
+                }
+            };
         }
         
 

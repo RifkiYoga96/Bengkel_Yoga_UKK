@@ -61,10 +61,12 @@ CREATE TABLE Bookings(
 	nama_kendaraan VARCHAR(100),
 	tanggal DATE,
 	keluhan VARCHAR(100),
+
 	catatan VARCHAR(100),
 	antrean INT,
 	ktp_mekanik VARCHAR(30),
 	id_jasaServis INT,
+	estimasi INT,
 	status VARCHAR(20)
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
@@ -76,14 +78,19 @@ CREATE TABLE Bookings(
 		ON UPDATE CASCADE
 	);
 
+
 CREATE TABLE BookingsSparepart(
 	id_booking INT,
 	kode_sparepart VARCHAR(20),
-	nama_sparepart VARCHAR(50),
 	jumlah INT,
 	harga INT,
 	image_name NVARCHAR(100),
 	image_data VARBINARY(MAX)
+
+	FOREIGN KEY (id_booking)
+		REFERENCES Bookings(id_booking)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
         );
 
 CREATE TABLE Riwayat(
@@ -124,6 +131,11 @@ CREATE TABLE RiwayatSparepart(
 	harga INT,
 	image_name NVARCHAR(100),
 	image_data VARBINARY(MAX)
+
+	FOREIGN KEY (id_riwayat)
+		REFERENCES Riwayat(id_riwayat)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
         );
 
 
@@ -174,13 +186,12 @@ VALUES
 ('B 9101 GHI', 'Suzuki', 'Ertiga', 'Manual', 7, '2020', '3456789012345678', 1);
 
 DELETE FROM Bookings;
-
 INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, antrean, status, ktp_mekanik,id_jasaServis)
 VALUES 
-('1234567890123456', NULL,1, NULL, NULL, '2023-10-01', 'Mesin berbunyi aneh', 1, 'Dikerjakan','8765432103322422',1),
-('2345678901234567', NULL,2, NULL, NULL, '2023-10-02', 'Rem kurang pakem', 2, 'Pending','8765432103322422',2),
-('3456789012345678', NULL,3, NULL, NULL, '2023-10-03', 'AC tidak dingin', 3, 'Pending','8765432103322422',3),
-(NULL, 'Rifki Yoga Syahbani',NULL, 'AB 1617 FA', 'Vario Led 150cc (2017)', '2023-10-03', 'AC tidak dingin', 3, 'Pending','8765432103322422',2);
+('1234567890123456', NULL,1, NULL, NULL, '2023-10-01', 'Mesin berbunyi aneh', 1, 'dikerjakan','8765432103322422',1),
+('2345678901234567', NULL,2, NULL, NULL, '2023-10-02', 'Rem kurang pakem', 2, 'pending','8765432103322422',2),
+('3456789012345678', NULL,3, NULL, NULL, '2023-10-03', 'AC tidak dingin', 3, 'pending','8765432103322422',3),
+(NULL, 'Rifki Yoga Syahbani',NULL, 'AB 1617 FA', 'Vario Led 150cc (2017)', '2023-10-03', 'AC tidak dingin', 4, 'pending','8765432103322422',2);
 
 
 INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, keluhan, catatan, total_harga, status)
@@ -200,14 +211,14 @@ VALUES
 ('SP003', 'Freon AC', 20, 20, 200000, 'freon_ac.jpg', (SELECT BulkColumn 
      FROM OPENROWSET(BULK 'D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg', SINGLE_BLOB) AS img));
 
-INSERT INTO BookingsSparepart (id_booking, kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
+INSERT INTO BookingsSparepart (id_booking, kode_sparepart, jumlah, harga, image_name, image_data)
 VALUES 
-(1, 'SP002', 'Kampas Rem', 1, 150000, 'kampas_rem.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP002')),
-(2, 'SP001', 'Oli Mesin', 1, 100000, 'oli_mesin.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP001')),
-(2, 'SP002', 'Kampas Rem', 1, 150000, 'kampas_rem.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP002')),
-(3, 'SP001', 'Oli Mesin', 1, 100000, 'oli_mesin.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP001')),
-(3, 'SP002', 'Kampas Rem', 1, 150000, 'kampas_rem.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP002')),
-(3, 'SP003', 'Freon AC', 1, 200000, 'freon_ac.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP003'));
+(1, 'SP002', 1, 150000, 'kampas_rem.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP002')),
+(2, 'SP001', 1, 100000, 'oli_mesin.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP001')),
+(2, 'SP002',  1, 150000, 'kampas_rem.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP002')),
+(3, 'SP001',  1, 100000, 'oli_mesin.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP001')),
+(3, 'SP002',  1, 150000, 'kampas_rem.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP002')),
+(3, 'SP003', 1, 200000, 'freon_ac.jpg', (SELECT image_data FROM Sparepart WHERE kode_sparepart = 'SP003'));
 
 
 INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
