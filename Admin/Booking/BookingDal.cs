@@ -77,5 +77,30 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<ProdukModel>(sql, new {id_booking = id_booking});
         }
+
+        public AntreanDto GetAntrean(DateTime tanggal)
+        {
+            const string sql = @"
+                    SELECT 
+                        MAX(CASE WHEN status = 'pending' THEN antrean END) AS Antrean,
+                        MAX(CASE WHEN status = 'dikerjakan' THEN antrean END) AS ServisNow
+                    FROM Bookings
+                    WHERE tanggal = @tanggal";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            var dp = new DynamicParameters();
+            dp.Add("@tanggal", tanggal);
+
+            return koneksi.QueryFirstOrDefault<AntreanDto>(sql, dp) ?? new AntreanDto();
+        }
+
+        public bool CekNoPol(string no_pol)
+        {
+            const string sql = @"SELECT COUNT(*) FROM Kendaraan WHERE no_pol = @no_pol";
+            using var koneksi = new SqlConnection(conn.connStr);
+            int count =  koneksi.QuerySingleOrDefault<int>(sql, new {no_pol = no_pol});
+            return count > 0;
+        }
+
     }
 }

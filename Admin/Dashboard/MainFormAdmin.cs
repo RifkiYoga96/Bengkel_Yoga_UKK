@@ -88,7 +88,7 @@ namespace Bengkel_Yoga_UKK
             btnKalender.Click += BtnSideBar_Click;
 
            // btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
-            btnDashboard.Click += (s, e) => ShowFormInPanel2(new Form1());
+            btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
             btnProduk.Click += (s, e) => ShowFormInPanel2(new FormProduk());
             btnKaryawan.Click += (s, e) => ShowFormInPanel2(new FormKaryawan());
             btnKalender.Click += (s, e) => ShowFormInPanel2(new FormKalender());

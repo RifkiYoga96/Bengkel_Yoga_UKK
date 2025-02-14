@@ -4,7 +4,6 @@
 	stok INT,
 	stok_minimum INT,
 	harga INT,
-	image_name NVARCHAR(100),
 	image_data VARBINARY(MAX)
 	);
 
@@ -234,6 +233,22 @@ VALUES
 ('Sedang',35000),
 ('Berat',50000),
 ('Ganti Oli',10000);
+
+
+
+
+
+
+INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, antrean, status, ktp_mekanik, id_jasaServis)
+SELECT ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, DATEADD(DAY, t.n, tanggal), keluhan, antrean + t.n, status, ktp_mekanik, id_jasaServis
+FROM (
+    VALUES 
+    ('1234567890123456', NULL,1, NULL, NULL, '2023-10-01', 'Mesin berbunyi aneh', 1, 'dikerjakan','8765432103322422',1),
+    ('2345678901234567', NULL,2, NULL, NULL, '2023-10-02', 'Rem kurang pakem', 2, 'pending','8765432103322422',2),
+    ('3456789012345678', NULL,3, NULL, NULL, '2023-10-03', 'AC tidak dingin', 3, 'pending','8765432103322422',3),
+    (NULL, 'Rifki Yoga Syahbani',NULL, 'AB 1617 FA', 'Vario Led 150cc (2017)', '2023-10-03', 'AC tidak dingin', 4, 'pending','8765432103322422',2)
+) AS base(ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, antrean, status, ktp_mekanik, id_jasaServis)
+CROSS JOIN (SELECT TOP 25 ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n FROM master.dbo.spt_values) AS t;
 
 
 
