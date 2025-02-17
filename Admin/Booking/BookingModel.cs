@@ -81,6 +81,6 @@ namespace Bengkel_Yoga_UKK
     public class AntreanDto
     {
         public int Antrean { get; set; }
-        public int ServisNow {  set; get; }
+        public int ServisNow { set; get; }
     }
 }

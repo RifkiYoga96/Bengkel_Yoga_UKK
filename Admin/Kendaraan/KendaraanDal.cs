@@ -28,7 +28,7 @@ namespace Bengkel_Yoga_UKK
                                     ON k.ktp_pelanggan = p.ktp_pelanggan
                                 WHERE k.ktp_pelanggan = @ktp_pelanggan";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<KendaraanModel>(sql, new {ktp_pelanggan = ktp_pelanggan});
+            return koneksi.Query<KendaraanModel>(sql, new { ktp_pelanggan = ktp_pelanggan });
         }
     }
 }

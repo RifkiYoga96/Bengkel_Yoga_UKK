@@ -25,8 +25,23 @@ namespace Bengkel_Yoga_UKK
         {
             txt.TextChanged += (s, e) =>
             {
-                lbl.Text = pesan;
-                lbl.Visible = txt.TextLength == 0;
+                bool isEmpty = txt.TextLength == 0;
+                bool hasLeadingOrTrailingSpace = txt.Text.StartsWith(" ") || txt.Text.EndsWith(" ");
+
+                if (isEmpty)
+                {
+                    lbl.Text = pesan;
+                    lbl.Visible = true;
+                }
+                else if (hasLeadingOrTrailingSpace)
+                {
+                    lbl.Text = "Tidak boleh ada spasi di awal dan akhir!";
+                    lbl.Visible = true;
+                }
+                else
+                {
+                    lbl.Visible = false;
+                }
             };
         }
     }
