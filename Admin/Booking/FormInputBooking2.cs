@@ -15,12 +15,13 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly KendaraanDal _kendaraanDal = new KendaraanDal();
         private readonly BookingDal _bookingDal = new BookingDal();
+
+        public static int _antrean;
         public FormInputBooking2()
         {
             InitializeComponent();
             InitComponent_Pelanggan();
             RegisterEvent_Pelanggan();
-            RegisterEvent_Tamu();
 
             InitComponent_Tamu();
             RegisterEvent_Tamu();
@@ -29,7 +30,7 @@ namespace Bengkel_Yoga_UKK
         #region PELANGGAN
         private void RegisterEvent_Pelanggan()
         {
-            StyleComponent.TextChangeNull(txtKeluhan2,lblErrorKeluhan, "⚠️ Harap isi keluhan!");
+            StyleComponent.TextChangeNull(txtKeluhan, lblErrorKeluhan, "⚠️ Harap isi keluhan!");
 
             txtNoKTP.KeyDown += (s, e) =>
             {
@@ -44,7 +45,8 @@ namespace Bengkel_Yoga_UKK
                 txtNoPol.Text = ((KendaraanDto)comboKendaraan.SelectedItem)?.no_pol ?? string.Empty;
             };
             btnSearch.Click += (s, e) => LoadData_Pelanggan();
-            btnSave.Click += (s, e) =>SaveData_Pelanggan();
+            btnSave.Click += (s, e) => SaveData_Pelanggan();
+            //btnCancel.Click += (s, e) => this.Close();
         }
         private void InitComponent_Pelanggan()
         {
@@ -95,21 +97,31 @@ namespace Bengkel_Yoga_UKK
             DateTime tanggal = TglEditSync.Value ?? DateTime.Today;
             string keluhan = txtKeluhan.Text;
 
-            if(noKTP == string.Empty || id_kendaraan == 0 || keluhan == string.Empty)
+            if (noKTP == string.Empty || id_kendaraan == 0 || keluhan == string.Empty)
             {
                 MB.Warning("Harap melengkapi data!");
                 return;
             }
-            if (!MB.Konfirmasi()) return;
 
-            var data = new BookingModel2
+            bool valid = !lblErrorKTP.Visible &&
+                         !lblErrorKeluhan.Visible;
+            if (!valid)
             {
-                ktp_pelanggan = noKTP,
-                id_kendaraan = id_kendaraan,
-                tanggal = tanggal,
-                keluhan = keluhan
-            };
+                MB.Warning("Data tidak valid, mohon cek kembali!");
+                return;
+            }
 
+                var data = new BookingModel2
+                {
+                    ktp_pelanggan = noKTP,
+                    id_kendaraan = id_kendaraan,
+                    tanggal = tanggal,
+                    keluhan = keluhan,
+                    antrean = _antrean
+                };
+                _bookingDal.InsertDataBooking(data, true);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
 
         }
         #endregion
@@ -141,6 +153,9 @@ namespace Bengkel_Yoga_UKK
                 }
                 lblErrorNoPol.Visible = false;
             };
+
+            btnCancel2.Click += (s, e) => this.Close();
+            btnSave2.Click += (s, e) => SaveData_Tamu();
         }
 
         private void InitComponent_Tamu()
@@ -154,6 +169,46 @@ namespace Bengkel_Yoga_UKK
             txtKeluhan2.MaxLength = 100;
         }
 
+        private void SaveData_Tamu()
+        {
+            string nama = txtNama2.Text;
+            string nama_kendaraan = txtKendaraan2.Text;
+            string no_pol = txtNoPol2.Text;
+            DateTime tanggal = TglEditSync2.Value ?? DateTime.Today;
+            string keluhan = txtKeluhan2.Text;
+
+            if (nama == string.Empty || nama_kendaraan == string.Empty || keluhan == string.Empty || no_pol == string.Empty)
+            {
+                MB.Warning("Harap melengkapi data!");
+                return;
+            }
+
+            bool valid = !lblErrorNama2.Visible &&
+             !lblErrorKendaraan2.Visible &&
+             !lblErrorNoPol.Visible &&
+             !lblErrorKeluhan2.Visible;
+
+            if (!valid)
+            {
+                MB.Warning("Data tidak valid, mohon cek kembali!");
+                return;
+            }
+
+                var data = new BookingModel2
+                {
+                    nama_pelanggan = nama,
+                    nama_kendaraan = nama_kendaraan,
+                    tanggal = tanggal,
+                    keluhan = keluhan,
+                    no_pol = no_pol,
+                    antrean = _antrean
+                };
+                _bookingDal.InsertDataBooking(data, false);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+
+        }
+
         #endregion
     }
 }
@@ -162,5 +217,5 @@ public class KendaraanDto
 {
     public int id_kendaraan { get; set; }
     public string nama_kendaraan { get; set; }
-    public string no_pol {  get; set; }
+    public string no_pol { get; set; }
 }

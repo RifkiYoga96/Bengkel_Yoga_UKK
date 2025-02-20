@@ -320,3 +320,16 @@ BEGIN
 END;
 
 go;
+
+
+-- FUNCTION GetStock--
+
+CREATE FUNCTION GetAntrean(@tanggal DATE)
+RETURNS TABLE
+AS
+RETURN
+(
+   SELECT 
+    ISNULL((SELECT MAX(antrean) FROM Bookings WHERE tanggal = @tanggal), 0) + 1 AS Antrean,
+    ISNULL((SELECT MAX(antrean) FROM Bookings WHERE tanggal = @tanggal AND status = 'dikerjakan'), 0) AS ServisNow
+);
