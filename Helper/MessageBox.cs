@@ -14,9 +14,14 @@ namespace Bengkel_Yoga_UKK
             return result;
         }
 
-        public static void Error()
+        public static void Error(string message)
         {
-            MessageBox.Show("Harap melengkapi data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void Warning(string message)
+        {
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

@@ -46,5 +46,12 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, karyawan);
         }
+
+        public KaryawanModel? GetLogin(string email, string password)
+        {
+            const string sql = @"SELECT ktp_admin FROM Admins WHERE email = @email AND password = @password";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { email = email, password = password });
+        }
     }
 }

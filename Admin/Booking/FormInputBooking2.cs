@@ -97,7 +97,7 @@ namespace Bengkel_Yoga_UKK
 
             if(noKTP == string.Empty || id_kendaraan == 0 || keluhan == string.Empty)
             {
-                MB.Error();
+                MB.Warning("Harap melengkapi data!");
                 return;
             }
             if (!MB.Konfirmasi()) return;
