@@ -244,9 +244,12 @@
             numericEntries.BorderStyle = BorderStyle.FixedSingle;
             numericEntries.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             numericEntries.Location = new Point(912, 32);
+            numericEntries.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numericEntries.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numericEntries.Name = "numericEntries";
             numericEntries.Size = new Size(64, 27);
             numericEntries.TabIndex = 3;
+            numericEntries.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // btnAddData
             // 

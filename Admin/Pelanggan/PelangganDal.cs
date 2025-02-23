@@ -10,18 +10,20 @@ namespace Bengkel_Yoga_UKK
 {
     public class PelangganDal
     {
-        public IEnumerable<PelangganModel> ListData()
+        public IEnumerable<PelangganModel> ListData(FilterDto filter)
         {
-            const string sql = @"SELECT * FROM Pelanggan";
+            string sql = $@"SELECT * FROM Pelanggan {filter.sql} 
+                            ORDER BY ";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<PelangganModel>(sql);
         }
 
-        public PelangganModel? GetLogin(string email, string password)
+        public int GetTotalRows(FilterDto filter)
         {
-            const string sql = @"SELECT ktp_pelanggan FROM Pelanggan WHERE email = @email AND password = @password";
+            string sql = $@"SELECT COUNT(*)
+                            FROM Pelanggan {filter.sql}";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<PelangganModel>(sql, new {email = email, password = password});
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dapper;
+using Syncfusion.Windows.Forms.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,21 +17,136 @@ namespace Bengkel_Yoga_UKK
         private readonly RiwayatDal _riwayatDal = new RiwayatDal();
         private byte[] _selesai = ImageConvert.ImageToByteArray(ImageConvert.ResizeImagePersentase(Properties.Resources.Selesai, 15));
         private byte[] _dibatalkan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImagePersentase(Properties.Resources.Dibatalkan, 15));
+        private bool _filterTanggal = false;
+        private int _page = 1;
+        private int _Totalpage = 1;
         public FormRiwayat(DateTime tanggal = default)
         {
             InitializeComponent();
             if (tanggal == default)
                 tanggal = new DateTime(2025,1,1);
+            InitComponent();
             RegisterEvent();
             LoadData();
             CustomGrid();
         }
 
+        private void InitComponent()
+        {
+            lblTo.ForeColor = SystemColors.ControlDarkDark;
+            tgl1.StyleDateTimeEdit();
+            tgl2.StyleDateTimeEdit();
+
+            panelComboFilter.Visible = true;
+            panelTanggalFilter.Visible = false;
+
+            comboFilterStatus.DataSource = new List<string>() { "Semua(All)", "Pending", "Dikerjakan" };
+
+            DateTime now = DateTime.Today;
+            var listFilterWaktu = new List<FilterWaktu>()
+            {
+                new FilterWaktu{ nama = "Semua (All)", waktu1= now,waktu2=now},
+                new FilterWaktu{ nama = "Hari ini", waktu1 = now, waktu2 = now },
+                new FilterWaktu{ nama = "Kemarin", waktu1 = now.AddDays(-1), waktu2 = now.AddDays(-1) },
+                new FilterWaktu{ nama = "7 hari sebelumnya", waktu1 = now.AddDays(-6), waktu2 = now },
+                new FilterWaktu{ nama = "30 hari sebelumnya", waktu1 = now.AddDays(-29), waktu2 = now }
+            };
+            comboFilterWaktu.DataSource = listFilterWaktu;
+            comboFilterWaktu.DisplayMember = "nama";
+
+            numericEntries.Maximum = 1000;
+            numericEntries.Minimum = 10;
+
+            ControlTgl1();
+            ControlTgl2();
+        }
+
+        #region EVENT
         private void RegisterEvent()
         {
+            btnSearch.Click += (s, e) =>
+            {
+                if (txtSearch.Text.Length > 0) LoadData();
+            };
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
-            
+           
+
+            txtSearch.KeyDown += TxtSearch_KeyDown;
+
+            comboFilterWaktu.SelectedValueChanged += ComboFilterWaktu_SelectedValueChanged;
+            comboFilterStatus.SelectedIndexChanged += ComboFilterStatus_SelectedIndexChanged;
+
+            tgl1.ValueChanged += (s, e) => ControlTgl1();
+            tgl2.ValueChanged += (s, e) => ControlTgl2();
+
+            tgl1.ValueChanged += Tgl_ValueChanged;
+            tgl2.ValueChanged += Tgl_ValueChanged;
+
+            btnNext.Click += (s, e) =>
+            {
+                if (_page < _Totalpage)
+                {
+                    _page++;
+                    LoadData();
+                }
+            };
+            btnPrevious.Click += (s, e) =>
+            {
+                if (_page > 1)
+                {
+                    _page--;
+                    LoadData();
+                }
+            };
+
+            numericEntries.ValueChanged += async (s, e) =>
+            {
+                await Task.Delay(1000);
+                ResetPage();
+                LoadData();
+            };
+
+            //this.Load += FormBooking_Load;
+        }
+
+
+
+        private void ComboFilterStatus_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            ResetPage();
+            LoadData();
+        }
+
+        private async void TxtSearch_KeyDown(object? sender, KeyEventArgs e)
+        {
+            await Task.Delay(500);
+            ResetPage();
+            LoadData();
+        }
+
+        private void ComboFilterWaktu_SelectedValueChanged(object? sender, EventArgs e)
+        {
+            panelComboFilter.Visible = true;
+            panelTanggalFilter.Visible = false;
+            _filterTanggal = false;
+            ResetPage();
+            LoadData();
+        }
+
+        private void Tgl_ValueChanged(object? sender, EventArgs e)
+        {
+            panelComboFilter.Visible = false;
+            panelTanggalFilter.Visible = true;
+            _filterTanggal = true;
+            ResetPage();
+            LoadData();
+        }
+
+        private void DetailBookingToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            MainFormAdmin.ShowFormInPanel2(new FormBookingDetail(id));
         }
 
         private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
@@ -38,12 +155,115 @@ namespace Bengkel_Yoga_UKK
             {
                 dataGridView1.ClearSelection();
                 dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
-                contextMenuStrip1.Show(Cursor.Position);
+                //contextMenuStrip.Show(Cursor.Position);
             }
         }
 
+        private void ResetPage()
+        {
+            _page = 1;
+        }
+        #endregion
 
-        #region DATAGRID
+        #region LOAD DATAGRID
+        private FilterDto? Filter()
+        {
+            string search = txtSearch.Text;
+            string status = comboFilterStatus.SelectedItem?.ToString()?.ToLower() ?? string.Empty;
+
+            DateTime filterWaktu1 = ((FilterWaktu)comboFilterWaktu.SelectedItem).waktu1;
+            DateTime filterWaktu2 = ((FilterWaktu)comboFilterWaktu.SelectedItem).waktu2;
+
+            DateTime tanggal1 = tgl1.Value.GetValueOrDefault(DateTime.Today);
+            DateTime tanggal2 = tgl2.Value.GetValueOrDefault(DateTime.Today);
+
+
+            string sql = @"";
+            var dp = new DynamicParameters();
+            List<string> fltr = new List<string>();
+
+            if (search != string.Empty)
+            {
+                fltr.Add("(r.ktp_pelanggan LIKE @search + '%' OR COALESCE(r.no_pol, k.no_pol) LIKE '%' + @search + '%' OR COALESCE(r.nama_pelanggan, p.nama_pelanggan) LIKE '%' + @search + '%')");
+                dp.Add(@"search", search);
+            }
+            if (status != string.Empty && comboFilterStatus.SelectedIndex != 0)
+            {
+                fltr.Add("(r.status = @status)");
+                dp.Add(@"status", status);
+            }
+            if (comboFilterWaktu.SelectedIndex != 0 && !_filterTanggal)
+            {
+                fltr.Add("(r.tanggal BETWEEN @filterWaktu1 AND @filterWaktu2)");
+                dp.Add(@"filterWaktu1", filterWaktu1);
+                dp.Add(@"filterWaktu2", filterWaktu2);
+            }
+            if (_filterTanggal)
+            {
+                fltr.Add("(r.tanggal BETWEEN @filterWaktu1 AND @filterWaktu2)");
+                dp.Add(@"filterWaktu1", tanggal1.Date);
+                dp.Add(@"filterWaktu2", tanggal2.Date);
+            }
+
+
+            if (fltr.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", fltr);
+
+
+            var filterResult = new FilterDto
+            {
+                sql = sql,
+                param = dp
+            };
+            return filterResult;
+        }
+
+        private void LoadData()
+        {
+            var sqlFilter = Filter() ?? new FilterDto();
+            var totalRows = _riwayatDal.GetTotalRows(sqlFilter);
+
+            int showData = (int)numericEntries.Value;
+            _Totalpage = Convert.ToInt32(Math.Ceiling((double)totalRows / showData));
+            int offset = (_page - 1) * showData;
+            sqlFilter.param.Add("@offset", offset);
+            sqlFilter.param.Add("@fetch", showData);
+
+            lblHalaman.Text = _page.ToString();
+            int toValue = Math.Min(offset + showData, totalRows);
+            lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
+
+
+            var listSparepart = _riwayatDal.ListDataSparepart();
+
+            var list = _riwayatDal.ListData(sqlFilter)
+                .Select((x,index) => new RiwayatDto
+                {
+                    id_riwayat = x.id_riwayat,
+                    No = offset + index + 1,
+                    Status = x.status == "selesai" ? _selesai : _dibatalkan,
+                    ktp_pelanggan = x.ktp_pelanggan == null ? "(Tamu)" : x.ktp_pelanggan,
+                    Pelanggan = x.nama_pelanggan,
+                    no_pol = x.no_pol,
+                    Kendaraan = x.nama_kendaraan,
+                    Keluhan = x.keluhan,
+                    Tanggal = x.tanggal,
+                    Pegawai = x.nama_admin,
+                    Mekanik = x.nama_mekanik,
+                    Catatan = x.catatan,
+                    Sparepart = listSparepart.Any(a => a.id_riwayat == x.id_riwayat)
+                        ? string.Join(", ", listSparepart.Where(a => a.id_riwayat == x.id_riwayat).Select(a => a.nama_sparepart))
+                        : "(Tidak Ada Sparepart)",
+                    catatan = x.catatan,
+                    total_harga = x.total_harga
+                }).ToList();
+
+            dataGridView1.DataSource = new SortableBindingList<RiwayatDto>(list);
+        }
+        #endregion
+
+
+        #region CUSTOM DATAGRID
         private void CustomGrid()
         {
             dataGridView1.BackgroundColor = Color.White;
@@ -104,6 +324,7 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["id_riwayat"].Visible = false;
 
             dataGridView1.Columns["No"].Frozen = true;
+            dataGridView1.Columns["Status"].Frozen = true;
             dataGridView1.Columns["ktp_pelanggan"].Frozen = true;
             dataGridView1.Columns["Pelanggan"].Frozen = true;
 
@@ -137,31 +358,6 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["no_pol"].HeaderText = "Nomor Polisi";
 
             dataGridView1.Columns["id_kendaraan"].Visible = false;
-        }
-        private void LoadData()
-        {
-            int i = 1;
-            var listSparepart = _riwayatDal.ListDataSparepart();
-            var list = _riwayatDal.ListData()
-                .Select(x => new RiwayatDto
-                {
-                    id_kendaraan = x.id_kendaraan,
-                    No = i++,
-                    id_riwayat = x.id_riwayat,
-                    ktp_pelanggan = x.ktp_pelanggan,
-                    Pelanggan = x.nama_pelanggan,
-                    no_pol = x.no_pol,
-                    Kendaraan = $"{x.merk} {x.tipe} {x.kapasitas} ({x.tahun})",
-                    Keluhan = x.keluhan,
-                    Tanggal = x.tanggal,
-                    Pegawai = x.nama_admin,
-                    Catatan = x.catatan,
-                    Sparepart = string.Join(", ", listSparepart.Where(a => a.id_riwayat == x.id_riwayat).Select(a => a.nama_sparepart)),
-                    total_harga = x.total_harga,
-                    Status = x.status == "selesai" ? _selesai : _dibatalkan
-                }).ToList();
-
-            dataGridView1.DataSource = new SortableBindingList<RiwayatDto>(list);
         }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
@@ -218,10 +414,7 @@ namespace Bengkel_Yoga_UKK
                         e.Handled = true; // Tandai event sebagai sudah dihandle
                     }
                 }
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    dataGridView1.Rows[i].Cells["NO"].Value = i + 1;
-                }
+       
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
         }
@@ -236,9 +429,35 @@ namespace Bengkel_Yoga_UKK
         }
         #endregion
 
-        private void nNToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        #region HELPER
 
+        private void ControlTgl1()
+        {
+            string tgl1Str = tgl1.Value?.ToString("yyyy-MM-dd") ?? "";
+            if (DateTime.TryParse(tgl1Str, out DateTime tglParsed1))
+            {
+                tgl2.MinDateTime = tglParsed1;
+            }
+            else
+            {
+                tgl2.MinDateTime = DateTime.Today;
+            }
         }
+
+        private void ControlTgl2()
+        {
+            string tgl2Str = tgl2.Value?.ToString("yyyy-MM-dd") ?? "";
+            if (DateTime.TryParse(tgl2Str, out DateTime tglParsed2))
+            {
+                tgl1.MaxDateTime = tglParsed2;
+            }
+            else
+            {
+                tgl1.MaxDateTime = DateTime.Today;
+            }
+        }
+
+        #endregion
+
     }
 }

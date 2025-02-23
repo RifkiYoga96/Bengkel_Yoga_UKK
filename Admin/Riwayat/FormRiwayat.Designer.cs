@@ -30,8 +30,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRiwayat));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
+            comboFilterStatus = new ComboBox();
+            panelTanggalFilter = new Panel();
+            panelComboFilter = new Panel();
+            lblTo = new Label();
+            tgl2 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            tgl1 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             lblShowingEntries = new Label();
-            comboFilter = new ComboBox();
+            comboFilterWaktu = new ComboBox();
             btnSearch = new YogaButton();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -42,17 +48,19 @@
             label3 = new Label();
             label1 = new Label();
             numericEntries = new NumericUpDown();
-            btnAddData = new YogaButton();
             contextMenuStrip1 = new ContextMenuStrip(components);
             nNToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip = new Syncfusion.Windows.Forms.Tools.ContextMenuStripEx();
+            InvoiceStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericEntries).BeginInit();
             contextMenuStrip1.SuspendLayout();
+            contextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -65,7 +73,7 @@
             dataGridView1.Location = new Point(46, 77);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(995, 374);
+            dataGridView1.Size = new Size(1249, 422);
             dataGridView1.TabIndex = 0;
             // 
             // yogaPanel1
@@ -75,8 +83,14 @@
             yogaPanel1.BorderColor = Color.PaleVioletRed;
             yogaPanel1.BorderRadius = 0;
             yogaPanel1.BorderSize = 0;
+            yogaPanel1.Controls.Add(comboFilterStatus);
+            yogaPanel1.Controls.Add(panelTanggalFilter);
+            yogaPanel1.Controls.Add(panelComboFilter);
+            yogaPanel1.Controls.Add(lblTo);
+            yogaPanel1.Controls.Add(tgl2);
+            yogaPanel1.Controls.Add(tgl1);
             yogaPanel1.Controls.Add(lblShowingEntries);
-            yogaPanel1.Controls.Add(comboFilter);
+            yogaPanel1.Controls.Add(comboFilterWaktu);
             yogaPanel1.Controls.Add(btnSearch);
             yogaPanel1.Controls.Add(panel1);
             yogaPanel1.Controls.Add(txtSearch);
@@ -85,10 +99,73 @@
             yogaPanel1.Controls.Add(numericEntries);
             yogaPanel1.Controls.Add(dataGridView1);
             yogaPanel1.ForeColor = Color.White;
-            yogaPanel1.Location = new Point(28, 75);
+            yogaPanel1.Location = new Point(29, 75);
             yogaPanel1.Name = "yogaPanel1";
-            yogaPanel1.Size = new Size(1086, 531);
+            yogaPanel1.Size = new Size(1340, 579);
             yogaPanel1.TabIndex = 11;
+            // 
+            // comboFilterStatus
+            // 
+            comboFilterStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboFilterStatus.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboFilterStatus.FormattingEnabled = true;
+            comboFilterStatus.Location = new Point(376, 33);
+            comboFilterStatus.Name = "comboFilterStatus";
+            comboFilterStatus.Size = new Size(100, 28);
+            comboFilterStatus.TabIndex = 120;
+            // 
+            // panelTanggalFilter
+            // 
+            panelTanggalFilter.BackColor = Color.FromArgb(62, 162, 229);
+            panelTanggalFilter.Location = new Point(675, 66);
+            panelTanggalFilter.Name = "panelTanggalFilter";
+            panelTanggalFilter.Size = new Size(382, 5);
+            panelTanggalFilter.TabIndex = 119;
+            // 
+            // panelComboFilter
+            // 
+            panelComboFilter.BackColor = Color.FromArgb(62, 162, 229);
+            panelComboFilter.Location = new Point(482, 66);
+            panelComboFilter.Name = "panelComboFilter";
+            panelComboFilter.Size = new Size(176, 5);
+            panelComboFilter.TabIndex = 118;
+            // 
+            // lblTo
+            // 
+            lblTo.AutoSize = true;
+            lblTo.Font = new Font("Segoe UI Black", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTo.ForeColor = Color.DimGray;
+            lblTo.Location = new Point(855, 22);
+            lblTo.Name = "lblTo";
+            lblTo.Size = new Size(22, 30);
+            lblTo.TabIndex = 117;
+            lblTo.Text = "_";
+            // 
+            // tgl2
+            // 
+            tgl2.DateTimeIcon = null;
+            tgl2.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+            tgl2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            tgl2.Format = "d MMMM yyyy";
+            tgl2.Location = new Point(880, 33);
+            tgl2.Name = "tgl2";
+            tgl2.Size = new Size(177, 28);
+            tgl2.Style.BorderColor = Color.FromArgb(64, 64, 64);
+            tgl2.TabIndex = 116;
+            tgl2.ToolTipText = "";
+            // 
+            // tgl1
+            // 
+            tgl1.DateTimeIcon = null;
+            tgl1.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+            tgl1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            tgl1.Format = "d MMMM yyyy";
+            tgl1.Location = new Point(675, 33);
+            tgl1.Name = "tgl1";
+            tgl1.Size = new Size(177, 28);
+            tgl1.Style.BorderColor = Color.FromArgb(64, 64, 64);
+            tgl1.TabIndex = 115;
+            tgl1.ToolTipText = "";
             // 
             // lblShowingEntries
             // 
@@ -96,21 +173,21 @@
             lblShowingEntries.AutoSize = true;
             lblShowingEntries.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             lblShowingEntries.ForeColor = Color.DimGray;
-            lblShowingEntries.Location = new Point(46, 474);
+            lblShowingEntries.Location = new Point(46, 522);
             lblShowingEntries.Name = "lblShowingEntries";
             lblShowingEntries.Size = new Size(238, 23);
             lblShowingEntries.TabIndex = 13;
             lblShowingEntries.Text = "Showing 1 to 14 of 120 entries";
             // 
-            // comboFilter
+            // comboFilterWaktu
             // 
-            comboFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboFilter.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboFilter.FormattingEnabled = true;
-            comboFilter.Location = new Point(376, 33);
-            comboFilter.Name = "comboFilter";
-            comboFilter.Size = new Size(154, 28);
-            comboFilter.TabIndex = 12;
+            comboFilterWaktu.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboFilterWaktu.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboFilterWaktu.FormattingEnabled = true;
+            comboFilterWaktu.Location = new Point(482, 33);
+            comboFilterWaktu.Name = "comboFilterWaktu";
+            comboFilterWaktu.Size = new Size(176, 28);
+            comboFilterWaktu.TabIndex = 12;
             // 
             // btnSearch
             // 
@@ -136,7 +213,7 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(btnNext);
             panel1.Controls.Add(btnPrevious);
-            panel1.Location = new Point(878, 467);
+            panel1.Location = new Point(1132, 515);
             panel1.Name = "panel1";
             panel1.Size = new Size(165, 40);
             panel1.TabIndex = 9;
@@ -218,7 +295,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(978, 33);
+            label3.Location = new Point(1232, 33);
             label3.Name = "label3";
             label3.Size = new Size(61, 23);
             label3.TabIndex = 5;
@@ -230,7 +307,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(860, 33);
+            label1.Location = new Point(1114, 33);
             label1.Name = "label1";
             label1.Size = new Size(52, 23);
             label1.TabIndex = 4;
@@ -242,32 +319,10 @@
             numericEntries.BackColor = Color.White;
             numericEntries.BorderStyle = BorderStyle.FixedSingle;
             numericEntries.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            numericEntries.Location = new Point(912, 32);
+            numericEntries.Location = new Point(1166, 32);
             numericEntries.Name = "numericEntries";
             numericEntries.Size = new Size(64, 27);
             numericEntries.TabIndex = 3;
-            // 
-            // btnAddData
-            // 
-            btnAddData.BackColor = Color.FromArgb(52, 152, 219);
-            btnAddData.BackgroundColor = Color.FromArgb(52, 152, 219);
-            btnAddData.BorderColor = Color.PaleVioletRed;
-            btnAddData.BorderRadius = 0;
-            btnAddData.BorderSize = 0;
-            btnAddData.FlatAppearance.BorderSize = 0;
-            btnAddData.FlatStyle = FlatStyle.Flat;
-            btnAddData.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAddData.ForeColor = Color.White;
-            btnAddData.Image = (Image)resources.GetObject("btnAddData.Image");
-            btnAddData.Location = new Point(28, 16);
-            btnAddData.Name = "btnAddData";
-            btnAddData.Padding = new Padding(10, 0, 0, 0);
-            btnAddData.Size = new Size(145, 42);
-            btnAddData.TabIndex = 1;
-            btnAddData.Text = " Add Invoice";
-            btnAddData.TextColor = Color.White;
-            btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnAddData.UseVisualStyleBackColor = false;
             // 
             // contextMenuStrip1
             // 
@@ -282,7 +337,6 @@
             nNToolStripMenuItem.Name = "nNToolStripMenuItem";
             nNToolStripMenuItem.Size = new Size(187, 26);
             nNToolStripMenuItem.Text = "Detail Booking";
-            nNToolStripMenuItem.Click += nNToolStripMenuItem_Click;
             // 
             // editToolStripMenuItem
             // 
@@ -296,14 +350,33 @@
             deleteToolStripMenuItem.Size = new Size(187, 26);
             deleteToolStripMenuItem.Text = "Delete";
             // 
+            // contextMenuStrip
+            // 
+            contextMenuStrip.DropShadowEnabled = false;
+            contextMenuStrip.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            contextMenuStrip.Items.AddRange(new ToolStripItem[] { InvoiceStripMenuItem });
+            contextMenuStrip.MetroColor = Color.FromArgb(204, 236, 249);
+            contextMenuStrip.Name = "contextMenuStrip";
+            contextMenuStrip.Size = new Size(134, 30);
+            contextMenuStrip.ThemeName = "Office2016Colorful";
+            contextMenuStrip.ThemeStyle.BackColor = Color.FromArgb(52, 152, 219);
+            contextMenuStrip.ThemeStyle.DisabledForeColor = Color.FromArgb(52, 152, 219);
+            contextMenuStrip.ThemeStyle.HoverBackColor = Color.FromArgb(52, 152, 219);
+            contextMenuStrip.ThemeStyle.PressedBackColor = Color.FromArgb(52, 152, 219);
+            // 
+            // InvoiceStripMenuItem
+            // 
+            InvoiceStripMenuItem.Name = "InvoiceStripMenuItem";
+            InvoiceStripMenuItem.Size = new Size(133, 26);
+            InvoiceStripMenuItem.Text = "Invoice";
+            // 
             // FormRiwayat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1143, 635);
+            ClientSize = new Size(1397, 683);
             Controls.Add(yogaPanel1);
-            Controls.Add(btnAddData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormRiwayat";
             Text = "Tabel";
@@ -314,6 +387,7 @@
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
             contextMenuStrip1.ResumeLayout(false);
+            contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -321,7 +395,6 @@
 
         private DataGridView dataGridView1;
         private YogaPanel yogaPanel1;
-        private YogaButton btnAddData;
         private NumericUpDown numericEntries;
         private Label label1;
         private TextBox txtSearch;
@@ -332,11 +405,19 @@
         private Panel panel2;
         private Label lblHalaman;
         private YogaButton btnSearch;
-        private ComboBox comboFilter;
+        private ComboBox comboFilterWaktu;
         private Label lblShowingEntries;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem nNToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit tgl2;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit tgl1;
+        private Label lblTo;
+        private Panel panelTanggalFilter;
+        private Panel panelComboFilter;
+        private ComboBox comboFilterStatus;
+        private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStrip;
+        private ToolStripMenuItem InvoiceStripMenuItem;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace Bengkel_Yoga_UKK
     public partial class FormPelanggan : Form
     {
         private readonly PelangganDal _pelangganDal = new PelangganDal();
+        private int _page = 1;
+        private int _Totalpage = 1;
         public FormPelanggan()
         {
             InitializeComponent();
@@ -20,31 +23,104 @@ namespace Bengkel_Yoga_UKK
             LoadData();
             CustomGrid();
         }
+        #region INIT COMPONENT
 
+        private void InitComponent()
+        {
+
+        }
+
+        #endregion
+
+        #region EVENT
         private void RegisterEvent()
         {
             dataGridView1.CellPainting += DataGridView1_CellPainting;
-        }
+            btnAddData.Click += (s, e) =>
+            {
+                if (new FormInputPelanggan().ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            };
+            txtSearch.TextChanged += async (s, e) =>
+            {
+                await Task.Delay(500);
+                ResetPage();
+                LoadData();
+            };
+            numericEntries.ValueChanged += async (s, e) =>
+            {
+                await Task.Delay(1000);
+                ResetPage();
+                LoadData();
+            };
 
-        #region DATA GRID
+            
+        }
+        private void ResetPage()
+        {
+            _page = 1;
+        }
+        #endregion
+
+        #region LOAD DATAGRID
+        private FilterDto? Filter()
+        {
+            string search = txtSearch.Text;
+
+            string sql = @"";
+            var dp = new DynamicParameters();
+            List<string> fltr = new List<string>();
+
+            if (search != string.Empty)
+            {
+                fltr.Add("(ktp_pelanggan LIKE @search + '%' OR nama_pelanggan LIKE '%' + @search + '%' OR email LIKE '%' + @search + '%' OR alamat LIKE '%' + @search + '%' OR no_telp LIKE '%' + @search + '%')");
+                dp.Add(@"search", search);
+            }
+
+            if (fltr.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", fltr);
+
+
+            var filterResult = new FilterDto
+            {
+                sql = sql,
+                param = dp
+            };
+            return filterResult;
+        }
         private void LoadData()
         {
-            int no = 1;
+            var sqlFilter = Filter() ?? new FilterDto();
+            var totalRows = _pelangganDal.GetTotalRows(sqlFilter);
+
+            int showData = (int)numericEntries.Value;
+            _Totalpage = Convert.ToInt32(Math.Ceiling((double)totalRows / showData));
+            int offset = (_page - 1) * showData;
+            sqlFilter.param.Add("@offset", offset);
+            sqlFilter.param.Add("@fetch", showData);
+
+            lblHalaman.Text = _page.ToString();
+            int toValue = Math.Min(offset + showData, totalRows);
+            lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
+
             var list = _pelangganDal.ListData()
-                .Select(x => new PelangganModel()
+                .Select((x,index) => new PelangganModel()
                 {
-                   No = no++,
+                   No = offset + index + 1,
                    ktp_pelanggan = x.ktp_pelanggan,
                    nama_pelanggan = x.nama_pelanggan,
                    email = x.email,
-                   password = x.password,
                    alamat = x.alamat,
                    no_telp = x.no_telp
                 }).ToList();
 
             dataGridView1.DataSource = new SortableBindingList<PelangganModel>(list);
         }
+        #endregion
 
+        #region CUSTOM DATAGRID
         private void CustomGrid()
         {
             DataGridView dgv = dataGridView1;
@@ -52,26 +128,26 @@ namespace Bengkel_Yoga_UKK
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 6;
-            dgv.Columns["ktp_pelanggan"].FillWeight = 13;
-            dgv.Columns["nama_pelanggan"].FillWeight = 18;
+            dgv.Columns["ktp_pelanggan"].FillWeight = 17;
+            dgv.Columns["nama_pelanggan"].FillWeight = 23;
             dgv.Columns["email"].FillWeight = 17;
-            dgv.Columns["password"].FillWeight = 14;
-            dgv.Columns["alamat"].FillWeight = 18;
+            dgv.Columns["alamat"].FillWeight = 23;
             dgv.Columns["no_telp"].FillWeight = 14;
+            
 
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dgv.Columns["ktp_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dgv.Columns["nama_pelanggan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dgv.Columns["email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dgv.Columns["password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dgv.Columns["alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dgv.Columns["no_telp"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
 
 
             dgv.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns["ktp_pelanggan"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns["password"].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns["no_telp"].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            dgv.Columns["password"].Visible = false;
         }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)

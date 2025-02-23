@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,9 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private int page = 1;
-        private byte[] _defaultProfile = ImageDirectory._defaultProfile;
+        private byte[] _defaultProfile = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.defaultProfile, 45, 45));
+        private int _page = 1;
+        private int _Totalpage = 1;
         public FormKaryawan()
         {
             InitializeComponent();
@@ -33,13 +36,21 @@ namespace Bengkel_Yoga_UKK
             btnAddData.Click += BtnAddData_Click;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             editToolStripMenuItem.Click += EditToolStripMenuItem_Click;
-            
+            comboFilter.SelectedIndexChanged += (s, e) => LoadData();
+            txtSearch.TextChanged += async (s, e) =>
+            {
+                await Task.Delay(500);
+                LoadData();
+            };
         }
 
         private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             string ktp_admin = dataGridView1.CurrentRow.Cells[1].Value?.ToString() ?? string.Empty;
-            if (new FormInputKaryawan(ktp_admin, false).ShowDialog() != DialogResult.OK) return;
+            if (new FormInputKaryawan(ktp_admin, false).ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
@@ -50,7 +61,10 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            new FormInputKaryawan("",true).ShowDialog();
+            if(new FormInputKaryawan("",true).ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void BtnPrevious_Click(object? sender, EventArgs e)
@@ -58,8 +72,9 @@ namespace Bengkel_Yoga_UKK
             if (page > 1)
             {
                 page--;
+                lblHalaman.Text = page.ToString();
+                LoadData();
             }
-            lblHalaman.Text = page.ToString();
         }
 
         private void BtnNext_Click(object? sender, EventArgs e)
@@ -67,119 +82,134 @@ namespace Bengkel_Yoga_UKK
             if (page <= 10)
             {
                 page++;
+                lblHalaman.Text = page.ToString();
+                LoadData();
             }
-            lblHalaman.Text = page.ToString();
         }
+
         #region COMBO BOX
         private void InitCombo()
         {
             List<string> list = new List<string>()
             {
-                "Semua (All)","Stok Tersedia","Stok Menipis","Stok Habis"
+                "Semua (All)","Mekanik","Petugas","Super Admin"
             };
             comboFilter.DataSource = list;
         }
         #endregion
 
-        #region DATAGRID
-        private void CustomGrid()
+        #region LOAD DATAGRID
+        private FilterDto? Filter()
         {
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-
-            // Mengatur ukuran font header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView1.ForeColor = Color.DimGray;
+            string search = txtSearch.Text;
+            int status = comboFilter.SelectedIndex - 1;
 
 
-            // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+            string sql = @"";
+            var dp = new DynamicParameters();
+            List<string> fltr = new List<string>();
 
-            dataGridView1.ColumnHeadersHeight = 40;
-            dataGridView1.RowTemplate.Height = 55;
+            if (search != string.Empty)
+            {
+                fltr.Add("(ktp_admin LIKE @search + '%' OR nama_admin LIKE '%' + @search + '%' OR alamat LIKE '%' + @search + '%' + @search + '%' OR email LIKE '%' + @search + '%' + @search + '%' OR no_telp LIKE '%' + @search + '%')");
+                dp.Add(@"search", search);
+            }
+            if (comboFilter.SelectedIndex != 0)
+            {
+                fltr.Add("(role = @role)");
+                dp.Add(@"role", status);
+            }
 
-            dataGridView1.RowHeadersVisible = false;
-
-            // Mencegah penggeseran kolom
-            dataGridView1.AllowUserToOrderColumns = false;
-
-            // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = true;
-
-            // Mencegah pengubahan ukuran baris
-            dataGridView1.AllowUserToResizeRows = false;
-
-            // Mencegah penambahan baris baru
-            dataGridView1.AllowUserToAddRows = false;
-
-            dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["ktp_admin"].FillWeight = 9;
-            dataGridView1.Columns["Foto"].FillWeight = 10;
-            dataGridView1.Columns["Nama"].FillWeight = 16;
-            dataGridView1.Columns["Email"].FillWeight = 15;
-            dataGridView1.Columns["Password"].FillWeight = 10;
-            dataGridView1.Columns["Telepon"].FillWeight = 12;
-            dataGridView1.Columns["Alamat"].FillWeight = 12;
-            dataGridView1.Columns["Role"].FillWeight = 10;
-
-            dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["ktp_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["Nama"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Telepon"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-
-            dataGridView1.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (fltr.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", fltr);
 
 
-            dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["ktp_admin"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["Password"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["Telepon"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView1.Columns["Role"].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            dataGridView1.Columns["ktp_admin"].HeaderText = "No KTP";
+            var filterResult = new FilterDto
+            {
+                sql = sql,
+                param = dp
+            };
+            return filterResult;
         }
-
 
         private void LoadData()
         {
-            int number = 1;
-            var list = _karyawanDal.ListData()
-                .Select(x => new KaryawanDto()
+            var sqlFilter = Filter() ?? new FilterDto();
+            var totalRows = _karyawanDal.GetTotalRows(sqlFilter);
+
+            int showData = (int)numericEntries.Value;
+            _Totalpage = Convert.ToInt32(Math.Ceiling((double)totalRows / showData));
+            int offset = (_page - 1) * showData;
+            sqlFilter.param.Add("@offset", offset);
+            sqlFilter.param.Add("@fetch", showData);
+
+            lblHalaman.Text = _page.ToString();
+            int toValue = Math.Min(offset + showData, totalRows);
+            lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
+
+            var list = _karyawanDal.ListData(sqlFilter)
+                .Select((x,index) => new KaryawanDto()
                 {
-                    No = number ++,
+                    No = offset + index + 1,
                     ktp_admin = x.ktp_admin,
-                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(ImageConvert.CropToCircle(ImageConvert.ResizeImageMax(ImageConvert.Image_ByteToImage(x.image_data),400,400)), 45,45)) 
+                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.SmoothImagePictureBox(ImageConvert.Image_ByteToImage(x.image_data), 45, 45))
                         : _defaultProfile,
                     Nama = x.nama_admin,
                     Email = x.email,
                     Password = x.password,
                     Telepon = x.no_telp,
                     Alamat = x.alamat,
-                    Role = x.role==1 ? "Petugas" : "Super Admin",
+                    Role = x.role == 0 ? "Mekanik" 
+                        : x.role == 1 ? "Petugas"
+                        : "Super Admin"
                 }).ToList();
             dataGridView1.DataSource = new SortableBindingList<KaryawanDto>(list);
+        }
+
+        #endregion
+
+        #region DATAGRID CUSTOM
+        private void CustomGrid()
+        {
+            DataGridView dgv = dataGridView1;
+            CustomGrids.CustomDataGrid(dgv);
+
+            dgv.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["No"].FillWeight = 6;
+            dgv.Columns["ktp_admin"].FillWeight = 9;
+            dgv.Columns["Foto"].FillWeight = 10;
+            dgv.Columns["Nama"].FillWeight = 16;
+            dgv.Columns["Email"].FillWeight = 15;
+            dgv.Columns["Password"].FillWeight = 10;
+            dgv.Columns["Telepon"].FillWeight = 12;
+            dgv.Columns["Alamat"].FillWeight = 12;
+            dgv.Columns["Role"].FillWeight = 10;
+
+            dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["ktp_admin"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+            dgv.Columns["Nama"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Email"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Password"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Telepon"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Alamat"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Role"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
+
+            dgv.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["Role"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+            dgv.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["ktp_admin"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["Password"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["Telepon"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns["Role"].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            dgv.Columns["ktp_admin"].HeaderText = "No KTP";
+
+            dgv.Columns["password"].Visible = false;
         }
 
 

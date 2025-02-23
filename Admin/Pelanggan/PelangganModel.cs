@@ -15,6 +15,5 @@ namespace Bengkel_Yoga_UKK
         public string password {  get; set; }
         public string alamat {  get; set; }
         public string no_telp {  get; set; }
-        public bool statusAnonim { get; set; }
     }
 }
