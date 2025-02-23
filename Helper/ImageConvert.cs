@@ -123,26 +123,43 @@ namespace Bengkel_Yoga_UKK
 
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                g.SmoothingMode = SmoothingMode.AntiAlias; // Pastikan anti-aliasing aktif
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic; // Buat tepi lebih halus
-                g.CompositingQuality = CompositingQuality.HighQuality; // Hindari artefak pecah
-                g.Clear(Color.Transparent); // Pastikan background transparan
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.Clear(Color.Transparent);
 
                 using (GraphicsPath path = new GraphicsPath())
                 {
-                    path.AddEllipse(0, 0, size, size);
-
-                    // Buat tepi lebih halus dengan FillPath
-                    using (SolidBrush brush = new SolidBrush(Color.Black))
-                    {
-                        g.FillPath(brush, path);
-                    }
+                    path.AddEllipse(1, 1, size - 2, size - 2); // Beri margin kecil untuk menghindari tepi lurus
                     g.SetClip(path);
 
-                    g.DrawImage(srcImage, 0, 0, size, size);
+                    // Hitung posisi cropping agar lebih presisi
+                    int xOffset = (srcImage.Width - size) / 2;
+                    int yOffset = (srcImage.Height - size) / 2;
+
+                    g.DrawImage(srcImage, new Rectangle(0, 0, size, size), new Rectangle(xOffset, yOffset, size, size), GraphicsUnit.Pixel);
                 }
             }
+
             return bmp;
+        }
+
+
+        public static Image SmoothImagePictureBox(Image image, int width, int height)
+        {
+            // Buat bitmap baru dengan ukuran PictureBox
+            Bitmap resizedImage = new Bitmap(width, height);
+
+            // Gunakan Graphics untuk menggambar gambar asli ke bitmap baru
+            using (Graphics g = Graphics.FromImage(resizedImage))
+            {
+                // Atur InterpolationMode ke HighQualityBicubic
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(image, 0, 0, width, height);
+            }
+
+            // Set gambar yang sudah di-resize ke PictureBox
+            return resizedImage;
         }
 
 

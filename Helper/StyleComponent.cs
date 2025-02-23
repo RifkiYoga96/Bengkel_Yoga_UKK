@@ -1,4 +1,5 @@
-﻿using Syncfusion.WinForms.Input;
+﻿using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.WinForms.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,17 @@ namespace Bengkel_Yoga_UKK
                 else
                 {
                     lbl.Visible = false;
+                }
+            };
+        }
+
+        public static void InputNumber(this TextBoxExt txt)
+        {
+            txt.KeyPress += (sender, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
                 }
             };
         }

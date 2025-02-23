@@ -4,7 +4,11 @@
 	stok INT,
 	stok_minimum INT,
 	harga INT,
-	image_data VARBINARY(MAX)
+	image_data VARBINARY(MAX),
+
+	created_at DATETIME DEFAULT GETDATE(),
+    updated_at DATETIME DEFAULT GETDATE(),
+    deleted_at DATETIME NULL
 	);
 
 CREATE TABLE Pelanggan(
@@ -14,6 +18,10 @@ CREATE TABLE Pelanggan(
 	password VARCHAR(50),
 	alamat VARCHAR(100),
 	no_telp VARCHAR(20),
+
+	created_at DATETIME DEFAULT GETDATE(),
+    updated_at DATETIME DEFAULT GETDATE(),
+    deleted_at DATETIME NULL
 	);
 
 CREATE TABLE Admins(
@@ -24,14 +32,21 @@ CREATE TABLE Admins(
 	alamat VARCHAR(100),
 	no_telp VARCHAR(20),
 	role INT,
-	
-	image_data VARBINARY(MAX)
+	image_data VARBINARY(MAX),
+
+	created_at DATETIME DEFAULT GETDATE(),
+    updated_at DATETIME DEFAULT GETDATE(),
+    deleted_at DATETIME NULL
 );
 
 CREATE TABLE JasaServis(
 	id_jasaServis INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	nama_jasaServis VARCHAR(100),
-	harga INT
+	harga INT,
+
+	created_at DATETIME DEFAULT GETDATE(),
+    updated_at DATETIME DEFAULT GETDATE(),
+    deleted_at DATETIME NULL
 	);
 
 
@@ -45,11 +60,15 @@ CREATE TABLE Kendaraan(
 	tahun VARCHAR(5),
 	ktp_pelanggan VARCHAR(30),
 	total_servis INT,
+	created_at DATETIME DEFAULT GETDATE(),
+    updated_at DATETIME DEFAULT GETDATE(),
+    deleted_at DATETIME NULL,
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 	);
+
 
 CREATE TABLE Bookings(
 	id_booking INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -65,7 +84,6 @@ CREATE TABLE Bookings(
 	antrean INT,
 	ktp_mekanik VARCHAR(30),
 	id_jasaServis INT,
-	estimasi INT,
 	status VARCHAR(20)
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
@@ -73,7 +91,7 @@ CREATE TABLE Bookings(
 		ON UPDATE CASCADE,
 	FOREIGN KEY (ktp_mekanik)
 		REFERENCES Admins(ktp_admin)
-		ON DELETE CASCADE
+		ON DELETE SET NULL
 		ON UPDATE CASCADE
 	);
 
@@ -83,7 +101,6 @@ CREATE TABLE BookingsSparepart(
 	kode_sparepart VARCHAR(20),
 	jumlah INT,
 	harga INT,
-	image_name NVARCHAR(100),
 	image_data VARBINARY(MAX)
 
 	FOREIGN KEY (id_booking)
@@ -93,21 +110,22 @@ CREATE TABLE BookingsSparepart(
         );
 
 CREATE TABLE Riwayat(
-	id_riwayat INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	ktp_pelanggan VARCHAR(30),
-	nama_pelanggan VARCHAR(100),
-	id_kendaraan INT,
-	no_pol VARCHAR(30),
-	nama_kendaraan VARCHAR(100),
-	tanggal DATE,
-	ktp_admin VARCHAR(30),
-	ktp_mekanik VARCHAR (30),
-	keluhan VARCHAR(100),
-	catatan VARCHAR(100),
-	total_harga INT,
-	id_jasaServis INT,
-	status VARCHAR(20)
-						
+    id_riwayat INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    ktp_pelanggan VARCHAR(30),
+    nama_pelanggan VARCHAR(100),
+    id_kendaraan INT,
+    no_pol VARCHAR(30),
+    nama_kendaraan VARCHAR(100),
+    tanggal DATE,
+    ktp_admin VARCHAR(30),
+    ktp_mekanik VARCHAR(30),
+    keluhan VARCHAR(100),
+    catatan VARCHAR(100),
+    total_harga INT,
+    id_jasaServis INT,
+    status VARCHAR(20),
+	created_at DATETIME DEFAULT GETDATE(),
+                        
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan),
 	FOREIGN KEY (id_kendaraan)
@@ -118,7 +136,7 @@ CREATE TABLE Riwayat(
 		REFERENCES Admins(ktp_admin)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-	);
+);
 
 
 
@@ -146,6 +164,81 @@ CREATE TABLE History(
 	tipe_aksi VARCHAR(10),
 	json_data NVARCHAR(MAX),
 						);	
+
+						go;
+
+CREATE TRIGGER trg_UpdateKtpMekanik 
+ON Admins 
+AFTER UPDATE 
+AS 
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE r
+    SET r.ktp_mekanik = i.ktp_admin
+    FROM Riwayat r
+    LEFT JOIN DELETED d ON r.ktp_mekanik = d.ktp_admin
+    INNER JOIN INSERTED i ON d.ktp_admin = i.ktp_admin
+    WHERE i.role = 0;
+END;
+
+
+go;
+
+
+INSERT INTO Sparepart (kode_sparepart, nama_sparepart, stok, stok_minimum, harga, image_data)
+VALUES
+('SP001', 'Oli Mesin', 50, 5, 75000, NULL),
+('SP002', 'Busi', 30, 5, 25000, NULL),
+('SP003', 'Kampas Rem', 40, 5, 100000, NULL);
+
+INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp)
+VALUES
+('123456789', 'Ahmad Setiawan', 'ahmad@email.com', 'pass123', 'Jl. Merdeka No.10', '081234567890'),
+('987654321', 'Rina Susanti', 'rina@email.com', 'pass456', 'Jl. Diponegoro No.15', '081298765432');
+
+INSERT INTO Admins (ktp_admin, nama_admin, email, password, alamat, no_telp, role, image_data)
+VALUES
+('111111111', 'Budi Santoso', 'budi@email.com', 'admin123', 'Jl. Sudirman No.20', '081212341234', 1, NULL),
+('222222222', 'Siti Aisyah', 'siti@email.com', 'admin456', 'Jl. Thamrin No.30', '081278956789', 2, NULL);
+
+INSERT INTO JasaServis (nama_jasaServis, harga)
+VALUES
+('Ganti Oli', 50000),
+('Tune Up', 150000),
+('Ganti Kampas Rem', 120000);
+
+INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan, total_servis)
+VALUES
+('B 1234 AB', 'Toyota', 'Avanza', 'Automatic', 7, '2020', '123456789', 3),
+('D 5678 CD', 'Honda', 'Brio', 'Manual', 5, '2018', '987654321', 2);
+
+INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, antrean, ktp_mekanik, id_jasaServis, status)
+VALUES
+('123456789', 'Ahmad Setiawan', 1, 'B 1234 AB', 'Toyota Avanza', '2024-06-01', 'Oli Bocor', 'Perlu ganti oli', 1, '111111111', 1, 'Menunggu'),
+('987654321', 'Rina Susanti', 2, 'D 5678 CD', 'Honda Brio', '2024-06-02', 'Mesin Berisik', 'Perlu cek mesin', 2, '222222222', 2, 'Diproses');
+
+INSERT INTO BookingsSparepart (id_booking, kode_sparepart, jumlah, harga, image_data)
+VALUES
+(1, 'SP001', 1, 75000, NULL),
+(2, 'SP002', 2, 25000, NULL);
+
+INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, ktp_mekanik, keluhan, catatan, total_harga, id_jasaServis, status)
+VALUES
+('123456789', 'Ahmad Setiawan', 1, 'B 1234 AB', 'Toyota Avanza', '2024-06-01', '111111111', '111111111', 'Oli Bocor', 'Ganti oli selesai', 75000, 1, 'Selesai'),
+('987654321', 'Rina Susanti', 2, 'D 5678 CD', 'Honda Brio', '2024-06-02', '222222222', '222222222', 'Mesin Berisik', 'Tune up selesai', 150000, 2, 'Selesai');
+
+INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
+VALUES
+(1, 'SP001', 'Oli Mesin', 1, 75000, 'oli_mobil.jpg', NULL),
+(2, 'SP002', 'Busi', 2, 25000, 'busi.jpg', NULL);
+
+
+
+
+
+
+
 
 
 INSERT INTO Admins(ktp_admin,nama_admin,email,password,alamat,no_telp,role,image_name,image_data) 
@@ -192,13 +285,10 @@ VALUES
 ('3456789012345678', NULL,3, NULL, NULL, '2023-10-03', 'AC tidak dingin', 3, 'pending','8765432103322422',3),
 (NULL, 'Rifki Yoga Syahbani',NULL, 'AB 1617 FA', 'Vario Led 150cc (2017)', '2023-10-03', 'AC tidak dingin', 4, 'pending','8765432103322422',2);
 
-
-INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, keluhan, catatan, total_harga, status)
+DELETE FROM Riwayat;
+INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, total_harga, status,ktp_admin, ktp_mekanik, id_jasaServis)
 VALUES 
-('1234567890123456',NULL,1, NULL, NULL, '2023-10-01', '9876543210987654', 'Mesin berbunyi aneh', 'Ganti oli dan tune-up', 500000, 'Completed'),
-('2345678901234567',NULL,2, NULL, NULL, '2023-10-02', '8765432109876543', 'Rem kurang pakem', 'Ganti kampas rem', 300000, 'Completed'),
-('3456789012345678',NULL,3, NULL, NULL, '2023-10-03', '9876543210987654', 'AC tidak dingin', 'Isi freon dan bersihkan filter', 400000, 'Completed'),
-(NULL,'Rifki Yoga Syahbani',NULL, 'AB 1662 F', 'Vario Led 125cc (2016)', '2023-10-03', '8765432109876543', 'Rusak Bos', 'Isi freon dan bersihkan filter', 30000, 'Completed');
+('1234567890123456',NULL,1, NULL, NULL, '2026-10-01', 'Mesin berbunyi aneh', 'Ganti oli dan tune-up', 500000, 'selesai','4444','3333',2);
 
 
 INSERT INTO Sparepart (kode_sparepart, nama_sparepart, stok, stok_minimum, harga, image_name, image_data)

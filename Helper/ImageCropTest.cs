@@ -43,9 +43,8 @@ namespace Bengkel_Yoga_UKK
             pictureBox1.MouseMove += pictureBox1_MouseMove;
             pictureBox1.MouseUp += pictureBox1_MouseUp;
             btnSave.Click += btnSave_Click;
-            btnCancel.Click += (s,e) => 
+            btnCancel.Click += (s, e) =>
             {
-                this.DialogResult = DialogResult.Cancel;
                 this.Close();
             };
 
@@ -57,7 +56,6 @@ namespace Bengkel_Yoga_UKK
         {
             originalImage = ImageConvert.ResizeImageMax(originalImage, pictureBox1.Width, pictureBox1.Height);
             AdjustPictureBoxSize();
-            MessageBox.Show($"{originalImage.Width.ToString()} {originalImage.Height.ToString()}");
             int size = (Math.Min(pictureBox1.Width, pictureBox1.Height)) - 2;
             maxCropSize = size;
             cropRect = new Rectangle((pictureBox1.Width - size) / 2, (pictureBox1.Height - size) / 2, size, size);
@@ -66,6 +64,7 @@ namespace Bengkel_Yoga_UKK
             pictureBox1.BackgroundImageLayout = ImageLayout.Center;
             pictureBox1.Invalidate();
         }
+
 
         private void btnSave_Click(object? sender, EventArgs e)
         {
@@ -90,7 +89,8 @@ namespace Bengkel_Yoga_UKK
                 g.DrawImage(originalImage, new Rectangle(0, 0, cropRect.Width, cropRect.Height), adjustedCropRect, GraphicsUnit.Pixel);
             }
 
-            ImageDirectory.FillInTheImage(croppedImage);
+            Image bunder = ImageConvert.CropToCircle(croppedImage);
+            ImageDirectory.FillInTheImage(bunder);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -277,8 +277,6 @@ namespace Bengkel_Yoga_UKK
             double imageRatio = (double)originalImage.Width / originalImage.Height;
             double pictureBoxRatio = (double)pictureBox1.Width / pictureBox1.Height;
 
-            MessageBox.Show(imageRatio.ToString() + " " + pictureBoxRatio.ToString());
-
             // Sesuaikan ukuran PictureBox berdasarkan rasio gambar
             if (imageRatio > pictureBoxRatio)
             {
@@ -293,7 +291,7 @@ namespace Bengkel_Yoga_UKK
 
             // Atur PictureBox ke tengah form atau parent container
             pictureBox1.Anchor = AnchorStyles.None; // Non-aktifkan anchor
-            pictureBox1.Location = new Point((panel1.Width - pictureBox1.Width) / 2, (panel1.Height - pictureBox1.Height)/2);
+            pictureBox1.Location = new Point((panel1.Width - pictureBox1.Width) / 2, (panel1.Height - pictureBox1.Height) / 2);
         }
 
         public static Image ResizeImage(Image image, int maxWidth, int maxHeight)

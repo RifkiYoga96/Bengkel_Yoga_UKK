@@ -8,9 +8,9 @@ namespace Bengkel_Yoga_UKK
 {
     public static class MessageBoxs
     {
-        public static bool Konfirmasi()
+        public static bool Konfirmasi(string message = "Apakah Anda yakin ingin melanjutkan?")
         {
-            bool result = MessageBox.Show("Apakah Anda yakin ingin melanjutkan?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes ? true : false;
+            bool result = MessageBox.Show(message, "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes ? true : false;
             return result;
         }
 
