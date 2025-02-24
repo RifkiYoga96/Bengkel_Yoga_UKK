@@ -179,7 +179,7 @@
             btnSparepart.Location = new Point(389, 641);
             btnSparepart.Margin = new Padding(0);
             btnSparepart.Name = "btnSparepart";
-            btnSparepart.Size = new Size(45, 27);
+            btnSparepart.Size = new Size(45, 26);
             btnSparepart.TabIndex = 54;
             btnSparepart.Text = "...";
             btnSparepart.UseVisualStyleBackColor = false;
@@ -938,6 +938,7 @@
             // 
             // yogaButton7
             // 
+            yogaButton7.Anchor = AnchorStyles.None;
             yogaButton7.BackColor = Color.FromArgb(52, 152, 219);
             yogaButton7.BackgroundColor = Color.FromArgb(52, 152, 219);
             yogaButton7.BorderColor = Color.PaleVioletRed;

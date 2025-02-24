@@ -62,21 +62,21 @@ namespace Bengkel_Yoga_UKK
         {
             const string sql = @"SELECT 1 FROM Admins WHERE email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanDal>(sql, new { email = email });
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { email = email });
             return data != null ? true : false;
         }
         public bool CekTelepon(string telepon)
         {
             const string sql = @"SELECT 1 FROM Admins WHERE no_telp = @no_telp";
             using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanDal>(sql, new { no_telp = telepon });
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { no_telp = telepon });
             return data != null ? true : false;
         }
         public bool CekKTP(string ktp)
         {
             const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin = @ktp_admin";
             using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanDal>(sql, new { ktp_admin = ktp });
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { ktp_admin = ktp });
             return data != null ? true : false;
         }
 
@@ -84,21 +84,21 @@ namespace Bengkel_Yoga_UKK
         {
             const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin <> @ktp_admin AND email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanDal>(sql, new { email = email, ktp_admin = ktp_admin });
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { email = email, ktp_admin = ktp_admin });
             return data != null ? true : false;
         }
         public bool CekTeleponUpdate(string telepon, string ktp_admin)
         {
             const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin <> @ktp_admin AND no_telp = @no_telp";
             using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanDal>(sql, new { no_telp = telepon, ktp_admin = ktp_admin });
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { no_telp = telepon, ktp_admin = ktp_admin });
             return data != null ? true : false;
         }
         public bool CekKTPUpdate(string ktp)
         {
             const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin <> @ktp_admin";
             using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanDal>(sql, new { ktp_admin = ktp });
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { ktp_admin = ktp });
             return data != null ? true : false;
         }
 

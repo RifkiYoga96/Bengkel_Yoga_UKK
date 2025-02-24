@@ -130,23 +130,16 @@ namespace Bengkel_Yoga_UKK
         private void RegisterEvent()
         {
             btnCancel.Click += (s, e) => this.Close();
+            btnSave.Click += (s, e) =>
+            {
+
+            };
             gridSparepart.CellDoubleClick += GridSparepart_CellDoubleClick;
             gridSparepartUse.CellDoubleClick += GridSparepartUse_CellDoubleClick;
             txtSearch.TextChanged += async (s, e) =>
             {
                 await Task.Delay(800);
-                if(txtSearch.Text.Length > 0)
-                {
-                    var filter = _bindingList.Where(x => x.Sparepart.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
-                    _bindingListFilter.Clear();
-                    foreach (var item in filter)
-                        _bindingListFilter.Add(item);
-                    _bindingSource.DataSource = _bindingListFilter;
-                }
-                else
-                {
-                    _bindingSource.DataSource = _bindingList;
-                }
+                Filtering();
             };
         }
         
@@ -154,16 +147,46 @@ namespace Bengkel_Yoga_UKK
         private void GridSparepartUse_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0 || _bindingListUse.Count == 0) return;
+
             _bindingList.Add(_bindingListUse[e.RowIndex]);
             _bindingListUse.RemoveAt(e.RowIndex);
+
+            txtSearch.Text = string.Empty;
+            _bindingSource.DataSource = _bindingList;
         }
 
         private void GridSparepart_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0 || _bindingList.Count == 0 || _bindingList[e.RowIndex].Stok == 0) return;
 
-            _bindingListUse.Add(_bindingList[e.RowIndex]);
-            _bindingList.RemoveAt(e.RowIndex);
+            string kode = gridSparepart.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? string.Empty;
+            int index = _bindingList.ToList().FindIndex(x => x.Kode == kode);
+            int indexFilter = _bindingListFilter.ToList().FindIndex(x => x.Kode == kode);
+
+            MessageBox.Show($"{kode} {indexFilter.ToString()} {index.ToString()}");
+
+            _bindingListUse.Add(_bindingList[index]);
+            _bindingList.RemoveAt(index);
+
+            if(indexFilter != -1)
+                _bindingListFilter.RemoveAt(indexFilter);
+        }
+
+        private void Filtering()
+        {
+            
+            if (txtSearch.Text.Length > 0)
+            {
+                var filter = _bindingList.Where(x => x.Sparepart.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                _bindingListFilter.Clear();
+                foreach (var item in filter)
+                    _bindingListFilter.Add(item);
+                _bindingSource.DataSource = _bindingListFilter;
+            }
+            else
+            {
+                _bindingSource.DataSource = _bindingList;
+            }
         }
 
     }

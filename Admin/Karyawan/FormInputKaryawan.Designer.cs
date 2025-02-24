@@ -59,7 +59,6 @@
             lblErrorAlamat = new Label();
             btnDelete = new YogaButton();
             txtNoTelepon = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).BeginInit();
@@ -69,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)txtAlamat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoTelepon).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -483,20 +481,11 @@
             txtNoTelepon.TabIndex = 86;
             txtNoTelepon.ThemeName = "Default";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(332, 74);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 100);
-            pictureBox1.TabIndex = 87;
-            pictureBox1.TabStop = false;
-            // 
             // FormInputKaryawan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(937, 561);
-            Controls.Add(pictureBox1);
             Controls.Add(txtNoTelepon);
             Controls.Add(btnDelete);
             Controls.Add(pictureBoxProfile);
@@ -538,7 +527,6 @@
             ((System.ComponentModel.ISupportInitialize)txtAlamat).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNoTelepon).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -576,6 +564,5 @@
         private Label lblErrorAlamat;
         private YogaButton btnDelete;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoTelepon;
-        private PictureBox pictureBox1;
     }
 }

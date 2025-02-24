@@ -38,7 +38,7 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             btnAddData.Click += (s, e) =>
             {
-                if (new FormInputPelanggan().ShowDialog() == DialogResult.OK)
+                if (new FormInputPelanggan("").ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
                 }
@@ -125,6 +125,12 @@ namespace Bengkel_Yoga_UKK
         {
             DataGridView dgv = dataGridView1;
             CustomGrids.CustomDataGrid(dgv);
+
+            dgv.Columns["ktp_pelanggan"].HeaderText = "No KTP";
+            dgv.Columns["nama_pelanggan"].HeaderText = "Nama";
+            dgv.Columns["email"].HeaderText = "Email";
+            dgv.Columns["alamat"].HeaderText = "Alamat";
+            dgv.Columns["no_telp"].HeaderText = "Telepon";
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 6;

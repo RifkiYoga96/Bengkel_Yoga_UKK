@@ -95,7 +95,7 @@ CREATE PROCEDURE InsertBooking
     @antrean INT = NULL,
     @ktp_mekanik VARCHAR(30) = NULL,
     @id_jasaServis INT = NULL,
-    @status VARCHAR(20) = NULL
+    @status VARCHAR(20) = 'pending'
 AS
 BEGIN
     INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, antrean, ktp_mekanik, id_jasaServis, status)
@@ -183,8 +183,10 @@ BEGIN
 END;
 
 go;
+
 CREATE PROCEDURE UpdatePelanggan
-    @ktp_pelanggan VARCHAR(30),
+    @ktp_pelanggan_old VARCHAR(30),  
+    @ktp_pelanggan_new VARCHAR(30),  
     @nama_pelanggan VARCHAR(100),
     @email VARCHAR(50),
     @password VARCHAR(50),
@@ -192,15 +194,27 @@ CREATE PROCEDURE UpdatePelanggan
     @no_telp VARCHAR(20)
 AS
 BEGIN
-    UPDATE Pelanggan
-    SET 
-        nama_pelanggan = @nama_pelanggan,
-        email = @email,
-        password = @password,
-        alamat = @alamat,
-        no_telp = @no_telp,
-        updated_at = GETDATE()
-    WHERE ktp_pelanggan = @ktp_pelanggan;
+    SET NOCOUNT ON;
+    BEGIN TRANSACTION;
+
+    BEGIN TRY
+        UPDATE Pelanggan
+        SET 
+            ktp_pelanggan = @ktp_pelanggan_new,
+            nama_pelanggan = @nama_pelanggan,
+            email = @email,
+            password = @password,
+            alamat = @alamat,
+            no_telp = @no_telp, 
+            updated_at = GETDATE()
+        WHERE ktp_pelanggan = @ktp_pelanggan_old;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
 END;
 
 

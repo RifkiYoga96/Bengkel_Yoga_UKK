@@ -104,6 +104,8 @@ namespace Bengkel_Yoga_UKK
 
         private void InitComponen()
         {
+            txtPassword.ReadOnly = true;
+            txtKonfirPassword.ReadOnly = true;
             StyleComponent.TextChangeNull(txtNama, lblErrorNama, "⚠️ Harap mengisi nama!");
             StyleComponent.TextChangeNull(txtNoKTP, lblErrorKTP, "⚠️ Harap mengisi nomor KTP!");
             StyleComponent.TextChangeNull(txtEmail, lblErrorEmail, "⚠️ Harap mengisi email!");
@@ -244,9 +246,6 @@ namespace Bengkel_Yoga_UKK
         {
             var data = _karyawanDal.GetData(ktp_admin);
             if (data is null) return;
-
-            txtPassword.ReadOnly = true;
-            txtKonfirPassword.ReadOnly = true;
 
             txtNama.Text = data.nama_admin;
             txtNoKTP.Text = data.ktp_admin;

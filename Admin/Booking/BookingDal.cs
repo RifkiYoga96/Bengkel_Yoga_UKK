@@ -81,7 +81,7 @@ namespace Bengkel_Yoga_UKK
             return koneksi.Query<ProdukModel>(sql, new {id_booking = id_booking});
         }
 
-        public AntreanDto GetAntrean(DateTime tanggal)
+        public AntreanDto? GetAntrean(DateTime tanggal)
         {
             const string sql = @"SELECT * FROM GetAntrean(@tanggal)";
 

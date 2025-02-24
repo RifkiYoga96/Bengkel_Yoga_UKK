@@ -8,6 +8,6 @@ namespace Bengkel_Yoga_UKK
 {
     public static class conn
     {
-        public static string connStr = @"Server=(local);Database=16666_Bengkel;Trusted_Connection=true;TrustServerCertificate=true";
+        public static string connStr = @"Server=(local);Database=16666_Bengkels;Trusted_Connection=true;TrustServerCertificate=true";
     }
 }
