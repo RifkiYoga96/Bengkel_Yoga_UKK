@@ -55,7 +55,7 @@ namespace Bengkel_Yoga_UKK
 
         private void CekLogin()
         {
-            string email = txtEmail.Text;
+            /*string email = txtEmail.Text;
             string password = txtPassword.Text;
 
             if(email == string.Empty || password == string.Empty || lblErrorEmail.Visible)
@@ -85,7 +85,7 @@ namespace Bengkel_Yoga_UKK
             {
                 MB.Warning("Harap melengkapi data!");
                 return;
-            }
+            }*/
 
         }
 

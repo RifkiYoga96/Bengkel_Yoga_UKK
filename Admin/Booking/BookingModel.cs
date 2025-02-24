@@ -45,7 +45,6 @@ namespace Bengkel_Yoga_UKK
         public int id_jasaServis {  get; set; }
         public string ktp_mekanik { get; set; }
         public string nama_mekanik { get; set; }
-        public int estimasi { get; set; } = 0;
 
         public int antrean { get; set; }
         public string status { get; set; }
@@ -81,6 +80,6 @@ namespace Bengkel_Yoga_UKK
     public class AntreanDto
     {
         public int Antrean { get; set; }
-        public int ServisNow { set; get; }
+        public int ServisNow {  set; get; }
     }
 }

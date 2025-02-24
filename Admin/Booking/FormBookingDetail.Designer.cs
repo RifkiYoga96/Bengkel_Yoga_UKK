@@ -28,20 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBookingDetail));
             panel1 = new Panel();
-            txtEstimasi = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
             comboMekanik = new ComboBox();
             label26 = new Label();
             btnSparepart = new Button();
             txtSparepart = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            comboEstimasi = new ComboBox();
             comboServis = new ComboBox();
             label25 = new Label();
             label24 = new Label();
             txtCatatan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label8 = new Label();
             label9 = new Label();
             label7 = new Label();
             txtTanggal = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -59,12 +55,13 @@
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            lblErrorButton = new Label();
             rjCircularPictureBox8 = new RJCircularPictureBox();
             rjCircularPictureBox7 = new RJCircularPictureBox();
             rjCircularPictureBox6 = new RJCircularPictureBox();
             rjCircularPictureBox5 = new RJCircularPictureBox();
             panel4 = new Panel();
-            yogaButton3 = new YogaButton();
+            btnInvoice = new YogaButton();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -77,12 +74,11 @@
             label17 = new Label();
             label16 = new Label();
             label15 = new Label();
-            yogaButton5 = new YogaButton();
-            yogaButton6 = new YogaButton();
-            yogaButton8 = new YogaButton();
-            yogaButton4 = new YogaButton();
-            yogaButton2 = new YogaButton();
-            yogaButton1 = new YogaButton();
+            btnPServis = new YogaButton();
+            btnSServis = new YogaButton();
+            btnSBooking = new YogaButton();
+            btnPPengecekan = new YogaButton();
+            btnSPengecekan = new YogaButton();
             rjCircularPictureBox4 = new RJCircularPictureBox();
             rjCircularPictureBox2 = new RJCircularPictureBox();
             label14 = new Label();
@@ -95,7 +91,6 @@
             yogaButton7 = new YogaButton();
             panel3 = new Panel();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txtEstimasi).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtSparepart).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtCatatan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtTanggal).BeginInit();
@@ -124,17 +119,14 @@
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(txtEstimasi);
             panel1.Controls.Add(comboMekanik);
             panel1.Controls.Add(label26);
             panel1.Controls.Add(btnSparepart);
             panel1.Controls.Add(txtSparepart);
-            panel1.Controls.Add(comboEstimasi);
             panel1.Controls.Add(comboServis);
             panel1.Controls.Add(label25);
             panel1.Controls.Add(label24);
             panel1.Controls.Add(txtCatatan);
-            panel1.Controls.Add(label8);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(txtTanggal);
@@ -151,31 +143,17 @@
             panel1.Controls.Add(txtKTP);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(25, 58);
+            panel1.Location = new Point(25, 27);
             panel1.Name = "panel1";
-            panel1.Size = new Size(487, 793);
+            panel1.Size = new Size(487, 754);
             panel1.TabIndex = 13;
-            // 
-            // txtEstimasi
-            // 
-            txtEstimasi.AccessibilityEnabled = true;
-            txtEstimasi.BeforeTouchSize = new Size(257, 27);
-            txtEstimasi.DoubleValue = 0D;
-            txtEstimasi.Font = new Font("Segoe UI", 11.28F, FontStyle.Regular, GraphicsUnit.Point);
-            txtEstimasi.Location = new Point(177, 586);
-            txtEstimasi.Name = "txtEstimasi";
-            txtEstimasi.NumberDecimalDigits = 2;
-            txtEstimasi.Size = new Size(165, 28);
-            txtEstimasi.TabIndex = 57;
-            txtEstimasi.Text = "0,00";
-            txtEstimasi.TextAlign = HorizontalAlignment.Center;
             // 
             // comboMekanik
             // 
             comboMekanik.DropDownStyle = ComboBoxStyle.DropDownList;
             comboMekanik.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             comboMekanik.FormattingEnabled = true;
-            comboMekanik.Location = new Point(177, 723);
+            comboMekanik.Location = new Point(177, 690);
             comboMekanik.Name = "comboMekanik";
             comboMekanik.Size = new Size(257, 28);
             comboMekanik.TabIndex = 56;
@@ -185,7 +163,7 @@
             label26.AutoSize = true;
             label26.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
             label26.ForeColor = SystemColors.ControlDarkDark;
-            label26.Location = new Point(47, 723);
+            label26.Location = new Point(47, 690);
             label26.Name = "label26";
             label26.Size = new Size(80, 23);
             label26.TabIndex = 55;
@@ -198,7 +176,7 @@
             btnSparepart.FlatStyle = FlatStyle.Flat;
             btnSparepart.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnSparepart.ForeColor = Color.White;
-            btnSparepart.Location = new Point(389, 678);
+            btnSparepart.Location = new Point(389, 641);
             btnSparepart.Margin = new Padding(0);
             btnSparepart.Name = "btnSparepart";
             btnSparepart.Size = new Size(45, 27);
@@ -214,22 +192,12 @@
             txtSparepart.BorderStyle = BorderStyle.FixedSingle;
             txtSparepart.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtSparepart.ForeColor = SystemColors.ControlText;
-            txtSparepart.Location = new Point(177, 677);
+            txtSparepart.Location = new Point(177, 640);
             txtSparepart.Name = "txtSparepart";
             txtSparepart.ReadOnly = true;
             txtSparepart.Size = new Size(206, 27);
             txtSparepart.TabIndex = 53;
             txtSparepart.ThemeName = "Default";
-            // 
-            // comboEstimasi
-            // 
-            comboEstimasi.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboEstimasi.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            comboEstimasi.FormattingEnabled = true;
-            comboEstimasi.Location = new Point(348, 586);
-            comboEstimasi.Name = "comboEstimasi";
-            comboEstimasi.Size = new Size(86, 28);
-            comboEstimasi.TabIndex = 52;
             // 
             // comboServis
             // 
@@ -246,7 +214,7 @@
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
             label25.ForeColor = SystemColors.ControlDarkDark;
-            label25.Location = new Point(47, 677);
+            label25.Location = new Point(47, 640);
             label25.Name = "label25";
             label25.Size = new Size(91, 23);
             label25.TabIndex = 49;
@@ -257,7 +225,7 @@
             label24.AutoSize = true;
             label24.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
             label24.ForeColor = SystemColors.ControlDarkDark;
-            label24.Location = new Point(47, 631);
+            label24.Location = new Point(47, 590);
             label24.Name = "label24";
             label24.Size = new Size(77, 23);
             label24.TabIndex = 47;
@@ -271,23 +239,12 @@
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             txtCatatan.ForeColor = SystemColors.ControlText;
-            txtCatatan.Location = new Point(177, 631);
+            txtCatatan.Location = new Point(177, 590);
             txtCatatan.Name = "txtCatatan";
             txtCatatan.ReadOnly = true;
             txtCatatan.Size = new Size(257, 27);
             txtCatatan.TabIndex = 48;
             txtCatatan.ThemeName = "Default";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.ForeColor = SystemColors.ControlDarkDark;
-            label8.Location = new Point(47, 576);
-            label8.Name = "label8";
-            label8.Size = new Size(85, 46);
-            label8.TabIndex = 44;
-            label8.Text = "Perkiraan \r\nSelesai*";
             // 
             // label9
             // 
@@ -504,12 +461,13 @@
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(lblErrorButton);
             panel2.Controls.Add(rjCircularPictureBox8);
             panel2.Controls.Add(rjCircularPictureBox7);
             panel2.Controls.Add(rjCircularPictureBox6);
             panel2.Controls.Add(rjCircularPictureBox5);
             panel2.Controls.Add(panel4);
-            panel2.Controls.Add(yogaButton3);
+            panel2.Controls.Add(btnInvoice);
             panel2.Controls.Add(pictureBox4);
             panel2.Controls.Add(pictureBox3);
             panel2.Controls.Add(pictureBox2);
@@ -522,12 +480,11 @@
             panel2.Controls.Add(label17);
             panel2.Controls.Add(label16);
             panel2.Controls.Add(label15);
-            panel2.Controls.Add(yogaButton5);
-            panel2.Controls.Add(yogaButton6);
-            panel2.Controls.Add(yogaButton8);
-            panel2.Controls.Add(yogaButton4);
-            panel2.Controls.Add(yogaButton2);
-            panel2.Controls.Add(yogaButton1);
+            panel2.Controls.Add(btnPServis);
+            panel2.Controls.Add(btnSServis);
+            panel2.Controls.Add(btnSBooking);
+            panel2.Controls.Add(btnPPengecekan);
+            panel2.Controls.Add(btnSPengecekan);
             panel2.Controls.Add(rjCircularPictureBox4);
             panel2.Controls.Add(rjCircularPictureBox2);
             panel2.Controls.Add(label14);
@@ -536,10 +493,21 @@
             panel2.Controls.Add(rjCircularPictureBox1);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(label10);
-            panel2.Location = new Point(544, 58);
+            panel2.Location = new Point(544, 27);
             panel2.Name = "panel2";
-            panel2.Size = new Size(821, 793);
+            panel2.Size = new Size(821, 754);
             panel2.TabIndex = 14;
+            // 
+            // lblErrorButton
+            // 
+            lblErrorButton.AutoSize = true;
+            lblErrorButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorButton.ForeColor = Color.Red;
+            lblErrorButton.Location = new Point(520, 606);
+            lblErrorButton.Name = "lblErrorButton";
+            lblErrorButton.Size = new Size(197, 21);
+            lblErrorButton.TabIndex = 83;
+            lblErrorButton.Text = "⚠️ Konfirmasi secara urut!";
             // 
             // rjCircularPictureBox8
             // 
@@ -610,24 +578,24 @@
             panel4.Size = new Size(2, 226);
             panel4.TabIndex = 78;
             // 
-            // yogaButton3
+            // btnInvoice
             // 
-            yogaButton3.BackColor = Color.FromArgb(52, 152, 219);
-            yogaButton3.BackgroundColor = Color.FromArgb(52, 152, 219);
-            yogaButton3.BorderColor = Color.PaleVioletRed;
-            yogaButton3.BorderRadius = 3;
-            yogaButton3.BorderSize = 0;
-            yogaButton3.FlatAppearance.BorderSize = 0;
-            yogaButton3.FlatStyle = FlatStyle.Flat;
-            yogaButton3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton3.ForeColor = Color.White;
-            yogaButton3.Location = new Point(520, 542);
-            yogaButton3.Name = "yogaButton3";
-            yogaButton3.Size = new Size(88, 37);
-            yogaButton3.TabIndex = 77;
-            yogaButton3.Text = "Invoice";
-            yogaButton3.TextColor = Color.White;
-            yogaButton3.UseVisualStyleBackColor = false;
+            btnInvoice.BackColor = Color.FromArgb(52, 152, 219);
+            btnInvoice.BackgroundColor = Color.FromArgb(52, 152, 219);
+            btnInvoice.BorderColor = Color.PaleVioletRed;
+            btnInvoice.BorderRadius = 4;
+            btnInvoice.BorderSize = 0;
+            btnInvoice.FlatAppearance.BorderSize = 0;
+            btnInvoice.FlatStyle = FlatStyle.Flat;
+            btnInvoice.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnInvoice.ForeColor = Color.White;
+            btnInvoice.Location = new Point(630, 540);
+            btnInvoice.Name = "btnInvoice";
+            btnInvoice.Size = new Size(88, 37);
+            btnInvoice.TabIndex = 77;
+            btnInvoice.Text = "Invoice";
+            btnInvoice.TextColor = Color.White;
+            btnInvoice.UseVisualStyleBackColor = false;
             // 
             // pictureBox4
             // 
@@ -758,119 +726,100 @@
             label15.TabIndex = 63;
             label15.Text = "Booking";
             // 
-            // yogaButton5
+            // btnPServis
             // 
-            yogaButton5.BackColor = Color.White;
-            yogaButton5.BackgroundColor = Color.White;
-            yogaButton5.BorderColor = Color.PaleVioletRed;
-            yogaButton5.BorderRadius = 3;
-            yogaButton5.BorderSize = 2;
-            yogaButton5.FlatAppearance.BorderSize = 0;
-            yogaButton5.FlatStyle = FlatStyle.Flat;
-            yogaButton5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton5.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton5.Location = new Point(520, 412);
-            yogaButton5.Name = "yogaButton5";
-            yogaButton5.Size = new Size(88, 37);
-            yogaButton5.TabIndex = 62;
-            yogaButton5.Text = "Proses";
-            yogaButton5.TextColor = SystemColors.ControlDarkDark;
-            yogaButton5.UseVisualStyleBackColor = false;
+            btnPServis.BackColor = Color.White;
+            btnPServis.BackgroundColor = Color.White;
+            btnPServis.BorderColor = Color.PaleVioletRed;
+            btnPServis.BorderRadius = 3;
+            btnPServis.BorderSize = 2;
+            btnPServis.FlatAppearance.BorderSize = 0;
+            btnPServis.FlatStyle = FlatStyle.Flat;
+            btnPServis.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPServis.ForeColor = SystemColors.ControlDarkDark;
+            btnPServis.Location = new Point(520, 412);
+            btnPServis.Name = "btnPServis";
+            btnPServis.Size = new Size(88, 37);
+            btnPServis.TabIndex = 62;
+            btnPServis.Text = "Proses";
+            btnPServis.TextColor = SystemColors.ControlDarkDark;
+            btnPServis.UseVisualStyleBackColor = false;
             // 
-            // yogaButton6
+            // btnSServis
             // 
-            yogaButton6.BackColor = Color.FromArgb(0, 192, 0);
-            yogaButton6.BackgroundColor = Color.FromArgb(0, 192, 0);
-            yogaButton6.BorderColor = Color.PaleVioletRed;
-            yogaButton6.BorderRadius = 4;
-            yogaButton6.BorderSize = 0;
-            yogaButton6.FlatAppearance.BorderSize = 0;
-            yogaButton6.FlatStyle = FlatStyle.Flat;
-            yogaButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton6.ForeColor = Color.White;
-            yogaButton6.Location = new Point(630, 412);
-            yogaButton6.Name = "yogaButton6";
-            yogaButton6.Size = new Size(88, 37);
-            yogaButton6.TabIndex = 61;
-            yogaButton6.Text = "Selesai";
-            yogaButton6.TextColor = Color.White;
-            yogaButton6.UseVisualStyleBackColor = false;
+            btnSServis.BackColor = Color.FromArgb(0, 192, 0);
+            btnSServis.BackgroundColor = Color.FromArgb(0, 192, 0);
+            btnSServis.BorderColor = Color.PaleVioletRed;
+            btnSServis.BorderRadius = 4;
+            btnSServis.BorderSize = 0;
+            btnSServis.FlatAppearance.BorderSize = 0;
+            btnSServis.FlatStyle = FlatStyle.Flat;
+            btnSServis.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSServis.ForeColor = Color.White;
+            btnSServis.Location = new Point(630, 412);
+            btnSServis.Name = "btnSServis";
+            btnSServis.Size = new Size(88, 37);
+            btnSServis.TabIndex = 61;
+            btnSServis.Text = "Selesai";
+            btnSServis.TextColor = Color.White;
+            btnSServis.UseVisualStyleBackColor = false;
             // 
-            // yogaButton8
+            // btnSBooking
             // 
-            yogaButton8.BackColor = Color.FromArgb(0, 192, 0);
-            yogaButton8.BackgroundColor = Color.FromArgb(0, 192, 0);
-            yogaButton8.BorderColor = Color.PaleVioletRed;
-            yogaButton8.BorderRadius = 4;
-            yogaButton8.BorderSize = 0;
-            yogaButton8.FlatAppearance.BorderSize = 0;
-            yogaButton8.FlatStyle = FlatStyle.Flat;
-            yogaButton8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton8.ForeColor = Color.White;
-            yogaButton8.Location = new Point(630, 348);
-            yogaButton8.Name = "yogaButton8";
-            yogaButton8.Size = new Size(88, 37);
-            yogaButton8.TabIndex = 59;
-            yogaButton8.Text = "Selesai";
-            yogaButton8.TextColor = Color.White;
-            yogaButton8.UseVisualStyleBackColor = false;
+            btnSBooking.BackColor = Color.FromArgb(0, 192, 0);
+            btnSBooking.BackgroundColor = Color.FromArgb(0, 192, 0);
+            btnSBooking.BorderColor = Color.PaleVioletRed;
+            btnSBooking.BorderRadius = 4;
+            btnSBooking.BorderSize = 0;
+            btnSBooking.FlatAppearance.BorderSize = 0;
+            btnSBooking.FlatStyle = FlatStyle.Flat;
+            btnSBooking.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSBooking.ForeColor = Color.White;
+            btnSBooking.Location = new Point(630, 348);
+            btnSBooking.Name = "btnSBooking";
+            btnSBooking.Size = new Size(88, 37);
+            btnSBooking.TabIndex = 59;
+            btnSBooking.Text = "Selesai";
+            btnSBooking.TextColor = Color.White;
+            btnSBooking.UseVisualStyleBackColor = false;
             // 
-            // yogaButton4
+            // btnPPengecekan
             // 
-            yogaButton4.BackColor = Color.FromArgb(0, 192, 0);
-            yogaButton4.BackgroundColor = Color.FromArgb(0, 192, 0);
-            yogaButton4.BorderColor = Color.PaleVioletRed;
-            yogaButton4.BorderRadius = 4;
-            yogaButton4.BorderSize = 0;
-            yogaButton4.FlatAppearance.BorderSize = 0;
-            yogaButton4.FlatStyle = FlatStyle.Flat;
-            yogaButton4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton4.ForeColor = Color.White;
-            yogaButton4.Location = new Point(630, 542);
-            yogaButton4.Name = "yogaButton4";
-            yogaButton4.Size = new Size(88, 37);
-            yogaButton4.TabIndex = 57;
-            yogaButton4.Text = "Selesai";
-            yogaButton4.TextColor = Color.White;
-            yogaButton4.UseVisualStyleBackColor = false;
+            btnPPengecekan.BackColor = Color.FromArgb(240, 177, 0);
+            btnPPengecekan.BackgroundColor = Color.FromArgb(240, 177, 0);
+            btnPPengecekan.BorderColor = Color.PaleVioletRed;
+            btnPPengecekan.BorderRadius = 3;
+            btnPPengecekan.BorderSize = 0;
+            btnPPengecekan.FlatAppearance.BorderSize = 0;
+            btnPPengecekan.FlatStyle = FlatStyle.Flat;
+            btnPPengecekan.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPPengecekan.ForeColor = Color.White;
+            btnPPengecekan.Location = new Point(520, 478);
+            btnPPengecekan.Name = "btnPPengecekan";
+            btnPPengecekan.Size = new Size(88, 37);
+            btnPPengecekan.TabIndex = 56;
+            btnPPengecekan.Text = "Proses";
+            btnPPengecekan.TextColor = Color.White;
+            btnPPengecekan.UseVisualStyleBackColor = false;
             // 
-            // yogaButton2
+            // btnSPengecekan
             // 
-            yogaButton2.BackColor = Color.FromArgb(240, 177, 0);
-            yogaButton2.BackgroundColor = Color.FromArgb(240, 177, 0);
-            yogaButton2.BorderColor = Color.PaleVioletRed;
-            yogaButton2.BorderRadius = 3;
-            yogaButton2.BorderSize = 0;
-            yogaButton2.FlatAppearance.BorderSize = 0;
-            yogaButton2.FlatStyle = FlatStyle.Flat;
-            yogaButton2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton2.ForeColor = Color.White;
-            yogaButton2.Location = new Point(520, 478);
-            yogaButton2.Name = "yogaButton2";
-            yogaButton2.Size = new Size(88, 37);
-            yogaButton2.TabIndex = 56;
-            yogaButton2.Text = "Proses";
-            yogaButton2.TextColor = Color.White;
-            yogaButton2.UseVisualStyleBackColor = false;
-            // 
-            // yogaButton1
-            // 
-            yogaButton1.BackColor = Color.White;
-            yogaButton1.BackgroundColor = Color.White;
-            yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 4;
-            yogaButton1.BorderSize = 2;
-            yogaButton1.FlatAppearance.BorderSize = 0;
-            yogaButton1.FlatStyle = FlatStyle.Flat;
-            yogaButton1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton1.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton1.Location = new Point(630, 478);
-            yogaButton1.Name = "yogaButton1";
-            yogaButton1.Size = new Size(88, 37);
-            yogaButton1.TabIndex = 55;
-            yogaButton1.Text = "Selesai";
-            yogaButton1.TextColor = SystemColors.ControlDarkDark;
-            yogaButton1.UseVisualStyleBackColor = false;
+            btnSPengecekan.BackColor = Color.White;
+            btnSPengecekan.BackgroundColor = Color.White;
+            btnSPengecekan.BorderColor = Color.PaleVioletRed;
+            btnSPengecekan.BorderRadius = 4;
+            btnSPengecekan.BorderSize = 2;
+            btnSPengecekan.FlatAppearance.BorderSize = 0;
+            btnSPengecekan.FlatStyle = FlatStyle.Flat;
+            btnSPengecekan.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSPengecekan.ForeColor = SystemColors.ControlDarkDark;
+            btnSPengecekan.Location = new Point(630, 478);
+            btnSPengecekan.Name = "btnSPengecekan";
+            btnSPengecekan.Size = new Size(88, 37);
+            btnSPengecekan.TabIndex = 55;
+            btnSPengecekan.Text = "Selesai";
+            btnSPengecekan.TextColor = SystemColors.ControlDarkDark;
+            btnSPengecekan.UseVisualStyleBackColor = false;
             // 
             // rjCircularPictureBox4
             // 
@@ -998,7 +947,7 @@
             yogaButton7.FlatStyle = FlatStyle.Flat;
             yogaButton7.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             yogaButton7.ForeColor = Color.White;
-            yogaButton7.Location = new Point(1236, 869);
+            yogaButton7.Location = new Point(1236, 801);
             yogaButton7.Name = "yogaButton7";
             yogaButton7.Size = new Size(129, 46);
             yogaButton7.TabIndex = 78;
@@ -1016,20 +965,19 @@
             panel3.Controls.Add(panel1);
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1403, 927);
+            panel3.Size = new Size(1403, 865);
             panel3.TabIndex = 79;
             // 
             // FormBookingDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1403, 927);
+            ClientSize = new Size(1403, 865);
             Controls.Add(panel3);
             Name = "FormBookingDetail";
             Text = "FormBookingDetail";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)txtEstimasi).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtSparepart).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtCatatan).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtTanggal).EndInit();
@@ -1074,7 +1022,6 @@
         private Label label12;
         private Label label7;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtTanggal;
-        private Label label8;
         private Label label9;
         private Panel panel2;
         private RJCircularPictureBox rjCircularPictureBox1;
@@ -1085,12 +1032,11 @@
         private Label label14;
         private RJCircularPictureBox rjCircularPictureBox3;
         private Label label13;
-        private YogaButton yogaButton1;
-        private YogaButton yogaButton2;
-        private YogaButton yogaButton5;
-        private YogaButton yogaButton6;
-        private YogaButton yogaButton8;
-        private YogaButton yogaButton4;
+        private YogaButton btnSPengecekan;
+        private YogaButton btnPPengecekan;
+        private YogaButton btnPServis;
+        private YogaButton btnSServis;
+        private YogaButton btnSBooking;
         private Label label15;
         private Label label20;
         private Label label19;
@@ -1104,13 +1050,12 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
         private Button button1;
-        private YogaButton yogaButton3;
+        private YogaButton btnInvoice;
         private YogaButton yogaButton7;
         private Label label24;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtCatatan;
         private Label label25;
         private ComboBox comboServis;
-        private ComboBox comboEstimasi;
         private Button btnSparepart;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtSparepart;
         private ComboBox comboMekanik;
@@ -1121,6 +1066,6 @@
         private RJCircularPictureBox rjCircularPictureBox7;
         private RJCircularPictureBox rjCircularPictureBox6;
         private RJCircularPictureBox rjCircularPictureBox5;
-        private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtEstimasi;
+        private Label lblErrorButton;
     }
 }

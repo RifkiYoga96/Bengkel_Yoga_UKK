@@ -33,6 +33,7 @@ namespace Bengkel_Yoga_UKK
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBooking));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
+            comboFilterWaktu = new ComboBox();
             lblShowingEntries = new Label();
             comboFilterStatus = new ComboBox();
             btnSearch = new YogaButton();
@@ -51,10 +52,6 @@ namespace Bengkel_Yoga_UKK
             contextMenuStrip = new ContextMenuStripEx();
             detailBookingToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
-            comboFilterWaktu = new ComboBox();
-            tgl1 = new DateTimePicker();
-            tgl2 = new DateTimePicker();
-            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -83,9 +80,6 @@ namespace Bengkel_Yoga_UKK
             yogaPanel1.BorderColor = Color.PaleVioletRed;
             yogaPanel1.BorderRadius = 0;
             yogaPanel1.BorderSize = 0;
-            yogaPanel1.Controls.Add(label2);
-            yogaPanel1.Controls.Add(tgl2);
-            yogaPanel1.Controls.Add(tgl1);
             yogaPanel1.Controls.Add(comboFilterWaktu);
             yogaPanel1.Controls.Add(lblShowingEntries);
             yogaPanel1.Controls.Add(comboFilterStatus);
@@ -101,6 +95,16 @@ namespace Bengkel_Yoga_UKK
             yogaPanel1.Name = "yogaPanel1";
             yogaPanel1.Size = new Size(1270, 531);
             yogaPanel1.TabIndex = 11;
+            // 
+            // comboFilterWaktu
+            // 
+            comboFilterWaktu.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboFilterWaktu.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboFilterWaktu.FormattingEnabled = true;
+            comboFilterWaktu.Location = new Point(482, 33);
+            comboFilterWaktu.Name = "comboFilterWaktu";
+            comboFilterWaktu.Size = new Size(123, 28);
+            comboFilterWaktu.TabIndex = 14;
             // 
             // lblShowingEntries
             // 
@@ -299,7 +303,7 @@ namespace Bengkel_Yoga_UKK
             contextMenuStrip.Items.AddRange(new ToolStripItem[] { detailBookingToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip.MetroColor = Color.FromArgb(204, 236, 249);
             contextMenuStrip.Name = "contextMenuStrip";
-            contextMenuStrip.Size = new Size(188, 56);
+            contextMenuStrip.Size = new Size(188, 78);
             contextMenuStrip.ThemeName = "Office2016Colorful";
             contextMenuStrip.ThemeStyle.BackColor = Color.FromArgb(52, 152, 219);
             contextMenuStrip.ThemeStyle.DisabledForeColor = Color.FromArgb(52, 152, 219);
@@ -317,43 +321,6 @@ namespace Bengkel_Yoga_UKK
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             deleteToolStripMenuItem.Size = new Size(187, 26);
             deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // comboFilterWaktu
-            // 
-            comboFilterWaktu.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboFilterWaktu.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboFilterWaktu.FormattingEnabled = true;
-            comboFilterWaktu.Location = new Point(482, 33);
-            comboFilterWaktu.Name = "comboFilterWaktu";
-            comboFilterWaktu.Size = new Size(123, 28);
-            comboFilterWaktu.TabIndex = 14;
-            // 
-            // tgl1
-            // 
-            tgl1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            tgl1.Location = new Point(624, 33);
-            tgl1.Name = "tgl1";
-            tgl1.Size = new Size(172, 27);
-            tgl1.TabIndex = 15;
-            // 
-            // tgl2
-            // 
-            tgl2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            tgl2.Location = new Point(822, 33);
-            tgl2.Name = "tgl2";
-            tgl2.Size = new Size(172, 27);
-            tgl2.TabIndex = 16;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = SystemColors.ControlDarkDark;
-            label2.Location = new Point(801, 35);
-            label2.Name = "label2";
-            label2.Size = new Size(17, 20);
-            label2.TabIndex = 17;
-            label2.Text = "━";
             // 
             // FormBooking
             // 
@@ -398,9 +365,6 @@ namespace Bengkel_Yoga_UKK
         private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStrip;
         private ToolStripMenuItem detailBookingToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
-        private Label label2;
-        private DateTimePicker tgl2;
-        private DateTimePicker tgl1;
         private ComboBox comboFilterWaktu;
     }
 }

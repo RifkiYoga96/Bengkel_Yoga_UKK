@@ -39,7 +39,7 @@ namespace Bengkel_Yoga_UKK
                             ORDER BY b.antrean
                             OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<BookingModel2>(sql, filter.param);
+            return koneksi.Query<BookingModel2>(sql,filter.param);
         }
 
         public BookingModel2? GetData(int id_booking)
@@ -60,7 +60,6 @@ namespace Bengkel_Yoga_UKK
                                 b.antrean,
                                 b.ktp_mekanik,
                                 b.id_jasaServis,
-                                b.estimasi,
                                 b.status
                             FROM Bookings b 
                             LEFT JOIN Pelanggan p ON b.ktp_pelanggan = p.ktp_pelanggan
@@ -68,7 +67,7 @@ namespace Bengkel_Yoga_UKK
                             LEFT JOIN JasaServis js ON js.id_jasaServis = b.id_jasaServis
                                 WHERE b.id_booking = @id_booking";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<BookingModel2>(sql, new { id_booking = id_booking });
+            return koneksi.QueryFirstOrDefault<BookingModel2>(sql, new {id_booking = id_booking});
         }
 
         public IEnumerable<ProdukModel> ListDataProduk(int id_booking)
@@ -79,7 +78,7 @@ namespace Bengkel_Yoga_UKK
                                 ON bs.kode_sparepart = s.kode_sparepart
                             WHERE id_booking = @id_booking";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<ProdukModel>(sql, new { id_booking = id_booking });
+            return koneksi.Query<ProdukModel>(sql, new {id_booking = id_booking});
         }
 
         public AntreanDto GetAntrean(DateTime tanggal)
@@ -97,7 +96,7 @@ namespace Bengkel_Yoga_UKK
         {
             const string sql = @"SELECT COUNT(*) FROM Kendaraan WHERE no_pol = @no_pol";
             using var koneksi = new SqlConnection(conn.connStr);
-            int count = koneksi.QuerySingleOrDefault<int>(sql, new { no_pol = no_pol });
+            int count =  koneksi.QuerySingleOrDefault<int>(sql, new {no_pol = no_pol});
             return count > 0;
         }
 
@@ -117,14 +116,14 @@ namespace Bengkel_Yoga_UKK
             {
                 dp.Add("@nama_pelanggan", booking.nama_pelanggan);
                 dp.Add("@nama_kendaraan", booking.nama_kendaraan);
-                dp.Add("@no_pol", booking.no_pol);
+                dp.Add("@no_pol",booking.no_pol);
                 dp.Add("@tanggal", booking.tanggal);
                 dp.Add("@keluhan", booking.keluhan);
                 dp.Add("@antrean", booking.antrean);
             }
 
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Query<BookingModel2>("InsertBooking", dp, commandType: CommandType.StoredProcedure);
+            koneksi.Query<BookingModel2>("InsertBooking",dp,commandType: CommandType.StoredProcedure);
         }
 
         public void InsertDataBookingSparepart(BookingModel2 booking)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bengkel_Yoga_UKK;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace Bengkel_Yoga_UKK
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private readonly ProdukDal _produkDal = new ProdukDal();    
         public static int _id_booking;
+        private int _currentStep = 1;
         public FormBookingDetail(int id)
         {
             InitializeComponent();
@@ -35,6 +37,14 @@ namespace Bengkel_Yoga_UKK
             {
                 if (new FormAddSparepart().ShowDialog() != DialogResult.OK) return;
             };
+
+            this.Load += FormBookingDetail_Load;
+        }
+
+        private void FormBookingDetail_Load(object? sender, EventArgs e)
+        {
+
+
         }
 
         private void InitComponent()
@@ -51,13 +61,11 @@ namespace Bengkel_Yoga_UKK
             comboServis.DisplayMember = "nama_jasaServis";
             comboServis.ValueMember = "id_jasaServis";
 
-            comboEstimasi.DataSource = new List<string>() { "--Select--","Menit", "Jam", "Hari" };
-
             var listMekanik = new List<MekanikModelCombo>() 
             {
                 new MekanikModelCombo{ ktp_mekanik = string.Empty,nama_mekanik = "--Pilih Mekanik--" }
             }; 
-            listMekanik.AddRange(_karyawanDal.ListData()
+            listMekanik.AddRange(_karyawanDal.ListData(new FilterDto())
                .Where(x => x.role == 0)
                .Select(x => new MekanikModelCombo
                {
@@ -67,8 +75,6 @@ namespace Bengkel_Yoga_UKK
             comboMekanik.DataSource = listMekanik;
             comboMekanik.DisplayMember = "nama_mekanik";
             comboMekanik.ValueMember = "ktp_mekanik";
-
-
         }
 
         private void GetData()
@@ -80,7 +86,8 @@ namespace Bengkel_Yoga_UKK
             txtNama.Text = data.nama_pelanggan;
             txtKTP.Text = data.ktp_pelanggan;
             txtKendaraan.Text = data.nama_kendaraan;
-            txtNoPol.Text = data.tanggal.ToString("d MMMM yyyy", new CultureInfo("id-ID"));
+            txtNoPol.Text = data.no_pol;
+            txtTanggal.Text = data.tanggal.ToString("d MMMM yyyy", new CultureInfo("id-ID"));
             txtKeluhan.Text = data.keluhan;
 
             foreach (var item in comboServis.Items)
@@ -93,21 +100,11 @@ namespace Bengkel_Yoga_UKK
                     if (m.ktp_mekanik == data.ktp_mekanik)
                         comboMekanik.SelectedItem = item;
 
-            double valueEstimasi = data.estimasi < 60 ? data.estimasi 
-                : data.estimasi < 1440 ? data.estimasi/60
-                : data.estimasi >= 1440 ? data.estimasi/1440
-                : 0;
-            txtEstimasi.DoubleValue = valueEstimasi;
-
-            int indexEstimasi = data.estimasi == 0 ? 0
-                : data.estimasi < 60 ? 1
-                : data.estimasi < 1440 ? 2
-                : 3;
-            comboEstimasi.SelectedIndex = indexEstimasi;
-
             var listSparepart = _bookingDal.ListDataProduk(_id_booking);
             txtSparepart.Text = string.Join(", ",listSparepart.Select(x => x.nama_sparepart));
         }
+
+    
     }
 }
 
@@ -117,3 +114,4 @@ public class MekanikModelCombo
     public string ktp_mekanik { get; set; }
     public string nama_mekanik { get; set; }
 }
+

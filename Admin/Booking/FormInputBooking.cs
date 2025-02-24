@@ -12,9 +12,49 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class FormInputBooking : Form
     {
+        private readonly KendaraanDal _kendaraanDal = new KendaraanDal();
         public FormInputBooking()
         {
             InitializeComponent();
+            InitComponent();
+            RegisterEvent();
         }
+
+        private void RegisterEvent()
+        {
+            txtNoKTP.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    LoadData();
+                }
+            };
+        }
+        private void InitComponent()
+        {
+            txtNoKTP.MaxLength = 20;
+            txtNama.MaxLength = 90;
+            txtKeluhan.MaxLength = 100;
+        }
+
+        private void LoadData()
+        {
+            var kendaraanPelanggan = _kendaraanDal.ListDataPelanggan(txtNoKTP.Text.Trim());
+            if (!kendaraanPelanggan.Any())
+            {
+                lblErrorKTP.Visible = true;
+                return;
+            }
+            
+
+        }
+        private void ClearInput()
+        {
+            txtNama.Clear();
+            txtNoPol.Clear();
+            
+        }
+
     }
 }

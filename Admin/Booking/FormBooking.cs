@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -21,15 +22,18 @@ namespace Bengkel_Yoga_UKK
         private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending, 90, 90));
         private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan, 90, 90));
         private bool _rangeTanggal = false;
+        private int _page = 1;
+        private int _Totalpage = 1;
+        private DateTime _tanggal;
         public FormBooking(DateTime tanggal = default)
         {
             InitializeComponent();
-            if (tanggal == default)
-                tanggal = new DateTime(2025, 1, 1);
             InitComponen();
             RegisterEvent();
             LoadData();
             CustomGrid();
+            if (tanggal == default)
+                tanggal = new DateTime(2025, 1, 1);
         }
 
         #region EVENT
@@ -55,20 +59,49 @@ namespace Bengkel_Yoga_UKK
                 }
             };*/
             txtSearch.KeyDown += TxtSearch_KeyDown;
-            tgl1.ValueChanged += Tgl_ValueChanged;
-            tgl2.ValueChanged += Tgl_ValueChanged;
+
             comboFilterWaktu.SelectedValueChanged += ComboFilterWaktu_SelectedValueChanged;
             comboFilterStatus.SelectedIndexChanged += ComboFilterStatus_SelectedIndexChanged;
+
+            btnNext.Click += (s, e) =>
+            {
+                if (_page < _Totalpage)
+                {
+                    _page++;
+                    LoadData();
+                }
+            };
+            btnPrevious.Click += (s, e) =>
+            {
+                if (_page > 1)
+                {
+                    _page--;
+                    LoadData();
+                }
+            };
+
+            numericEntries.ValueChanged += async (s, e) =>
+            {
+                await Task.Delay(1000);
+                ResetPage();
+                LoadData();
+            };
+
+            this.Load += FormBooking_Load;
         }
+
+       
 
         private void ComboFilterStatus_SelectedIndexChanged(object? sender, EventArgs e)
         {
+            ResetPage();
             LoadData();
         }
 
         private async void TxtSearch_KeyDown(object? sender, KeyEventArgs e)
         {
             await Task.Delay(500);
+            ResetPage();
             LoadData();
         }
 
@@ -81,12 +114,14 @@ namespace Bengkel_Yoga_UKK
         private void ComboFilterWaktu_SelectedValueChanged(object? sender, EventArgs e)
         {
             _rangeTanggal = false;
+            ResetPage();
             LoadData();
         }
 
         private void Tgl_ValueChanged(object? sender, EventArgs e)
         {
             _rangeTanggal = true;
+            ResetPage();
             LoadData();
         }
 
@@ -105,6 +140,11 @@ namespace Bengkel_Yoga_UKK
                 contextMenuStrip.Show(Cursor.Position);
             }
         }
+
+        private void ResetPage()
+        {
+            _page = 1;
+        }
         #endregion
 
         #region DATAGRID LOAD
@@ -115,9 +155,6 @@ namespace Bengkel_Yoga_UKK
 
             DateTime filterWaktu1 = ((FilterWaktu)comboFilterWaktu.SelectedItem).waktu1;
             DateTime filterWaktu2 = ((FilterWaktu)comboFilterWaktu.SelectedItem).waktu2;
-
-            DateTime tanggal1 = tgl1.Value.Date;
-            DateTime tanggal2 = tgl2.Value.Date;
 
 
             string sql = @"";
@@ -140,12 +177,6 @@ namespace Bengkel_Yoga_UKK
                 dp.Add(@"filterWaktu1",filterWaktu1);
                 dp.Add(@"filterWaktu2",filterWaktu2);
             }
-            if (_rangeTanggal)
-            {
-                fltr.Add("(b.tanggal BETWEEN @tanggal1 AND @tanggal2)");
-                dp.Add(@"tanggal1",tanggal1);
-                dp.Add(@"tanggal2",tanggal2);
-            }
 
 
             if (fltr.Count > 0)
@@ -162,13 +193,25 @@ namespace Bengkel_Yoga_UKK
 
         private void LoadData()
         {
-            int i = 1;
-            var list = _bookingDal.ListData(Filter() ?? new FilterDto())
-                .Select(x => new BookingDto
+            var sqlFilter = Filter() ?? new FilterDto();
+            var totalRows = _bookingDal.GetTotalRows(sqlFilter);
+
+            int showData = (int)numericEntries.Value;
+            _Totalpage = Convert.ToInt32(Math.Ceiling((double)totalRows / showData));
+            int offset = (_page - 1) * showData;
+            sqlFilter.param.Add("@offset", offset);
+            sqlFilter.param.Add("@fetch", showData);
+
+            lblHalaman.Text = _page.ToString();
+            int toValue = Math.Min(offset + showData, totalRows);
+            lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
+
+            var list = _bookingDal.ListData(sqlFilter)
+                .Select((x,index) => new BookingDto
                 {
                     id_booking = x.id_booking,
+                    No = offset + index + 1,
                     antrean = x.antrean,
-                    No = i++,
                     ktp_pelanggan = x.ktp_pelanggan == null ? "(Tamu)" : x.ktp_pelanggan,
                     nama_pelanggan = x.nama_pelanggan,
                     no_pol = x.no_pol,
@@ -199,6 +242,9 @@ namespace Bengkel_Yoga_UKK
             };
             comboFilterWaktu.DataSource = listFilterWaktu;
             comboFilterWaktu.DisplayMember = "nama";
+
+            numericEntries.Maximum = 1000;
+            numericEntries.Minimum = 10;
         }
         #endregion
 
@@ -213,7 +259,7 @@ namespace Bengkel_Yoga_UKK
 
             dgv.Columns["id_booking"].Width = 10;
             dgv.Columns["No"].Width = 70;
-            dgv.Columns["antrean"].Width = 100;
+            dgv.Columns["antrean"].Width = 120;
             dgv.Columns["ktp_pelanggan"].Width = 200;
             dgv.Columns["nama_pelanggan"].Width = 250;
             dgv.Columns["no_pol"].Width = 150;
@@ -305,10 +351,6 @@ namespace Bengkel_Yoga_UKK
                         e.Handled = true; // Tandai event sebagai sudah dihandle
                     }
                 }
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    dataGridView1.Rows[i].Cells["NO"].Value = i + 1;
-                }
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
         }
@@ -319,7 +361,22 @@ namespace Bengkel_Yoga_UKK
                 return (Bitmap)Properties.Resources.ArrowUp;
             else
                 return (Bitmap)Properties.Resources.ArrowDown;
+        }
+     
+        private void FormBooking_Load(object? sender, EventArgs e)
+        {
+            DataGridViewColumn targetColumn = dataGridView1.Columns["Antrean"];
 
+            if (targetColumn != null)
+            {
+                // Atur pengurutan ascending pada kolom tersebut
+                dataGridView1.Sort(targetColumn, ListSortDirection.Ascending);
+
+                // Atur tanda panah (sort glyph) pada header kolom
+                targetColumn.HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+            }
+
+            comboFilterWaktu.SelectedIndex = 1;
         }
         #endregion
     }
@@ -328,8 +385,9 @@ namespace Bengkel_Yoga_UKK
 public class FilterDto
 {
     public string sql { get; set; } = string.Empty;
-    public object param { get; set; } = new DynamicParameters();
+    public DynamicParameters param { get; set; } = new DynamicParameters();
 }
+
 
 public class FilterWaktu
 {

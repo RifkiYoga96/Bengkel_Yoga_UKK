@@ -30,7 +30,7 @@ namespace Bengkel_Yoga_UKK
         #region PELANGGAN
         private void RegisterEvent_Pelanggan()
         {
-            StyleComponent.TextChangeNull(txtKeluhan, lblErrorKeluhan, "⚠️ Harap isi keluhan!");
+            StyleComponent.TextChangeNull(txtKeluhan,lblErrorKeluhan, "⚠️ Harap isi keluhan!");
 
             txtNoKTP.KeyDown += (s, e) =>
             {
@@ -45,12 +45,12 @@ namespace Bengkel_Yoga_UKK
                 txtNoPol.Text = ((KendaraanDto)comboKendaraan.SelectedItem)?.no_pol ?? string.Empty;
             };
             btnSearch.Click += (s, e) => LoadData_Pelanggan();
-            btnSave.Click += (s, e) => SaveData_Pelanggan();
-            //btnCancel.Click += (s, e) => this.Close();
+            btnSave.Click += (s, e) =>SaveData_Pelanggan();
+            btnCancel.Click += (s, e) => this.Close();
         }
         private void InitComponent_Pelanggan()
         {
-            txtNama.MaxLength = 20;
+            txtNama.MaxLength = 100;
             txtNoKTP.MaxLength = 90;
             txtKeluhan.MaxLength = 100;
             TglEditSync.MinDateTime = DateTime.Today;
@@ -97,7 +97,7 @@ namespace Bengkel_Yoga_UKK
             DateTime tanggal = TglEditSync.Value ?? DateTime.Today;
             string keluhan = txtKeluhan.Text;
 
-            if (noKTP == string.Empty || id_kendaraan == 0 || keluhan == string.Empty)
+            if(noKTP == string.Empty || id_kendaraan == 0 || keluhan == string.Empty)
             {
                 MB.Warning("Harap melengkapi data!");
                 return;
@@ -110,7 +110,8 @@ namespace Bengkel_Yoga_UKK
                 MB.Warning("Data tidak valid, mohon cek kembali!");
                 return;
             }
-
+            if (new Form2(tanggal).ShowDialog() == DialogResult.OK)
+            {
                 var data = new BookingModel2
                 {
                     ktp_pelanggan = noKTP,
@@ -122,7 +123,7 @@ namespace Bengkel_Yoga_UKK
                 _bookingDal.InsertDataBooking(data, true);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-
+            } 
         }
         #endregion
 
@@ -160,7 +161,7 @@ namespace Bengkel_Yoga_UKK
 
         private void InitComponent_Tamu()
         {
-            txtNama2.MaxLength = 20;
+            txtNama2.MaxLength = 100;
             txtKeluhan2.MaxLength = 100;
             txtKendaraan2.MaxLength = 50;
             txtNoPol2.MaxLength = 50;
@@ -194,6 +195,8 @@ namespace Bengkel_Yoga_UKK
                 return;
             }
 
+            if (new Form2(tanggal).ShowDialog() == DialogResult.OK)
+            {
                 var data = new BookingModel2
                 {
                     nama_pelanggan = nama,
@@ -206,7 +209,7 @@ namespace Bengkel_Yoga_UKK
                 _bookingDal.InsertDataBooking(data, false);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-
+            }
         }
 
         #endregion
@@ -217,5 +220,5 @@ public class KendaraanDto
 {
     public int id_kendaraan { get; set; }
     public string nama_kendaraan { get; set; }
-    public string no_pol { get; set; }
+    public string no_pol {  get; set; }
 }

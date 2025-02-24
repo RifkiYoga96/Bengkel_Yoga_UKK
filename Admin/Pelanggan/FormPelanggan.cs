@@ -105,7 +105,7 @@ namespace Bengkel_Yoga_UKK
             int toValue = Math.Min(offset + showData, totalRows);
             lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
 
-            var list = _pelangganDal.ListData()
+            var list = _pelangganDal.ListData(sqlFilter)
                 .Select((x,index) => new PelangganModel()
                 {
                    No = offset + index + 1,

@@ -43,7 +43,7 @@
             label1 = new Label();
             btnSearch = new YogaButton();
             lblErrorKTP = new Label();
-            yogaButton1 = new YogaButton();
+            btnCancel = new YogaButton();
             label12 = new Label();
             txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             btnSave = new YogaButton();
@@ -126,7 +126,7 @@
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(btnSearch);
             tabPage1.Controls.Add(lblErrorKTP);
-            tabPage1.Controls.Add(yogaButton1);
+            tabPage1.Controls.Add(btnCancel);
             tabPage1.Controls.Add(label12);
             tabPage1.Controls.Add(txtNama);
             tabPage1.Controls.Add(btnSave);
@@ -273,25 +273,25 @@
             lblErrorKTP.TextAlign = ContentAlignment.MiddleRight;
             lblErrorKTP.Visible = false;
             // 
-            // yogaButton1
+            // btnCancel
             // 
-            yogaButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            yogaButton1.BackColor = Color.Transparent;
-            yogaButton1.BackgroundColor = Color.Transparent;
-            yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 0;
-            yogaButton1.BorderSize = 2;
-            yogaButton1.FlatAppearance.BorderSize = 0;
-            yogaButton1.FlatStyle = FlatStyle.Flat;
-            yogaButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton1.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton1.Location = new Point(219, 577);
-            yogaButton1.Name = "yogaButton1";
-            yogaButton1.Size = new Size(108, 36);
-            yogaButton1.TabIndex = 100;
-            yogaButton1.Text = "Cancel";
-            yogaButton1.TextColor = SystemColors.ControlDarkDark;
-            yogaButton1.UseVisualStyleBackColor = false;
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancel.BackColor = Color.Transparent;
+            btnCancel.BackgroundColor = Color.Transparent;
+            btnCancel.BorderColor = Color.PaleVioletRed;
+            btnCancel.BorderRadius = 0;
+            btnCancel.BorderSize = 2;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.ForeColor = SystemColors.ControlDarkDark;
+            btnCancel.Location = new Point(219, 577);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(108, 36);
+            btnCancel.TabIndex = 100;
+            btnCancel.Text = "Cancel";
+            btnCancel.TextColor = SystemColors.ControlDarkDark;
+            btnCancel.UseVisualStyleBackColor = false;
             // 
             // label12
             // 
@@ -669,7 +669,7 @@
         private Label label1;
         private YogaButton btnSearch;
         private Label lblErrorKTP;
-        private YogaButton yogaButton1;
+        private YogaButton btnCancel;
         private Label label12;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;
         private YogaButton btnSave;
