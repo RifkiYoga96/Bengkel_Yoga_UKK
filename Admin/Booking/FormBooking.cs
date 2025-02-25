@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Syncfusion.PMML;
 using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.Windows.Shared;
 using System;
@@ -19,6 +20,7 @@ namespace Bengkel_Yoga_UKK
     public partial class FormBooking : Form
     {
         private readonly BookingDal _bookingDal = new BookingDal();
+        private readonly BatasBookingDal _batasBookingDal = new BatasBookingDal();
         private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending, 90, 90));
         private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan, 90, 90));
         private bool _rangeTanggal = false;
@@ -47,6 +49,11 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             detailBookingToolStripMenuItem.Click += DetailBookingToolStripMenuItem_Click;
             btnAddData.Click += BtnAddData_Click;
+            btnEditBatasBooking.Click += (s, e) =>
+            {
+                new FormBatasBooking().ShowDialog();
+                InitBatasBooking();
+            };
 
 
             //Filter
@@ -211,7 +218,7 @@ namespace Bengkel_Yoga_UKK
                 {
                     id_booking = x.id_booking,
                     No = offset + index + 1,
-                    antrean = x.antrean,
+                    antrean = (x.tipe_antrean == 1 ? "A" : "B") + x.antrean.ToString("D3"),
                     ktp_pelanggan = x.ktp_pelanggan == null ? "(Tamu)" : x.ktp_pelanggan,
                     nama_pelanggan = x.nama_pelanggan,
                     no_pol = x.no_pol,
@@ -245,6 +252,16 @@ namespace Bengkel_Yoga_UKK
 
             numericEntries.Maximum = 1000;
             numericEntries.Minimum = 10;
+            txtBatas.ReadOnly = true;
+            txtBatas.TextAlign = HorizontalAlignment.Center;
+
+            InitBatasBooking();
+        }
+
+        private void InitBatasBooking()
+        {
+            int batas = _batasBookingDal.GetBatasBooking(DateTime.Today);
+            txtBatas.Text = batas.ToString();
         }
         #endregion
 

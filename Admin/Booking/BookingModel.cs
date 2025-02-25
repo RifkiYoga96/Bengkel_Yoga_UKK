@@ -47,6 +47,7 @@ namespace Bengkel_Yoga_UKK
         public string nama_mekanik { get; set; }
 
         public int antrean { get; set; }
+        public int tipe_antrean { get; set; }
         public string status { get; set; }
 
     }
@@ -55,7 +56,7 @@ namespace Bengkel_Yoga_UKK
     {
         public int id_booking { get; set; }
         public int No { get; set; }
-        public int antrean { get; set; }
+        public string antrean { get; set; }
         public byte[] statusImg { get; set; }
         public string ktp_pelanggan { get; set; }
         public string nama_pelanggan { get; set; }

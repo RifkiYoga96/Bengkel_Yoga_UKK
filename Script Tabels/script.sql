@@ -82,6 +82,7 @@ CREATE TABLE Bookings(
 
 	catatan VARCHAR(100),
 	antrean INT,
+	tipe_antrean INT,
 	ktp_mekanik VARCHAR(30),
 	id_jasaServis INT,
 	status VARCHAR(20)
@@ -99,6 +100,7 @@ CREATE TABLE Bookings(
 CREATE TABLE BookingsSparepart(
 	id_booking INT,
 	kode_sparepart VARCHAR(20),
+	nama_sparepart VARCHAR(50),
 	jumlah INT,
 	harga INT,
 	image_data VARBINARY(MAX)
@@ -146,7 +148,6 @@ CREATE TABLE RiwayatSparepart(
 	nama_sparepart VARCHAR(50),
 	jumlah INT,
 	harga INT,
-	image_name NVARCHAR(100),
 	image_data VARBINARY(MAX)
 
 	FOREIGN KEY (id_riwayat)
@@ -154,6 +155,13 @@ CREATE TABLE RiwayatSparepart(
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
         );
+
+CREATE TABLE BatasBooking(
+    id_batas_booking INT IDENTITY(1,1) PRIMARY KEY,
+    tanggal DATETIME,
+    batas_booking INT,
+    created_at DATETIME DEFAULT GETDATE()
+);
 
 
 
@@ -186,54 +194,69 @@ END;
 go;
 
 
-INSERT INTO Sparepart (kode_sparepart, nama_sparepart, stok, stok_minimum, harga, image_data)
-VALUES
-('SP001', 'Oli Mesin', 50, 5, 75000, NULL),
-('SP002', 'Busi', 30, 5, 25000, NULL),
-('SP003', 'Kampas Rem', 40, 5, 100000, NULL);
+DROP TABLE Bookings;
+DROP TABLE BookingsSparepart;
 
+
+-- Insert ke Pelanggan
 INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp)
-VALUES
-('123456789', 'Ahmad Setiawan', 'ahmad@email.com', 'pass123', 'Jl. Merdeka No.10', '081234567890'),
-('987654321', 'Rina Susanti', 'rina@email.com', 'pass456', 'Jl. Diponegoro No.15', '081298765432');
+VALUES 
+('1234567890', 'Budi Santoso', 'budi@email.com', 'password123', 'Jl. Merdeka No.10', '081234567890');
 
-INSERT INTO Admins (ktp_admin, nama_admin, email, password, alamat, no_telp, role, image_data)
-VALUES
-('111111111', 'Budi Santoso', 'budi@email.com', 'admin123', 'Jl. Sudirman No.20', '081212341234', 1, NULL),
-('222222222', 'Siti Aisyah', 'siti@email.com', 'admin456', 'Jl. Thamrin No.30', '081278956789', 2, NULL);
+-- Insert ke Admins
+INSERT INTO Admins (ktp_admin, nama_admin, email, password, alamat, no_telp, role)
+VALUES 
+('0987654321', 'Admin 1', 'admin@email.com', 'admin123', 'Jl. Sudirman No.20', '081298765432', 1);
 
+-- Insert ke Sparepart
+INSERT INTO Sparepart (kode_sparepart, nama_sparepart, stok, stok_minimum, harga)
+VALUES 
+--('SP001', 'Oli Mesin', 50, 5, 100000),
+--('SP002', 'Busi', 100, 10, 50000),
+('SP004', 'Ban', 0, 10, 40000);
+
+-- Insert ke JasaServis
 INSERT INTO JasaServis (nama_jasaServis, harga)
-VALUES
-('Ganti Oli', 50000),
-('Tune Up', 150000),
-('Ganti Kampas Rem', 120000);
+VALUES 
+('Ganti Oli', 150000),
+('Tune Up', 200000);
 
+-- Insert ke Kendaraan
 INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan, total_servis)
-VALUES
-('B 1234 AB', 'Toyota', 'Avanza', 'Automatic', 7, '2020', '123456789', 3),
-('D 5678 CD', 'Honda', 'Brio', 'Manual', 5, '2018', '987654321', 2);
+VALUES 
+('B 1234 ABC', 'Toyota', 'Avanza', 'Manual', 7, '2018', '1234567890', 2),
+('D 5678 XYZ', 'Honda', 'Brio', 'Automatic', 5, '2020', '1234567890', 1);
 
-INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, antrean, ktp_mekanik, id_jasaServis, status)
-VALUES
-('123456789', 'Ahmad Setiawan', 1, 'B 1234 AB', 'Toyota Avanza', '2024-06-01', 'Oli Bocor', 'Perlu ganti oli', 1, '111111111', 1, 'Menunggu'),
-('987654321', 'Rina Susanti', 2, 'D 5678 CD', 'Honda Brio', '2024-06-02', 'Mesin Berisik', 'Perlu cek mesin', 2, '222222222', 2, 'Diproses');
 
-INSERT INTO BookingsSparepart (id_booking, kode_sparepart, jumlah, harga, image_data)
-VALUES
-(1, 'SP001', 1, 75000, NULL),
-(2, 'SP002', 2, 25000, NULL);
+DELETE FROM Bookings;
+-- Insert ke Bookings
+INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, antrean, ktp_mekanik, id_jasaServis, status, tipe_antrean)
+VALUES 
+(NULL, 'Budi Santoso', NULL, 'B 1234 ABC', 'Toyota Avanza', '2024-02-24', 'Oli bocor', 'Harus diganti', 1, '0987654321', 1, 'pending',1);
 
+DELETE FROM BookingsSparepart;
+-- Insert ke BookingsSparepart (ambil dari sparepart)
+INSERT INTO BookingsSparepart (id_booking, kode_sparepart, nama_sparepart, jumlah, harga, image_data)
+SELECT 
+    1, kode_sparepart, nama_sparepart, 2, harga, image_data
+FROM Sparepart
+WHERE kode_sparepart = 'SP001';
+
+-- Insert ke Riwayat (setelah booking selesai)
 INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, ktp_mekanik, keluhan, catatan, total_harga, id_jasaServis, status)
-VALUES
-('123456789', 'Ahmad Setiawan', 1, 'B 1234 AB', 'Toyota Avanza', '2024-06-01', '111111111', '111111111', 'Oli Bocor', 'Ganti oli selesai', 75000, 1, 'Selesai'),
-('987654321', 'Rina Susanti', 2, 'D 5678 CD', 'Honda Brio', '2024-06-02', '222222222', '222222222', 'Mesin Berisik', 'Tune up selesai', 150000, 2, 'Selesai');
+VALUES 
+('1234567890', 'Budi Santoso', 1, 'B 1234 ABC', 'Toyota Avanza', '2024-02-24', '0987654321', '0987654321', 'Oli bocor', 'Oli diganti', 250000, 1, 'Selesai');
 
-INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
-VALUES
-(1, 'SP001', 'Oli Mesin', 1, 75000, 'oli_mobil.jpg', NULL),
-(2, 'SP002', 'Busi', 2, 25000, 'busi.jpg', NULL);
+-- Insert ke RiwayatSparepart (ambil dari bookings sparepart)
+INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_data)
+SELECT 
+    1, kode_sparepart, nama_sparepart, jumlah, harga, image_data
+FROM BookingsSparepart
+WHERE id_booking = 1;
 
-
+INSERT INTO BatasBooking (tanggal, batas_booking)
+VALUES 
+(NULL, 10);
 
 
 

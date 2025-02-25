@@ -2,6 +2,7 @@
 using Syncfusion.WinForms.Input;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Bengkel_Yoga_UKK
     {
         public static void StyleDateTimeEdit(this SfDateTimeEdit edit)
         {
+            edit.Culture = new CultureInfo("id-ID");
             edit.Format = "d MMMM yyyy";
             edit.Style.BorderColor = Color.FromArgb(156, 156, 156);
             edit.Style.HoverBorderColor = Color.FromArgb(52, 152, 219);
@@ -55,6 +57,13 @@ namespace Bengkel_Yoga_UKK
                     e.Handled = true;
                 }
             };
+        }
+
+        public static void IsDialogForm(this Form form)
+        {
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
         }
     }
 }

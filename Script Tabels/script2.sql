@@ -95,28 +95,37 @@ CREATE PROCEDURE InsertBooking
     @antrean INT = NULL,
     @ktp_mekanik VARCHAR(30) = NULL,
     @id_jasaServis INT = NULL,
-    @status VARCHAR(20) = 'pending'
+    @status VARCHAR(20) = 'pending',
+    @tipe_antrean VARCHAR(20) = 1
 AS
 BEGIN
-    INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, antrean, ktp_mekanik, id_jasaServis, status)
-    VALUES (@ktp_pelanggan, @nama_pelanggan, @id_kendaraan, @no_pol, @nama_kendaraan, @tanggal, @keluhan, @catatan, @antrean, @ktp_mekanik, @id_jasaServis, @status);
+    INSERT INTO Bookings (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, keluhan, catatan, antrean, ktp_mekanik, id_jasaServis, status, tipe_antrean)
+    VALUES (@ktp_pelanggan, @nama_pelanggan, @id_kendaraan, @no_pol, @nama_kendaraan, @tanggal, @keluhan, @catatan, @antrean, @ktp_mekanik, @id_jasaServis, @status, @tipe_antrean);
 END;
 
 
 go;
 
-CREATE PROCEDURE InsertBookingsSparepart
+CREATE PROCEDURE InsertBookingSparepart
     @id_booking INT,
     @kode_sparepart VARCHAR(20),
-    @jumlah INT,
-    @harga INT,
-    @image_name NVARCHAR(100),
-    @image_data VARBINARY(MAX)
+    @jumlah INT
 AS
 BEGIN
-    INSERT INTO BookingsSparepart (id_booking, kode_sparepart, jumlah, harga, image_name, image_data)
-    VALUES (@id_booking, @kode_sparepart, @jumlah, @harga, @image_name, @image_data);
+    SET NOCOUNT ON;
+
+    INSERT INTO BookingsSparepart (id_booking, kode_sparepart, nama_sparepart, jumlah, harga, image_data)
+    SELECT 
+        @id_booking,
+        s.kode_sparepart,
+        s.nama_sparepart,
+        @jumlah,
+        s.harga,
+        s.image_data
+    FROM Sparepart s
+    WHERE s.kode_sparepart = @kode_sparepart;
 END;
+
 
 go;
 
@@ -144,18 +153,19 @@ END;
 
 go;
 
+
+
 CREATE PROCEDURE InsertRiwayatSparepart
     @id_riwayat INT,
     @kode_sparepart VARCHAR(20),
     @nama_sparepart VARCHAR(50),
     @jumlah INT,
     @harga INT,
-    @image_name NVARCHAR(100),
     @image_data VARBINARY(MAX)
 AS
 BEGIN
-    INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_name, image_data)
-    VALUES (@id_riwayat, @kode_sparepart, @nama_sparepart, @jumlah, @harga, @image_name, @image_data);
+    INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_data)
+    VALUES (@id_riwayat, @kode_sparepart, @nama_sparepart, @jumlah, @harga, @image_data);
 END;
 
 go;
@@ -345,14 +355,12 @@ CREATE PROCEDURE UpdateBookingsSparepart
     @kode_sparepart VARCHAR(20),
     @jumlah INT,
     @harga INT,
-    @image_name NVARCHAR(100),
     @image_data VARBINARY(MAX)
 AS
 BEGIN
     UPDATE BookingsSparepart
     SET jumlah = @jumlah,
         harga = @harga,
-        image_name = @image_name,
         image_data = @image_data
     WHERE id_booking = @id_booking AND kode_sparepart = @kode_sparepart;
 END;

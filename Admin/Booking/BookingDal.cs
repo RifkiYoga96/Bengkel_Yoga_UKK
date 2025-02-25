@@ -28,6 +28,7 @@ namespace Bengkel_Yoga_UKK
                                 b.keluhan,
                                 b.catatan,
                                 b.antrean,
+                                b.tipe_antrean,                     
                                 b.ktp_mekanik,
                                 b.id_jasaServis,
                                 b.status
@@ -58,6 +59,7 @@ namespace Bengkel_Yoga_UKK
                                 b.keluhan,
                                 b.catatan,
                                 b.antrean,
+                                b.tipe_antrean,
                                 b.ktp_mekanik,
                                 b.id_jasaServis,
                                 b.status
@@ -72,10 +74,8 @@ namespace Bengkel_Yoga_UKK
 
         public IEnumerable<ProdukModel> ListDataProduk(int id_booking)
         {
-            const string sql = @"SELECT bs.id_booking,bs.kode_sparepart,bs.jumlah, s.nama_sparepart
-                            FROM BookingsSparepart bs
-                            INNER JOIN Sparepart s
-                                ON bs.kode_sparepart = s.kode_sparepart
+            const string sql = @"SELECT kode_sparepart, nama_sparepart, harga, jumlah
+                            FROM BookingsSparepart
                             WHERE id_booking = @id_booking";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<ProdukModel>(sql, new {id_booking = id_booking});
@@ -126,9 +126,22 @@ namespace Bengkel_Yoga_UKK
             koneksi.Query<BookingModel2>("InsertBooking",dp,commandType: CommandType.StoredProcedure);
         }
 
-        public void InsertDataBookingSparepart(BookingModel2 booking)
+        public void InsertDataBookingSparepart(ProdukAddDto sparepart)
         {
+            var dp = new DynamicParameters();
+            dp.Add("@id_booking",sparepart.id_booking);
+            dp.Add("@kode_sparepart",sparepart.Kode);
+            dp.Add("@jumlah",sparepart.Jumlah);
 
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Query<ProdukAddDto>("InsertBookingSparepart", dp, commandType: CommandType.StoredProcedure);
+        }
+
+        public void DeleteBookingSparepart(int id_booking)
+        {
+            const string sql = @"DELETE FROM BookingsSparepart WHERE id_booking = @id_booking";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { id_booking = id_booking });
         }
 
         public int GetTotalRows(FilterDto filter)
@@ -140,6 +153,15 @@ namespace Bengkel_Yoga_UKK
                             LEFT JOIN JasaServis js ON js.id_jasaServis = b.id_jasaServis {filter.sql}";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
+        }
+
+        public IEnumerable<ProdukAddDto> ListDataSparepart()
+        {
+            const string sql = @"SELECT p.kode_sparepart AS Kode,p.nama_sparepart AS Sparepart, ISNULL(bs.jumlah, 1) AS Jumlah, p.stok AS Stok
+                                FROM BookingsSparepart bs
+                                RIGHT JOIN Sparepart p ON bs.kode_sparepart = p.kode_sparepart";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.Query<ProdukAddDto>(sql);
         }
     }
 }

@@ -19,7 +19,11 @@ namespace Bengkel_Yoga_UKK
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private readonly ProdukDal _produkDal = new ProdukDal();    
         public static int _id_booking;
-        private int _currentStep = 1;
+        private int _servisKeterangan = 0;
+        Color _hijau = Color.FromArgb(0, 192, 0);
+        Color _oren = Color.FromArgb(240, 177, 0);
+        Color _biru = Color.FromArgb(52, 152, 219);
+
         public FormBookingDetail(int id)
         {
             InitializeComponent();
@@ -29,6 +33,7 @@ namespace Bengkel_Yoga_UKK
             RegisterEvent();
 
             GetData();
+            ProgresServis();
         }
 
         private void RegisterEvent()
@@ -36,16 +41,123 @@ namespace Bengkel_Yoga_UKK
             btnSparepart.Click += (s,e) => 
             {
                 if (new FormAddSparepart().ShowDialog() != DialogResult.OK) return;
+                GetData();
             };
+            btnServisProses.Click += (s, e) =>
+            {
+                if (_servisKeterangan == 1)
+                {
+                    btnServisProses.BorderSize = 2;
+                    btnServisProses.BackColor = Color.Transparent;
+                    btnServisProses.ForeColor = SystemColors.ControlDarkDark;
 
-            this.Load += FormBookingDetail_Load;
+                    _servisKeterangan = 0;
+                    ProgresServis();
+                }
+                else if (_servisKeterangan == 0 || _servisKeterangan == 2)
+                {
+                    btnServisProses.BorderSize = 0;
+                    btnServisProses.BackColor = _oren;
+                    btnServisProses.ForeColor = Color.White;
+
+                    btnServisSelesai.BorderSize = 2;
+                    btnServisSelesai.BackColor = Color.Transparent;
+                    btnServisSelesai.ForeColor = SystemColors.ControlDarkDark;
+
+                    _servisKeterangan = 1;
+                    ProgresServis();
+                }
+                
+            };
+            btnServisSelesai.Click += (s, e) =>
+            {
+                if(_servisKeterangan == 2)
+                {
+                    btnServisSelesai.BorderSize = 2;
+                    btnServisSelesai.BackColor = Color.Transparent;
+                    btnServisSelesai.ForeColor = SystemColors.ControlDarkDark;
+
+                    _servisKeterangan = 0;
+                    ProgresServis();
+                }
+                else if (_servisKeterangan == 1)
+                {
+                    btnServisProses.BorderSize = 2;
+                    btnServisProses.BackColor = Color.Transparent;
+                    btnServisProses.ForeColor = SystemColors.ControlDarkDark;
+
+                    btnServisSelesai.BorderSize = 0;
+                    btnServisSelesai.BackColor = _hijau;
+                    btnServisSelesai.ForeColor = Color.White;
+
+                    _servisKeterangan = 2;
+                    ProgresServis();
+                }
+                
+            };
+            btnInvoice.Click += (s, e) =>
+            {
+                if (_servisKeterangan != 2) return;
+                bool valid = comboServis.SelectedIndex != 0
+                    && comboMekanik.SelectedIndex != 0
+                    && txtCatatan.TextLength != 0
+                    && txtCatatan.Text.Trim() != string.Empty;
+                if (!valid)
+                {
+                    MB.Warning("Mohon melengkapi jenis servis, mekanik dan catatan!");
+                    return;
+                }
+
+
+
+                btnInvoice.BorderSize = 0;
+                btnInvoice.BackColor = _biru;
+                btnInvoice.ForeColor = Color.White;
+            };
         }
 
-        private void FormBookingDetail_Load(object? sender, EventArgs e)
+        private void ProgresServis()
         {
-
+            if(_servisKeterangan == 0)
+            {
+                lblBookingToServis.ForeColor = SystemColors.ControlDarkDark;
+                pictureServis.BackgroundImage = null;
+                pictureServis.BorderSize = 2;
+                lblServisToSelesai.ForeColor = SystemColors.ControlDarkDark;
+                pictureSelesai.BackgroundImage = null;
+                pictureSelesai.BorderSize = 2;
+            }
+            else if (_servisKeterangan == 1)
+            {
+                lblBookingToServis.ForeColor = _oren;
+                pictureServis.BackgroundImage = Properties.Resources.oren;
+                pictureServis.BorderSize = 0;
+                lblServisToSelesai.ForeColor = SystemColors.ControlDarkDark;
+                pictureSelesai.BackgroundImage = null;
+                pictureSelesai.BorderSize = 2;
+            }
+            else if(_servisKeterangan == 2)
+            {
+                lblBookingToServis.ForeColor = _hijau;
+                pictureServis.BackgroundImage = Properties.Resources.hijau;
+                pictureServis.BorderSize = 0;
+                lblServisToSelesai.ForeColor = _oren;
+                pictureSelesai.BackgroundImage = Properties.Resources.oren;
+                pictureSelesai.BorderSize = 0;
+            }
+            else
+            {
+                lblBookingToServis.ForeColor = _hijau;
+                pictureServis.BackgroundImage = Properties.Resources.hijau;
+                pictureServis.BorderSize = 0;
+                lblServisToSelesai.ForeColor = _hijau;
+                pictureSelesai.BackgroundImage = Properties.Resources.hijau;
+                pictureSelesai.BorderSize = 0;
+            }
+            label19.Text = _servisKeterangan.ToString();
 
         }
+
 
         private void InitComponent()
         {
@@ -114,4 +226,6 @@ public class MekanikModelCombo
     public string ktp_mekanik { get; set; }
     public string nama_mekanik { get; set; }
 }
+
+
 

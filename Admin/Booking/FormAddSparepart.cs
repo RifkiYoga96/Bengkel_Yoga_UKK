@@ -85,7 +85,9 @@ namespace Bengkel_Yoga_UKK
                 dgv.Columns[0].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
             }
             gs.Columns[3].Visible = false;
+            gs.Columns[4].Visible = false;
             gsu.Columns[2].Visible = false;
+            gsu.Columns[4].Visible = false;
 
             gsu.Columns[0].ReadOnly = true;
             gsu.Columns[1].ReadOnly = true;
@@ -100,15 +102,8 @@ namespace Bengkel_Yoga_UKK
             var listBookingSparepart = _bookingDal.ListDataProduk(FormBookingDetail._id_booking);
             var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
 
-            var listSparepart = _produkDal.ListData()
-                .OrderBy(x => x.nama_sparepart)
-                .Select(x => new ProdukAddDto
-                {
-                    Kode = x.kode_sparepart,
-                    Sparepart = x.nama_sparepart,
-                    Stok = x.stok,
-                    Jumlah = 1
-                }).ToList();
+            var listSparepart = _bookingDal.ListDataSparepart()
+                .OrderBy(x => x.Sparepart);
 
             var listNoUse = listSparepart
                 .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
@@ -132,7 +127,7 @@ namespace Bengkel_Yoga_UKK
             btnCancel.Click += (s, e) => this.Close();
             btnSave.Click += (s, e) =>
             {
-
+                SaveComponent();
             };
             gridSparepart.CellDoubleClick += GridSparepart_CellDoubleClick;
             gridSparepartUse.CellDoubleClick += GridSparepartUse_CellDoubleClick;
@@ -163,8 +158,6 @@ namespace Bengkel_Yoga_UKK
             int index = _bindingList.ToList().FindIndex(x => x.Kode == kode);
             int indexFilter = _bindingListFilter.ToList().FindIndex(x => x.Kode == kode);
 
-            MessageBox.Show($"{kode} {indexFilter.ToString()} {index.ToString()}");
-
             _bindingListUse.Add(_bindingList[index]);
             _bindingList.RemoveAt(index);
 
@@ -189,6 +182,23 @@ namespace Bengkel_Yoga_UKK
             }
         }
 
+        private void SaveComponent()
+        {
+            int id_booking = FormBookingDetail._id_booking;
+            _bookingDal.DeleteBookingSparepart(id_booking);
+            foreach (var item in _bindingListUse)
+            {
+                _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
+                {
+                    id_booking = id_booking,
+                    Kode = item.Kode,
+                    Jumlah = item.Jumlah
+                });
+            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
     }
 }
 
@@ -198,4 +208,5 @@ public class ProdukAddDto
     public string Sparepart { get; set; }
     public int Stok {  get; set; }
     public int Jumlah {  get; set; }
+    public int id_booking { get; set; }
 }

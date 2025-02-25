@@ -52,6 +52,9 @@ namespace Bengkel_Yoga_UKK
             contextMenuStrip = new ContextMenuStripEx();
             detailBookingToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            label2 = new Label();
+            txtBatas = new TextBox();
+            btnEditBatasBooking = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -303,7 +306,7 @@ namespace Bengkel_Yoga_UKK
             contextMenuStrip.Items.AddRange(new ToolStripItem[] { detailBookingToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStrip.MetroColor = Color.FromArgb(204, 236, 249);
             contextMenuStrip.Name = "contextMenuStrip";
-            contextMenuStrip.Size = new Size(188, 78);
+            contextMenuStrip.Size = new Size(188, 56);
             contextMenuStrip.ThemeName = "Office2016Colorful";
             contextMenuStrip.ThemeStyle.BackColor = Color.FromArgb(52, 152, 219);
             contextMenuStrip.ThemeStyle.DisabledForeColor = Color.FromArgb(52, 152, 219);
@@ -322,12 +325,56 @@ namespace Bengkel_Yoga_UKK
             deleteToolStripMenuItem.Size = new Size(187, 26);
             deleteToolStripMenuItem.Text = "Delete";
             // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.DimGray;
+            label2.Location = new Point(943, 31);
+            label2.Name = "label2";
+            label2.Size = new Size(188, 23);
+            label2.TabIndex = 15;
+            label2.Text = "Batas Booking Hari ini :";
+            // 
+            // txtBatas
+            // 
+            txtBatas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtBatas.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBatas.Location = new Point(1137, 27);
+            txtBatas.Name = "txtBatas";
+            txtBatas.Size = new Size(83, 31);
+            txtBatas.TabIndex = 15;
+            // 
+            // btnEditBatasBooking
+            // 
+            btnEditBatasBooking.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnEditBatasBooking.BackColor = Color.FromArgb(230, 126, 34);
+            btnEditBatasBooking.BackgroundColor = Color.FromArgb(230, 126, 34);
+            btnEditBatasBooking.BorderColor = Color.PaleVioletRed;
+            btnEditBatasBooking.BorderRadius = 0;
+            btnEditBatasBooking.BorderSize = 0;
+            btnEditBatasBooking.FlatAppearance.BorderSize = 0;
+            btnEditBatasBooking.FlatStyle = FlatStyle.Flat;
+            btnEditBatasBooking.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEditBatasBooking.ForeColor = Color.White;
+            btnEditBatasBooking.Location = new Point(1229, 27);
+            btnEditBatasBooking.Name = "btnEditBatasBooking";
+            btnEditBatasBooking.Size = new Size(69, 31);
+            btnEditBatasBooking.TabIndex = 15;
+            btnEditBatasBooking.Text = " Edit";
+            btnEditBatasBooking.TextColor = Color.White;
+            btnEditBatasBooking.UseVisualStyleBackColor = false;
+            // 
             // FormBooking
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1327, 635);
+            Controls.Add(btnEditBatasBooking);
+            Controls.Add(txtBatas);
+            Controls.Add(label2);
             Controls.Add(yogaPanel1);
             Controls.Add(btnAddData);
             FormBorderStyle = FormBorderStyle.None;
@@ -341,6 +388,7 @@ namespace Bengkel_Yoga_UKK
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
             contextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -366,5 +414,8 @@ namespace Bengkel_Yoga_UKK
         private ToolStripMenuItem detailBookingToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private ComboBox comboFilterWaktu;
+        private Label label2;
+        private TextBox txtBatas;
+        private YogaButton btnEditBatasBooking;
     }
 }
