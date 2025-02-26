@@ -55,6 +55,7 @@ namespace Bengkel_Yoga_UKK
             label2 = new Label();
             txtBatas = new TextBox();
             btnEditBatasBooking = new YogaButton();
+            btnJadwal = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -331,7 +332,7 @@ namespace Bengkel_Yoga_UKK
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.DimGray;
-            label2.Location = new Point(943, 31);
+            label2.Location = new Point(827, 31);
             label2.Name = "label2";
             label2.Size = new Size(188, 23);
             label2.TabIndex = 15;
@@ -341,7 +342,7 @@ namespace Bengkel_Yoga_UKK
             // 
             txtBatas.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtBatas.Font = new Font("Segoe UI", 13.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBatas.Location = new Point(1137, 27);
+            txtBatas.Location = new Point(1021, 27);
             txtBatas.Name = "txtBatas";
             txtBatas.Size = new Size(83, 31);
             txtBatas.TabIndex = 15;
@@ -358,13 +359,33 @@ namespace Bengkel_Yoga_UKK
             btnEditBatasBooking.FlatStyle = FlatStyle.Flat;
             btnEditBatasBooking.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnEditBatasBooking.ForeColor = Color.White;
-            btnEditBatasBooking.Location = new Point(1229, 27);
+            btnEditBatasBooking.Location = new Point(1113, 27);
             btnEditBatasBooking.Name = "btnEditBatasBooking";
             btnEditBatasBooking.Size = new Size(69, 31);
             btnEditBatasBooking.TabIndex = 15;
-            btnEditBatasBooking.Text = " Edit";
+            btnEditBatasBooking.Text = "✏️ Edit";
             btnEditBatasBooking.TextColor = Color.White;
             btnEditBatasBooking.UseVisualStyleBackColor = false;
+            // 
+            // btnJadwal
+            // 
+            btnJadwal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnJadwal.BackColor = Color.FromArgb(230, 126, 34);
+            btnJadwal.BackgroundColor = Color.FromArgb(230, 126, 34);
+            btnJadwal.BorderColor = Color.PaleVioletRed;
+            btnJadwal.BorderRadius = 0;
+            btnJadwal.BorderSize = 0;
+            btnJadwal.FlatAppearance.BorderSize = 0;
+            btnJadwal.FlatStyle = FlatStyle.Flat;
+            btnJadwal.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnJadwal.ForeColor = Color.White;
+            btnJadwal.Location = new Point(1190, 27);
+            btnJadwal.Name = "btnJadwal";
+            btnJadwal.Size = new Size(108, 31);
+            btnJadwal.TabIndex = 16;
+            btnJadwal.Text = "📅 Jadwal";
+            btnJadwal.TextColor = Color.White;
+            btnJadwal.UseVisualStyleBackColor = false;
             // 
             // FormBooking
             // 
@@ -372,6 +393,7 @@ namespace Bengkel_Yoga_UKK
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1327, 635);
+            Controls.Add(btnJadwal);
             Controls.Add(btnEditBatasBooking);
             Controls.Add(txtBatas);
             Controls.Add(label2);
@@ -417,5 +439,6 @@ namespace Bengkel_Yoga_UKK
         private Label label2;
         private TextBox txtBatas;
         private YogaButton btnEditBatasBooking;
+        private YogaButton btnJadwal;
     }
 }

@@ -370,16 +370,30 @@ go;
 
 -- FUNCTION GetStock--
 
-CREATE FUNCTION GetAntrean(@tanggal DATE)
+CREATE FUNCTION GetAntrean(@tanggal DATE, @tipe_antrean INT )
 RETURNS TABLE
 AS
 RETURN
 (
    SELECT 
-    ISNULL((SELECT MAX(antrean) FROM Bookings WHERE tanggal = @tanggal), 0) + 1 AS Antrean,
-    ISNULL((SELECT MAX(antrean) FROM Bookings WHERE tanggal = @tanggal AND status = 'dikerjakan'), 0) AS ServisNow
+    ISNULL((SELECT MAX(antrean) FROM Bookings WHERE tanggal = @tanggal AND tipe_antrean = @tipe_antrean), 0) + 1 AS Antrean,
+    ISNULL((SELECT MAX(antrean) FROM Bookings WHERE tanggal = @tanggal AND status = 'dikerjakan' AND tipe_antrean = @tipe_antrean), 0) AS ServisNow
 );
 
+go;
+CREATE FUNCTION GetAntreanLanjutan(@tanggal DATE, @tipe_antrean INT, @antrean INT)
+RETURNS TABLE
+AS
+RETURN
+(
+   SELECT 
+    (SELECT TOP 1 antrean FROM Bookings 
+         WHERE tanggal = @tanggal 
+           AND tipe_antrean = @tipe_antrean 
+           AND status = 'dikerjakan' 
+           AND antrean <= @antrean
+         ORDER BY antrean DESC) AS ServisNow
+);
 go;
 
 -- TRIGGER Kurangi Stok & Kembalikan Stok --
