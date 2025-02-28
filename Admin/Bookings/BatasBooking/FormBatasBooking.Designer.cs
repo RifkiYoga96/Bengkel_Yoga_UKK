@@ -40,6 +40,7 @@
             btnClose = new YogaButton();
             contextMenuStrip1 = new ContextMenuStrip(components);
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            lblHeader = new Label();
             ((System.ComponentModel.ISupportInitialize)txtBatas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -51,7 +52,7 @@
             TglEditSync.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
             TglEditSync.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             TglEditSync.Format = "d MMMM yyyy";
-            TglEditSync.Location = new Point(12, 38);
+            TglEditSync.Location = new Point(12, 83);
             TglEditSync.Name = "TglEditSync";
             TglEditSync.Size = new Size(251, 28);
             TglEditSync.Style.BorderColor = Color.FromArgb(64, 64, 64);
@@ -62,7 +63,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 15);
+            label1.Location = new Point(12, 60);
             label1.Name = "label1";
             label1.Size = new Size(61, 20);
             label1.TabIndex = 116;
@@ -77,7 +78,7 @@
             txtBatas.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             txtBatas.ForeColor = SystemColors.WindowText;
             txtBatas.IntegerValue = 0L;
-            txtBatas.Location = new Point(285, 38);
+            txtBatas.Location = new Point(285, 83);
             txtBatas.Margin = new Padding(3, 2, 3, 2);
             txtBatas.Metrocolor = Color.White;
             txtBatas.Multiline = true;
@@ -91,7 +92,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(285, 16);
+            label2.Location = new Point(285, 61);
             label2.Name = "label2";
             label2.Size = new Size(104, 20);
             label2.TabIndex = 118;
@@ -108,7 +109,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(333, 89);
+            btnSave.Location = new Point(333, 134);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(98, 31);
             btnSave.TabIndex = 119;
@@ -127,7 +128,7 @@
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             btnNew.ForeColor = Color.White;
-            btnNew.Location = new Point(229, 89);
+            btnNew.Location = new Point(229, 134);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(98, 31);
             btnNew.TabIndex = 120;
@@ -138,7 +139,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 154);
+            dataGridView1.Location = new Point(12, 199);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(419, 212);
@@ -155,7 +156,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI Semibold", 11.5F, FontStyle.Bold, GraphicsUnit.Point);
             btnClose.ForeColor = SystemColors.ControlDarkDark;
-            btnClose.Location = new Point(321, 377);
+            btnClose.Location = new Point(321, 422);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(110, 38);
             btnClose.TabIndex = 122;
@@ -179,11 +180,24 @@
             deleteToolStripMenuItem.Size = new Size(136, 32);
             deleteToolStripMenuItem.Text = "Delete";
             // 
+            // lblHeader
+            // 
+            lblHeader.BackColor = Color.FromArgb(52, 152, 219);
+            lblHeader.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeader.ForeColor = Color.White;
+            lblHeader.Location = new Point(-1, -1);
+            lblHeader.Name = "lblHeader";
+            lblHeader.Size = new Size(445, 43);
+            lblHeader.TabIndex = 127;
+            lblHeader.Text = "Batas Booking";
+            lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // FormBatasBooking
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(443, 427);
+            ClientSize = new Size(443, 474);
+            Controls.Add(lblHeader);
             Controls.Add(btnClose);
             Controls.Add(dataGridView1);
             Controls.Add(btnNew);
@@ -214,5 +228,6 @@
         private YogaButton btnClose;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private Label lblHeader;
     }
 }

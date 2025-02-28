@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.GridHelperClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,9 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly KendaraanDal _kendaraanDal = new KendaraanDal();
         private readonly BookingDal _bookingDal = new BookingDal();
+        private readonly BatasBookingDal _batasBookingDal = new BatasBookingDal();
+        private readonly JadwalDal _jadwalDal = new JadwalDal();
+        private readonly JadwalOperasionalDal _jadwalOperasionalDal = new JadwalOperasionalDal();
 
         public static int _antrean;
         public FormInputBooking2()
@@ -25,6 +29,7 @@ namespace Bengkel_Yoga_UKK
 
             InitComponent_Tamu();
             RegisterEvent_Tamu();
+            CekKetersediaanBoking();
         }
 
         #region PELANGGAN
@@ -45,9 +50,87 @@ namespace Bengkel_Yoga_UKK
                 txtNoPol.Text = ((KendaraanDto)comboKendaraan.SelectedItem)?.no_pol ?? string.Empty;
             };
             btnSearch.Click += (s, e) => LoadData_Pelanggan();
-            btnSave.Click += (s, e) =>SaveData_Pelanggan();
+            btnSave.Click += (s, e) => SaveData_Pelanggan();
             btnCancel.Click += (s, e) => this.Close();
+            TglEditSync.ValueChanged += async (s, e) =>
+            {
+                await Task.Delay(500);
+                CekKetersediaanBoking();
+            };
+            tabControl1.SelectedIndexChanged += (s, e) =>
+            {
+                CekKetersediaanBoking();
+            };
         }
+
+        private void CekKetersediaanBoking()
+        {
+            int indexTab = tabControl1.SelectedIndex;
+
+            if (indexTab == 0)
+            {
+                DateTime tanggal = TglEditSync.Value ?? DateTime.Today;
+
+                var libur = _jadwalDal.CekLibur(tanggal);
+                if (libur)
+                {
+                    lblErrorTanggal.Text = "Bengkel sedang libur, Mohon pilih tanggal lain!";
+                    lblErrorTanggal.Visible = true;
+                    return;
+                }
+
+                var tutup = _jadwalOperasionalDal.CekTutup(tanggal);
+                if (tutup)
+                {
+                    lblErrorTanggal.Text = "Bengkel sudah tutup, Mohon pilih tanggal lain!";
+                    lblErrorTanggal.Visible = true;
+                    return;
+                }
+
+                var totalBooking = _bookingDal.GetAntrean(tanggal, 1)?.Antrean - 1;
+                var maxBooking = _batasBookingDal.GetBatasBooking(tanggal);
+
+                if (totalBooking >= maxBooking)
+                {
+                    lblErrorTanggal.Text = "Antrean sudah penuh, Mohon pilih tanggal lain!";
+                    lblErrorTanggal.Visible = true;
+                    return;
+                }
+                lblErrorTanggal.Visible = false;
+            }
+            else if (indexTab == 1)
+            {
+                DateTime tanggal = TglEditSync2.Value ?? DateTime.Today;
+
+                var libur = _jadwalDal.CekLibur(tanggal);
+                if (libur)
+                {
+                    lblErrorTanggal2.Text = "Bengkel sedang libur, Mohon pilih tanggal lain!";
+                    lblErrorTanggal2.Visible = true;
+                    return;
+                }
+
+                var tutup = _jadwalOperasionalDal.CekTutup(tanggal);
+                if (tutup)
+                {
+                    lblErrorTanggal2.Text = "Bengkel sudah tutup, Mohon pilih tanggal lain!";
+                    lblErrorTanggal2.Visible = true;
+                    return;
+                }
+
+                var totalBooking = _bookingDal.GetAntrean(tanggal, 1)?.Antrean - 1;
+                var maxBooking = _batasBookingDal.GetBatasBooking(tanggal);
+
+                if (totalBooking >= maxBooking)
+                {
+                    lblErrorTanggal2.Text = "Antrean sudah penuh, Mohon pilih tanggal lain!";
+                    lblErrorTanggal2.Visible = true;
+                    return;
+                }
+                lblErrorTanggal2.Visible = false;
+            }
+        }
+
         private void InitComponent_Pelanggan()
         {
             txtNama.MaxLength = 100;
@@ -104,13 +187,14 @@ namespace Bengkel_Yoga_UKK
             }
 
             bool valid = !lblErrorKTP.Visible &&
-                         !lblErrorKeluhan.Visible;
+                         !lblErrorKeluhan.Visible &&
+                         !lblErrorTanggal.Visible;
             if (!valid)
             {
                 MB.Warning("Data tidak valid, mohon cek kembali!");
                 return;
             }
-            if (new Form2(tanggal).ShowDialog() == DialogResult.OK)
+            if (new FormAntrean(tanggal).ShowDialog() == DialogResult.OK)
             {
                 var data = new BookingModel2
                 {
@@ -157,6 +241,7 @@ namespace Bengkel_Yoga_UKK
 
             btnCancel2.Click += (s, e) => this.Close();
             btnSave2.Click += (s, e) => SaveData_Tamu();
+            TglEditSync2.ValueChanged += (s, e) => CekKetersediaanBoking();
         }
 
         private void InitComponent_Tamu()
@@ -187,7 +272,8 @@ namespace Bengkel_Yoga_UKK
             bool valid = !lblErrorNama2.Visible &&
              !lblErrorKendaraan2.Visible &&
              !lblErrorNoPol.Visible &&
-             !lblErrorKeluhan2.Visible;
+             !lblErrorKeluhan2.Visible &&
+             !lblErrorTanggal2.Visible;
 
             if (!valid)
             {
@@ -195,7 +281,7 @@ namespace Bengkel_Yoga_UKK
                 return;
             }
 
-            if (new Form2(tanggal).ShowDialog() == DialogResult.OK)
+            if (new FormAntrean(tanggal).ShowDialog() == DialogResult.OK)
             {
                 var data = new BookingModel2
                 {
@@ -211,6 +297,12 @@ namespace Bengkel_Yoga_UKK
                 this.Close();
             }
         }
+
+        #endregion
+
+        #region HELPER
+
+        
 
         #endregion
     }

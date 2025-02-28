@@ -95,6 +95,7 @@ namespace Bengkel_Yoga_UKK
             };
 
             this.Load += FormBooking_Load;
+            btnJadwal.Click += (s, e) => new FormJadwal().ShowDialog();
         }
 
        

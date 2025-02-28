@@ -42,8 +42,8 @@ namespace Bengkel_Yoga_UKK
         public int GetBatasBooking(DateTime tanggal)
         {
             const string sql = @"SELECT COALESCE(
-                    (SELECT batas_booking FROM BatasBooking WHERE tanggal = @tanggal),
-                    (SELECT batas_booking FROM BatasBooking WHERE tanggal IS NULL)
+                    (SELECT TOP 1 batas_booking FROM BatasBooking WHERE tanggal = @tanggal),
+                    (SELECT TOP 1 batas_booking FROM BatasBooking WHERE tanggal IS NULL)
                    ) AS batas_booking";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QueryFirstOrDefault<int>(sql, new { tanggal });
@@ -64,5 +64,14 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, data);
         }
+
+        public void DeleteDataTerlewat()
+        {
+            const string sql = @"DELETE FROM BatasBooking
+                                WHERE tanggal < CAST(GETDATE() AS DATE)";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql);
+        }
+
     }
 }

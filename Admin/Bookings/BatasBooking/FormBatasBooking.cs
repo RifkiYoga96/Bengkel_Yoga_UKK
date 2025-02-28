@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Syncfusion.Windows.Forms.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,23 +18,27 @@ namespace Bengkel_Yoga_UKK
         private readonly BatasBookingDal _batasBookingDal = new BatasBookingDal();
         private int _id_batas_booking = 0;
         private bool _isDefault = false;
+        private string _tglFormat = "dddd, dd-MM-yyyy";
+        private bool _InsertReady = false;
         public FormBatasBooking()
         {
             InitializeComponent();
             this.IsDialogForm();
             InitComponent();
             RegisterEvent();
+            _batasBookingDal.DeleteDataTerlewat();
             LoadData();
             CustomGrid();
+            ClearInput();
         }
         private void InitComponent()
         {
             TglEditSync.StyleDateTimeEdit();
             TglEditSync.MinDateTime = DateTime.Today;
-            TglEditSync.Format = "dddd, dd-MM-yyyy";
+            TglEditSync.Format = _tglFormat;
             txtBatas.MaxValue = 1000;
             txtBatas.MinValue = 1;
-
+            txtBatas.BorderColor = Color.FromArgb(156, 156, 156);
         }
 
         private void RegisterEvent()
@@ -40,21 +46,32 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
             dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
-            btnNew.Click += (s, e) => ClearData();
+            btnNew.Click += BtnNew_Click;
             btnSave.Click += BtnSave_Click;
             btnClose.Click += (s, e) => this.Close();
         }
 
+        private void BtnNew_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin membuat data baru?")) return;
+            ClearInput();
+            TglEditSync.Enabled = true;
+            EnableTxt(txtBatas, true);
+            TglEditSync.Format = _tglFormat;
+            lblHeader.Text = "Insert Batas Booking";
+            _InsertReady = true;
+        }
+
         private void BtnSave_Click(object? sender, EventArgs e)
         {
+            if (!_InsertReady) return;
             DateTime tgl = Convert.ToDateTime(TglEditSync.Value);
             
-            if (_batasBookingDal.CekTanggal(tgl,_id_batas_booking == 0 ? true : false,_id_batas_booking) != null && !_isDefault)
+            if (_batasBookingDal.CekTanggal(tgl,_id_batas_booking == 0 ? true : false, _id_batas_booking) != null && !_isDefault)
             {
                 MB.Error("Tanggal sudah tersedia !");
                 return;
             }
-
 
             if (!MB.Konfirmasi("Apakah anda yakin ingin menyimpan data !")) return;
             var data = new BatasBookingModel
@@ -68,7 +85,9 @@ namespace Bengkel_Yoga_UKK
             else
                 _batasBookingDal.UpdateData(data);
             LoadData();
-            ClearData();
+            ClearInput();
+            _id_batas_booking = 0;
+            _InsertReady = false;
         }
 
         private void DataGridView1_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -86,12 +105,15 @@ namespace Bengkel_Yoga_UKK
             else
             {
                 TglEditSync.Enabled = true;
-                TglEditSync.Format = "dddd, dd-MM-yyyy";
+                TglEditSync.Format = _tglFormat;
                 TglEditSync.Value = (DateTime)data.tanggal;
                 _isDefault = false;
             }
             _id_batas_booking = id;
             txtBatas.IntegerValue = (int)data.batas_booking;
+            lblHeader.Text = "Edit Batas Booking";
+            EnableTxt(txtBatas,true);
+            _InsertReady = true;
         }
 
         private void DeleteToolStripMenuItem_Click(object? sender, EventArgs e)
@@ -104,6 +126,7 @@ namespace Bengkel_Yoga_UKK
             else if (MB.Konfirmasi("Apakah anda yakin ingin menghapus data ini?"))
             {
                 int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                if (id == _id_batas_booking) ClearInput();
                 _batasBookingDal.DeleteData(id);
                 LoadData();
             }
@@ -126,18 +149,20 @@ namespace Bengkel_Yoga_UKK
                 {
                     Id = x.id_batas_booking,
                     No = index + 1,
-                    Tanggal = x.tanggal?.ToString("dddd, dd-MM-yyyy", new System.Globalization.CultureInfo("id_ID")) ?? "Default",
+                    Tanggal = x.tanggal?.ToString(_tglFormat, new System.Globalization.CultureInfo("id_ID")) ?? "Default",
                     BatasBooking = x.batas_booking,
                     IsDefault = x.tanggal == null
                 }).ToList();
         }
-        private void ClearData()
+        private void ClearInput()
         {
+            TglEditSync.Enabled = false;
+            txtBatas.Enabled = false;
             TglEditSync.Value = DateTime.Today;
             txtBatas.IntegerValue = 1;
-            TglEditSync.Format = "dddd, dd-MM-yyyy";
-            TglEditSync.Enabled = true;
-            _id_batas_booking = 0;
+            TglEditSync.Format = " ";
+            lblHeader.Text = "Batas Booking";
+            EnableTxt(txtBatas,false);
         }
         private void CustomGrid()
         {
@@ -173,6 +198,20 @@ namespace Bengkel_Yoga_UKK
             dgv.Columns[1].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
             dgv.Columns[3].DefaultCellStyle.Padding = new Padding(0, 0, 10, 0);
 
+        }
+
+        private void EnableTxt(IntegerTextBox txt, bool active)
+        {
+            if (active)
+            {
+                txt.BackGroundColor = Color.White;
+                txt.Enabled = true;
+            }
+            else
+            {
+                txt.BackGroundColor = SystemColors.Control;
+                txt.Enabled = false;
+            }
         }
     }
 }

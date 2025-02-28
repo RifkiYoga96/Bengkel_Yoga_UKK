@@ -396,6 +396,8 @@ RETURN
 );
 go;
 
+
+
 -- TRIGGER Kurangi Stok & Kembalikan Stok --
 CREATE TRIGGER tr_UpdateStok_Sparepart
 ON BookingsSparepart

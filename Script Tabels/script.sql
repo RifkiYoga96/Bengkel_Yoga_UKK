@@ -162,12 +162,22 @@ CREATE TABLE BatasBooking(
     batas_booking INT,
     created_at DATETIME DEFAULT GETDATE()
 );
+
 DROP TABLE JadwalLibur;
 CREATE TABLE JadwalLibur(
 	id_jadwal_libur INT PRIMARY KEY IDENTITY (1,1),
 	tanggal DATETIME,
 	hari VARCHAR(50)
 );
+
+CREATE TABLE JadwalOperasional(
+	id_jadwal_operasional INT PRIMARY KEY IDENTITY (1,1),
+	hari VARCHAR(50),
+	jam_buka TIME,
+	jam_tutup TIME
+);
+
+
 
 
 
@@ -268,7 +278,10 @@ INSERT INTO jadwalLibur(tanggal,hari)
 VALUES
 (NULL,'Minggu'),('2025-02-28',NULL);
 
-
+INSERT INTO JadwalOperasional(hari,jam_buka,jam_tutup)
+VALUES
+(NULL,'08:00:00', '16:00:00'),
+('Sabtu','08:00:00', '17:00:00');
 
 
 

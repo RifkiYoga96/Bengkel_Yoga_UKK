@@ -33,6 +33,7 @@
             lblHeader = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            lblErrorTanggal = new Label();
             TglEditSync = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             lblErrorKeluhan = new Label();
             comboKendaraan = new ComboBox();
@@ -51,6 +52,7 @@
             label4 = new Label();
             label3 = new Label();
             tabPage2 = new TabPage();
+            lblErrorTanggal2 = new Label();
             lblErrorNoPol = new Label();
             TglEditSync2 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             txtNoPol2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -116,6 +118,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = Color.White;
+            tabPage1.Controls.Add(lblErrorTanggal);
             tabPage1.Controls.Add(TglEditSync);
             tabPage1.Controls.Add(lblErrorKeluhan);
             tabPage1.Controls.Add(comboKendaraan);
@@ -139,7 +143,19 @@
             tabPage1.Size = new Size(462, 630);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Pelanggan";
-            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lblErrorTanggal
+            // 
+            lblErrorTanggal.AutoSize = true;
+            lblErrorTanggal.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggal.ForeColor = Color.Red;
+            lblErrorTanggal.Location = new Point(140, 401);
+            lblErrorTanggal.Name = "lblErrorTanggal";
+            lblErrorTanggal.Size = new Size(268, 17);
+            lblErrorTanggal.TabIndex = 115;
+            lblErrorTanggal.Text = "⚠️ Antrean penuh, Mohon pilih tanggal lain!";
+            lblErrorTanggal.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggal.Visible = false;
             // 
             // TglEditSync
             // 
@@ -180,7 +196,7 @@
             // txtKeluhan
             // 
             txtKeluhan.BackColor = Color.White;
-            txtKeluhan.BeforeTouchSize = new Size(293, 90);
+            txtKeluhan.BeforeTouchSize = new Size(146, 28);
             txtKeluhan.BorderColor = Color.FromArgb(176, 176, 176);
             txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
             txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -219,7 +235,7 @@
             // txtNoPol
             // 
             txtNoPol.BackColor = Color.FromArgb(230, 247, 255);
-            txtNoPol.BeforeTouchSize = new Size(293, 90);
+            txtNoPol.BeforeTouchSize = new Size(146, 28);
             txtNoPol.BorderColor = Color.FromArgb(176, 176, 176);
             txtNoPol.BorderStyle = BorderStyle.FixedSingle;
             txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -308,7 +324,7 @@
             // txtNama
             // 
             txtNama.BackColor = Color.FromArgb(230, 247, 255);
-            txtNama.BeforeTouchSize = new Size(293, 90);
+            txtNama.BeforeTouchSize = new Size(146, 28);
             txtNama.BorderColor = Color.FromArgb(176, 176, 176);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -335,14 +351,14 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 36);
             btnSave.TabIndex = 97;
-            btnSave.Text = "Save";
+            btnSave.Text = "Booking";
             btnSave.TextColor = Color.White;
             btnSave.UseVisualStyleBackColor = false;
             // 
             // txtNoKTP
             // 
             txtNoKTP.BackColor = Color.White;
-            txtNoKTP.BeforeTouchSize = new Size(293, 90);
+            txtNoKTP.BeforeTouchSize = new Size(146, 28);
             txtNoKTP.BorderColor = Color.FromArgb(176, 176, 176);
             txtNoKTP.BorderStyle = BorderStyle.FixedSingle;
             txtNoKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -379,6 +395,8 @@
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(lblErrorTanggal2);
             tabPage2.Controls.Add(lblErrorNoPol);
             tabPage2.Controls.Add(TglEditSync2);
             tabPage2.Controls.Add(txtNoPol2);
@@ -401,7 +419,19 @@
             tabPage2.Size = new Size(462, 630);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Tamu";
-            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblErrorTanggal2
+            // 
+            lblErrorTanggal2.AutoSize = true;
+            lblErrorTanggal2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggal2.ForeColor = Color.Red;
+            lblErrorTanggal2.Location = new Point(141, 292);
+            lblErrorTanggal2.Name = "lblErrorTanggal2";
+            lblErrorTanggal2.Size = new Size(268, 17);
+            lblErrorTanggal2.TabIndex = 133;
+            lblErrorTanggal2.Text = "⚠️ Antrean penuh, Mohon pilih tanggal lain!";
+            lblErrorTanggal2.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggal2.Visible = false;
             // 
             // lblErrorNoPol
             // 
@@ -432,7 +462,7 @@
             // txtNoPol2
             // 
             txtNoPol2.BackColor = Color.White;
-            txtNoPol2.BeforeTouchSize = new Size(293, 90);
+            txtNoPol2.BeforeTouchSize = new Size(146, 28);
             txtNoPol2.BorderColor = Color.FromArgb(176, 176, 176);
             txtNoPol2.BorderStyle = BorderStyle.FixedSingle;
             txtNoPol2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -459,7 +489,7 @@
             // txtNama2
             // 
             txtNama2.BackColor = Color.White;
-            txtNama2.BeforeTouchSize = new Size(293, 90);
+            txtNama2.BeforeTouchSize = new Size(146, 28);
             txtNama2.BorderColor = Color.FromArgb(176, 176, 176);
             txtNama2.BorderStyle = BorderStyle.FixedSingle;
             txtNama2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -473,7 +503,7 @@
             // txtKendaraan2
             // 
             txtKendaraan2.BackColor = Color.White;
-            txtKendaraan2.BeforeTouchSize = new Size(293, 90);
+            txtKendaraan2.BeforeTouchSize = new Size(146, 28);
             txtKendaraan2.BorderColor = Color.FromArgb(176, 176, 176);
             txtKendaraan2.BorderStyle = BorderStyle.FixedSingle;
             txtKendaraan2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -513,7 +543,7 @@
             // txtKeluhan2
             // 
             txtKeluhan2.BackColor = Color.White;
-            txtKeluhan2.BeforeTouchSize = new Size(293, 90);
+            txtKeluhan2.BeforeTouchSize = new Size(146, 28);
             txtKeluhan2.BorderColor = Color.FromArgb(176, 176, 176);
             txtKeluhan2.BorderStyle = BorderStyle.FixedSingle;
             txtKeluhan2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -609,7 +639,7 @@
             btnSave2.Name = "btnSave2";
             btnSave2.Size = new Size(108, 36);
             btnSave2.TabIndex = 113;
-            btnSave2.Text = "Save";
+            btnSave2.Text = "Booking";
             btnSave2.TextColor = Color.White;
             btnSave2.UseVisualStyleBackColor = false;
             // 
@@ -693,5 +723,7 @@
         private Syncfusion.WinForms.Input.SfDateTimeEdit TglEditSync;
         private Syncfusion.WinForms.Input.SfDateTimeEdit TglEditSync2;
         private Label lblErrorNoPol;
+        private Label lblErrorTanggal;
+        private Label lblErrorTanggal2;
     }
 }
