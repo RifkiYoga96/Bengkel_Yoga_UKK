@@ -55,21 +55,21 @@ namespace Bengkel_Yoga_UKK
 
         private void CekLogin()
         {
-            /*string email = txtEmail.Text;
+            string email = txtEmail.Text;
             string password = txtPassword.Text;
 
-            if(email == string.Empty || password == string.Empty || lblErrorEmail.Visible)
+            if (email == string.Empty || password == string.Empty || lblErrorEmail.Visible)
             {
                 MB.Warning("Data tidak valid, mohon cek kembali!");
                 return;
             }
-            var dataPelanggan = _pelangganDal.GetLogin(email,password);
+            var dataPelanggan = _pelangganDal.GetLogin(email, password);
             var dataAdmin = _karyawanDal.GetLogin(email, password);
 
             bool loginPelanggan = dataPelanggan != null ? true : false;
             bool loginAdmin = dataAdmin != null ? true : false;
 
-            if(loginPelanggan && loginAdmin)
+            if (loginPelanggan && loginAdmin)
             {
 
             }
@@ -85,7 +85,7 @@ namespace Bengkel_Yoga_UKK
             {
                 MB.Warning("Harap melengkapi data!");
                 return;
-            }*/
+            }
 
         }
 

@@ -10,11 +10,8 @@
 
   <ItemGroup>
     <Compile Remove="Admin\Invoice\**" />
-    <Compile Remove="User\**" />
     <EmbeddedResource Remove="Admin\Invoice\**" />
-    <EmbeddedResource Remove="User\**" />
     <None Remove="Admin\Invoice\**" />
-    <None Remove="User\**" />
   </ItemGroup>
 
   <ItemGroup>

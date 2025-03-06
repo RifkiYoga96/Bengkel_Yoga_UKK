@@ -44,7 +44,7 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new { id });
         }
-        public bool CekLibur(DateTime tanggal)
+        public async Task<bool> CekLibur(DateTime tanggal)
         {
             const string sql = @"
                 SELECT COUNT(*) 
@@ -55,11 +55,15 @@ namespace Bengkel_Yoga_UKK
             var namaHari = tanggal.ToString("dddd", new System.Globalization.CultureInfo("id-ID"));
 
             if (namaHari == "Jumat")
-                namaHari = "Jum''at";
+                namaHari = "Jum''at"; // Menangani petik tunggal dalam SQL
 
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.ExecuteScalar<int>(sql, new { tanggal, hari = namaHari }) > 0;
+            await koneksi.OpenAsync(); // Pastikan koneksi dibuka secara async
+
+            var result = await koneksi.ExecuteScalarAsync<int>(sql, new { tanggal, hari = namaHari });
+            return result > 0;
         }
+
 
     }
 }

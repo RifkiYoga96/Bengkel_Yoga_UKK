@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInputBooking));
             panel1 = new Panel();
             lblHeader = new Label();
             label3 = new Label();
@@ -208,7 +207,7 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Image = Properties.Resources.Selesai;
             btnSearch.Location = new Point(388, 74);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(47, 27);
@@ -337,9 +336,9 @@
             // 
             // 
             dateTimePickerAdv1.Calendar.NoneButton.AutoSize = true;
-            dateTimePickerAdv1.Calendar.NoneButton.Location = new Point(134, 0);
+            dateTimePickerAdv1.Calendar.NoneButton.Location = new Point(115, 0);
             dateTimePickerAdv1.Calendar.NoneButton.Text = "None";
-            dateTimePickerAdv1.Calendar.Size = new Size(206, 174);
+            dateTimePickerAdv1.Calendar.Size = new Size(187, 174);
             dateTimePickerAdv1.Calendar.SizeToFit = true;
             dateTimePickerAdv1.Calendar.TabIndex = 0;
             // 

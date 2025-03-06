@@ -93,6 +93,16 @@ namespace Bengkel_Yoga_UKK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BelumBayar {
+            get {
+                object obj = ResourceManager.GetObject("BelumBayar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap biru {
             get {
                 object obj = ResourceManager.GetObject("biru", resourceCulture);
@@ -106,16 +116,6 @@ namespace Bengkel_Yoga_UKK.Properties {
         internal static System.Drawing.Bitmap defaultImage {
             get {
                 object obj = ResourceManager.GetObject("defaultImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap defaultImage1 {
-            get {
-                object obj = ResourceManager.GetObject("defaultImage1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

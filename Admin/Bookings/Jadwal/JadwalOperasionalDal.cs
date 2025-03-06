@@ -80,28 +80,31 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QueryFirstOrDefault<JadwalOperasionalModel>(sql, new { hari, id_jadwal_operasional });
         }
 
-        public bool CekTutup(DateTime tanggal)
+        public async Task<bool> CekTutup(DateTime tanggal)
         {
+            if (tanggal > DateTime.Today) return false;
+
             const string sql = @"
                 SELECT TOP 1 jam_tutup 
                 FROM JadwalOperasional 
-                WHERE hari = @hari 
+                WHERE hari = @hari OR hari IS NULL
                 ORDER BY CASE WHEN hari = @hari THEN 1 ELSE 2 END";
 
             var namaHari = tanggal.ToString("dddd", new System.Globalization.CultureInfo("id-ID"));
 
             if (namaHari == "Jumat")
-                namaHari = "Jum''at";
+                namaHari = "Jum''at"; // Menangani petik tunggal dalam SQL
 
             using var koneksi = new SqlConnection(conn.connStr);
-            TimeSpan? jamTutup = koneksi.QueryFirstOrDefault<TimeSpan?>(sql, new { tanggal, hari = namaHari });
+            await koneksi.OpenAsync(); // Buka koneksi secara async
+
+            TimeSpan? jamTutup = await koneksi.QueryFirstOrDefaultAsync<TimeSpan?>(sql, new { hari = namaHari });
 
             if (jamTutup == null)
                 return false;
 
             return DateTime.Now.TimeOfDay >= jamTutup;
         }
-
 
     }
 }

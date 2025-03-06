@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Syncfusion.MIME;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,7 +38,7 @@ namespace Bengkel_Yoga_UKK
                             LEFT JOIN Kendaraan k ON b.id_kendaraan = k.id_kendaraan
                             LEFT JOIN JasaServis js ON js.id_jasaServis = b.id_jasaServis 
                             {filter.sql} 
-                            ORDER BY b.antrean
+                            ORDER BY b.tipe_antrean ASC, b.antrean ASC
                             OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<BookingModel2>(sql,filter.param);
@@ -165,5 +166,30 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<ProdukAddDto>(sql);
         }
+        public async Task<IEnumerable<BookingModel2>> ListDataAntrean(DateTime tanggal)
+        {
+            const string sql = @"
+                SELECT id_booking, antrean, tipe_antrean, status
+                FROM Bookings 
+                WHERE tanggal <= @tanggal
+                ORDER BY tanggal ASC, antrean ASC";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return await koneksi.QueryAsync<BookingModel2>(sql, new { tanggal });
+        }
+
+        public void UpdateAntrean(BookingModel2 booking)
+        {
+            const string sql = @"UPDATE Bookings SET antrean = @antrean, tipe_antrean = @tipe_antrean WHERE id_booking = @id_booking";
+            using var koneksi = new SqlConnection(conn.connStr);
+
+            var dp = new DynamicParameters();
+            dp.Add("@antrean",booking.antrean);
+            dp.Add("@tipe_antrean",booking.tipe_antrean);
+            dp.Add("@id_booking",booking.id_booking);
+
+            koneksi.Execute(sql, dp);
+        }
+
     }
 }

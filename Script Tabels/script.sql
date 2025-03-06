@@ -85,7 +85,9 @@ CREATE TABLE Bookings(
 	tipe_antrean INT,
 	ktp_mekanik VARCHAR(30),
 	id_jasaServis INT,
-	status VARCHAR(20)
+	status VARCHAR(20),
+
+	deleted_at DATETIME NULL,
 	FOREIGN KEY (ktp_pelanggan)
 		REFERENCES Pelanggan(ktp_pelanggan)
 		ON DELETE SET NULL
@@ -240,6 +242,7 @@ VALUES
 -- Insert ke Kendaraan
 INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan, total_servis)
 VALUES 
+('D 5232 BH', 'Yamaha', 'R15', 'Manual', 5, '2020', '1234567890', 0),
 ('B 1234 ABC', 'Toyota', 'Avanza', 'Manual', 7, '2018', '1234567890', 2),
 ('D 5678 XYZ', 'Honda', 'Brio', 'Automatic', 5, '2020', '1234567890', 1);
 

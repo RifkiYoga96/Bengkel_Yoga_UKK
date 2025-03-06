@@ -1,19 +1,6 @@
 ﻿using Dapper;
-using Syncfusion.PMML;
-using Syncfusion.Windows.Forms.Tools;
-using Syncfusion.Windows.Shared;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
@@ -21,22 +8,54 @@ namespace Bengkel_Yoga_UKK
     {
         private readonly BookingDal _bookingDal = new BookingDal();
         private readonly BatasBookingDal _batasBookingDal = new BatasBookingDal();
-        private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending, 90, 90));
-        private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan, 90, 90));
+        private readonly JadwalDal _jadwalDal = new JadwalDal();
+        private readonly JadwalOperasionalDal _jadwalOperasionalDal = new JadwalOperasionalDal();
+
+        private byte[] _pending = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Pending, 110, 110));
+        private byte[] _dikerjakan = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Dikerjakan, 110, 110));
+        private byte[] _belum_bayar = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.BelumBayar, 110, 110));
         private bool _rangeTanggal = false;
         private int _page = 1;
         private int _Totalpage = 1;
         private DateTime _tanggal;
+        private System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer();
         public FormBooking(DateTime tanggal = default)
         {
             InitializeComponent();
             InitComponen();
             RegisterEvent();
+            //UpdateAntrean();
             LoadData();
             CustomGrid();
             if (tanggal == default)
                 tanggal = new DateTime(2025, 1, 1);
+            _timer.Interval = 10000;
+            _timer.Tick += (s,e) => UpdateAntrean();
+            _timer.Start();
         }
+
+
+        private async void UpdateAntrean()
+        {
+            if (!await CekAntreanUpdate()) return;
+            DateTime now = DateTime.Today;
+            var listAntrean = await _bookingDal.ListDataAntrean(now);
+            if (!listAntrean.Any()) return;
+            int antrean = 1;
+            foreach (var item in listAntrean)
+            {
+                var booking = new BookingModel2
+                {
+                    id_booking = item.id_booking,
+                    antrean = antrean++,
+                    tipe_antrean = 2
+                };
+                _bookingDal.UpdateAntrean(booking);
+            }
+            LoadData();
+            _timer.Stop();
+        }
+
 
         #region EVENT
         private void RegisterEvent()
@@ -181,9 +200,17 @@ namespace Bengkel_Yoga_UKK
             }
             if(comboFilterWaktu.SelectedIndex != 0 && !_rangeTanggal)
             {
-                fltr.Add("(b.tanggal BETWEEN @filterWaktu1 AND @filterWaktu2)");
-                dp.Add(@"filterWaktu1",filterWaktu1);
-                dp.Add(@"filterWaktu2",filterWaktu2);
+                if(comboFilterWaktu.SelectedIndex == 1)
+                {
+                    fltr.Add("(b.tanggal <= @tanggalNow)");
+                    dp.Add(@"tanggalNow", DateTime.Today);
+                }
+                else
+                {
+                    fltr.Add("(b.tanggal BETWEEN @filterWaktu1 AND @filterWaktu2)");
+                    dp.Add(@"filterWaktu1", filterWaktu1);
+                    dp.Add(@"filterWaktu2", filterWaktu2);
+                }
             }
 
 
@@ -252,7 +279,7 @@ namespace Bengkel_Yoga_UKK
             comboFilterWaktu.DisplayMember = "nama";
 
             numericEntries.Maximum = 1000;
-            numericEntries.Minimum = 10;
+            numericEntries.Minimum = 4;
             txtBatas.ReadOnly = true;
             txtBatas.TextAlign = HorizontalAlignment.Center;
 
@@ -396,6 +423,22 @@ namespace Bengkel_Yoga_UKK
 
             comboFilterWaktu.SelectedIndex = 1;
         }
+        #endregion
+
+        #region HELPER
+
+        private async Task<bool> CekAntreanUpdate()
+        {
+            DateTime tanggal = DateTime.Today;
+
+            var libur = await _jadwalDal.CekLibur(tanggal);
+            if (libur) return true;
+
+            var tutup = await _jadwalOperasionalDal.CekTutup(tanggal);
+            if (tutup) return true;
+            return false;
+        }
+
         #endregion
     }
 }

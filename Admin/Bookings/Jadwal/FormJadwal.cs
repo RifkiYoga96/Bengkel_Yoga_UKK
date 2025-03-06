@@ -19,7 +19,6 @@ namespace Bengkel_Yoga_UKK
         private List<JadwalDto> _listJadwalLibur = new List<JadwalDto>();
         private int _controlLibur = 0;
         private bool _isInsertLibur = true;
-        private bool _isDefaultOperasional = true;
         private List<string> _hariLibur = new List<string>();
         private List<string> _hariOperasional = new List<string>();
         private string _tglFormat = "dddd, dd-MM-yyyy";
@@ -124,11 +123,6 @@ namespace Bengkel_Yoga_UKK
             {
                 comboHari.DataSource = null;
                 comboHari.Enabled = false;
-                _isDefaultOperasional = true;
-            }
-            else
-            {
-                _isDefaultOperasional = false;
             }
 
             if(data.hari != null)
@@ -178,7 +172,7 @@ namespace Bengkel_Yoga_UKK
                 MB.Warning("Jam buka dan jam tutup tidak boleh sama!");
                 return;
             }
-            if(hari is null && !_isDefaultOperasional)
+            if(hari is null && comboHari.DataSource != null)
             {
                 MB.Warning("Data tidak valid!");
                 return;
