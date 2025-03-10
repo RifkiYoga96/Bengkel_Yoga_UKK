@@ -207,7 +207,7 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Image = Properties.Resources.Selesai;
+            btnSearch.Image = Properties.Resources.defaultImage;
             btnSearch.Location = new Point(388, 74);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(47, 27);

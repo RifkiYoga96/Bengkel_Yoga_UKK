@@ -34,6 +34,7 @@ namespace Bengkel_Yoga_UKK
                 _IsInsert = false;
                 _ktp_admin = ktp_admin;
             }
+            ResetPassword(true);
         }
 
         private void RegisterEvent()
@@ -45,6 +46,7 @@ namespace Bengkel_Yoga_UKK
             {
                 this.Close();
             };
+            linkReset.Click += (s, e) => ResetPassword(true);
         }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
@@ -72,14 +74,12 @@ namespace Bengkel_Yoga_UKK
                     if (new ImageCropTest(originalImage).ShowDialog(this) != DialogResult.OK)
                     {
                         _anyProfile = !IsSameImage(_fotoAdmin, _defaultProfile);
-                        MessageBox.Show("WEH   " + _anyProfile.ToString());
                         return;
                     }
                     _anyProfile = true;
                     pictureBoxProfile.BackgroundImage = ImageConvert.SmoothImagePictureBox(ImageDirectory._imageResult, pictureBoxProfile.Width, pictureBoxProfile.Height);
                     pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
                     _fotoAdmin = ImageDirectory._imageResult;
-                    MessageBox.Show("YEY  " + _anyProfile.ToString());
                 }
             }
         }
@@ -255,6 +255,16 @@ namespace Bengkel_Yoga_UKK
             txtKonfirPassword.Text = data.password;
             txtAlamat.Text = data.alamat;
             pictureBoxProfile.BackgroundImage = data.image_data != null ? ImageConvert.Image_ByteToImage(data.image_data) : _defaultProfile;
+        }
+
+        private void ResetPassword(bool reset)
+        {
+            if (!reset) return;
+            if (!MB.Konfirmasi("Apakah anda yakin ingin mereset password?")) return;
+            txtPassword.ReadOnly = false;
+            txtKonfirPassword.ReadOnly = false;
+            txtPassword.Clear();
+            txtKonfirPassword.Clear();
         }
 
         #endregion

@@ -24,7 +24,7 @@ namespace Bengkel_Yoga_UKK
 
             var dataAntrean = _bookingDal.GetAntrean(tanggal, 1);
 
-            lblAntreanUser.Text = dataAntrean?.Antrean.ToString("D3");
+            lblAntreanUser.Text = "A" + dataAntrean?.Antrean.ToString("D3");
             if(dataAntrean?.ServisNow == 0)
             {
                 lblAntreanDilayani.Font = new Font("Microsoft New Tai Lue", 16, FontStyle.Bold);
@@ -33,7 +33,7 @@ namespace Bengkel_Yoga_UKK
             else
             {
                 lblAntreanDilayani.Font = new Font("Microsoft New Tai Lue", 36, FontStyle.Bold);
-                lblAntreanDilayani.Text = dataAntrean?.ServisNow.ToString("D3");
+                lblAntreanDilayani.Text = "A" + dataAntrean?.ServisNow.ToString("D3");
             }
 
 

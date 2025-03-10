@@ -23,5 +23,10 @@ namespace Bengkel_Yoga_UKK
         {
             MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        public static void Informasi(string message)
+        {
+            MessageBox.Show(message, "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

@@ -96,6 +96,14 @@ namespace Bengkel_Yoga_UKK
             btnPelanggan.Click += (s, e) => ShowFormInPanel2(new FormPelanggan());
             btnRiwayat.Click += (s, e) => ShowFormInPanel2(new FormRiwayat());
             btnService.Click += (s, e) => ShowFormInPanel2(new JasaServisForm());
+
+            this.FormClosing += (s, e) =>
+            {
+                if (MB.Konfirmasi("Apakah anda yakin ingin menutup aplikasi ini?"))
+                    Login._loginForm.Close();
+                else
+                    e.Cancel = true;
+            };
         }
 
 

@@ -13,12 +13,15 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class Login : Form
     {
+        public static Form _loginForm = new Login();
         private readonly PelangganDal _pelangganDal = new PelangganDal();
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private bool _showPassword = false;
         public Login()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            _loginForm = this;
             InitComponent();
             RegisterEvent();
         }
@@ -28,9 +31,15 @@ namespace Bengkel_Yoga_UKK
             btnShowPassword.Click += (s, e) =>
             {
                 if (_showPassword)
+                {
                     txtPassword.PasswordChar = '*';
+                    btnShowPassword.Image = Properties.Resources.hidden;
+                }
                 else
+                {
                     txtPassword.PasswordChar = '\0';
+                    btnShowPassword.Image = Properties.Resources.eye;
+                }
                 _showPassword = !_showPassword;
                 txtPassword.Focus();
             };
@@ -44,6 +53,11 @@ namespace Bengkel_Yoga_UKK
                     lblErrorEmail.Visible = false;
             };
             btnLogin.Click += (s,e) => CekLogin();
+            linkRegister.Click += (s, e) =>
+            {
+                new Register().Show();
+                this.Hide();
+            };
         }
 
         private void InitComponent()
@@ -71,15 +85,18 @@ namespace Bengkel_Yoga_UKK
 
             if (loginPelanggan && loginAdmin)
             {
-
+                MB.Warning("Pel dan Admin");
+                new MainFormAdmin().Show();
+                this.Hide();
             }
             else if (loginPelanggan)
             {
-
+                MB.Warning("Pel");
             }
             else if (loginAdmin)
             {
-
+                new MainFormAdmin().Show();
+                this.Hide();
             }
             else
             {

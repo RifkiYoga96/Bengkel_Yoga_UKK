@@ -12,29 +12,34 @@ using Syncfusion.WinForms.Core.Enums;
 using Syncfusion.WinForms.Controls;
 using static Syncfusion.Windows.Forms.Tools.MenuDropDown;
 using Syncfusion.Windows.Forms.Tools.Win32API;
+using Dapper;
+using Syncfusion.Windows.Forms.Tools;
 
 namespace Bengkel_Yoga_UKK
 {
     public partial class FormProduk : Form
     {
         private BindingSource _bindingSource = new BindingSource();
-
+        private Dictionary<string, SortOrder> columnSortOrder = new Dictionary<string, SortOrder>();
         private readonly ProdukDal _produkDal = new ProdukDal();
-        private int page = 1;
+        private int _page = 1;
+        private int _Totalpage = 1;
         Bitmap bitmap;
 
         private byte[] _habis = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Habis, 100, 100));
         private byte[] _menipis = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Menipis,100, 100));
         private byte[] _tersedia = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Tersedia, 100, 100));
+        private byte[] _defaultImage = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.defaultImage,55,55));
         public FormProduk()
         {
             InitializeComponent();
+            InitComponent();
             LoadData();
-            InitCombo();
-            CostumGrid();
-            //ImageGrid();
             RegisterEvent();
+            CostumGrid();
         }
+
+        #region EVENT
 
         private void RegisterEvent()
         {
@@ -42,11 +47,48 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
-            btnAddData.Click += BtnAddData_Click; ;
+            btnAddData.Click += BtnAddData_Click;
 
             btnSearch.Click += BtnSearch_Click;
+            dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
+            editToolStripMenuItem.Click += EditToolStripMenuItem_Click;
+
+            dataGridView1.ColumnHeaderMouseClick += SortingData;
+
+            comboFilter.SelectedIndexChanged += (s, e) => LoadData();
+
+            txtSearch.TextChanged += (s, e) =>
+            {
+                if (txtSearch.TextLength == 0) LoadData();
+            };
+            txtSearch.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    LoadData();
+                }
+            };
         }
 
+        
+
+        private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            string kode = dataGridView1.CurrentRow.Cells["kode_sparepart"].Value?.ToString() ?? string.Empty;
+            if (new FormInputProduk(kode).ShowDialog() != DialogResult.OK) return;
+            LoadData();
+        }
+
+        private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                contextMenuStripEx1.Show(Cursor.Position);
+            }
+        }
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
@@ -55,116 +97,93 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnPrevious_Click(object? sender, EventArgs e)
         {
-            if (page > 1)
+            if (_page > 1)
             {
-                page--;
+                _page--;
+                LoadData();
             }
-            lblHalaman.Text = page.ToString();
         }
 
         private void BtnNext_Click(object? sender, EventArgs e)
         {
-            if (page <= 10)
+            if (_page < _Totalpage)
             {
-                page++;
+                _page++;
+                LoadData();
             }
-            lblHalaman.Text = page.ToString();
         }
-        #region COMBO BOX
-        private void InitCombo()
+
+        #endregion
+
+        #region INIT COMPONENT
+        private void InitComponent()
         {
             List<string> list = new List<string>()
             {
                 "Semua (All)","Stok Tersedia","Stok Menipis","Stok Habis"
             };
             comboFilter.DataSource = list;
+
+            numericEntries.Minimum = 10;
         }
         #endregion
 
-        #region DATAGRID
-        private void CostumGrid()
+        #region LOAD DATAGRID
+        private FilterDto? Filter()
         {
-            dataGridView1.BackgroundColor = Color.White;
+            string search = txtSearch.Text;
+            int status = comboFilter.SelectedIndex;
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            string sql = @"";
+            var dp = new DynamicParameters();
+            List<string> fltr = new List<string>();
 
-            // Mengatur ukuran font header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            //dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            if (search != string.Empty)
+            {
+                fltr.Add("(kode_sparepart LIKE  @search + '%' OR nama_sparepart LIKE '%' +  @search + '%')");
+                dp.Add(@"search", search);
+            }
+            if (comboFilter.SelectedIndex != 0)
+            {
+                if(status == 1) fltr.Add("(stok > stok_minimum)");
+                if(status == 2) fltr.Add("(stok <= stok_minimum AND stok > 0)");
+                if(status == 3) fltr.Add("(stok = 0)");
+            }
 
-            // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView1.ForeColor = Color.DimGray;
+            if (fltr.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", fltr);
 
 
-            // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
-
-            dataGridView1.ColumnHeadersHeight = 40;
-            dataGridView1.RowTemplate.Height = 55;
-
-            dataGridView1.RowHeadersVisible = false;
-
-            // Mencegah penggeseran kolom
-            dataGridView1.AllowUserToOrderColumns = false;
-
-            // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = true;
-
-            // Mencegah pengubahan ukuran baris
-            dataGridView1.AllowUserToResizeRows = false;
-
-            // Mencegah penambahan baris baru
-            dataGridView1.AllowUserToAddRows = false;
-
-            dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["kode_sparepart"].FillWeight = 8;
-            dataGridView1.Columns["Foto"].FillWeight = 10;
-            dataGridView1.Columns["Sparepart"].FillWeight = 25;
-            dataGridView1.Columns["Harga"].FillWeight = 15;
-            dataGridView1.Columns["Stok"].FillWeight = 10;
-            dataGridView1.Columns["stok_minimum"].FillWeight = 10;
-            dataGridView1.Columns["keterangan_stok"].FillWeight = 16;
-
-            dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["kode_sparepart"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Foto"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["Sparepart"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Harga"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["Stok"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["stok_minimum"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-            dataGridView1.Columns["keterangan_stok"].DefaultCellStyle.Padding = new Padding(0, 0, 0, 0);
-
-            dataGridView1.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["Stok"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns["stok_minimum"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            dataGridView1.Columns["kode_sparepart"].HeaderText = "Kode";
-            dataGridView1.Columns["keterangan_stok"].HeaderText = "Keterangan";
-            dataGridView1.Columns["stok_minimum"].HeaderText = "Stok Minimum";
+            var filterResult = new FilterDto
+            {
+                sql = sql,
+                param = dp
+            };
+            return filterResult;
         }
-
 
         private void LoadData()
         {
+            var sqlFilter = Filter() ?? new FilterDto();
+            var totalRows = _produkDal.GetTotalRows(sqlFilter);
+
+            int showData = (int)numericEntries.Value;
+            _Totalpage = Convert.ToInt32(Math.Ceiling((double)totalRows / showData));
+            int offset = (_page - 1) * showData;
+            sqlFilter.param.Add("@offset", offset);
+            sqlFilter.param.Add("@fetch", showData);
+
+            lblHalaman.Text = _page.ToString();
+            int toValue = Math.Min(offset + showData, totalRows);
+            lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
+
             int i = 1;
-            var list = _produkDal.ListData()
-                .Select(x => new ProdukDto
+            var list = _produkDal.ListData(sqlFilter)
+                .Select((x,index) => new ProdukDto
                 {
-                    No = i++,
+                    No = offset + index + 1,
                     kode_sparepart = x.kode_sparepart,
-                    Foto = ImageConvert.ResizeImageBytes(x.image_data,55,55),
+                    Foto = x.image_data != null ? ImageConvert.ResizeImageBytes(x.image_data, 45, 45) : _defaultImage,
                     Sparepart = x.nama_sparepart,
                     Harga = x.harga,
                     Stok = x.stok,
@@ -173,54 +192,115 @@ namespace Bengkel_Yoga_UKK
                         : x.stok < x.stok_minimum ? _menipis
                         : _tersedia
                 }).ToList();
-            dataGridView1.DataSource = new SortableBindingList<ProdukDto>(list);
-        }
 
-        private SortableBindingList<ProdukModelS> GetData()
-        {
-            byte[] ban1 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC NR72.jpg", 55, 55);
-            byte[] ban2 = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\IRC SCT-004.jpg", 55, 55);
-            byte[] velg = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\velg.jpeg", 55, 55);
-            byte[] rcb = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\rcb.jpg", 55, 55);
-            byte[] spion = ImageConvert.ImageToByteMaxSize(@"D:\APenyimpanan\BENGKEL - UKK\Spion.jpg", 55, 55);
-            byte[] habis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Habis.png", 15);
-            byte[] menipis = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Menipis.png", 15);
-            byte[] tersedia = ImageConvert.ImageToBytePercent(@"D:\APenyimpanan\BENGKEL - UKK\Image\Tersedia.png", 15);
-
-            // Path gambar yang akan digunakan
-            string pandingImg = @"D:\APenyimpanan\BENGKEL - UKK\Panding.png";
-            string selesaiImg = @"D:\APenyimpanan\BENGKEL - UKK\selesai.png";
-
-            // Ubah ukuran gambar menjadi maksimal 100x100
-            Image originalImage = Image.FromFile(pandingImg);
-            Image resizedImage = ImageConvert.ResizeImagePersentase(originalImage, 15); // Ubah ukuran gambar
-
-            Image selesaiImageOri = Image.FromFile(selesaiImg);
-            Image resizeSelesai = ImageConvert.ResizeImagePersentase(selesaiImageOri, 15);
-
-            // Konversi gambar yang sudah diubah ukurannya ke byte[]
-            byte[] pandingBytes = ImageConvert.ImageToByteArray(resizedImage);
-            byte[] selesaiBytes = ImageConvert.ImageToByteArray(resizeSelesai);
-
-            return new SortableBindingList<ProdukModelS>
+            // Lakukan sorting berdasarkan kolom yang aktif
+            var sortedColumn = columnSortOrder.Keys.FirstOrDefault();
+            if (sortedColumn != null)
+            {
+                var sortOrder = columnSortOrder[sortedColumn];
+                if (sortOrder != SortOrder.None)
                 {
-                    new ProdukModelS { NO = 1, KODE_SPAREPART = "PF01", GAMBAR = rcb, PRODUK = "Ban Motor RCB", STOK = 20,STOK_MINIMUM = 15, HARGA = "Rp 220.000",KETERANGAN_STOK = tersedia },
-                    new ProdukModelS { NO = 2, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC DELPHI", STOK = 0,STOK_MINIMUM=15, HARGA = "Rp 300.000", KETERANGAN_STOK = habis },
-                    new ProdukModelS { NO = 3, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new ProdukModelS { NO = 4, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new ProdukModelS { NO = 5, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModelS { NO = 6, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModelS { NO = 7, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
-                    new ProdukModelS { NO = 8, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModelS { NO = 9, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Ban Motor CDA DELVIRO", STOK = 11,STOK_MINIMUM=20, HARGA = "Rp 450.000",KETERANGAN_STOK=menipis },
-                    new ProdukModelS { NO = 10, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Ban Motor IRC TUNA", STOK = 5,STOK_MINIMUM=15, HARGA = "Rp 190.000",KETERANGAN_STOK=menipis },
-                    new ProdukModelS { NO = 11, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor ASC SORTIR", STOK = 23,STOK_MINIMUM=20, HARGA = "Rp 240.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModelS { NO = 12, KODE_SPAREPART = "PF01", GAMBAR = spion, PRODUK = "Spion LowASC", STOK = 20,STOK_MINIMUM=15, HARGA = "Rp 89.000",KETERANGAN_STOK=tersedia },
-                    new ProdukModelS { NO = 13, KODE_SPAREPART = "PF01", GAMBAR = ban2, PRODUK = "Ban Motor IRC MOBONG", STOK = 20,STOK_MINIMUM=30, HARGA = "Rp 520.000",KETERANGAN_STOK=menipis },
-                    new ProdukModelS { NO = 14, KODE_SPAREPART = "PF01", GAMBAR = velg, PRODUK = "Velg LUCAS EMBE", STOK = 55,STOK_MINIMUM=30, HARGA = "Rp 1.200.000",KETERANGAN_STOK=tersedia },
-                };
+                    var propertyInfo = typeof(ProdukDto).GetProperty(sortedColumn);
+                    if (propertyInfo != null)
+                    {
+                        if (sortOrder == SortOrder.Ascending)
+                        {
+                            list = list.OrderBy(x => propertyInfo.GetValue(x, null)).ToList();
+                        }
+                        else
+                        {
+                            list = list.OrderByDescending(x => propertyInfo.GetValue(x, null)).ToList();
+                        }
+                    }
+                }
+            }
+
+            dataGridView1.DataSource = list;
         }
 
+        #endregion
+
+        #region GET DATA
+
+        private void GetData()
+        {
+
+        }
+
+        #endregion
+
+        #region CUSTOM DATAGRID
+        private void CostumGrid()
+        {
+            DataGridView dgv = dataGridView1;
+
+            CustomGrids.CustomDataGrid(dgv);
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["No"].FillWeight = 6;
+            dgv.Columns["kode_sparepart"].FillWeight = 8;
+            dgv.Columns["Foto"].FillWeight = 10;
+            dgv.Columns["Sparepart"].FillWeight = 24;
+            dgv.Columns["Harga"].FillWeight = 14;
+            dgv.Columns["Stok"].FillWeight = 10;
+            dgv.Columns["stok_minimum"].FillWeight = 12;
+            dgv.Columns["keterangan_stok"].FillWeight = 16;
+
+            dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["kode_sparepart"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Sparepart"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["Harga"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+
+            dgv.Columns["Foto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["Stok"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["stok_minimum"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgv.Columns["kode_sparepart"].HeaderText = "Kode";
+            dgv.Columns["keterangan_stok"].HeaderText = "Keterangan";
+            dgv.Columns["stok_minimum"].HeaderText = "Stok Minimum";
+            dgv.Columns["Stok"].HeaderText = "Stok";
+        }
+
+        private void SortingData(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            var column = dataGridView1.Columns[e.ColumnIndex];
+            var columnName = column.Name;
+
+            // Tentukan mode sorting berikutnya
+            if (!columnSortOrder.ContainsKey(columnName) || columnSortOrder[columnName] == SortOrder.None)
+            {
+                columnSortOrder[columnName] = SortOrder.Descending;
+            }
+            else if (columnSortOrder[columnName] == SortOrder.Descending)
+            {
+                columnSortOrder[columnName] = SortOrder.Ascending;
+            }
+            else
+            {
+                columnSortOrder[columnName] = SortOrder.None;
+            }
+
+            // Update gambar sorting
+            UpdateSortGlyph(column);
+
+            // Lakukan sorting dan load data
+            LoadData();
+        }
+
+        private void UpdateSortGlyph(DataGridViewColumn column)
+        {
+            // Reset semua kolom ke None
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                col.HeaderCell.SortGlyphDirection = SortOrder.None;
+            }
+
+            // Set sort glyph untuk kolom yang aktif
+            if (columnSortOrder.ContainsKey(column.Name))
+            {
+                column.HeaderCell.SortGlyphDirection = columnSortOrder[column.Name];
+            }
+        }
 
         private void DataGridView1_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -261,7 +341,7 @@ namespace Bengkel_Yoga_UKK
                 if (e.RowIndex == -1 && e.ColumnIndex >= 0) // Hanya proses header kolom
                 {
                     // Daftar kolom yang ingin diterapkan CellPainting
-                    string[] targetColumns = { "Foto","keterangan_stok","stok_minimum","Stok" };
+                    string[] targetColumns = { "Foto", "keterangan_stok", "Stok" };
 
                     // Periksa apakah kolom saat ini termasuk dalam daftar target
                     if (targetColumns.Contains(dataGridView1.Columns[e.ColumnIndex].Name))
@@ -276,10 +356,6 @@ namespace Bengkel_Yoga_UKK
                         e.Handled = true; // Tandai event sebagai sudah dihandle
                     }
                 }
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    dataGridView1.Rows[i].Cells["NO"].Value = i + 1;
-                }
                 e.Handled = true; // Tandai event sebagai sudah dihandle
             }
         }
@@ -288,13 +364,15 @@ namespace Bengkel_Yoga_UKK
         {
             if (sortOrder == SortOrder.Ascending)
                 return (Bitmap)Properties.Resources.ArrowUp;
-            else
+            else if (sortOrder == SortOrder.Descending)
                 return (Bitmap)Properties.Resources.ArrowDown;
-
+            else
+                return (Bitmap)Properties.Resources.edit__2_; // Gambar untuk mode None
         }
         #endregion
 
 
+        #region PRINT
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
             // Ukuran asli panel
@@ -348,5 +426,6 @@ namespace Bengkel_Yoga_UKK
                 e.Graphics.DrawImage(bitmap, 0, 0, bitmap.Width, bitmap.Height);
             }
         }
+        #endregion
     }
 }

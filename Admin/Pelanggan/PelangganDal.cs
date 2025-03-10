@@ -112,5 +112,23 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QueryFirstOrDefault<string>(sql, new { email = email, password = password }) ?? string.Empty;
         }
+
+        public string GenerateUniqueTempKTP()
+        {
+            using var koneksi = new SqlConnection(conn.connStr);
+            string tempKTP;
+            bool exists;
+
+            do
+            {
+                tempKTP = "TEMP" + new Random().Next(100000, 999999); // TEMP + 6 angka acak
+
+                string query = "SELECT 1 FROM Pelanggan WHERE ktp_pelanggan = @ktp";
+                exists = koneksi.QueryFirstOrDefault<int>(query, new { ktp = tempKTP }) > 0;
+
+            } while (exists);
+
+            return tempKTP;
+        }
     }
 }

@@ -118,7 +118,7 @@ namespace Bengkel_Yoga_UKK
         }
         public string GetLogin(string email, string password)
         {
-            const string sql = @"SELECT * FROM Karyawan
+            const string sql = @"SELECT * FROM Admins
                         WHERE email = @email AND password = @password";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QueryFirstOrDefault<string>(sql, new { email = email, password = password }) ?? string.Empty;

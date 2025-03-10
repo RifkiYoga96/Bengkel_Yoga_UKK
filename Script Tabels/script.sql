@@ -113,6 +113,7 @@ CREATE TABLE BookingsSparepart(
 		ON UPDATE CASCADE
         );
 
+DROP TABLE Riwayat;
 CREATE TABLE Riwayat(
     id_riwayat INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     ktp_pelanggan VARCHAR(30),
@@ -121,6 +122,8 @@ CREATE TABLE Riwayat(
     no_pol VARCHAR(30),
     nama_kendaraan VARCHAR(100),
     tanggal DATE,
+	tanggal_servis DATETIME,
+	tanggal_selesai DATETIME,
     ktp_admin VARCHAR(30),
     ktp_mekanik VARCHAR(30),
     keluhan VARCHAR(100),
@@ -144,7 +147,7 @@ CREATE TABLE Riwayat(
 );
 
 
-
+Drop TABLE RiwayatSparepart;
 CREATE TABLE RiwayatSparepart(
 	id_riwayat INT,
 	kode_sparepart VARCHAR(20),
@@ -243,7 +246,7 @@ VALUES
 -- Insert ke Kendaraan
 INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan, total_servis)
 VALUES 
-('D 2233 BH', 'Kawasaki', 'Ninja 150', 'Manual', 5, '2020', '1234567890', 0),
+('D 2111 WW', 'Cagiva', 'Stella 115', 'Manual', 5, '1999', '1234567890', 0),
 ('B 1234 ABC', 'Toyota', 'Avanza', 'Manual', 7, '2018', '1234567890', 2),
 ('D 5678 XYZ', 'Honda', 'Brio', 'Automatic', 5, '2020', '1234567890', 1);
 
@@ -263,9 +266,10 @@ FROM Sparepart
 WHERE kode_sparepart = 'SP001';
 
 -- Insert ke Riwayat (setelah booking selesai)
-INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, ktp_mekanik, keluhan, catatan, total_harga, id_jasaServis, status)
+INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, ktp_mekanik, keluhan, catatan, total_harga, id_jasaServis, status, tanggal_servis, tanggal_selesai, pembatalan_oleh)
 VALUES 
-('1234567890', 'Budi Santoso', 1, 'B 1234 ABC', 'Toyota Avanza', '2024-02-24', '0987654321', '0987654321', 'Oli bocor', 'Oli diganti', 250000, 1, 'Selesai');
+('1234567890', 'Budi Santoso', 1, 'B 1234 ABC', 'Toyota Avanza', '2024-02-24', '0987654321', '0987654321', 'Oli bocor', 'Oli diganti', 250000, 1, 'batal servis', '2024-02-24 14:30:00', '2024-02-24 16:30:00', 'Petugas'
+);
 
 -- Insert ke RiwayatSparepart (ambil dari bookings sparepart)
 INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_data)

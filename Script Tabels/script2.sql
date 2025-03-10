@@ -6,7 +6,7 @@ CREATE PROCEDURE InsertSparepart
     @stok INT,
     @stok_minimum INT,
     @harga INT,
-    @image_data VARBINARY(MAX)
+    @image_data VARBINARY(MAX) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -20,11 +20,11 @@ go;
 
 CREATE PROCEDURE InsertPelanggan
     @ktp_pelanggan VARCHAR(30),
-    @nama_pelanggan VARCHAR(100),
-    @email VARCHAR(50),
-    @password VARCHAR(50),
-    @alamat VARCHAR(100),
-    @no_telp VARCHAR(20)
+    @nama_pelanggan VARCHAR(100) = NULL,
+    @email VARCHAR(50) = NULL,
+    @password VARCHAR(50) = NULL,
+    @alamat VARCHAR(100) = NULL,
+    @no_telp VARCHAR(20) = NULL
 AS
 BEGIN
     INSERT INTO Pelanggan (ktp_pelanggan, nama_pelanggan, email, password, alamat, no_telp, created_at, updated_at)
@@ -179,7 +179,7 @@ CREATE PROCEDURE UpdateSparepart
     @stok INT,
     @stok_minimum INT,
     @harga INT,
-    @image_data VARBINARY(MAX)
+    @image_data VARBINARY(MAX) = null
 AS
 BEGIN
     UPDATE Sparepart 
@@ -197,11 +197,11 @@ go;
 CREATE PROCEDURE UpdatePelanggan
     @ktp_pelanggan_old VARCHAR(30),  
     @ktp_pelanggan_new VARCHAR(30),  
-    @nama_pelanggan VARCHAR(100),
-    @email VARCHAR(50),
-    @password VARCHAR(50),
-    @alamat VARCHAR(100),
-    @no_telp VARCHAR(20)
+    @nama_pelanggan VARCHAR(100) = NULL,
+    @email VARCHAR(50) = NULL,
+    @password VARCHAR(50) = NULL,
+    @alamat VARCHAR(100) = NULL,
+    @no_telp VARCHAR(20) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
