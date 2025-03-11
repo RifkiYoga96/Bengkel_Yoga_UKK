@@ -24,7 +24,7 @@ namespace Bengkel_Yoga_UKK
             edit.Style.DropDown.HoverForeColor = Color.White;
         }
 
-        public static void TextChangeNull(TextBox txt, Label lbl, string pesan)
+        public static void TextChangeNull(TextBox txt, Label lbl, string pesan, bool lanjutan = false)
         {
             txt.TextChanged += (s, e) =>
             {
@@ -41,10 +41,7 @@ namespace Bengkel_Yoga_UKK
                     lbl.Text = "Tidak boleh ada spasi di awal dan akhir!";
                     lbl.Visible = true;
                 }
-                else
-                {
-                    lbl.Visible = false;
-                }
+                if(!lanjutan) lbl.Visible = false;
             };
         }
 
@@ -64,6 +61,36 @@ namespace Bengkel_Yoga_UKK
             form.MinimizeBox = false;
             form.MaximizeBox = false;
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
+        }
+
+        public static void ControlButtonMainDelete(YogaButton btnMain, YogaButton btnDelete, Image imgMain, bool main, string text)
+        {
+            Color blue = Color.FromArgb(52, 152, 219);
+            Color dark = SystemColors.ControlDarkDark;
+            Color white = Color.White;
+            Color trans = Color.Transparent;
+            if (main)
+            {
+                btnMain.ForeColor = white;
+                btnMain.BackColor = blue;
+                btnMain.Text = " Add " + text;
+                btnMain.Image = Properties.Resources.plusPutih;
+
+                btnDelete.ForeColor = dark;
+                btnDelete.BackColor = trans;
+                btnDelete.Image = Properties.Resources.sampahDark;
+            }
+            else
+            {
+                btnMain.ForeColor = dark;
+                btnMain.BackColor = trans;
+                btnMain.Text = " " + text;
+                btnMain.Image = Properties.Resources.plusDark;
+
+                btnDelete.ForeColor = white;
+                btnDelete.BackColor = blue;
+                btnDelete.Image = Properties.Resources.sampahPutih;
+            }
         }
     }
 }

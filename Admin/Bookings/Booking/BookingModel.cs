@@ -75,6 +75,9 @@ namespace Bengkel_Yoga_UKK
     {
         public int id_booking { set; get; }
         public string kode_sparepart { set; get; }
+        public string nama_sparepart { get; set; }
+        public int stok { get; set; }
+        public int harga { get; set; }
         public int jumlah { set; get; }
     }
 

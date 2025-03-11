@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sodium;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,8 +87,8 @@ namespace Bengkel_Yoga_UKK
         {
             string nama = txtNama.Text;
             string email = txtEmail.Text;
-            string password = txtPassword.Text;
-            string Cpassword = txtCPassword.Text;
+            string password = txtPassword.Text.Trim();
+            string Cpassword = txtCPassword.Text.Trim();
 
             bool valid = !lblErrorNama.Visible
                 && !lblErrorEmail.Visible
@@ -100,13 +101,14 @@ namespace Bengkel_Yoga_UKK
             }
             
             string noKtp = _pelangganDal.GenerateUniqueTempKTP();
-
+            string hash = PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive);
+            MB.Warning(hash);
             var pelanggan = new PelangganModelUpdate
             {
                 ktp_pelanggan_new = noKtp,
                 nama_pelanggan = nama,
                 email = email,
-                password = password,
+                password = hash,
             };
             _pelangganDal.InsertData(pelanggan);
             MB.Informasi("Registrasi berhasil!");

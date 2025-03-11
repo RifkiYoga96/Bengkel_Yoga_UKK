@@ -70,32 +70,14 @@ namespace Bengkel_Yoga_UKK
                 item.FlatAppearance.MouseOverBackColor = hover;
             }
 
-            btnDashboard.Click += (s, e) => buttonActiveAfter = 1;
-            btnDashboard.Click += BtnSideBar_Click;
-            btnBooking.Click += (s, e) => buttonActiveAfter = 2;
-            btnBooking.Click += BtnSideBar_Click;
-            btnProduk.Click += (s, e) => buttonActiveAfter = 3;
-            btnProduk.Click += BtnSideBar_Click;
-            btnRiwayat.Click += (s, e) => buttonActiveAfter = 4;
-            btnRiwayat.Click += BtnSideBar_Click;
-            btnService.Click += (s, e) => buttonActiveAfter = 5;
-            btnService.Click += BtnSideBar_Click;
-            btnPelanggan.Click += (s, e) => buttonActiveAfter = 6;
-            btnPelanggan.Click += BtnSideBar_Click;
-            btnKaryawan.Click += (s, e) => buttonActiveAfter = 7;
-            btnKaryawan.Click += BtnSideBar_Click;
-            btnKalender.Click += (s, e) => buttonActiveAfter = 8;
-            btnKalender.Click += BtnSideBar_Click;
-
-           // btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
-            btnDashboard.Click += (s, e) => ShowFormInPanel2(new Dashboard2());
-            btnProduk.Click += (s, e) => ShowFormInPanel2(new FormProduk());
-            btnKaryawan.Click += (s, e) => ShowFormInPanel2(new FormKaryawan());
-            btnKalender.Click += (s, e) => ShowFormInPanel2(new FormKalender());
-            btnBooking.Click += (s, e) => ShowFormInPanel2(new FormBooking());
-            btnPelanggan.Click += (s, e) => ShowFormInPanel2(new FormPelanggan());
-            btnRiwayat.Click += (s, e) => ShowFormInPanel2(new FormRiwayat());
-            btnService.Click += (s, e) => ShowFormInPanel2(new JasaServisForm());
+            btnDashboard.Click += (s, e) => NavigateToForm(new Dashboard2(), 1);
+            btnBooking.Click += (s, e) => NavigateToForm(new FormBooking(), 2);
+            btnProduk.Click += (s, e) => NavigateToForm(new FormProduk(), 3);
+            btnRiwayat.Click += (s, e) => NavigateToForm(new FormRiwayat(), 4);
+            btnService.Click += (s, e) => NavigateToForm(new JasaServisForm(), 5);
+            btnPelanggan.Click += (s, e) => NavigateToForm(new FormPelanggan(), 6);
+            btnKaryawan.Click += (s, e) => NavigateToForm(new FormKaryawan(), 7);
+            btnKalender.Click += (s, e) => NavigateToForm(new FormKalender(), 8);
 
             this.FormClosing += (s, e) =>
             {
@@ -104,6 +86,27 @@ namespace Bengkel_Yoga_UKK
                 else
                     e.Cancel = true;
             };
+        }
+
+        private void NavigateToForm(Form form, int buttonId)
+        {
+            buttonActiveAfter = buttonId;
+            ShowFormInPanel2(form);
+            ControlSideBar();
+        }
+
+        private bool FormKhusus()
+        {
+            Control[] existingControls = panelMain.Controls.Cast<Control>().ToArray();
+
+            foreach (var control in existingControls)
+            {
+                if (control is Form specificForm && specificForm.Name == "FormDetailBooking")
+                {
+                    if (!MB.Konfirmasi("Apakah anda ingin menutup bagian ini tanpa menyimpan perubahan?")) return true;
+                }
+            }
+            return false;
         }
 
 
@@ -172,6 +175,25 @@ namespace Bengkel_Yoga_UKK
                 return; // Pastikan instance dan panelMain ada
 
             Panel panelMain = MainFormAdmin._mainForm.panelMain; // Akses panel dari instance FormUtama
+
+
+            Control[] existingControls = panelMain.Controls.Cast<Control>().ToArray();
+
+            foreach (var control in existingControls)
+            {
+                if (control is Form specificForm && specificForm.Name == "FormDetailBooking" && (FormDetailBooking._perubahanSparepart || FormDetailBooking._perubahanMain))
+                {
+                    if (!MB.Konfirmasi("Apakah anda ingin menutup bagian ini tanpa menyimpan perubahan?"))
+                    {
+                        buttonActiveAfter = 2;
+                        ControlSideBar();
+                        return;
+                    }
+                }
+            }
+            FormDetailBooking._perubahanMain = false;
+            FormDetailBooking._perubahanSparepart = false;
+            ControlSideBar();
 
             if (panelMain.Controls.Count > 0)
             {

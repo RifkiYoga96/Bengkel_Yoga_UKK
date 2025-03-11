@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Sodium;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -34,6 +35,20 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { ktp_pelanggan = ktp_pelanggan });
         }
 
+        public void SoftDeleteData(string ktp)
+        {
+            const string sql = @"UPDATE Pelanggan SET deleted_at = GETDATE() WHERE ktp_pelanggan = @ktp";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new {ktp});
+        }
+
+        public void RestoreData(string ktp)
+        {
+            const string sql = @"UPDATE Pelanggan SET deleted_at = NULL WHERE ktp_pelanggan = @ktp";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new {ktp});
+        }
+
         public void InsertData(PelangganModelUpdate pelanggan)
         {
             var dp = new DynamicParameters();
@@ -51,9 +66,9 @@ namespace Bengkel_Yoga_UKK
         public void UpdateData(PelangganModelUpdate pelanggan)
         {
             var dp = new DynamicParameters();
-            dp.Add(@"ktp_admin_old", pelanggan.ktp_pelanggan_old);
-            dp.Add(@"ktp_admin_new", pelanggan.ktp_pelanggan_new);
-            dp.Add(@"nama_admin", pelanggan.nama_pelanggan);
+            dp.Add(@"ktp_pelanggan_old", pelanggan.ktp_pelanggan_old);
+            dp.Add(@"ktp_pelanggan_new", pelanggan.ktp_pelanggan_new);
+            dp.Add(@"nama_pelanggan", pelanggan.nama_pelanggan);
             dp.Add(@"no_telp", pelanggan.no_telp);
             dp.Add(@"email", pelanggan.email);
             dp.Add(@"password", pelanggan.password);
@@ -105,12 +120,13 @@ namespace Bengkel_Yoga_UKK
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { ktp_pelanggan = ktp });
             return data != null;
         }
-        public string GetLogin(string email, string password)
+        public PelangganModel? GetLogin(string email)
         {
-            const string sql = @"SELECT ktp_pelanggan FROM Pelanggan
-                        WHERE email = @email AND password = @password";
+            const string sql = @"SELECT ktp_pelanggan, password FROM Pelanggan
+                        WHERE email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<string>(sql, new { email = email, password = password }) ?? string.Empty;
+
+            return koneksi.QueryFirstOrDefault<PelangganModel>(sql, new {email});
         }
 
         public string GenerateUniqueTempKTP()

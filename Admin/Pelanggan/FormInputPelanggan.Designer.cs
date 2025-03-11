@@ -53,6 +53,8 @@
             lblErrorPassword = new Label();
             lblErrorCPassword = new Label();
             lblErrorAlamat = new Label();
+            linkReset = new LinkLabel();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).BeginInit();
@@ -398,11 +400,34 @@
             lblErrorAlamat.TextAlign = ContentAlignment.MiddleRight;
             lblErrorAlamat.Visible = false;
             // 
+            // linkReset
+            // 
+            linkReset.AutoSize = true;
+            linkReset.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            linkReset.Location = new Point(830, 131);
+            linkReset.Name = "linkReset";
+            linkReset.Size = new Size(40, 17);
+            linkReset.TabIndex = 93;
+            linkReset.TabStop = true;
+            linkReset.Text = "Reset";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(722, 131);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 17);
+            label1.TabIndex = 92;
+            label1.Text = "Reset password?";
+            // 
             // FormInputPelanggan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(937, 453);
+            Controls.Add(linkReset);
+            Controls.Add(label1);
             Controls.Add(lblErrorAlamat);
             Controls.Add(lblErrorCPassword);
             Controls.Add(lblErrorPassword);
@@ -469,5 +494,7 @@
         private Label lblErrorPassword;
         private Label lblErrorCPassword;
         private Label lblErrorAlamat;
+        private LinkLabel linkReset;
+        private Label label1;
     }
 }

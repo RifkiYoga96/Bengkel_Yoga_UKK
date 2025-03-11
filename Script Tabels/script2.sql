@@ -22,7 +22,7 @@ CREATE PROCEDURE InsertPelanggan
     @ktp_pelanggan VARCHAR(30),
     @nama_pelanggan VARCHAR(100) = NULL,
     @email VARCHAR(50) = NULL,
-    @password VARCHAR(50) = NULL,
+    @password VARCHAR(255) = NULL,
     @alamat VARCHAR(100) = NULL,
     @no_telp VARCHAR(20) = NULL
 AS
@@ -39,7 +39,7 @@ CREATE PROCEDURE InsertAdmin
     @ktp_admin VARCHAR(30),
     @nama_admin VARCHAR(100),
     @email VARCHAR(50),
-    @password VARCHAR(50),
+    @password VARCHAR(255),
     @alamat VARCHAR(100),
     @no_telp VARCHAR(20),
     @role INT,
@@ -199,7 +199,7 @@ CREATE PROCEDURE UpdatePelanggan
     @ktp_pelanggan_new VARCHAR(30),  
     @nama_pelanggan VARCHAR(100) = NULL,
     @email VARCHAR(50) = NULL,
-    @password VARCHAR(50) = NULL,
+    @password VARCHAR(255) = NULL,
     @alamat VARCHAR(100) = NULL,
     @no_telp VARCHAR(20) = NULL
 AS
@@ -235,7 +235,7 @@ CREATE PROCEDURE UpdateAdmin
     @ktp_admin_new VARCHAR(30),  
     @nama_admin VARCHAR(100),
     @email VARCHAR(50),
-    @password VARCHAR(50),
+    @password VARCHAR(255),
     @alamat VARCHAR(100),
     @no_telp VARCHAR(20),
     @role INT,
@@ -347,6 +347,24 @@ BEGIN
     WHERE id_booking = @id_booking;
 END;
 
+go;
+
+CREATE PROCEDURE UpdateKonfirmasiBooking
+    @id_booking INT,
+    @catatan VARCHAR(100) = NULL,
+    @ktp_mekanik VARCHAR(30) = NULL,
+    @id_jasaServis INT = NULL,
+    @status VARCHAR(20) = NULL
+AS
+BEGIN
+    UPDATE Bookings
+    SET 
+        catatan = @catatan,
+        ktp_mekanik = @ktp_mekanik,
+        id_jasaServis = @id_jasaServis,
+        status = @status
+    WHERE id_booking = @id_booking;
+END;
 
 go;
 

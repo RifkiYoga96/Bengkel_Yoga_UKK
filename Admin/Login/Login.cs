@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sodium;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -77,33 +78,33 @@ namespace Bengkel_Yoga_UKK
                 MB.Warning("Data tidak valid, mohon cek kembali!");
                 return;
             }
-            var dataPelanggan = _pelangganDal.GetLogin(email, password);
-            var dataAdmin = _karyawanDal.GetLogin(email, password);
+            var dataPelanggan = _pelangganDal.GetLogin(email);
+            var dataAdmin = _karyawanDal.GetLogin(email);
 
-            bool loginPelanggan = dataPelanggan != null ? true : false;
-            bool loginAdmin = dataAdmin != null ? true : false;
+            bool loginPelanggan = dataPelanggan?.password != null &&
+                          PasswordHash.ArgonHashStringVerify(dataPelanggan.password, password);
+
+            bool loginAdmin = dataAdmin?.password != null &&
+                              PasswordHash.ArgonHashStringVerify(dataAdmin.password, password);
 
             if (loginPelanggan && loginAdmin)
             {
-                MB.Warning("Pel dan Admin");
                 new MainFormAdmin().Show();
-                this.Hide();
             }
             else if (loginPelanggan)
             {
-                MB.Warning("Pel");
+                new FormDashboardUser().Show();
             }
             else if (loginAdmin)
             {
                 new MainFormAdmin().Show();
-                this.Hide();
             }
             else
             {
-                MB.Warning("Harap melengkapi data!");
+                MB.Error("Email atau password salah!");
                 return;
             }
-
+            this.Hide();
         }
 
 

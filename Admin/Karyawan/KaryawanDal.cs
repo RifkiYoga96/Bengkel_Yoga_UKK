@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Sodium;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -116,12 +117,25 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new { ktp_new = ktp_new, ktp_old = ktp_old });
         }
-        public string GetLogin(string email, string password)
+        public KaryawanModel? GetLogin(string email)
         {
-            const string sql = @"SELECT * FROM Admins
-                        WHERE email = @email AND password = @password";
+            const string sql = @"SELECT ktp_admin, password FROM Admins
+                        WHERE email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<string>(sql, new { email = email, password = password }) ?? string.Empty;
+            return koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { email = email});
+        }
+        public void SoftDeleteData(string ktp)
+        {
+            const string sql = @"UPDATE Admins SET deleted_at = GETDATE() WHERE ktp_admin = @ktp";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { ktp });
+        }
+
+        public void RestoreData(string ktp)
+        {
+            const string sql = @"UPDATE Admins SET deleted_at = NULL WHERE ktp_admin = @ktp";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { ktp });
         }
     }
 }

@@ -73,13 +73,13 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QueryFirstOrDefault<BookingModel2>(sql, new {id_booking = id_booking});
         }
 
-        public IEnumerable<ProdukModel> ListDataProduk(int id_booking)
+        public IEnumerable<BookingSparepartModel> ListDataProduk(int id_booking)
         {
             const string sql = @"SELECT kode_sparepart, nama_sparepart, harga, jumlah
                             FROM BookingsSparepart
                             WHERE id_booking = @id_booking";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<ProdukModel>(sql, new {id_booking = id_booking});
+            return koneksi.Query<BookingSparepartModel>(sql, new {id_booking = id_booking});
         }
 
         public AntreanDto? GetAntrean(DateTime tanggal, int tipe_antrean)
@@ -101,6 +101,18 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             int count =  koneksi.QuerySingleOrDefault<int>(sql, new {no_pol = no_pol});
             return count > 0;
+        }
+        public void UpdateKonfirmasiBooking(BookingModel2 booking)
+        {
+            using var koneksi = new SqlConnection(conn.connStr);
+            var dp = new DynamicParameters();
+            dp.Add("@id_booking",booking.id_booking);
+            dp.Add("@id_jasaServis",booking.id_jasaServis);
+            dp.Add("@ktp_mekanik",booking.ktp_mekanik == string.Empty ? null : booking.ktp_mekanik);
+            dp.Add("@catatan",booking.catatan);
+            dp.Add("@status",booking.status);
+
+            koneksi.Query<BookingModel2>("UpdateKonfirmasiBooking", dp, commandType: CommandType.StoredProcedure);
         }
 
 

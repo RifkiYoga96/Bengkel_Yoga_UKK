@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddSparepart));
             gridSparepart = new DataGridView();
             txtSearch = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             gridSparepartUse = new DataGridView();
@@ -35,6 +36,7 @@
             btnCancel = new YogaButton();
             label1 = new Label();
             panel1 = new Panel();
+            btnSearch = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)gridSparepart).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtSearch).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridSparepartUse).BeginInit();
@@ -48,13 +50,13 @@
             gridSparepart.Location = new Point(12, 50);
             gridSparepart.Name = "gridSparepart";
             gridSparepart.RowTemplate.Height = 25;
-            gridSparepart.Size = new Size(316, 217);
+            gridSparepart.Size = new Size(382, 276);
             gridSparepart.TabIndex = 0;
             // 
             // txtSearch
             // 
             txtSearch.BackColor = Color.White;
-            txtSearch.BeforeTouchSize = new Size(177, 27);
+            txtSearch.BeforeTouchSize = new Size(300, 95);
             txtSearch.BorderColor = Color.FromArgb(209, 211, 212);
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -63,7 +65,7 @@
             txtSearch.Metrocolor = SystemColors.ControlDarkDark;
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = " Cari Sparepart";
-            txtSearch.Size = new Size(177, 27);
+            txtSearch.Size = new Size(201, 27);
             txtSearch.TabIndex = 49;
             txtSearch.ThemeName = "Default";
             // 
@@ -71,14 +73,15 @@
             // 
             gridSparepartUse.BackgroundColor = Color.Gainsboro;
             gridSparepartUse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridSparepartUse.Location = new Point(344, 50);
+            gridSparepartUse.Location = new Point(410, 50);
             gridSparepartUse.Name = "gridSparepartUse";
             gridSparepartUse.RowTemplate.Height = 25;
-            gridSparepartUse.Size = new Size(316, 217);
+            gridSparepartUse.Size = new Size(382, 276);
             gridSparepartUse.TabIndex = 51;
             // 
             // btnSave
             // 
+            btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSave.BackColor = Color.FromArgb(52, 152, 219);
             btnSave.BackgroundColor = Color.FromArgb(52, 152, 219);
             btnSave.BorderColor = Color.PaleVioletRed;
@@ -88,7 +91,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(572, 285);
+            btnSave.Location = new Point(704, 347);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(88, 37);
             btnSave.TabIndex = 78;
@@ -98,6 +101,7 @@
             // 
             // btnCancel
             // 
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancel.BackColor = Color.Transparent;
             btnCancel.BackgroundColor = Color.Transparent;
             btnCancel.BorderColor = SystemColors.ControlDarkDark;
@@ -107,7 +111,7 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancel.ForeColor = SystemColors.ControlDarkDark;
-            btnCancel.Location = new Point(478, 285);
+            btnCancel.Location = new Point(610, 347);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(88, 37);
             btnCancel.TabIndex = 79;
@@ -122,7 +126,7 @@
             label1.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(316, 33);
+            label1.Size = new Size(382, 33);
             label1.TabIndex = 80;
             label1.Text = "Sparepart digunakan";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -130,16 +134,35 @@
             // panel1
             // 
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(344, 12);
+            panel1.Location = new Point(410, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(316, 33);
+            panel1.Size = new Size(382, 33);
             panel1.TabIndex = 81;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.FromArgb(230, 126, 34);
+            btnSearch.BackgroundColor = Color.FromArgb(230, 126, 34);
+            btnSearch.BorderColor = Color.PaleVioletRed;
+            btnSearch.BorderRadius = 0;
+            btnSearch.BorderSize = 0;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(219, 12);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(47, 27);
+            btnSearch.TabIndex = 82;
+            btnSearch.TextColor = Color.White;
+            btnSearch.UseVisualStyleBackColor = false;
             // 
             // FormAddSparepart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(672, 334);
+            ClientSize = new Size(806, 396);
+            Controls.Add(btnSearch);
             Controls.Add(panel1);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
@@ -166,5 +189,6 @@
         private YogaButton btnCancel;
         private Label label1;
         private Panel panel1;
+        private YogaButton btnSearch;
     }
 }

@@ -20,6 +20,7 @@ namespace Bengkel_Yoga_UKK
         private BindingList<ProdukAddDto> _bindingListUse = new BindingList<ProdukAddDto>();
         private BindingSource _bindingSourceUse = new BindingSource();
         private readonly BookingDal _bookingDal = new BookingDal();
+        private int _stokBeginEdit = 0;
 
         public FormAddSparepart()
         {
@@ -67,8 +68,8 @@ namespace Bengkel_Yoga_UKK
             {
                 CustomGrids.CustomDataGrid(dgv);
 
-                dgv.ColumnHeadersHeight = 25;
-                dgv.RowTemplate.Height = 30;
+                dgv.ColumnHeadersHeight = 30;
+                dgv.RowTemplate.Height = 35;
 
                 dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -77,8 +78,8 @@ namespace Bengkel_Yoga_UKK
                 dgv.Columns[2].FillWeight = 25;
                 dgv.Columns[3].FillWeight = 25;
 
-                dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-                dgv.DefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+                dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+                dgv.DefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Regular);
 
                 dgv.Columns[0].HeaderText = "  Kode";
 
@@ -86,7 +87,6 @@ namespace Bengkel_Yoga_UKK
             }
             gs.Columns[3].Visible = false;
             gs.Columns[4].Visible = false;
-            gsu.Columns[2].Visible = false;
             gsu.Columns[4].Visible = false;
 
             gsu.Columns[0].ReadOnly = true;
@@ -99,26 +99,52 @@ namespace Bengkel_Yoga_UKK
         {
             string search = txtSearch.Text.ToLower();
 
-            var listBookingSparepart = _bookingDal.ListDataProduk(FormBookingDetail._id_booking);
-            var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
+            if (FormDetailBooking._perubahanSparepart)
+            {
+                var listBookingSparepart = FormDetailBooking._listSparepartUse;
+                var bookedKodeSpareparts = listBookingSparepart.Select(x => x.Kode).ToHashSet();
 
-            var listSparepart = _bookingDal.ListDataSparepart()
-                .OrderBy(x => x.Sparepart);
+                var listSparepart = _bookingDal.ListDataSparepart()
+                    .OrderBy(x => x.Sparepart);
 
-            var listNoUse = listSparepart
-                .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
-                .ToList();
+                var listNoUse = listSparepart
+                    .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
+                    .ToList();
 
 
-            var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
+                var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
 
-            _bindingList.Clear();
-            foreach (var item in listNoUse)
-                _bindingList.Add(item);
+                _bindingList.Clear();
+                foreach (var item in listNoUse)
+                    _bindingList.Add(item);
 
-            _bindingListUse.Clear();
-            foreach(var item in listUse)
-                _bindingListUse.Add(item);
+                _bindingListUse.Clear();
+                foreach (var item in listUse)
+                    _bindingListUse.Add(item);
+            }
+            else
+            {
+                var listBookingSparepart = _bookingDal.ListDataProduk(FormDetailBooking._id_booking);
+                var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
+
+                var listSparepart = _bookingDal.ListDataSparepart()
+                    .OrderBy(x => x.Sparepart);
+
+                var listNoUse = listSparepart
+                    .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
+                    .ToList();
+
+
+                var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
+
+                _bindingList.Clear();
+                foreach (var item in listNoUse)
+                    _bindingList.Add(item);
+
+                _bindingListUse.Clear();
+                foreach (var item in listUse)
+                    _bindingListUse.Add(item);
+            }
         }
 
 
@@ -136,8 +162,57 @@ namespace Bengkel_Yoga_UKK
                 await Task.Delay(800);
                 Filtering();
             };
+            gridSparepartUse.CellValueChanged += GridSparepartUse_CellValueChanged;
+            gridSparepartUse.EditingControlShowing += GridSparepartUse_EditingControlShowing;
+            gridSparepartUse.CellBeginEdit += GridSparepartUse_CellBeginEdit;
         }
-        
+
+        private void GridSparepartUse_CellBeginEdit(object? sender, DataGridViewCellCancelEventArgs e)
+        {
+            int stok = Convert.ToInt32(gridSparepartUse.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+            _stokBeginEdit = stok;
+        }
+
+        private void GridSparepartUse_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (gridSparepartUse.CurrentCell.ColumnIndex == gridSparepartUse.Columns["Jumlah"].Index)
+            {
+                if (e.Control is TextBox textBox)
+                {
+                    textBox.KeyPress -= TextBox_KeyPress;
+                    textBox.KeyPress += TextBox_KeyPress;
+                }
+            }
+        }
+        private void TextBox_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private async void GridSparepartUse_CellValueChanged(object? sender, DataGridViewCellEventArgs e)
+        {
+            await Task.Delay(500);
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            var indexRow = gridSparepartUse.Rows[e.RowIndex];
+            var currentRow = indexRow.Cells[e.ColumnIndex].Value;
+            if(!int.TryParse(currentRow.ToString(), out int jumlah))
+            {
+                MB.Warning("Jumlah harus berupa angka!");
+            }
+            else
+            {
+                int stok = Convert.ToInt32(indexRow.Cells["Stok"].Value);
+                if(jumlah > stok)
+                {
+                    MB.Warning("Jumlah tidak boleh melebihi sparepart!");
+                    gridSparepartUse.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _stokBeginEdit;
+                }
+            }
+            FormDetailBooking._perubahanSparepart = true;
+        }
 
         private void GridSparepartUse_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
@@ -148,6 +223,8 @@ namespace Bengkel_Yoga_UKK
 
             txtSearch.Text = string.Empty;
             _bindingSource.DataSource = _bindingList;
+
+            FormDetailBooking._perubahanSparepart = true;
         }
 
         private void GridSparepart_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -163,11 +240,12 @@ namespace Bengkel_Yoga_UKK
 
             if(indexFilter != -1)
                 _bindingListFilter.RemoveAt(indexFilter);
+
+            FormDetailBooking._perubahanSparepart = true;
         }
 
         private void Filtering()
         {
-            
             if (txtSearch.Text.Length > 0)
             {
                 var filter = _bindingList.Where(x => x.Sparepart.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
@@ -184,21 +262,14 @@ namespace Bengkel_Yoga_UKK
 
         private void SaveComponent()
         {
-            int id_booking = FormBookingDetail._id_booking;
-            _bookingDal.DeleteBookingSparepart(id_booking);
-            foreach (var item in _bindingListUse)
+            FormDetailBooking._listSparepartUse.Clear();
+            foreach(var item in _bindingListUse)
             {
-                _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
-                {
-                    id_booking = id_booking,
-                    Kode = item.Kode,
-                    Jumlah = item.Jumlah
-                });
+                FormDetailBooking._listSparepartUse.Add(item);
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
     }
 }
 

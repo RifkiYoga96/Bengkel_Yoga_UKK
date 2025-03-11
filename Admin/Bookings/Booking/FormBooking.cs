@@ -66,7 +66,8 @@ namespace Bengkel_Yoga_UKK
             };
             dataGridView1.CellPainting += DataGridView1_CellPainting;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
-            detailBookingToolStripMenuItem.Click += DetailBookingToolStripMenuItem_Click;
+            dataGridView1.CellDoubleClick += (s,e) => ShowDetail();
+            detailBookingToolStripMenuItem.Click += (s,e) => ShowDetail();
             btnAddData.Click += BtnAddData_Click;
             btnEditBatasBooking.Click += (s, e) =>
             {
@@ -117,7 +118,6 @@ namespace Bengkel_Yoga_UKK
             btnJadwal.Click += (s, e) => new FormJadwal().ShowDialog();
         }
 
-       
 
         private void ComboFilterStatus_SelectedIndexChanged(object? sender, EventArgs e)
         {
@@ -152,12 +152,6 @@ namespace Bengkel_Yoga_UKK
             LoadData();
         }
 
-        private void DetailBookingToolStripMenuItem_Click(object? sender, EventArgs e)
-        {
-            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            MainFormAdmin.ShowFormInPanel2(new FormBookingDetail(id));
-        }
-
         private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
@@ -166,6 +160,12 @@ namespace Bengkel_Yoga_UKK
                 dataGridView1.CurrentCell = dataGridView1[e.ColumnIndex, e.RowIndex];
                 contextMenuStrip.Show(Cursor.Position);
             }
+        }
+
+        private void ShowDetail()
+        {
+            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            MainFormAdmin.ShowFormInPanel2(new FormDetailBooking(id));
         }
 
         private void ResetPage()

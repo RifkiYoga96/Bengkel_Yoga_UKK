@@ -37,8 +37,6 @@ namespace Bengkel_Yoga_UKK
 
         private void InitComponent()
         {
-            txtPassword.ReadOnly = true;
-            txtCPassword.ReadOnly = true;
             lblErrorNama.Visible = false;
             lblErrorKTP.Visible = false;
             lblErrorTelepon.Visible = false;
@@ -47,12 +45,17 @@ namespace Bengkel_Yoga_UKK
             lblErrorCPassword.Visible = false;
             lblErrorAlamat.Visible = false;
 
+            txtPassword.PasswordChar = '*';
+            txtCPassword.PasswordChar = '*';
+
+            txtNoKTP.MaxLength = 16;
+
             StyleComponent.TextChangeNull(txtNama, lblErrorNama, "⚠️ Harap mengisi nama!");
-            StyleComponent.TextChangeNull(txtNoKTP, lblErrorKTP, "⚠️ Harap mengisi nomor KTP!");
-            StyleComponent.TextChangeNull(txtEmail, lblErrorEmail, "⚠️ Harap mengisi email!");
-            StyleComponent.TextChangeNull(txtNoTelepon, lblErrorTelepon, "⚠️ Harap mengisi nomor telepon!");
+            StyleComponent.TextChangeNull(txtNoKTP, lblErrorKTP, "⚠️ Harap mengisi nomor KTP!",true);
+            StyleComponent.TextChangeNull(txtEmail, lblErrorEmail, "⚠️ Harap mengisi email!",true);
+            StyleComponent.TextChangeNull(txtNoTelepon, lblErrorTelepon, "⚠️ Harap mengisi nomor telepon!",true);
             StyleComponent.TextChangeNull(txtPassword, lblErrorPassword, "⚠️ Harap mengisi password!");
-            StyleComponent.TextChangeNull(txtCPassword, lblErrorCPassword, "⚠️ Harap mengisi konfirmasi password!");
+            StyleComponent.TextChangeNull(txtCPassword, lblErrorCPassword, "⚠️ Harap mengisi konfirmasi password!", true);
             StyleComponent.TextChangeNull(txtAlamat, lblErrorAlamat, "⚠️ Harap mengisi alamat!");
 
             txtNoKTP.InputNumber();
@@ -95,6 +98,12 @@ namespace Bengkel_Yoga_UKK
             {
                 await Task.Delay(2000);
                 string noKtp = txtNoKTP.Text;
+                if (!Regex.IsMatch(noKtp, @"^\d{16}$"))
+                {
+                    lblErrorKTP.Visible = true;
+                    lblErrorKTP.Text = "⚠️ NIK harus 16 digit!";
+                    return;
+                }
                 if (_IsInsert ? _pelangganDal.CekKTP(noKtp) : !_pelangganDal.CekKTPUpdate(noKtp))
                 {
                     lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";
@@ -124,7 +133,19 @@ namespace Bengkel_Yoga_UKK
 
         private void RegisterEvent()
         {
-
+            linkReset.Click += (s, e) =>
+            {
+                if (!MB.Konfirmasi("Apakah anda yakin ingin mereset password?")) return;
+                txtPassword.ReadOnly = true;
+                txtCPassword.ReadOnly = true;
+                txtPassword.Clear();
+                txtCPassword.Clear();
+            };
+            btnSave.Click += (s, e) => SaveData();
+            btnCancel.Click += (s, e) =>
+            {
+                this.Close();
+            };
         }
 
         #endregion
@@ -185,15 +206,19 @@ namespace Bengkel_Yoga_UKK
         private void GetData(string ktp_pelanggan)
         {
             var data = _pelangganDal.GetData(ktp_pelanggan);
-            if (data is null) return;
+        
 
             txtNama.Text = data.nama_pelanggan;
-            txtNoKTP.Text = data.ktp_pelanggan;
+            txtNoKTP.Text = Regex.IsMatch(data.ktp_pelanggan, @"[A-Za-z]") ?
+                string.Empty : data.ktp_pelanggan;
             txtNoTelepon.Text = data.no_telp;
             txtEmail.Text = data.email;
             txtPassword.Text = data.password;
             txtCPassword.Text = data.password;
             txtAlamat.Text = data.alamat;
+
+            txtPassword.ReadOnly = true;
+            txtCPassword.ReadOnly = true;
         }
 
         #endregion

@@ -1,4 +1,7 @@
-﻿CREATE TABLE Sparepart(
+﻿DELETE FROM BookingsSparepart;
+
+
+CREATE TABLE Sparepart(
 	kode_sparepart VARCHAR(20) NOT NULL PRIMARY KEY,
 	nama_sparepart VARCHAR(50),
 	stok INT,
@@ -15,7 +18,7 @@ CREATE TABLE Pelanggan(
 	ktp_pelanggan VARCHAR(30) NOT NULL PRIMARY KEY,
 	nama_pelanggan VARCHAR(100),
 	email VARCHAR(50),
-	password VARCHAR(50),
+	password VARCHAR(255),
 	alamat VARCHAR(100),
 	no_telp VARCHAR(20),
 
@@ -28,7 +31,7 @@ CREATE TABLE Admins(
 	ktp_admin VARCHAR(30) NOT NULL PRIMARY KEY,
 	nama_admin VARCHAR(100),
 	email VARCHAR(50),
-	password VARCHAR(50),
+	password VARCHAR(255),
 	alamat VARCHAR(100),
 	no_telp VARCHAR(20),
 	role INT,
@@ -98,14 +101,14 @@ CREATE TABLE Bookings(
 		ON UPDATE CASCADE
 	);
 
-
+	DROP TABLE BookingsSparepart;
 CREATE TABLE BookingsSparepart(
 	id_booking INT,
 	kode_sparepart VARCHAR(20),
 	nama_sparepart VARCHAR(50),
 	jumlah INT,
 	harga INT,
-	image_data VARBINARY(MAX)
+	image_data VARBINARY(MAX) NULL
 
 	FOREIGN KEY (id_booking)
 		REFERENCES Bookings(id_booking)
@@ -392,6 +395,8 @@ FROM (
 CROSS JOIN (SELECT TOP 25 ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n FROM master.dbo.spt_values) AS t;
 
 
+
+SELECT * FROM Pelanggan;
 
 
 

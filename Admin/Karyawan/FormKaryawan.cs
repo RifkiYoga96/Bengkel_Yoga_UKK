@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace Bengkel_Yoga_UKK
         private byte[] _defaultProfile = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.defaultProfile, 45, 45));
         private int _page = 1;
         private int _Totalpage = 1;
+        private bool _btnMain = true;
         public FormKaryawan()
         {
             InitializeComponent();
@@ -34,8 +36,11 @@ namespace Bengkel_Yoga_UKK
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
             btnAddData.Click += BtnAddData_Click;
+            btnDataDihapus.Click += BtnDataDihapus_Click;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             editToolStripMenuItem.Click += EditToolStripMenuItem_Click;
+            deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
+            restoreStripMenuItem2.Click += RestoreStripMenuItem2_Click;
             comboFilter.SelectedIndexChanged += (s, e) => LoadData();
             txtSearch.TextChanged += async (s, e) =>
             {
@@ -44,25 +49,66 @@ namespace Bengkel_Yoga_UKK
             };
         }
 
+
+        private void RestoreStripMenuItem2_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin memulihkan data?")) return;
+            string ktp = dataGridView1.CurrentRow.Cells["ktp_admin"].Value?.ToString() ?? string.Empty;
+            _karyawanDal.RestoreData(ktp);
+            LoadData();
+        }
+
+        private void DeleteToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin menghapus data?")) return;
+            string ktp = dataGridView1.CurrentRow.Cells["ktp_admin"].Value?.ToString() ?? string.Empty;
+            _karyawanDal.SoftDeleteData(ktp);
+            LoadData();
+        }
+
         private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
         {
-            string ktp_admin = dataGridView1.CurrentRow.Cells[1].Value?.ToString() ?? string.Empty;
-            if (new FormInputKaryawan(ktp_admin, false).ShowDialog() == DialogResult.OK)
-            {
-                LoadData();
-            }
+            string ktp = dataGridView1.CurrentRow.Cells["ktp_admin"].Value?.ToString() ?? string.Empty;
+            if (new FormInputKaryawan(ktp, false).ShowDialog() != DialogResult.OK) return;
+            LoadData();
         }
 
         private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                contextMenuStrip1.Show(Cursor.Position);
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (_btnMain)
+                    contextMenuStripEx1.Show(Cursor.Position);
+                else
+                    contextMenuStripEx2.Show(Cursor.Position);
+            }
         }
+
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            if(new FormInputKaryawan("",true).ShowDialog() == DialogResult.OK)
+            if (!_btnMain)
             {
+                Image img = Properties.Resources.plusDark;
+                StyleComponent.ControlButtonMainDelete(btnAddData, btnDataDihapus, img, true, "Pegawai");
+                _btnMain = true;
+                LoadData();
+                return;
+            }
+            if (new FormInputKaryawan("",true).ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+        private void BtnDataDihapus_Click(object? sender, EventArgs e)
+        {
+            if (_btnMain)
+            {
+                Image img = Properties.Resources.plusPutih;
+                StyleComponent.ControlButtonMainDelete(btnAddData, btnDataDihapus, img, false, "Pegawai");
+                _btnMain = false;
                 LoadData();
             }
         }
@@ -103,7 +149,7 @@ namespace Bengkel_Yoga_UKK
         {
             string search = txtSearch.Text;
             int status = comboFilter.SelectedIndex - 1;
-
+            bool dataActive = _btnMain;
 
             string sql = @"";
             var dp = new DynamicParameters();
@@ -119,6 +165,10 @@ namespace Bengkel_Yoga_UKK
                 fltr.Add("(role = @role)");
                 dp.Add(@"role", status);
             }
+            if (dataActive)
+                fltr.Add("(deleted_at IS NULL)");
+            else
+                fltr.Add("(deleted_at IS NOT NULL)");
 
             if (fltr.Count > 0)
                 sql += " WHERE " + string.Join(" AND ", fltr);

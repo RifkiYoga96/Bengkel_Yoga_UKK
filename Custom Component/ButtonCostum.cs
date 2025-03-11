@@ -156,9 +156,9 @@ namespace Bengkel_Yoga_UKK
     public class YogaPanel : Panel
     {
         // Fields
-        public int borderRadius = 0;
-        public Color borderColor = Color.PaleVioletRed;
-        public int borderSize = 0;
+        private int borderRadius = 10;
+        private Color borderColor = Color.PaleVioletRed;
+        private int borderSize = 2;
 
         // Properties
         [Category("RJ Code Advance")]
@@ -167,7 +167,7 @@ namespace Bengkel_Yoga_UKK
             get { return borderRadius; }
             set
             {
-                borderRadius = value;
+                borderRadius = Math.Min(value, Math.Min(this.Width, this.Height) / 2); // Maksimal setengah ukuran panel
                 this.Invalidate();
             }
         }
@@ -189,7 +189,7 @@ namespace Bengkel_Yoga_UKK
             get { return borderSize; }
             set
             {
-                borderSize = value;
+                borderSize = Math.Max(0, value);
                 this.Invalidate();
             }
         }
@@ -201,6 +201,11 @@ namespace Bengkel_Yoga_UKK
             this.BackColor = Color.MediumSlateBlue;
             this.ForeColor = Color.White;
             this.Resize += new EventHandler(Panel_Resize);
+
+            // Aktifkan Double Buffering untuk mencegah flickering
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         // Methods
@@ -224,33 +229,33 @@ namespace Bengkel_Yoga_UKK
 
             Rectangle rectSurface = this.ClientRectangle;
             Rectangle rectBorder = Rectangle.Inflate(rectSurface, -borderSize, -borderSize);
+            int smoothSize = borderSize > 0 ? borderSize : 2;
 
-            if (borderRadius > 2) // Rounded panel
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias; // Memastikan gambar halus
+
+            if (borderRadius > 2) // Panel dengan rounded corner
             {
                 using (GraphicsPath pathSurface = GetFigurePath(rectSurface, borderRadius))
                 using (GraphicsPath pathBorder = GetFigurePath(rectBorder, borderRadius - borderSize))
+                using (Pen penSurface = new Pen(this.Parent?.BackColor ?? Color.White, smoothSize))
                 using (Pen penBorder = new Pen(borderColor, borderSize))
                 {
-                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                    // Set Region untuk membuat efek rounded
+                    this.Region = new Region(pathSurface);
 
-                    // Fill the background with the panel's BackColor
-                    e.Graphics.FillPath(new SolidBrush(this.BackColor), pathSurface);
+                    // Gambar border luar
+                    e.Graphics.DrawPath(penSurface, pathSurface);
 
-                    // Draw the border
+                    // Gambar border jika borderSize > 0
                     if (borderSize >= 1)
                     {
                         e.Graphics.DrawPath(penBorder, pathBorder);
                     }
                 }
             }
-            else // Normal panel
+            else // Panel normal tanpa rounded
             {
-                e.Graphics.SmoothingMode = SmoothingMode.None;
-
-                // Fill the background with the panel's BackColor
-                e.Graphics.FillRectangle(new SolidBrush(this.BackColor), rectSurface);
-
-                // Draw the border
+                this.Region = new Region(rectSurface);
                 if (borderSize >= 1)
                 {
                     using (Pen penBorder = new Pen(borderColor, borderSize))
@@ -261,37 +266,12 @@ namespace Bengkel_Yoga_UKK
                 }
             }
         }
-        protected override void OnBackColorChanged(EventArgs e)
-        {
-            base.OnBackColorChanged(e);
-            foreach (Control control in this.Controls)
-            {
-                if (control is DataGridView dgv)
-                {
-                    dgv.BackColor = this.BackColor;
-                    dgv.DefaultCellStyle.BackColor = this.BackColor;
-                }
-            }
-        }
-
-        protected override void OnForeColorChanged(EventArgs e)
-        {
-            base.OnForeColorChanged(e);
-            foreach (Control control in this.Controls)
-            {
-                if (control is DataGridView dgv)
-                {
-                    dgv.ForeColor = this.ForeColor;
-                    dgv.DefaultCellStyle.ForeColor = this.ForeColor;
-                }
-            }
-        }
-
 
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
-            this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
+            if (this.Parent != null)
+                this.Parent.BackColorChanged += new EventHandler(Container_BackColorChanged);
         }
 
         private void Container_BackColorChanged(object sender, EventArgs e)
@@ -301,8 +281,8 @@ namespace Bengkel_Yoga_UKK
 
         private void Panel_Resize(object sender, EventArgs e)
         {
-            if (borderRadius > this.Height)
-                borderRadius = this.Height;
+            borderRadius = Math.Min(borderRadius, Math.Min(this.Width, this.Height) / 2);
+            this.Invalidate(); // Redraw panel saat resize
         }
     }
 

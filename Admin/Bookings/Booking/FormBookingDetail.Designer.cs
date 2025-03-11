@@ -175,7 +175,7 @@
             // txtSparepart
             // 
             txtSparepart.BackColor = Color.White;
-            txtSparepart.BeforeTouchSize = new Size(293, 90);
+            txtSparepart.BeforeTouchSize = new Size(370, 31);
             txtSparepart.BorderColor = Color.FromArgb(209, 211, 212);
             txtSparepart.BorderStyle = BorderStyle.FixedSingle;
             txtSparepart.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -222,7 +222,7 @@
             // txtCatatan
             // 
             txtCatatan.BackColor = Color.White;
-            txtCatatan.BeforeTouchSize = new Size(293, 90);
+            txtCatatan.BeforeTouchSize = new Size(370, 31);
             txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -259,7 +259,7 @@
             // txtTanggal
             // 
             txtTanggal.BackColor = Color.White;
-            txtTanggal.BeforeTouchSize = new Size(293, 90);
+            txtTanggal.BeforeTouchSize = new Size(370, 31);
             txtTanggal.BorderColor = Color.FromArgb(128, 128, 255);
             txtTanggal.BorderStyle = BorderStyle.FixedSingle;
             txtTanggal.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -275,7 +275,7 @@
             // txtKeluhan
             // 
             txtKeluhan.BackColor = Color.White;
-            txtKeluhan.BeforeTouchSize = new Size(293, 90);
+            txtKeluhan.BeforeTouchSize = new Size(370, 31);
             txtKeluhan.BorderColor = Color.FromArgb(128, 128, 255);
             txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
             txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -314,7 +314,7 @@
             // txtIdBooking
             // 
             txtIdBooking.BackColor = Color.White;
-            txtIdBooking.BeforeTouchSize = new Size(293, 90);
+            txtIdBooking.BeforeTouchSize = new Size(370, 31);
             txtIdBooking.BorderColor = Color.FromArgb(209, 211, 212);
             txtIdBooking.BorderStyle = BorderStyle.FixedSingle;
             txtIdBooking.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -341,7 +341,7 @@
             // txtNoPol
             // 
             txtNoPol.BackColor = Color.White;
-            txtNoPol.BeforeTouchSize = new Size(293, 90);
+            txtNoPol.BeforeTouchSize = new Size(370, 31);
             txtNoPol.BorderColor = Color.FromArgb(128, 128, 255);
             txtNoPol.BorderStyle = BorderStyle.FixedSingle;
             txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -357,7 +357,7 @@
             // txtNama
             // 
             txtNama.BackColor = Color.White;
-            txtNama.BeforeTouchSize = new Size(293, 90);
+            txtNama.BeforeTouchSize = new Size(370, 31);
             txtNama.BorderColor = Color.FromArgb(209, 211, 212);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -384,7 +384,7 @@
             // txtKendaraan
             // 
             txtKendaraan.BackColor = Color.White;
-            txtKendaraan.BeforeTouchSize = new Size(293, 90);
+            txtKendaraan.BeforeTouchSize = new Size(370, 31);
             txtKendaraan.BorderColor = Color.FromArgb(128, 128, 255);
             txtKendaraan.BorderStyle = BorderStyle.FixedSingle;
             txtKendaraan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -411,7 +411,7 @@
             // txtKTP
             // 
             txtKTP.BackColor = Color.White;
-            txtKTP.BeforeTouchSize = new Size(293, 90);
+            txtKTP.BeforeTouchSize = new Size(370, 31);
             txtKTP.BorderColor = Color.FromArgb(209, 211, 212);
             txtKTP.BorderStyle = BorderStyle.FixedSingle;
             txtKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -806,6 +806,7 @@
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel3.AutoScroll = true;
+            panel3.BackColor = Color.FromArgb(230, 235, 240);
             panel3.Controls.Add(yogaButton1);
             panel3.Controls.Add(yogaButton7);
             panel3.Controls.Add(panel2);
