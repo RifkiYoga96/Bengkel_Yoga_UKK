@@ -97,54 +97,26 @@ namespace Bengkel_Yoga_UKK
 
         private void LoadData()
         {
-            string search = txtSearch.Text.ToLower();
+            var listBookingSparepart = _bookingDal.ListDataProduk(FormDetailBooking._id_booking);
+            var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
 
-            if (FormDetailBooking._perubahanSparepart)
-            {
-                var listBookingSparepart = FormDetailBooking._listSparepartUse;
-                var bookedKodeSpareparts = listBookingSparepart.Select(x => x.Kode).ToHashSet();
+            var listSparepart = _bookingDal.ListDataSparepart()
+                .OrderBy(x => x.Sparepart);
 
-                var listSparepart = _bookingDal.ListDataSparepart()
-                    .OrderBy(x => x.Sparepart);
-
-                var listNoUse = listSparepart
-                    .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
-                    .ToList();
+            var listNoUse = listSparepart
+                .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
+                .ToList();
 
 
-                var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
+            var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
 
-                _bindingList.Clear();
-                foreach (var item in listNoUse)
-                    _bindingList.Add(item);
+            _bindingList.Clear();
+            foreach (var item in listNoUse)
+                _bindingList.Add(item);
 
-                _bindingListUse.Clear();
-                foreach (var item in listUse)
-                    _bindingListUse.Add(item);
-            }
-            else
-            {
-                var listBookingSparepart = _bookingDal.ListDataProduk(FormDetailBooking._id_booking);
-                var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
-
-                var listSparepart = _bookingDal.ListDataSparepart()
-                    .OrderBy(x => x.Sparepart);
-
-                var listNoUse = listSparepart
-                    .Where(x => !bookedKodeSpareparts.Contains(x.Kode))
-                    .ToList();
-
-
-                var listUse = listSparepart.Where(x => bookedKodeSpareparts.Contains(x.Kode)).ToList();
-
-                _bindingList.Clear();
-                foreach (var item in listNoUse)
-                    _bindingList.Add(item);
-
-                _bindingListUse.Clear();
-                foreach (var item in listUse)
-                    _bindingListUse.Add(item);
-            }
+            _bindingListUse.Clear();
+            foreach (var item in listUse)
+                _bindingListUse.Add(item);
         }
 
 
@@ -211,7 +183,6 @@ namespace Bengkel_Yoga_UKK
                     gridSparepartUse.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _stokBeginEdit;
                 }
             }
-            FormDetailBooking._perubahanSparepart = true;
         }
 
         private void GridSparepartUse_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -223,8 +194,6 @@ namespace Bengkel_Yoga_UKK
 
             txtSearch.Text = string.Empty;
             _bindingSource.DataSource = _bindingList;
-
-            FormDetailBooking._perubahanSparepart = true;
         }
 
         private void GridSparepart_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -240,8 +209,6 @@ namespace Bengkel_Yoga_UKK
 
             if(indexFilter != -1)
                 _bindingListFilter.RemoveAt(indexFilter);
-
-            FormDetailBooking._perubahanSparepart = true;
         }
 
         private void Filtering()
@@ -262,10 +229,16 @@ namespace Bengkel_Yoga_UKK
 
         private void SaveComponent()
         {
-            FormDetailBooking._listSparepartUse.Clear();
-            foreach(var item in _bindingListUse)
+            _bookingDal.DeleteBookingSparepart(FormDetailBooking._id_booking);
+            var list = _bookingDal.ListDataProduk(FormDetailBooking._id_booking);
+            foreach (var item in list)
             {
-                FormDetailBooking._listSparepartUse.Add(item);
+                _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
+                {
+                    id_booking = FormDetailBooking._id_booking,
+                    Kode = item.kode_sparepart,
+                    Jumlah = item.jumlah
+                });
             }
             this.DialogResult = DialogResult.OK;
             this.Close();

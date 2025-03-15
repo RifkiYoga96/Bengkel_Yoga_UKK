@@ -196,7 +196,7 @@ namespace Bengkel_Yoga_UKK
             }
             if (new FormAntrean(tanggal).ShowDialog() == DialogResult.OK)
             {
-                var data = new BookingModel2
+                var data = new BookingModel
                 {
                     ktp_pelanggan = noKTP,
                     id_kendaraan = id_kendaraan,
@@ -283,7 +283,7 @@ namespace Bengkel_Yoga_UKK
 
             if (new FormAntrean(tanggal).ShowDialog() == DialogResult.OK)
             {
-                var data = new BookingModel2
+                var data = new BookingModel
                 {
                     nama_pelanggan = nama,
                     nama_kendaraan = nama_kendaraan,

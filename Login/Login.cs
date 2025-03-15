@@ -72,6 +72,42 @@ namespace Bengkel_Yoga_UKK
         {
             string email = txtEmail.Text;
             string password = txtPassword.Text;
+            if (email == string.Empty || password == string.Empty || lblErrorEmail.Visible)
+            {
+                MB.Warning("Data tidak valid, mohon cek kembali!");
+                return;
+            }
+
+            var dataPelanggan = _pelangganDal.GetLogin(email);
+            var dataAdmin = _karyawanDal.GetLogin(email);
+
+            bool loginPelanggan = dataPelanggan?.password != null &&
+                          PasswordHash.ArgonHashStringVerify(dataPelanggan.password, password);
+
+            bool loginAdmin = dataAdmin?.password != null &&
+                              PasswordHash.ArgonHashStringVerify(dataAdmin.password, password);
+
+            if (loginPelanggan)
+            {
+                new FormDashboardUser().Show();
+                GlobalVariabel.SetKTPSession(dataPelanggan?.ktp_pelanggan??string.Empty);
+            }
+            else if (loginAdmin)
+            {
+                new MainFormAdmin().Show();
+                GlobalVariabel.SetKTPSession(dataAdmin?.ktp_admin ?? string.Empty);
+            }
+            else
+            {
+                MB.Error("Email atau password salah!");
+                return;
+            }
+        }
+
+        private void CekLogin2()
+        {
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
 
             if (email == string.Empty || password == string.Empty || lblErrorEmail.Visible)
             {
@@ -106,8 +142,5 @@ namespace Bengkel_Yoga_UKK
             }
             this.Hide();
         }
-
-
-
     }
 }

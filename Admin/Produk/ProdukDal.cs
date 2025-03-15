@@ -28,6 +28,20 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QueryFirstOrDefault<ProdukModel>(sql, new { kode_produk });
         }
 
+        public void SoftDeleteData(string kode)
+        {
+            const string sql = @"UPDATE Sparepart SET deleted_at = GETDATE() WHERE kode_sparepart = @kode";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { kode });
+        }
+
+        public void RestoreData(string kode)
+        {
+            const string sql = @"UPDATE Sparepart SET deleted_at = NULL WHERE kode_sparepart = @kode";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { kode });
+        }
+
         public int GetTotalRows(FilterDto filter)
         {
             string sql = $@"SELECT COUNT(*)

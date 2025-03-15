@@ -24,6 +24,7 @@ namespace Bengkel_Yoga_UKK
         private readonly ProdukDal _produkDal = new ProdukDal();
         private int _page = 1;
         private int _Totalpage = 1;
+        private bool _btnMain = true;
         Bitmap bitmap;
 
         private byte[] _habis = ImageConvert.ImageToByteArray(ImageConvert.ResizeImageMax(Properties.Resources.Habis, 100, 100));
@@ -48,10 +49,13 @@ namespace Bengkel_Yoga_UKK
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
             btnAddData.Click += BtnAddData_Click;
+            btnDataDihapus.Click += BtnDataDihapus_Click;
 
             btnSearch.Click += BtnSearch_Click;
             dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
             editToolStripMenuItem.Click += EditToolStripMenuItem_Click;
+            deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
+            restoreStripMenuItem2.Click += RestoreStripMenuItem2_Click;
 
             dataGridView1.ColumnHeaderMouseClick += SortingData;
 
@@ -71,12 +75,27 @@ namespace Bengkel_Yoga_UKK
             };
         }
 
-        
+
+        private void DeleteToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin menghapus data?")) return;
+            string ktp = dataGridView1.CurrentRow.Cells["kode_sparepart"].Value?.ToString() ?? string.Empty;
+            _produkDal.SoftDeleteData(ktp);
+            LoadData();
+        }
+
+        private void RestoreStripMenuItem2_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin memulihkan data?")) return;
+            string ktp = dataGridView1.CurrentRow.Cells["kode_sparepart"].Value?.ToString() ?? string.Empty;
+            _produkDal.RestoreData(ktp);
+            LoadData();
+        }
 
         private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             string kode = dataGridView1.CurrentRow.Cells["kode_sparepart"].Value?.ToString() ?? string.Empty;
-            if (new FormInputProduk(kode).ShowDialog() != DialogResult.OK) return;
+            if (new FormInputProduk(kode,false).ShowDialog() != DialogResult.OK) return;
             LoadData();
         }
 
@@ -86,13 +105,37 @@ namespace Bengkel_Yoga_UKK
             {
                 dataGridView1.ClearSelection();
                 dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                contextMenuStripEx1.Show(Cursor.Position);
+                if (_btnMain)
+                    contextMenuStripEx1.Show(Cursor.Position);
+                else
+                    contextMenuStripEx2.Show(Cursor.Position);
             }
         }
 
+        private void BtnDataDihapus_Click(object? sender, EventArgs e)
+        {
+            if (_btnMain)
+            {
+                Image img = Properties.Resources.plusPutih;
+                StyleComponent.ControlButtonMainDelete(btnAddData, btnDataDihapus, img, false, "Sparepart");
+                _btnMain = false;
+                LoadData();
+            }
+        }
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            new FormInputProduk().ShowDialog();
+            if (!_btnMain)
+            {
+                Image img = Properties.Resources.plusDark;
+                StyleComponent.ControlButtonMainDelete(btnAddData, btnDataDihapus, img, true, "Sparepart");
+                _btnMain = true;
+                LoadData();
+                return;
+            }
+            if (new FormInputProduk("").ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void BtnPrevious_Click(object? sender, EventArgs e)
@@ -133,6 +176,7 @@ namespace Bengkel_Yoga_UKK
         {
             string search = txtSearch.Text;
             int status = comboFilter.SelectedIndex;
+            bool dataActive = _btnMain;
 
             string sql = @"";
             var dp = new DynamicParameters();
@@ -149,6 +193,10 @@ namespace Bengkel_Yoga_UKK
                 if(status == 2) fltr.Add("(stok <= stok_minimum AND stok > 0)");
                 if(status == 3) fltr.Add("(stok = 0)");
             }
+            if (dataActive)
+                fltr.Add("(deleted_at IS NULL)");
+            else
+                fltr.Add("(deleted_at IS NOT NULL)");
 
             if (fltr.Count > 0)
                 sql += " WHERE " + string.Join(" AND ", fltr);

@@ -29,6 +29,15 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lblErrorAlamat = new Label();
+            lblErrorTelepon = new Label();
+            label8 = new Label();
+            txtNoTelp = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            label9 = new Label();
+            label10 = new Label();
+            txtNoKTP = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            lblErrorKTP = new Label();
+            txtAlamat = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             lblErrorPassword = new Label();
             lblErrorEmail = new Label();
             label5 = new Label();
@@ -40,37 +49,32 @@
             txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             lblErrorNama = new Label();
             txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label9 = new Label();
-            label10 = new Label();
-            textBoxExt2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label11 = new Label();
-            textBoxExt3 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            linkReset = new LinkLabel();
+            label4 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtNoTelp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNoKTP).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtAlamat).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtEmail).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPassword).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt3).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(label7);
+            panel1.Controls.Add(linkReset);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblErrorAlamat);
+            panel1.Controls.Add(lblErrorTelepon);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(textBoxExt1);
+            panel1.Controls.Add(txtNoTelp);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label10);
-            panel1.Controls.Add(textBoxExt2);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(textBoxExt3);
+            panel1.Controls.Add(txtNoKTP);
+            panel1.Controls.Add(lblErrorKTP);
+            panel1.Controls.Add(txtAlamat);
             panel1.Controls.Add(lblErrorPassword);
             panel1.Controls.Add(lblErrorEmail);
             panel1.Controls.Add(label5);
@@ -86,6 +90,105 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(873, 453);
             panel1.TabIndex = 106;
+            // 
+            // lblErrorAlamat
+            // 
+            lblErrorAlamat.AutoSize = true;
+            lblErrorAlamat.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorAlamat.ForeColor = Color.Red;
+            lblErrorAlamat.Location = new Point(467, 327);
+            lblErrorAlamat.Name = "lblErrorAlamat";
+            lblErrorAlamat.Size = new Size(162, 17);
+            lblErrorAlamat.TabIndex = 126;
+            lblErrorAlamat.Text = "⚠️ Harap mengisi alamat!";
+            lblErrorAlamat.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorAlamat.Visible = false;
+            // 
+            // lblErrorTelepon
+            // 
+            lblErrorTelepon.AutoSize = true;
+            lblErrorTelepon.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTelepon.ForeColor = Color.Red;
+            lblErrorTelepon.Location = new Point(467, 237);
+            lblErrorTelepon.Name = "lblErrorTelepon";
+            lblErrorTelepon.Size = new Size(218, 17);
+            lblErrorTelepon.TabIndex = 125;
+            lblErrorTelepon.Text = "⚠️ Nomor telepon sudah terdaftar!";
+            lblErrorTelepon.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTelepon.Visible = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(467, 179);
+            label8.Name = "label8";
+            label8.Size = new Size(123, 21);
+            label8.TabIndex = 124;
+            label8.Text = "Nomor telepon";
+            // 
+            // txtNoTelp
+            // 
+            txtNoTelp.BeforeTouchSize = new Size(370, 31);
+            txtNoTelp.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNoTelp.Location = new Point(467, 203);
+            txtNoTelp.Name = "txtNoTelp";
+            txtNoTelp.PlaceholderText = " Masukkan nomor telepon";
+            txtNoTelp.Size = new Size(370, 31);
+            txtNoTelp.TabIndex = 123;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(467, 269);
+            label9.Name = "label9";
+            label9.Size = new Size(61, 21);
+            label9.TabIndex = 122;
+            label9.Text = "Alamat";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(467, 89);
+            label10.Name = "label10";
+            label10.Size = new Size(98, 21);
+            label10.TabIndex = 121;
+            label10.Text = "Nomor  KTP";
+            // 
+            // txtNoKTP
+            // 
+            txtNoKTP.BeforeTouchSize = new Size(370, 31);
+            txtNoKTP.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNoKTP.Location = new Point(467, 113);
+            txtNoKTP.Name = "txtNoKTP";
+            txtNoKTP.PlaceholderText = " Masukkan nomor KTP";
+            txtNoKTP.Size = new Size(370, 31);
+            txtNoKTP.TabIndex = 118;
+            // 
+            // lblErrorKTP
+            // 
+            lblErrorKTP.AutoSize = true;
+            lblErrorKTP.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorKTP.ForeColor = Color.Red;
+            lblErrorKTP.Location = new Point(467, 147);
+            lblErrorKTP.Name = "lblErrorKTP";
+            lblErrorKTP.Size = new Size(196, 17);
+            lblErrorKTP.TabIndex = 120;
+            lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";
+            lblErrorKTP.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorKTP.Visible = false;
+            // 
+            // txtAlamat
+            // 
+            txtAlamat.BeforeTouchSize = new Size(370, 31);
+            txtAlamat.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            txtAlamat.Location = new Point(467, 293);
+            txtAlamat.Name = "txtAlamat";
+            txtAlamat.PlaceholderText = " Masukkan alamat lengkap";
+            txtAlamat.Size = new Size(370, 31);
+            txtAlamat.TabIndex = 119;
             // 
             // lblErrorPassword
             // 
@@ -213,104 +316,26 @@
             txtPassword.Size = new Size(370, 31);
             txtPassword.TabIndex = 1;
             // 
-            // label6
+            // linkReset
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.ForeColor = Color.Red;
-            label6.Location = new Point(467, 327);
-            label6.Name = "label6";
-            label6.Size = new Size(162, 17);
-            label6.TabIndex = 126;
-            label6.Text = "⚠️ Harap mengisi alamat!";
-            label6.TextAlign = ContentAlignment.MiddleRight;
-            label6.Visible = false;
+            linkReset.AutoSize = true;
+            linkReset.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            linkReset.Location = new Point(367, 272);
+            linkReset.Name = "linkReset";
+            linkReset.Size = new Size(40, 17);
+            linkReset.TabIndex = 128;
+            linkReset.TabStop = true;
+            linkReset.Text = "Reset";
             // 
-            // label7
+            // label4
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.ForeColor = Color.Red;
-            label7.Location = new Point(467, 237);
-            label7.Name = "label7";
-            label7.Size = new Size(218, 17);
-            label7.TabIndex = 125;
-            label7.Text = "⚠️ Nomor telepon sudah terdaftar!";
-            label7.TextAlign = ContentAlignment.MiddleRight;
-            label7.Visible = false;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(467, 179);
-            label8.Name = "label8";
-            label8.Size = new Size(123, 21);
-            label8.TabIndex = 124;
-            label8.Text = "Nomor telepon";
-            // 
-            // textBoxExt1
-            // 
-            textBoxExt1.BeforeTouchSize = new Size(370, 31);
-            textBoxExt1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt1.Location = new Point(467, 203);
-            textBoxExt1.Name = "textBoxExt1";
-            textBoxExt1.PlaceholderText = " Masukkan nomor telepon";
-            textBoxExt1.Size = new Size(370, 31);
-            textBoxExt1.TabIndex = 123;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(467, 269);
-            label9.Name = "label9";
-            label9.Size = new Size(61, 21);
-            label9.TabIndex = 122;
-            label9.Text = "Alamat";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(467, 89);
-            label10.Name = "label10";
-            label10.Size = new Size(98, 21);
-            label10.TabIndex = 121;
-            label10.Text = "Nomor  KTP";
-            // 
-            // textBoxExt2
-            // 
-            textBoxExt2.BeforeTouchSize = new Size(370, 31);
-            textBoxExt2.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt2.Location = new Point(467, 113);
-            textBoxExt2.Name = "textBoxExt2";
-            textBoxExt2.PlaceholderText = " Masukkan nomor KTP";
-            textBoxExt2.Size = new Size(370, 31);
-            textBoxExt2.TabIndex = 118;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.ForeColor = Color.Red;
-            label11.Location = new Point(467, 147);
-            label11.Name = "label11";
-            label11.Size = new Size(196, 17);
-            label11.TabIndex = 120;
-            label11.Text = "⚠️ Nomor KTP sudah terdaftar!";
-            label11.TextAlign = ContentAlignment.MiddleRight;
-            label11.Visible = false;
-            // 
-            // textBoxExt3
-            // 
-            textBoxExt3.BeforeTouchSize = new Size(370, 31);
-            textBoxExt3.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxExt3.Location = new Point(467, 293);
-            textBoxExt3.Name = "textBoxExt3";
-            textBoxExt3.PlaceholderText = " Masukkan alamat lengkap";
-            textBoxExt3.Size = new Size(370, 31);
-            textBoxExt3.TabIndex = 119;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(259, 272);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 17);
+            label4.TabIndex = 127;
+            label4.Text = "Lupa password?";
             // 
             // RegisterLanjutan
             // 
@@ -322,12 +347,12 @@
             Text = "PROFILE ANDA";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtNoTelp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNoKTP).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtAlamat).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtEmail).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNama).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtPassword).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)textBoxExt3).EndInit();
             ResumeLayout(false);
         }
 
@@ -345,14 +370,16 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;
         private Label lblErrorNama;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtPassword;
-        private Label label6;
-        private Label label7;
+        private Label lblErrorAlamat;
+        private Label lblErrorTelepon;
         private Label label8;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoTelp;
         private Label label9;
         private Label label10;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
-        private Label label11;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoKTP;
+        private Label lblErrorKTP;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtAlamat;
+        private LinkLabel linkReset;
+        private Label label4;
     }
 }

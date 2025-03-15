@@ -213,6 +213,16 @@ namespace Bengkel_Yoga_UKK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kacaPembesar {
+            get {
+                object obj = ResourceManager.GetObject("kacaPembesar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Menipis {
             get {
                 object obj = ResourceManager.GetObject("Menipis", resourceCulture);

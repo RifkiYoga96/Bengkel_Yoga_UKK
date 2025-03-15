@@ -147,7 +147,7 @@ namespace Bengkel_Yoga_UKK
                     text ="BOOKING";
                     break;
                 case 3:
-                    text = "PRODUK";
+                    text = "SPAREPART";
                     break;
                 case 4:
                     text = "RIWAYAT";
@@ -175,25 +175,6 @@ namespace Bengkel_Yoga_UKK
                 return; // Pastikan instance dan panelMain ada
 
             Panel panelMain = MainFormAdmin._mainForm.panelMain; // Akses panel dari instance FormUtama
-
-
-            Control[] existingControls = panelMain.Controls.Cast<Control>().ToArray();
-
-            foreach (var control in existingControls)
-            {
-                if (control is Form specificForm && specificForm.Name == "FormDetailBooking" && (FormDetailBooking._perubahanSparepart || FormDetailBooking._perubahanMain))
-                {
-                    if (!MB.Konfirmasi("Apakah anda ingin menutup bagian ini tanpa menyimpan perubahan?"))
-                    {
-                        buttonActiveAfter = 2;
-                        ControlSideBar();
-                        return;
-                    }
-                }
-            }
-            FormDetailBooking._perubahanMain = false;
-            FormDetailBooking._perubahanSparepart = false;
-            ControlSideBar();
 
             if (panelMain.Controls.Count > 0)
             {

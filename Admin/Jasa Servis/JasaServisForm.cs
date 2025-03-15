@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,9 @@ namespace Bengkel_Yoga_UKK
     public partial class JasaServisForm : Form
     {
         private readonly JasaServisDal _jasaServisDal = new JasaServisDal();
+        private int _page = 1;
+        private int _Totalpage = 1;
+        private bool _btnMain = true;
         public JasaServisForm()
         {
             InitializeComponent();
@@ -22,18 +26,168 @@ namespace Bengkel_Yoga_UKK
             CustomGrid();
         }
 
+        #region EVENT
         private void RegisterEvent()
         {
+            yogaPanel1.Resize += (s, e) => yogaPanel1.Invalidate();
+            btnNext.Click += BtnNext_Click;
+            btnPrevious.Click += BtnPrevious_Click;
+            btnAddData.Click += BtnAddData_Click;
+            btnDataDihapus.Click += BtnDataDihapus_Click;
 
+            //btnSearch.Click += BtnSearch_Click;
+            dataGridView1.CellMouseClick += DataGridView1_CellMouseClick;
+            editToolStripMenuItem.Click += EditToolStripMenuItem_Click;
+            deleteToolStripMenuItem.Click += DeleteToolStripMenuItem_Click;
+            restoreStripMenuItem2.Click += RestoreStripMenuItem2_Click;
+
+            txtSearch.TextChanged += (s, e) =>
+            {
+                if (txtSearch.TextLength == 0) LoadData();
+            };
+            txtSearch.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.SuppressKeyPress = true;
+                    LoadData();
+                }
+            };
+        }
+
+        private void DeleteToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin menghapus data?")) return;
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id_jasaServis"].Value);
+            _jasaServisDal.SoftDeleteData(id);
+            LoadData();
+        }
+
+        private void RestoreStripMenuItem2_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin memulihkan data?")) return;
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id_jasaServis"].Value);
+            _jasaServisDal.RestoreData(id);
+            LoadData();
+        }
+
+        private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id_jasaServis"].Value);
+           // if (new FormProduk(id).ShowDialog() != DialogResult.OK) return;
+            LoadData();
+        }
+
+        private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                dataGridView1.ClearSelection();
+                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (_btnMain)
+                    contextMenuStripEx1.Show(Cursor.Position);
+                else
+                    contextMenuStripEx2.Show(Cursor.Position);
+            }
+        }
+
+        private void BtnDataDihapus_Click(object? sender, EventArgs e)
+        {
+            if (_btnMain)
+            {
+                Image img = Properties.Resources.plusPutih;
+                StyleComponent.ControlButtonMainDelete(btnAddData, btnDataDihapus, img, false, "Sparepart");
+                _btnMain = false;
+                LoadData();
+            }
+        }
+        private void BtnAddData_Click(object? sender, EventArgs e)
+        {
+            if (!_btnMain)
+            {
+                Image img = Properties.Resources.plusDark;
+                StyleComponent.ControlButtonMainDelete(btnAddData, btnDataDihapus, img, true, "Sparepart");
+                _btnMain = true;
+                LoadData();
+                return;
+            }
+            if (new FormInputProduk("").ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void BtnPrevious_Click(object? sender, EventArgs e)
+        {
+            if (_page > 1)
+            {
+                _page--;
+                LoadData();
+            }
+        }
+
+        private void BtnNext_Click(object? sender, EventArgs e)
+        {
+            if (_page < _Totalpage)
+            {
+                _page++;
+                LoadData();
+            }
+        }
+
+        #endregion
+
+        #region LOAD DATAGRID
+        private FilterDto? Filter()
+        {
+            string search = txtSearch.Text;
+            bool dataActive = _btnMain;
+
+            string sql = @"";
+            var dp = new DynamicParameters();
+            List<string> fltr = new List<string>();
+
+            if (search != string.Empty)
+            {
+                fltr.Add("(nama_jasaServis LIKE  '%' + @search + '%')");
+                dp.Add(@"search", search);
+            }
+            if (dataActive)
+                fltr.Add("(deleted_at IS NULL)");
+            else
+                fltr.Add("(deleted_at IS NOT NULL)");
+
+            if (fltr.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", fltr);
+
+
+            var filterResult = new FilterDto
+            {
+                sql = sql,
+                param = dp
+            };
+            return filterResult;
         }
 
         private void LoadData()
         {
-            int no = 1;
-            var list = _jasaServisDal.ListData()
-                .Select(x => new JasaServisModel
+            var sqlFilter = Filter() ?? new FilterDto();
+            var totalRows = _jasaServisDal.GetTotalRows(sqlFilter);
+
+            int showData = (int)numericEntries.Value;
+            _Totalpage = Convert.ToInt32(Math.Ceiling((double)totalRows / showData));
+            int offset = (_page - 1) * showData;
+            sqlFilter.param.Add("@offset", offset);
+            sqlFilter.param.Add("@fetch", showData);
+
+            lblHalaman.Text = _page.ToString();
+            int toValue = Math.Min(offset + showData, totalRows);
+            lblShowingEntries.Text = $"Showing {offset + 1} to {toValue} of {totalRows} entries";
+
+            var list = _jasaServisDal.ListData(sqlFilter)
+                .Select((x, index) => new JasaServisModel
                 {
-                    No = no++,
+                    No = offset + index + 1,
                     id_jasaServis = x.id_jasaServis,
                     nama_jasaServis = x.nama_jasaServis,
                     harga = x.harga
@@ -41,6 +195,7 @@ namespace Bengkel_Yoga_UKK
 
             dataGridView1.DataSource = new SortableBindingList<JasaServisModel>(list);
         }
+        #endregion
 
         private void InitComponent() 
         {
@@ -49,66 +204,28 @@ namespace Bengkel_Yoga_UKK
 
         private void CustomGrid()
         {
-            dataGridView1.BackgroundColor = Color.White;
+            DataGridView dgv = dataGridView1;
+            CustomGrids.CustomDataGrid(dgv);
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
 
-            // Mengatur ukuran font header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Regular);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["No"].FillWeight = 6;
+            dgv.Columns["id_jasaServis"].FillWeight = 6;
+            dgv.Columns["nama_jasaServis"].FillWeight = 30;
+            dgv.Columns["harga"].FillWeight = 64;
 
-            // Mengatur warna header kolom
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView1.ForeColor = Color.DimGray;
+            dgv.Columns["id_jasaServis"].Visible = false;
+
+            dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["nama_jasaServis"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dgv.Columns["harga"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
 
 
-            // Menonaktifkan warna seleksi untuk sel
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dataGridView1.DefaultCellStyle.SelectionForeColor = dataGridView1.DefaultCellStyle.ForeColor;
+            dgv.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-            dataGridView1.ColumnHeadersHeight = 40;
-            dataGridView1.RowTemplate.Height = 55;
-
-            dataGridView1.RowHeadersVisible = false;
-
-            // Mencegah penggeseran kolom
-            dataGridView1.AllowUserToOrderColumns = false;
-
-            // Mencegah pengubahan ukuran kolom
-            dataGridView1.AllowUserToResizeColumns = true;
-
-            // Mencegah pengubahan ukuran baris
-            dataGridView1.AllowUserToResizeRows = false;
-
-            // Mencegah penambahan baris baru
-            dataGridView1.AllowUserToAddRows = false;
-
-            dataGridView1.ColumnHeadersDefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.Columns["No"].FillWeight = 6;
-            dataGridView1.Columns["id_jasaServis"].FillWeight = 6;
-            dataGridView1.Columns["nama_jasaServis"].FillWeight = 30;
-            dataGridView1.Columns["harga"].FillWeight = 64;
-
-            dataGridView1.Columns["id_jasaServis"].Visible = false;
-
-            dataGridView1.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["nama_jasaServis"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            dataGridView1.Columns["harga"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-
-
-            dataGridView1.Columns["No"].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            dataGridView1.Columns["nama_jasaServis"].HeaderText = "Nama Jasa";
-            dataGridView1.Columns["harga"].HeaderText = "Harga";
+            dgv.Columns["nama_jasaServis"].HeaderText = "Nama Jasa";
+            dgv.Columns["harga"].HeaderText = "Harga";
         }
     }
 }

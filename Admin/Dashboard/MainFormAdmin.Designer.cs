@@ -171,7 +171,7 @@
             btnProduk.Padding = new Padding(20, 0, 0, 0);
             btnProduk.Size = new Size(255, 60);
             btnProduk.TabIndex = 16;
-            btnProduk.Text = "    Produk";
+            btnProduk.Text = "    Sparepart";
             btnProduk.TextAlign = ContentAlignment.MiddleLeft;
             btnProduk.TextColor = Color.White;
             btnProduk.TextImageRelation = TextImageRelation.ImageBeforeText;

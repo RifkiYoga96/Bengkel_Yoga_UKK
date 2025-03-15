@@ -113,7 +113,7 @@
             // txtNama
             // 
             txtNama.BackColor = Color.White;
-            txtNama.BeforeTouchSize = new Size(293, 70);
+            txtNama.BeforeTouchSize = new Size(370, 31);
             txtNama.BorderColor = Color.FromArgb(209, 211, 212);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -147,7 +147,7 @@
             // txtNoKTP
             // 
             txtNoKTP.BackColor = Color.White;
-            txtNoKTP.BeforeTouchSize = new Size(293, 70);
+            txtNoKTP.BeforeTouchSize = new Size(370, 31);
             txtNoKTP.BorderColor = Color.FromArgb(209, 211, 212);
             txtNoKTP.BorderStyle = BorderStyle.FixedSingle;
             txtNoKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -161,7 +161,7 @@
             // txtPassword
             // 
             txtPassword.BackColor = Color.White;
-            txtPassword.BeforeTouchSize = new Size(293, 70);
+            txtPassword.BeforeTouchSize = new Size(370, 31);
             txtPassword.BorderColor = Color.FromArgb(209, 211, 212);
             txtPassword.BorderStyle = BorderStyle.FixedSingle;
             txtPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -175,7 +175,7 @@
             // txtEmail
             // 
             txtEmail.BackColor = Color.White;
-            txtEmail.BeforeTouchSize = new Size(293, 70);
+            txtEmail.BeforeTouchSize = new Size(370, 31);
             txtEmail.BorderColor = Color.FromArgb(209, 211, 212);
             txtEmail.BorderStyle = BorderStyle.FixedSingle;
             txtEmail.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -213,7 +213,7 @@
             // txtNoTelepon
             // 
             txtNoTelepon.BackColor = Color.White;
-            txtNoTelepon.BeforeTouchSize = new Size(293, 70);
+            txtNoTelepon.BeforeTouchSize = new Size(370, 31);
             txtNoTelepon.BorderColor = Color.FromArgb(209, 211, 212);
             txtNoTelepon.BorderStyle = BorderStyle.FixedSingle;
             txtNoTelepon.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -239,7 +239,7 @@
             // txtCPassword
             // 
             txtCPassword.BackColor = Color.White;
-            txtCPassword.BeforeTouchSize = new Size(293, 70);
+            txtCPassword.BeforeTouchSize = new Size(370, 31);
             txtCPassword.BorderColor = Color.FromArgb(209, 211, 212);
             txtCPassword.BorderStyle = BorderStyle.FixedSingle;
             txtCPassword.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -265,7 +265,7 @@
             // txtAlamat
             // 
             txtAlamat.BackColor = Color.White;
-            txtAlamat.BeforeTouchSize = new Size(293, 70);
+            txtAlamat.BeforeTouchSize = new Size(370, 31);
             txtAlamat.BorderColor = Color.FromArgb(209, 211, 212);
             txtAlamat.BorderStyle = BorderStyle.FixedSingle;
             txtAlamat.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -417,9 +417,9 @@
             label1.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(722, 131);
             label1.Name = "label1";
-            label1.Size = new Size(107, 17);
+            label1.Size = new Size(103, 17);
             label1.TabIndex = 92;
-            label1.Text = "Reset password?";
+            label1.Text = "Lupa password?";
             // 
             // FormInputPelanggan
             // 

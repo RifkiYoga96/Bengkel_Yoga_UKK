@@ -16,5 +16,15 @@ namespace Bengkel_Yoga_UKK
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InvoiceModel invoice = new InvoiceModel
+            {
+                
+            };
+
+            InvoiceGenerators.GenerateInvoice(invoice);
+        }
     }
 }

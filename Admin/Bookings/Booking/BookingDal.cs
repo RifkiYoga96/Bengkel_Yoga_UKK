@@ -13,7 +13,7 @@ namespace Bengkel_Yoga_UKK
 {
     public class BookingDal
     {
-        public IEnumerable<BookingModel2> ListData(FilterDto filter)
+        public IEnumerable<BookingModel> ListData(FilterDto filter)
         {
             string sql = $@"SELECT 
                                 b.id_booking,
@@ -41,10 +41,10 @@ namespace Bengkel_Yoga_UKK
                             ORDER BY b.tipe_antrean ASC, b.antrean ASC
                             OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<BookingModel2>(sql,filter.param);
+            return koneksi.Query<BookingModel>(sql,filter.param);
         }
 
-        public BookingModel2? GetData(int id_booking)
+        public BookingModel? GetData(int id_booking)
         {
             const string sql = @"SELECT 
                                 b.id_booking,
@@ -70,7 +70,7 @@ namespace Bengkel_Yoga_UKK
                             LEFT JOIN JasaServis js ON js.id_jasaServis = b.id_jasaServis
                                 WHERE b.id_booking = @id_booking";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<BookingModel2>(sql, new {id_booking = id_booking});
+            return koneksi.QueryFirstOrDefault<BookingModel>(sql, new {id_booking = id_booking});
         }
 
         public IEnumerable<BookingSparepartModel> ListDataProduk(int id_booking)
@@ -102,7 +102,7 @@ namespace Bengkel_Yoga_UKK
             int count =  koneksi.QuerySingleOrDefault<int>(sql, new {no_pol = no_pol});
             return count > 0;
         }
-        public void UpdateKonfirmasiBooking(BookingModel2 booking)
+        public void UpdateKonfirmasiBooking(BookingModel booking)
         {
             using var koneksi = new SqlConnection(conn.connStr);
             var dp = new DynamicParameters();
@@ -112,11 +112,11 @@ namespace Bengkel_Yoga_UKK
             dp.Add("@catatan",booking.catatan);
             dp.Add("@status",booking.status);
 
-            koneksi.Query<BookingModel2>("UpdateKonfirmasiBooking", dp, commandType: CommandType.StoredProcedure);
+            koneksi.Query<BookingModel>("UpdateKonfirmasiBooking", dp, commandType: CommandType.StoredProcedure);
         }
 
 
-        public void InsertDataBooking(BookingModel2 booking, bool pelanggan)
+        public void InsertDataBooking(BookingModel booking, bool pelanggan)
         {
             var dp = new DynamicParameters();
             if (pelanggan)
@@ -138,7 +138,7 @@ namespace Bengkel_Yoga_UKK
             }
 
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Query<BookingModel2>("InsertBooking",dp,commandType: CommandType.StoredProcedure);
+            koneksi.Query<BookingModel>("InsertBooking",dp,commandType: CommandType.StoredProcedure);
         }
 
         public void InsertDataBookingSparepart(ProdukAddDto sparepart)
@@ -178,7 +178,7 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<ProdukAddDto>(sql);
         }
-        public async Task<IEnumerable<BookingModel2>> ListDataAntrean(DateTime tanggal)
+        public async Task<IEnumerable<BookingModel>> ListDataAntrean(DateTime tanggal)
         {
             const string sql = @"
                 SELECT id_booking, antrean, tipe_antrean, status
@@ -187,10 +187,10 @@ namespace Bengkel_Yoga_UKK
                 ORDER BY tanggal ASC, antrean ASC";
 
             using var koneksi = new SqlConnection(conn.connStr);
-            return await koneksi.QueryAsync<BookingModel2>(sql, new { tanggal });
+            return await koneksi.QueryAsync<BookingModel>(sql, new { tanggal });
         }
 
-        public void UpdateAntrean(BookingModel2 booking)
+        public void UpdateAntrean(BookingModel booking)
         {
             const string sql = @"UPDATE Bookings SET antrean = @antrean, tipe_antrean = @tipe_antrean WHERE id_booking = @id_booking";
             using var koneksi = new SqlConnection(conn.connStr);

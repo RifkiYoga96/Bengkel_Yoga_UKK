@@ -127,11 +127,11 @@
   <data name="sampahDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sampahDark1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Habis" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Habis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hijau" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hijau.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Dikerjakan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Dikerjakan3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sampahPutih" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sampahPutih4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ArrowDown1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,11 +154,14 @@
   <data name="oren" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\oren2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Menipis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Menipis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Antre" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Antre.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Menipis" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Menipis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dikerjakan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Dikerjakan3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eye" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +178,8 @@
   <data name="bin (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bin (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hijau" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hijau.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Habis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Habis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,7 +190,7 @@
   <data name="defaultImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\defaultImage2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sampahPutih" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sampahPutih4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="kacaPembesar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kacaPembesar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

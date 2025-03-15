@@ -20,13 +20,20 @@ namespace Bengkel_Yoga_UKK
         private Image _defaultImage = Properties.Resources.defaultImage;
         private string _kode_produk = "";
         private bool _deleteProfile = false;
-        public FormInputProduk(string kode_produk = "")
+        private bool _isInsert = true;
+        public FormInputProduk(string kode_produk = "", bool isInsert = true)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
-            _kode_produk = kode_produk;
             RegisterEvent();
-            GetData();
+            
+            if (!isInsert)
+            {
+                lblHeader.Text = "Edit Sparepart";
+                _isInsert = false;
+                _kode_produk = kode_produk;
+                GetData();
+            }
         }
 
         private void RegisterEvent()

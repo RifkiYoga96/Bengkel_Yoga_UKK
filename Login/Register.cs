@@ -15,6 +15,7 @@ namespace Bengkel_Yoga_UKK
     public partial class Register : Form
     {
         private readonly PelangganDal _pelangganDal = new PelangganDal();
+        private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         public Register()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace Bengkel_Yoga_UKK
                     lblErrorEmail.Visible = true;
                     return;
                 }
-                else if (_pelangganDal.CekEmail(email))
+                else if (_pelangganDal.CekEmail(email) || _karyawanDal.CekEmail(email))
                 {
                     lblErrorEmail.Text = "⚠️ Email sudah terdaftar!";
                     lblErrorEmail.Visible = true;

@@ -17,11 +17,8 @@ namespace Bengkel_Yoga_UKK
         private readonly JasaServisDal _jasaServisDal = new JasaServisDal();
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private readonly ProdukDal _produkDal = new ProdukDal();
-        public static List<ProdukAddDto> _listSparepartUse = new List<ProdukAddDto>();
         public static int _id_booking;
         private string _servisKeterangan = "pending";
-        public static bool _perubahanMain = false;
-        public static bool _perubahanSparepart = false;
         Color _hijau = Color.FromArgb(0, 192, 0);
         Color _oren = Color.FromArgb(240, 177, 0);
         Color _biru = Color.FromArgb(52, 152, 219);
@@ -45,7 +42,10 @@ namespace Bengkel_Yoga_UKK
                 GetData();
             };
 
-            btnProgressServis.Click += (s, e) => ProgresServisButton();
+            btnProgressServis.Click += (s, e) => 
+            {
+            
+            };
 
             btnBatalkanPesanan.Click += BtnBatalkanPesanan_Click;
             btnSave.Click += (s, e) => SaveData();
@@ -73,7 +73,7 @@ namespace Bengkel_Yoga_UKK
 
         private void ProgresServisButton()
         {
-            if(_servisKeterangan == "pending")
+            if (_servisKeterangan == "pending")
             {
                 if (!MB.Konfirmasi("Apakah anda yakin ingin mengubah status menjadi Dikerjakan?")) return;
                 _servisKeterangan = "dikerjakan";
@@ -113,7 +113,7 @@ namespace Bengkel_Yoga_UKK
                 pictureSelesai.BackgroundImage = null;
                 pictureSelesai.BorderSize = 2;
 
-                ButtonStatus(_biru,"Pending");
+                ButtonStatus(_biru, "Pending");
             }
             else if (_servisKeterangan == "dikerjakan")
             {
@@ -229,7 +229,7 @@ namespace Bengkel_Yoga_UKK
             {
                 new JasaServisModel{ id_jasaServis = 0, nama_jasaServis ="--Pilih jasa servis--" }
             };
-            listServis.AddRange(_jasaServisDal.ListData());
+            //listServis.AddRange(_jasaServisDal.ListData());
             comboServis.DataSource = listServis;
             comboServis.DisplayMember = "nama_jasaServis";
             comboServis.ValueMember = "id_jasaServis";
@@ -275,16 +275,8 @@ namespace Bengkel_Yoga_UKK
             txtCatatan.Text = data.catatan;
 
 
-            if (_perubahanSparepart)
-            {
-                txtSparepart.Text = string.Join(", ", _listSparepartUse.Select(x => x.Sparepart));
-                MB.Warning("TRUE OI");
-            }
-            else
-            {
-                var listSparepart = _bookingDal.ListDataProduk(_id_booking);
-                txtSparepart.Text = string.Join(", ", listSparepart.Select(x => x.nama_sparepart));
-            }
+            var listSparepart = _bookingDal.ListDataProduk(_id_booking);
+            txtSparepart.Text = string.Join(", ", listSparepart.Select(x => x.nama_sparepart));
 
 
             lblAntrean.Text = data.tipe_antrean == 1 ? "A" : "B" + data.antrean.ToString("D3");
@@ -307,7 +299,7 @@ namespace Bengkel_Yoga_UKK
 
             if (!MB.Konfirmasi("Apakah anda yakin ingin menyimpan perubahan?")) return;
 
-            var data = new BookingModel2
+            var data = new BookingModel
             {
                 id_booking = id_booking,
                 id_jasaServis = jasaServis,
@@ -316,38 +308,11 @@ namespace Bengkel_Yoga_UKK
                 status = status
             };
             _bookingDal.UpdateKonfirmasiBooking(data);
+        }
 
-            _bookingDal.DeleteBookingSparepart(_id_booking);
-            if (_perubahanSparepart)
-            {
-                foreach (var item in _listSparepartUse)
-                {
-                    _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
-                    {
-                        id_booking = id_booking,
-                        Kode = item.Kode,
-                        Jumlah = item.Jumlah
-                    });
-                }
-            }
-            else
-            {
-                var list = _bookingDal.ListDataProduk(_id_booking);
-                foreach (var item in list)
-                {
-                    _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
-                    {
-                        id_booking = id_booking,
-                        Kode = item.kode_sparepart,
-                        Jumlah = item.jumlah
-                    });
-                }
-            }
+        private void btnStatus_Click(object sender, EventArgs e)
+        {
 
-            _perubahanMain = false;
-            _perubahanSparepart = false;
-
-            MainFormAdmin.ShowFormInPanel2(new FormBooking());
         }
     }
 }

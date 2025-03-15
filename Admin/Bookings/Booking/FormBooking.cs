@@ -44,7 +44,7 @@ namespace Bengkel_Yoga_UKK
             int antrean = 1;
             foreach (var item in listAntrean)
             {
-                var booking = new BookingModel2
+                var booking = new BookingModel
                 {
                     id_booking = item.id_booking,
                     antrean = antrean++,
@@ -212,7 +212,6 @@ namespace Bengkel_Yoga_UKK
                     dp.Add(@"filterWaktu2", filterWaktu2);
                 }
             }
-
 
             if (fltr.Count > 0)
                 sql += " WHERE " + string.Join(" AND ",fltr);

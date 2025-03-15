@@ -168,7 +168,7 @@ namespace Bengkel_Yoga_UKK
             {
                 new JasaServisModel{ id_jasaServis = 0, nama_jasaServis ="--Pilih jasa servis--" }
             };
-            listServis.AddRange(_jasaServisDal.ListData());
+            //listServis.AddRange(_jasaServisDal.ListData());
             comboServis.DataSource = listServis;
             comboServis.DisplayMember = "nama_jasaServis";
             comboServis.ValueMember = "id_jasaServis";

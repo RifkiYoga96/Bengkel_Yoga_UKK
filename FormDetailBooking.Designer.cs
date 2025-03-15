@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDetailBooking));
             yogaPanel1 = new YogaPanel();
+            label4 = new Label();
+            btnStatus = new YogaButton();
             btnBatalkanPesanan = new YogaButton();
             lblKeluhan = new Label();
             label12 = new Label();
@@ -77,8 +79,7 @@
             btnProgressServis = new YogaButton();
             label19 = new Label();
             label3 = new Label();
-            btnStatus = new YogaButton();
-            label4 = new Label();
+            btnSelesai = new YogaButton();
             yogaPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gradientPanelExt3).BeginInit();
             gradientPanelExt3.SuspendLayout();
@@ -125,6 +126,37 @@
             yogaPanel1.Name = "yogaPanel1";
             yogaPanel1.Size = new Size(458, 617);
             yogaPanel1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.Black;
+            label4.Location = new Point(202, 133);
+            label4.Name = "label4";
+            label4.Size = new Size(66, 23);
+            label4.TabIndex = 143;
+            label4.Text = "Status :";
+            // 
+            // btnStatus
+            // 
+            btnStatus.BackColor = Color.FromArgb(4, 120, 244);
+            btnStatus.BackgroundColor = Color.FromArgb(4, 120, 244);
+            btnStatus.BorderColor = Color.PaleVioletRed;
+            btnStatus.BorderRadius = 16;
+            btnStatus.BorderSize = 0;
+            btnStatus.FlatAppearance.BorderSize = 0;
+            btnStatus.FlatStyle = FlatStyle.Flat;
+            btnStatus.Font = new Font("Segoe UI", 10.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStatus.ForeColor = Color.White;
+            btnStatus.Location = new Point(275, 128);
+            btnStatus.Name = "btnStatus";
+            btnStatus.Size = new Size(124, 33);
+            btnStatus.TabIndex = 142;
+            btnStatus.Text = "Pending";
+            btnStatus.TextColor = Color.White;
+            btnStatus.UseVisualStyleBackColor = false;
+            btnStatus.Click += btnStatus_Click;
             // 
             // btnBatalkanPesanan
             // 
@@ -391,7 +423,7 @@
             // txtSparepart
             // 
             txtSparepart.BackColor = Color.White;
-            txtSparepart.BeforeTouchSize = new Size(257, 27);
+            txtSparepart.BeforeTouchSize = new Size(370, 31);
             txtSparepart.BorderColor = Color.FromArgb(209, 211, 212);
             txtSparepart.BorderStyle = BorderStyle.FixedSingle;
             txtSparepart.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
@@ -649,7 +681,7 @@
             // txtCatatan
             // 
             txtCatatan.BackColor = Color.White;
-            txtCatatan.BeforeTouchSize = new Size(257, 27);
+            txtCatatan.BeforeTouchSize = new Size(370, 31);
             txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
@@ -726,35 +758,25 @@
             label3.TabIndex = 141;
             label3.Text = "Progres Servis";
             // 
-            // btnStatus
+            // btnSelesai
             // 
-            btnStatus.BackColor = Color.FromArgb(4, 120, 244);
-            btnStatus.BackgroundColor = Color.FromArgb(4, 120, 244);
-            btnStatus.BorderColor = Color.PaleVioletRed;
-            btnStatus.BorderRadius = 16;
-            btnStatus.BorderSize = 0;
-            btnStatus.FlatAppearance.BorderSize = 0;
-            btnStatus.FlatStyle = FlatStyle.Flat;
-            btnStatus.Font = new Font("Segoe UI", 10.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnStatus.ForeColor = Color.White;
-            btnStatus.Location = new Point(275, 128);
-            btnStatus.Name = "btnStatus";
-            btnStatus.Size = new Size(124, 33);
-            btnStatus.TabIndex = 142;
-            btnStatus.Text = "Pending";
-            btnStatus.TextColor = Color.White;
-            btnStatus.UseVisualStyleBackColor = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(202, 133);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 23);
-            label4.TabIndex = 143;
-            label4.Text = "Status :";
+            btnSelesai.Anchor = AnchorStyles.None;
+            btnSelesai.BackColor = Color.FromArgb(0, 192, 0);
+            btnSelesai.BackgroundColor = Color.FromArgb(0, 192, 0);
+            btnSelesai.BorderColor = Color.PaleVioletRed;
+            btnSelesai.BorderRadius = 5;
+            btnSelesai.BorderSize = 0;
+            btnSelesai.FlatAppearance.BorderSize = 0;
+            btnSelesai.FlatStyle = FlatStyle.Flat;
+            btnSelesai.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSelesai.ForeColor = Color.White;
+            btnSelesai.Location = new Point(1116, 350);
+            btnSelesai.Name = "btnSelesai";
+            btnSelesai.Size = new Size(123, 58);
+            btnSelesai.TabIndex = 142;
+            btnSelesai.Text = "Selesai";
+            btnSelesai.TextColor = Color.White;
+            btnSelesai.UseVisualStyleBackColor = false;
             // 
             // FormDetailBooking
             // 
@@ -762,6 +784,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 235, 240);
             ClientSize = new Size(1325, 812);
+            Controls.Add(btnSelesai);
             Controls.Add(label3);
             Controls.Add(btnSave);
             Controls.Add(yogaPanel2);
@@ -856,5 +879,6 @@
         private Label label3;
         private YogaButton btnStatus;
         private Label label4;
+        private YogaButton btnSelesai;
     }
 }

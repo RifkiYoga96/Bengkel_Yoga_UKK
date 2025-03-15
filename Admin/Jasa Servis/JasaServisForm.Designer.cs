@@ -26,11 +26,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRiwayat));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JasaServisForm));
             dataGridView1 = new DataGridView();
             yogaPanel1 = new YogaPanel();
             lblShowingEntries = new Label();
-            comboFilter = new ComboBox();
             btnSearch = new YogaButton();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -41,12 +40,22 @@
             label3 = new Label();
             label1 = new Label();
             numericEntries = new NumericUpDown();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             btnAddData = new YogaButton();
+            btnDataDihapus = new YogaButton();
+            contextMenuStripEx1 = new Syncfusion.Windows.Forms.Tools.ContextMenuStripEx();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStripEx2 = new Syncfusion.Windows.Forms.Tools.ContextMenuStripEx();
+            restoreStripMenuItem2 = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericEntries).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            contextMenuStripEx1.SuspendLayout();
+            contextMenuStripEx2.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -70,7 +79,6 @@
             yogaPanel1.BorderRadius = 0;
             yogaPanel1.BorderSize = 0;
             yogaPanel1.Controls.Add(lblShowingEntries);
-            yogaPanel1.Controls.Add(comboFilter);
             yogaPanel1.Controls.Add(btnSearch);
             yogaPanel1.Controls.Add(panel1);
             yogaPanel1.Controls.Add(txtSearch);
@@ -88,23 +96,13 @@
             // 
             lblShowingEntries.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblShowingEntries.AutoSize = true;
-            lblShowingEntries.Font = new Font("Segoe UI Semibold", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblShowingEntries.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             lblShowingEntries.ForeColor = Color.DimGray;
             lblShowingEntries.Location = new Point(46, 474);
             lblShowingEntries.Name = "lblShowingEntries";
-            lblShowingEntries.Size = new Size(238, 23);
+            lblShowingEntries.Size = new Size(198, 19);
             lblShowingEntries.TabIndex = 13;
             lblShowingEntries.Text = "Showing 1 to 14 of 120 entries";
-            // 
-            // comboFilter
-            // 
-            comboFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboFilter.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboFilter.FormattingEnabled = true;
-            comboFilter.Location = new Point(376, 33);
-            comboFilter.Name = "comboFilter";
-            comboFilter.Size = new Size(154, 28);
-            comboFilter.TabIndex = 12;
             // 
             // btnSearch
             // 
@@ -116,7 +114,7 @@
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.ForeColor = Color.White;
-            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Image = Properties.Resources.kacaPembesar;
             btnSearch.Location = new Point(323, 33);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(47, 27);
@@ -241,38 +239,108 @@
             numericEntries.Size = new Size(64, 27);
             numericEntries.TabIndex = 3;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(btnAddData);
+            flowLayoutPanel1.Controls.Add(btnDataDihapus);
+            flowLayoutPanel1.Location = new Point(28, 12);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(345, 57);
+            flowLayoutPanel1.TabIndex = 14;
+            // 
             // btnAddData
             // 
+            btnAddData.AutoSize = true;
             btnAddData.BackColor = Color.FromArgb(52, 152, 219);
             btnAddData.BackgroundColor = Color.FromArgb(52, 152, 219);
             btnAddData.BorderColor = Color.PaleVioletRed;
-            btnAddData.BorderRadius = 0;
+            btnAddData.BorderRadius = 4;
             btnAddData.BorderSize = 0;
             btnAddData.FlatAppearance.BorderSize = 0;
             btnAddData.FlatStyle = FlatStyle.Flat;
-            btnAddData.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddData.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddData.ForeColor = Color.White;
-            btnAddData.Image = (Image)resources.GetObject("btnAddData.Image");
-            btnAddData.Location = new Point(28, 16);
+            btnAddData.Image = Properties.Resources.plusPutih;
+            btnAddData.Location = new Point(3, 3);
             btnAddData.Name = "btnAddData";
             btnAddData.Padding = new Padding(10, 0, 0, 0);
-            btnAddData.Size = new Size(145, 42);
+            btnAddData.Size = new Size(165, 42);
             btnAddData.TabIndex = 1;
-            btnAddData.Text = " Add Invoice";
+            btnAddData.Text = " Add Pelanggan";
             btnAddData.TextColor = Color.White;
             btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddData.UseVisualStyleBackColor = false;
             // 
-            // FormRiwayat
+            // btnDataDihapus
+            // 
+            btnDataDihapus.BackColor = Color.Transparent;
+            btnDataDihapus.BackgroundColor = Color.Transparent;
+            btnDataDihapus.BorderColor = Color.PaleVioletRed;
+            btnDataDihapus.BorderRadius = 4;
+            btnDataDihapus.BorderSize = 0;
+            btnDataDihapus.FlatAppearance.BorderSize = 0;
+            btnDataDihapus.FlatStyle = FlatStyle.Flat;
+            btnDataDihapus.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDataDihapus.ForeColor = SystemColors.ControlDarkDark;
+            btnDataDihapus.Image = Properties.Resources.sampahDark;
+            btnDataDihapus.Location = new Point(174, 3);
+            btnDataDihapus.Name = "btnDataDihapus";
+            btnDataDihapus.Padding = new Padding(10, 0, 0, 0);
+            btnDataDihapus.Size = new Size(153, 42);
+            btnDataDihapus.TabIndex = 2;
+            btnDataDihapus.Text = " Data Dihapus";
+            btnDataDihapus.TextColor = SystemColors.ControlDarkDark;
+            btnDataDihapus.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDataDihapus.UseVisualStyleBackColor = false;
+            // 
+            // contextMenuStripEx1
+            // 
+            contextMenuStripEx1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
+            contextMenuStripEx1.MetroColor = Color.FromArgb(204, 236, 249);
+            contextMenuStripEx1.Name = "contextMenuStripEx1";
+            contextMenuStripEx1.Size = new Size(127, 60);
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            editToolStripMenuItem.Image = (Image)resources.GetObject("editToolStripMenuItem.Image");
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(126, 28);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            deleteToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            deleteToolStripMenuItem.Image = Properties.Resources.bin__1_;
+            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            deleteToolStripMenuItem.Size = new Size(126, 28);
+            deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // contextMenuStripEx2
+            // 
+            contextMenuStripEx2.Items.AddRange(new ToolStripItem[] { restoreStripMenuItem2 });
+            contextMenuStripEx2.MetroColor = Color.FromArgb(204, 236, 249);
+            contextMenuStripEx2.Name = "contextMenuStripEx1";
+            contextMenuStripEx2.Size = new Size(136, 32);
+            // 
+            // restoreStripMenuItem2
+            // 
+            restoreStripMenuItem2.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            restoreStripMenuItem2.Image = (Image)resources.GetObject("restoreStripMenuItem2.Image");
+            restoreStripMenuItem2.Name = "restoreStripMenuItem2";
+            restoreStripMenuItem2.Size = new Size(135, 28);
+            restoreStripMenuItem2.Text = "Restore";
+            // 
+            // JasaServisForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1143, 635);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(yogaPanel1);
-            Controls.Add(btnAddData);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "FormRiwayat";
+            Name = "JasaServisForm";
             Text = "Tabel";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             yogaPanel1.ResumeLayout(false);
@@ -280,6 +348,10 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericEntries).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
+            contextMenuStripEx1.ResumeLayout(false);
+            contextMenuStripEx2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -287,7 +359,6 @@
 
         private DataGridView dataGridView1;
         private YogaPanel yogaPanel1;
-        private YogaButton btnAddData;
         private NumericUpDown numericEntries;
         private Label label1;
         private TextBox txtSearch;
@@ -298,7 +369,14 @@
         private Panel panel2;
         private Label lblHalaman;
         private YogaButton btnSearch;
-        private ComboBox comboFilter;
         private Label lblShowingEntries;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private YogaButton btnAddData;
+        private YogaButton btnDataDihapus;
+        private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStripEx1;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
+        private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStripEx2;
+        private ToolStripMenuItem restoreStripMenuItem2;
     }
 }
