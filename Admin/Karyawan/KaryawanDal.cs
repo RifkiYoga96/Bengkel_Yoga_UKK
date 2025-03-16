@@ -38,7 +38,7 @@ namespace Bengkel_Yoga_UKK
             dp.Add("@image_data", karyawan.image_data != null ? karyawan.image_data : DBNull.Value, System.Data.DbType.Binary);
 
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Query<KaryawanModel>("InsertAdmin", dp, commandType: System.Data.CommandType.StoredProcedure);
+            koneksi.Query<KaryawanModelUpdate>("InsertAdmin", dp, commandType: System.Data.CommandType.StoredProcedure);
         }
 
         public void UpdateData(KaryawanModelUpdate karyawan)
@@ -56,7 +56,7 @@ namespace Bengkel_Yoga_UKK
 
 
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Query<KaryawanModel>("UpdateAdmin", dp, commandType: System.Data.CommandType.StoredProcedure);
+            koneksi.Query<KaryawanModelUpdate>("UpdateAdmin", dp, commandType: System.Data.CommandType.StoredProcedure);
         }
 
         public bool CekEmail(string email)
@@ -103,13 +103,7 @@ namespace Bengkel_Yoga_UKK
             return data != null ? true : false;
         }
 
-        public int GetTotalRows(FilterDto filter)
-        {
-            string sql = $@"SELECT COUNT(*)
-                            FROM Admins {filter.sql}";
-            using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
-        }
+         
 
         public void UpdateKTP(string ktp_new, string ktp_old)
         {
@@ -136,6 +130,14 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"UPDATE Admins SET deleted_at = NULL WHERE ktp_admin = @ktp";
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new { ktp });
+        }
+        public int GetTotalRows(FilterDto filter)
+        {
+            string sql = $@"SELECT COUNT(*)
+                            FROM Admins
+                            {filter.sql}";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
     }
 }

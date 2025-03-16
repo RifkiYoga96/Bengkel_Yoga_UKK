@@ -19,7 +19,8 @@ namespace Bengkel_Yoga_UKK
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
-            
+            InitComponent();
+            RegisterEvent();
             if (!isInsert)
             {
                 GetData(id_jasaServis);
@@ -47,7 +48,7 @@ namespace Bengkel_Yoga_UKK
 
         private void BtnSave_Click(object? sender, EventArgs e)
         {
-            
+            SaveData();
         }
 
         #endregion
@@ -56,15 +57,48 @@ namespace Bengkel_Yoga_UKK
 
         private void InitComponent()
         {
-
+            txtNamaJasa.MaxLength = 90;
+            txtHarga.MaxValue = 90000000;
         }
 
         #endregion
 
-        #region LOADDATA
+        #region LOADDATA & SAVE
         private void GetData(int id)
         {
+            var data = _jasaServisDal.GetData(id);
+            if (data is null) return;
 
+            txtNamaJasa.Text = data.nama_jasaServis;
+            txtHarga.DecimalValue = data.harga;
+        }
+
+        private void SaveData()
+        {
+            string nama_jasa = txtNamaJasa.Text;
+            int harga = Convert.ToInt32(txtHarga.DecimalValue);
+
+            bool valid = !lblErrorHarga.Visible &&
+                !lblErrorJasa.Visible;
+            if (!valid)
+            {
+                MB.Warning("Data tidak valid, harap cek kembali!");
+                return;
+            }
+            if (!MB.Konfirmasi("Apakah anda yakin ingin menyimpan data?")) return;
+
+            var jasa = new JasaServisModel
+            {
+                id_jasaServis = _id_JasaServis,
+                nama_jasaServis = nama_jasa,
+                harga = harga
+            };
+            if(_isInsert)
+                _jasaServisDal.InsertData(jasa);
+            else
+                _jasaServisDal.UpdateData(jasa);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
         #endregion
     }

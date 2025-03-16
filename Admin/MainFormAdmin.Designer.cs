@@ -48,6 +48,9 @@
             panelMain = new Panel();
             panelTop = new Panel();
             lblDisplay = new Label();
+            btnKendaraan = new YogaButton();
+            panel1 = new Panel();
+            panel3 = new Panel();
             flowLayoutPanel2.SuspendLayout();
             panelLeft.SuspendLayout();
             panelLogOut.SuspendLayout();
@@ -68,13 +71,14 @@
             flowLayoutPanel2.Controls.Add(btnService);
             flowLayoutPanel2.Controls.Add(btnPelanggan);
             flowLayoutPanel2.Controls.Add(btnKaryawan);
+            flowLayoutPanel2.Controls.Add(btnKendaraan);
             flowLayoutPanel2.Dock = DockStyle.Fill;
             flowLayoutPanel2.ForeColor = SystemColors.ControlText;
             flowLayoutPanel2.Location = new Point(0, 139);
             flowLayoutPanel2.MaximumSize = new Size(290, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(15, 0, 10, 0);
-            flowLayoutPanel2.Size = new Size(290, 535);
+            flowLayoutPanel2.Size = new Size(290, 615);
             flowLayoutPanel2.TabIndex = 5;
             // 
             // btnDashboard
@@ -285,15 +289,16 @@
             panelLeft.Dock = DockStyle.Left;
             panelLeft.Location = new Point(0, 0);
             panelLeft.Name = "panelLeft";
-            panelLeft.Size = new Size(290, 756);
+            panelLeft.Size = new Size(290, 836);
             panelLeft.TabIndex = 7;
             // 
             // panelLogOut
             // 
             panelLogOut.BackColor = Color.FromArgb(44, 62, 80);
+            panelLogOut.Controls.Add(panel3);
             panelLogOut.Controls.Add(btnLogout);
             panelLogOut.Dock = DockStyle.Bottom;
-            panelLogOut.Location = new Point(0, 674);
+            panelLogOut.Location = new Point(0, 754);
             panelLogOut.Name = "panelLogOut";
             panelLogOut.Padding = new Padding(15, 0, 10, 0);
             panelLogOut.Size = new Size(290, 82);
@@ -327,6 +332,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(44, 62, 80);
+            panel2.Controls.Add(panel1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(rjCircularPictureBox1);
@@ -381,7 +387,7 @@
             panelMain.Location = new Point(290, 67);
             panelMain.Margin = new Padding(0);
             panelMain.Name = "panelMain";
-            panelMain.Size = new Size(902, 689);
+            panelMain.Size = new Size(944, 769);
             panelMain.TabIndex = 6;
             // 
             // panelTop
@@ -391,7 +397,7 @@
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(290, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(902, 67);
+            panelTop.Size = new Size(944, 67);
             panelTop.TabIndex = 9;
             // 
             // lblDisplay
@@ -400,23 +406,65 @@
             lblDisplay.BackColor = Color.Transparent;
             lblDisplay.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblDisplay.ForeColor = Color.FromArgb(44, 62, 80);
-            lblDisplay.Location = new Point(292, 18);
+            lblDisplay.Location = new Point(313, 18);
             lblDisplay.Name = "lblDisplay";
             lblDisplay.Size = new Size(318, 32);
             lblDisplay.TabIndex = 19;
             lblDisplay.Text = "PRODUK";
             lblDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnKendaraan
+            // 
+            btnKendaraan.BackColor = Color.FromArgb(44, 62, 80);
+            btnKendaraan.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnKendaraan.BorderColor = Color.PaleVioletRed;
+            btnKendaraan.BorderRadius = 7;
+            btnKendaraan.BorderSize = 0;
+            btnKendaraan.FlatAppearance.BorderSize = 0;
+            btnKendaraan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKendaraan.FlatStyle = FlatStyle.Flat;
+            btnKendaraan.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKendaraan.ForeColor = Color.White;
+            btnKendaraan.Image = Properties.Resources.scooter;
+            btnKendaraan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnKendaraan.Location = new Point(18, 531);
+            btnKendaraan.Name = "btnKendaraan";
+            btnKendaraan.Padding = new Padding(20, 0, 0, 0);
+            btnKendaraan.Size = new Size(255, 60);
+            btnKendaraan.TabIndex = 21;
+            btnKendaraan.Text = "    Kendaraan";
+            btnKendaraan.TextAlign = ContentAlignment.MiddleLeft;
+            btnKendaraan.TextColor = Color.White;
+            btnKendaraan.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnKendaraan.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Location = new Point(12, 132);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(253, 3);
+            panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.Location = new Point(18, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(253, 3);
+            panel3.TabIndex = 1;
+            // 
             // MainFormAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
-            ClientSize = new Size(1192, 756);
+            ClientSize = new Size(1234, 836);
             Controls.Add(panelMain);
             Controls.Add(panelTop);
             Controls.Add(panelLeft);
             ForeColor = Color.White;
+            MinimumSize = new Size(1250, 875);
             Name = "MainFormAdmin";
             Padding = new Padding(0);
             Style.BackColor = Color.FromArgb(44, 62, 80);
@@ -456,5 +504,8 @@
         private Label label2;
         private Label lblDisplay;
         private YogaButton btnKalender;
+        private YogaButton btnKendaraan;
+        private Panel panel3;
+        private Panel panel1;
     }
 }

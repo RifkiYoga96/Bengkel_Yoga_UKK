@@ -121,7 +121,7 @@
   <data name="btnSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEvSURBVDhPnZLB
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEvSURBVDhPnZLB
         KkRhGIaP2VnYYshaWSlbEW5A2JrGBWhkY2VpKRcgbmBYkdyAhRswygVIQxQpxPG853snczin8NTT9D//
         /51Oc/6kjDRNR3AHr/AF7/AUl7DHx4rhwAI+4Tue4R42sY3iGPt8PA8bM/iKLRx3zmDdi1v4gUeYfxNC
         BS/xGgedf8CeHiIWnQLCdPS04VQI+3qTWzxxCgjrKEadSuHMIba9DAibmoaqUymc2cdnLwNCTdMw61QK
@@ -130,33 +130,7 @@
         HnkAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="contextMenuStripEx1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>135, 28</value>
+  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
-  <data name="editToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        iQAAAIkBOZtwtgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADcSURBVEhL7dYx
-        DgFBGMXxTWhwLzWnEDUNnULhDhQ0DqHFLTQShSOshv+TTDKZfLvZmZ2Ol/yKlc37xsySLTKlgxUeuGGC
-        bFH5Hu/ABlkyR1juTNE6PZxgDbgjKdqWLUbfq+ohT0TH3/MX6obo4KNiHaiGjKH4Q47oonGqnhYJh8yg
-        +xunrtzxh0RF5QdYpaEdotJk5U7WPQ/9y00/VK4sYZWF9HvQYqJzhVXoS1q50kcJq9RJLleGsEqdVuXK
-        GlaxtC5XLvBL9a+ozxZIOtAwes04Q99E2zVAphTFB3ynwJIKUmt6AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="contextMenuStripEx2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>260, 95</value>
-  </metadata>
-  <data name="restoreStripMenuItem2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFlSURBVEhLtdU7
-        LwVBGMbxRUiIWyMiUSt8Ap2EgoTQ+CzaoxcRpS+ikCCiUdJQoCQRHSr3/7POm0zOvmbObNaT/LJnN3PJ
-        zrw7p6iZYayjt7z7h2zgG4eY1IOmMwtNII9YRqPR0jzDJvnCHvoRzTjU8Bp3CW+wCcwppuFmDLfo7JTr
-        CUuoZAdehzrOUcklvMa5jjGFSm6gBh9Qo/2EcJOtXwt9cKMJXrFQ3sUziHfY4PeYRzQXWPv9mcwcbPAD
-        TCCZWA2PtK+WVahMN9GjB3WjzhpEg63oQRCdR39loH2NRq+t17el0LJ0Ey2zljsabZg2zgbXhmpjU1mE
-        CkUF40YlplJTydngopL0SjV0AuvnTqCPQ/UfDlyXu0T6vL3GdWyjEp3pOqi8Djm0PKNwo6P2DJ2dVKbe
-        kR26wi50Kkejjd7CJ2yCFzT+/6sz6QE2yQwajyrrCJqg23MqO1oyDT5U3mWlKH4AcbzUqbk8vrkAAAAA
-        SUVORK5CYII=
-</value>
-  </data>
 </root>

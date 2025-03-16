@@ -230,14 +230,14 @@ namespace Bengkel_Yoga_UKK
         private void SaveComponent()
         {
             _bookingDal.DeleteBookingSparepart(FormDetailBooking._id_booking);
-            var list = _bookingDal.ListDataProduk(FormDetailBooking._id_booking);
-            foreach (var item in list)
+            
+            foreach (var item in _bindingListUse)
             {
                 _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
                 {
                     id_booking = FormDetailBooking._id_booking,
-                    Kode = item.kode_sparepart,
-                    Jumlah = item.jumlah
+                    Kode = item.Kode,
+                    Jumlah = item.Jumlah
                 });
             }
             this.DialogResult = DialogResult.OK;

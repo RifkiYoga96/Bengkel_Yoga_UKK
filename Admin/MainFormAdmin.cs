@@ -78,6 +78,7 @@ namespace Bengkel_Yoga_UKK
             btnPelanggan.Click += (s, e) => NavigateToForm(new FormPelanggan(), 6);
             btnKaryawan.Click += (s, e) => NavigateToForm(new FormKaryawan(), 7);
             btnKalender.Click += (s, e) => NavigateToForm(new FormKalender(), 8);
+            btnKendaraan.Click += (s, e) => NavigateToForm(new FormKendaraan(), 9);
 
             this.FormClosing += (s, e) =>
             {
@@ -163,6 +164,9 @@ namespace Bengkel_Yoga_UKK
                     break;
                 case 8:
                     text = "KALENDER";
+                    break;
+                case 9:
+                    text = "KENDARAAN";
                     break;
             }
             _mainForm.lblDisplay.Text = text;

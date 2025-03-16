@@ -29,6 +29,7 @@ namespace Bengkel_Yoga_UKK
             LoadData();
             CustomGrid();
         }
+        #region EVENT
         private void RegisterEvent()
         {
             yogaPanel1.Resize += (s, e) => yogaPanel1.Invalidate();
@@ -132,6 +133,7 @@ namespace Bengkel_Yoga_UKK
                 LoadData();
             }
         }
+        #endregion
 
         #region COMBO BOX
         private void InitCombo()
@@ -172,7 +174,6 @@ namespace Bengkel_Yoga_UKK
 
             if (fltr.Count > 0)
                 sql += " WHERE " + string.Join(" AND ", fltr);
-
 
             var filterResult = new FilterDto
             {

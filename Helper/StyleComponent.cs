@@ -61,6 +61,7 @@ namespace Bengkel_Yoga_UKK
             form.MinimizeBox = false;
             form.MaximizeBox = false;
             form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterParent;
         }
 
         public static void ControlButtonMainDelete(YogaButton btnMain, YogaButton btnDelete, Image imgMain, bool main, string text)

@@ -22,6 +22,27 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QueryFirstOrDefault<JasaServisModel>(sql, new {id});
         }
+        public void InsertData(JasaServisModel jasa)
+        {
+            using var koneksi = new SqlConnection(conn.connStr);
+
+            var dp = new DynamicParameters();
+            dp.Add("@nama_jasaServis", jasa.nama_jasaServis);
+            dp.Add("@harga", jasa.harga);
+
+            koneksi.Query<JasaServisModel>("InsertJasaServis",dp, commandType: System.Data.CommandType.StoredProcedure);
+        }
+        public void UpdateData(JasaServisModel jasa)
+        {
+            using var koneksi = new SqlConnection(conn.connStr);
+
+            var dp = new DynamicParameters();
+            dp.Add("@id_jasaServis", jasa.id_jasaServis);
+            dp.Add("@nama_jasaServis", jasa.nama_jasaServis);
+            dp.Add("@harga", jasa.harga);
+
+            koneksi.Query<JasaServisModel>("UpdateJasaServis", dp, commandType: System.Data.CommandType.StoredProcedure);
+        }
         public void SoftDeleteData(int id)
         {
             const string sql = @"UPDATE JasaServis SET deleted_at = GETDATE() WHERE id_jasaServis = @id";

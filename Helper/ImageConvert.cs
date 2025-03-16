@@ -157,6 +157,21 @@ namespace Bengkel_Yoga_UKK
             return resizedImage;
         }
 
+        public static Image GenerateCircleImage(Color color, int diameter)
+        {
+            Bitmap bitmap = new Bitmap(diameter, diameter);
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; // Maksimalkan kehalusan
+                g.Clear(Color.Transparent);
+
+                using (SolidBrush brush = new SolidBrush(color))
+                {
+                    g.FillEllipse(brush, 0.5f, 0.5f, diameter - 2, diameter - 2); // Menggeser setengah piksel
+                }
+            }
+            return bitmap;
+        }
 
         #endregion
     }

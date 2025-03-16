@@ -146,7 +146,7 @@ namespace Bengkel_Yoga_UKK
         private void DetailBookingToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            MainFormAdmin.ShowFormInPanel2(new FormBookingDetail(id));
+            MainFormAdmin.ShowFormInPanel2(new FormDetailBooking(id));
         }
 
         private void DataGridView1_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)

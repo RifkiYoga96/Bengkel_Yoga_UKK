@@ -409,9 +409,9 @@
             lblErrorPassword.ForeColor = Color.Red;
             lblErrorPassword.Location = new Point(619, 181);
             lblErrorPassword.Name = "lblErrorPassword";
-            lblErrorPassword.Size = new Size(184, 17);
+            lblErrorPassword.Size = new Size(180, 17);
             lblErrorPassword.TabIndex = 81;
-            lblErrorPassword.Text = "⚠️ Harap mengisi password !";
+            lblErrorPassword.Text = "⚠️ Harap mengisi password!";
             lblErrorPassword.TextAlign = ContentAlignment.MiddleRight;
             lblErrorPassword.Visible = false;
             // 

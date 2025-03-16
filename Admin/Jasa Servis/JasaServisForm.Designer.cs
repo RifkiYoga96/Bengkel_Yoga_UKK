@@ -266,7 +266,7 @@
             btnAddData.Padding = new Padding(10, 0, 0, 0);
             btnAddData.Size = new Size(165, 42);
             btnAddData.TabIndex = 1;
-            btnAddData.Text = " Add Pelanggan";
+            btnAddData.Text = " Add Jasa Servis";
             btnAddData.TextColor = Color.White;
             btnAddData.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddData.UseVisualStyleBackColor = false;

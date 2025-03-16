@@ -150,7 +150,7 @@
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(768, 136);
+            pictureBox1.Location = new Point(805, 134);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(692, 545);
             pictureBox1.TabIndex = 17;

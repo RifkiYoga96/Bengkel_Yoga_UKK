@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class Fwworm2 : Form
+    public partial class AboutUsUC : UserControl
     {
-        public Fwworm2()
+        public AboutUsUC()
         {
             InitializeComponent();
         }

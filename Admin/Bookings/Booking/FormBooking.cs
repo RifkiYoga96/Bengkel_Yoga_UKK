@@ -445,6 +445,7 @@ namespace Bengkel_Yoga_UKK
 public class FilterDto
 {
     public string sql { get; set; } = string.Empty;
+    public string sql2 { get; set; } = string.Empty;
     public DynamicParameters param { get; set; } = new DynamicParameters();
 }
 

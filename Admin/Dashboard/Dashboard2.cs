@@ -17,9 +17,7 @@ namespace Bengkel_Yoga_UKK
         public Dashboard2()
         {
             InitializeComponent();
-            this.Load += Dashboard2_Load;
             RegisterEvent();
-            ChartControlStyle();
         }
 
         private void RegisterEvent()
@@ -27,24 +25,7 @@ namespace Bengkel_Yoga_UKK
             yogaPanel1.Resize += (s, e) => yogaPanel1.Invalidate();
             yogaPanel2.Resize += (s, e) => yogaPanel2.Invalidate();
             yogaPanel3.Resize += (s, e) => yogaPanel3.Invalidate();
-            yogaPanel4.Resize += (s, e) => yogaPanel4.Invalidate();
             yogaPanel5.Resize += (s, e) => yogaPanel5.Invalidate();
-        }
-
-        private void ChartControlStyle()
-        {
-           //Line
-           chartControl1 = new ChartControl();
-        }
-
-        private void Dashboard2_Load(object? sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

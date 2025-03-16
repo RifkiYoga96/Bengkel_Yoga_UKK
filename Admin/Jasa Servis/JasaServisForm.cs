@@ -74,7 +74,7 @@ namespace Bengkel_Yoga_UKK
         private void EditToolStripMenuItem_Click(object? sender, EventArgs e)
         {
             int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["id_jasaServis"].Value);
-           // if (new FormProduk(id).ShowDialog() != DialogResult.OK) return;
+            if (new FormInputJasaServis(id,false).ShowDialog() != DialogResult.OK) return;
             LoadData();
         }
 
@@ -111,7 +111,7 @@ namespace Bengkel_Yoga_UKK
                 LoadData();
                 return;
             }
-            if (new FormInputProduk("").ShowDialog() == DialogResult.OK)
+            if (new FormInputJasaServis(0).ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
@@ -199,7 +199,7 @@ namespace Bengkel_Yoga_UKK
 
         private void InitComponent() 
         {
-        
+            numericEntries.Minimum = 10;
         }
 
         private void CustomGrid()

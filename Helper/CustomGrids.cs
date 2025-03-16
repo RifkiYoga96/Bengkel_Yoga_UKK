@@ -51,6 +51,14 @@ namespace Bengkel_Yoga_UKK
 
             // Mencegah penambahan baris baru
             dataGridView1.AllowUserToAddRows = false;
+
+            dataGridView1.RowPrePaint += (s, e) =>
+            {
+                if (e.RowIndex % 2 == 0) // Baris genap (putih)
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                else // Baris ganjil (abu-abu)
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(251, 251, 251);
+            };
         }
     }
 }

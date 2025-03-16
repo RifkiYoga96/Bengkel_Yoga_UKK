@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboardUser));
             lblBeranda = new Label();
             lblServis = new Label();
             lblTentangKami = new Label();
             btnLogout = new YogaButton();
             panel1 = new Panel();
+            btnBack = new YogaButton();
             panelSide2 = new Panel();
+            panelTentangKami = new Panel();
+            panelServis = new Panel();
+            panelBeranda = new Panel();
             lblProFix = new Label();
             panelMain = new Panel();
             panel1.SuspendLayout();
@@ -46,7 +51,7 @@
             lblBeranda.AutoSize = true;
             lblBeranda.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblBeranda.ForeColor = SystemColors.Control;
-            lblBeranda.Location = new Point(984, 25);
+            lblBeranda.Location = new Point(858, 25);
             lblBeranda.Name = "lblBeranda";
             lblBeranda.Size = new Size(82, 25);
             lblBeranda.TabIndex = 2;
@@ -58,7 +63,7 @@
             lblServis.AutoSize = true;
             lblServis.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblServis.ForeColor = SystemColors.Control;
-            lblServis.Location = new Point(1095, 25);
+            lblServis.Location = new Point(969, 25);
             lblServis.Name = "lblServis";
             lblServis.Size = new Size(63, 25);
             lblServis.TabIndex = 3;
@@ -70,7 +75,7 @@
             lblTentangKami.AutoSize = true;
             lblTentangKami.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblTentangKami.ForeColor = SystemColors.Control;
-            lblTentangKami.Location = new Point(1190, 25);
+            lblTentangKami.Location = new Point(1064, 25);
             lblTentangKami.Name = "lblTentangKami";
             lblTentangKami.Size = new Size(129, 25);
             lblTentangKami.TabIndex = 4;
@@ -88,7 +93,7 @@
             btnLogout.FlatStyle = FlatStyle.Flat;
             btnLogout.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(1352, 18);
+            btnLogout.Location = new Point(1226, 18);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(111, 40);
             btnLogout.TabIndex = 5;
@@ -99,6 +104,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(44, 62, 80);
+            panel1.Controls.Add(btnBack);
             panel1.Controls.Add(panelSide2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -106,18 +112,68 @@
             panel1.Size = new Size(1511, 75);
             panel1.TabIndex = 7;
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(44, 62, 80);
+            btnBack.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnBack.BackgroundImageLayout = ImageLayout.Zoom;
+            btnBack.BorderColor = Color.PaleVioletRed;
+            btnBack.BorderRadius = 7;
+            btnBack.BorderSize = 0;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.ForeColor = Color.White;
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(7, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(113, 50);
+            btnBack.TabIndex = 0;
+            btnBack.Text = "   Back";
+            btnBack.TextAlign = ContentAlignment.MiddleLeft;
+            btnBack.TextColor = Color.White;
+            btnBack.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += yogaButton1_Click;
+            // 
             // panelSide2
             // 
+            panelSide2.Controls.Add(panelTentangKami);
             panelSide2.Controls.Add(lblBeranda);
+            panelSide2.Controls.Add(panelServis);
             panelSide2.Controls.Add(lblServis);
+            panelSide2.Controls.Add(panelBeranda);
             panelSide2.Controls.Add(lblTentangKami);
             panelSide2.Controls.Add(btnLogout);
             panelSide2.Controls.Add(lblProFix);
-            panelSide2.Location = new Point(0, 0);
+            panelSide2.Location = new Point(126, 0);
             panelSide2.Name = "panelSide2";
-            panelSide2.Size = new Size(1511, 75);
+            panelSide2.Size = new Size(1385, 75);
             panelSide2.TabIndex = 6;
-            panelSide2.Paint += panelSide2_Paint;
+            // 
+            // panelTentangKami
+            // 
+            panelTentangKami.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelTentangKami.Location = new Point(1064, 57);
+            panelTentangKami.Name = "panelTentangKami";
+            panelTentangKami.Size = new Size(129, 6);
+            panelTentangKami.TabIndex = 1;
+            // 
+            // panelServis
+            // 
+            panelServis.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelServis.Location = new Point(969, 56);
+            panelServis.Name = "panelServis";
+            panelServis.Size = new Size(63, 6);
+            panelServis.TabIndex = 1;
+            // 
+            // panelBeranda
+            // 
+            panelBeranda.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelBeranda.Location = new Point(858, 57);
+            panelBeranda.Name = "panelBeranda";
+            panelBeranda.Size = new Size(82, 6);
+            panelBeranda.TabIndex = 0;
             // 
             // lblProFix
             // 
@@ -149,6 +205,7 @@
             DoubleBuffered = true;
             Name = "FormDashboardUser";
             Text = "FormDashboardUser";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panelSide2.ResumeLayout(false);
             panelSide2.PerformLayout();
@@ -162,7 +219,11 @@
         private YogaButton btnLogout;
         private Panel panel1;
         private Label lblProFix;
+        private Panel panelTentangKami;
+        private Panel panelServis;
+        private Panel panelBeranda;
         private Panel panelMain;
+        private YogaButton btnBack;
         private Panel panelSide2;
     }
 }

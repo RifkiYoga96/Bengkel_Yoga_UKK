@@ -16,10 +16,11 @@ namespace Bengkel_Yoga_UKK
         public string no_pol { get; set; }
         public string nama_kendaraan { get; set; }
         public DateTime tanggal { get; set; }
+        public DateTime tanggal_servis { get; set; }
         public string keluhan { get; set; }
         public string catatan { get; set; }
-        public int id_jasaServis {  get; set; }
-        public string ktp_mekanik { get; set; }
+        public int? id_jasaServis {  get; set; }
+        public string? ktp_mekanik { get; set; }
         public string nama_mekanik { get; set; }
 
         public int antrean { get; set; }

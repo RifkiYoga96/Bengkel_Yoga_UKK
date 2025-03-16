@@ -102,18 +102,13 @@ namespace Bengkel_Yoga_UKK
             int count =  koneksi.QuerySingleOrDefault<int>(sql, new {no_pol = no_pol});
             return count > 0;
         }
-        public void UpdateKonfirmasiBooking(BookingModel booking)
+        public async Task UpdateKonfirmasiBookingAsync(FilterDto data)
         {
             using var koneksi = new SqlConnection(conn.connStr);
-            var dp = new DynamicParameters();
-            dp.Add("@id_booking",booking.id_booking);
-            dp.Add("@id_jasaServis",booking.id_jasaServis);
-            dp.Add("@ktp_mekanik",booking.ktp_mekanik == string.Empty ? null : booking.ktp_mekanik);
-            dp.Add("@catatan",booking.catatan);
-            dp.Add("@status",booking.status);
 
-            koneksi.Query<BookingModel>("UpdateKonfirmasiBooking", dp, commandType: CommandType.StoredProcedure);
+            await koneksi.QueryAsync<BookingModel>(data.sql, data.param);
         }
+
 
 
         public void InsertDataBooking(BookingModel booking, bool pelanggan)

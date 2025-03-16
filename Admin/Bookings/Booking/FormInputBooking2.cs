@@ -232,7 +232,7 @@ namespace Bengkel_Yoga_UKK
                 }
                 if (_bookingDal.CekNoPol(txtNoPol2.Text.Trim()))
                 {
-                    lblErrorNoPol.Text = "⚠️ Nomor polisi sudah tersedia!";
+                    lblErrorNoPol.Text = $"⚠️ Nomor polisi {txtNoPol2.Text} sudah booking!";
                     lblErrorNoPol.Visible = true;
                     return;
                 }

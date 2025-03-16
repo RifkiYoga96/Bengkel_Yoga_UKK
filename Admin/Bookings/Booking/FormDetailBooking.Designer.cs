@@ -75,7 +75,6 @@
             yogaPanel2 = new YogaPanel();
             label23 = new Label();
             txtCatatan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            btnSave = new YogaButton();
             btnProgressServis = new YogaButton();
             label19 = new Label();
             label3 = new Label();
@@ -423,7 +422,7 @@
             // txtSparepart
             // 
             txtSparepart.BackColor = Color.White;
-            txtSparepart.BeforeTouchSize = new Size(370, 31);
+            txtSparepart.BeforeTouchSize = new Size(293, 70);
             txtSparepart.BorderColor = Color.FromArgb(209, 211, 212);
             txtSparepart.BorderStyle = BorderStyle.FixedSingle;
             txtSparepart.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
@@ -681,7 +680,7 @@
             // txtCatatan
             // 
             txtCatatan.BackColor = Color.White;
-            txtCatatan.BeforeTouchSize = new Size(370, 31);
+            txtCatatan.BeforeTouchSize = new Size(293, 70);
             txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
@@ -693,26 +692,6 @@
             txtCatatan.Size = new Size(300, 95);
             txtCatatan.TabIndex = 137;
             txtCatatan.ThemeName = "Default";
-            // 
-            // btnSave
-            // 
-            btnSave.Anchor = AnchorStyles.None;
-            btnSave.BackColor = Color.FromArgb(52, 152, 219);
-            btnSave.BackgroundColor = Color.FromArgb(52, 152, 219);
-            btnSave.BorderColor = Color.PaleVioletRed;
-            btnSave.BorderRadius = 4;
-            btnSave.BorderSize = 0;
-            btnSave.FlatAppearance.BorderSize = 0;
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(1168, 732);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(129, 46);
-            btnSave.TabIndex = 139;
-            btnSave.Text = "Save";
-            btnSave.TextColor = Color.White;
-            btnSave.UseVisualStyleBackColor = false;
             // 
             // btnProgressServis
             // 
@@ -786,7 +765,6 @@
             ClientSize = new Size(1325, 812);
             Controls.Add(btnSelesai);
             Controls.Add(label3);
-            Controls.Add(btnSave);
             Controls.Add(yogaPanel2);
             Controls.Add(label19);
             Controls.Add(btnProgressServis);
@@ -872,7 +850,6 @@
         private YogaPanel yogaPanel2;
         private Label label23;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtCatatan;
-        private YogaButton btnSave;
         private YogaButton btnBatalkanPesanan;
         private YogaButton btnProgressServis;
         private Label label19;

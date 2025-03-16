@@ -10,21 +10,12 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class Form1 : Form
+    public partial class TambahKendaraanUC : UserControl
     {
-        public Form1()
+        public TambahKendaraanUC()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            InvoiceModel invoice = new InvoiceModel
-            {
-                
-            };
-
-            InvoiceGenerators.GenerateInvoice(invoice);
+            btnTambah.Click += (s, e) => new InputKendaraanForm().ShowDialog();
         }
     }
 }

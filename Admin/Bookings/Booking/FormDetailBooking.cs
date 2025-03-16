@@ -19,6 +19,7 @@ namespace Bengkel_Yoga_UKK
         private readonly ProdukDal _produkDal = new ProdukDal();
         public static int _id_booking;
         private string _servisKeterangan = "pending";
+        private bool _invoiceShow = false;
         Color _hijau = Color.FromArgb(0, 192, 0);
         Color _oren = Color.FromArgb(240, 177, 0);
         Color _biru = Color.FromArgb(52, 152, 219);
@@ -44,17 +45,21 @@ namespace Bengkel_Yoga_UKK
 
             btnProgressServis.Click += (s, e) => 
             {
-            
+                ProgresServisButton();
             };
 
             btnBatalkanPesanan.Click += BtnBatalkanPesanan_Click;
-            btnSave.Click += (s, e) => SaveData();
-            this.FormClosing += (s, e) =>
+            this.FormClosing += async (s, e) =>
             {
                 if (!MB.Konfirmasi("Apakah anda yakin ingin menutup bagian ini tanpa menyimpan perubahan?")) return;
-                SaveData();
+                await SaveDataAsync();
             };
+            btnSelesai.Click += (s, e) => ProgresServisButton(true);
+            comboMekanik.SelectedIndexChanged += async (s, e) => await SaveDataTunggal("mekanik");
+            comboServis.SelectedIndexChanged += async (s, e) => await SaveDataTunggal("jasaServis");
+            txtCatatan.Leave += async (s,e) => await SaveDataTunggal("catatan");
         }
+
 
         private void BtnBatalkanPesanan_Click(object? sender, EventArgs e)
         {
@@ -71,26 +76,32 @@ namespace Bengkel_Yoga_UKK
             CancelServis();
         }
 
-        private void ProgresServisButton()
+        private async void ProgresServisButton(bool clickFromBtnSelesai = false)
         {
             if (_servisKeterangan == "pending")
             {
-                if (!MB.Konfirmasi("Apakah anda yakin ingin mengubah status menjadi Dikerjakan?")) return;
+                if (!MB.Konfirmasi("Apakah anda yakin ingin mengubah status menjadi Dikerjakan?\nTindakan ini tidak dapat diurungkan")) return;
                 _servisKeterangan = "dikerjakan";
             }
             else if (_servisKeterangan == "dikerjakan")
             {
-                if (!MB.Konfirmasi("Apakah anda yakin bahwa servis Sudah Selesai?")) return;
+                if (!MB.Konfirmasi("Apakah anda yakin bahwa servis Sudah Selesai?\nTindakan ini tidak dapat diurungkan")) return;
                 _servisKeterangan = "belum bayar";
             }
             else if (_servisKeterangan == "belum bayar")
             {
-                if (!MB.Konfirmasi("Apakah anda yakin bahwa pesanan ini Sudah Dibayar?")) return;
+                _invoiceShow = true;
+                btnSelesai.Visible = _invoiceShow;
+
+                if (!clickFromBtnSelesai) return;
+                if (!MB.Konfirmasi("Apakah anda yakin bahwa pesanan ini Sudah Dibayar?\nTindakan ini tidak dapat diurungkan")) return;
                 _servisKeterangan = "selesai";
             }
             ProgresServisGaris();
+            await Task.Delay(1000);
+            await SaveDataTunggal("progress");
         }
-        private void CancelServis()
+        private async void CancelServis()
         {
             if (_servisKeterangan == "pending")
                 _servisKeterangan = "batal booking";
@@ -100,6 +111,7 @@ namespace Bengkel_Yoga_UKK
                 _servisKeterangan = "batal pembayaran";
 
             ProgresServisGaris();
+            await SaveDataTunggal("progress");
         }
 
         private void ProgresServisGaris()
@@ -219,17 +231,17 @@ namespace Bengkel_Yoga_UKK
             btnStatus.Text = text;
         }
 
-
         private void InitComponent()
         {
             label1.ForeColor = SystemColors.ControlText;
             label10.ForeColor = SystemColors.ControlText;
+            btnSelesai.Visible = false;
 
             var listServis = new List<JasaServisModel>()
             {
                 new JasaServisModel{ id_jasaServis = 0, nama_jasaServis ="--Pilih jasa servis--" }
             };
-            //listServis.AddRange(_jasaServisDal.ListData());
+            listServis.AddRange(_jasaServisDal.ListData(new FilterDto()));
             comboServis.DataSource = listServis;
             comboServis.DisplayMember = "nama_jasaServis";
             comboServis.ValueMember = "id_jasaServis";
@@ -285,19 +297,17 @@ namespace Bengkel_Yoga_UKK
             ProgresServisGaris();
         }
 
-        private void SaveData()
+        private async Task SaveDataAsync()
         {
-            int id_booking = Convert.ToInt32(lblIdBooking.Text.Trim());
-            int jasaServis = Convert.ToInt32(comboServis.SelectedValue);
-            string ktp_mekanik = comboMekanik.SelectedValue.ToString() ?? string.Empty;
+            /*int id_booking = Convert.ToInt32(lblIdBooking.Text.Trim());
+            int? jasaServis = comboServis.SelectedIndex == 0 ? null : Convert.ToInt32(comboServis.SelectedValue);
+            string? ktp_mekanik = comboMekanik.SelectedIndex == 0 ? null : comboMekanik.SelectedValue.ToString() ?? string.Empty;
             string catatan = txtCatatan.Text;
 
             string status = _servisKeterangan;
 
             if (comboMekanik.SelectedIndex == 0)
                 ktp_mekanik = string.Empty;
-
-            if (!MB.Konfirmasi("Apakah anda yakin ingin menyimpan perubahan?")) return;
 
             var data = new BookingModel
             {
@@ -307,7 +317,44 @@ namespace Bengkel_Yoga_UKK
                 catatan = catatan,
                 status = status
             };
-            _bookingDal.UpdateKonfirmasiBooking(data);
+
+            await _bookingDal.UpdateKonfirmasiBookingAsync(data);*/
+        }
+
+        private async Task SaveDataTunggal(string component)
+        {
+            var models = new FilterDto();
+            models.param = new Dapper.DynamicParameters();
+            if (component == "mekanik")
+            {
+                string? ktp_mekanik = comboMekanik.SelectedIndex == 0 ? null : comboMekanik.SelectedValue.ToString() ?? string.Empty;
+                models.sql = @"UPDATE Bookings SET ktp_mekanik = @ktp WHERE id_booking = @id";
+                models.param.Add("@ktp",ktp_mekanik);
+                models.param.Add("@id",_id_booking);
+            }
+            else if(component == "jasaServis")
+            {
+                int? jasaServis = comboServis.SelectedIndex == 0 ? null : Convert.ToInt32(comboServis.SelectedValue);
+                models.sql = @"UPDATE Bookings SET id_jasaServis = @id_jasaServis WHERE id_booking = @id";
+                models.param.Add("@id_jasaServis", jasaServis);
+                models.param.Add("@id", _id_booking);
+            }
+            else if( component == "catatan")
+            {
+                string catatan = txtCatatan.Text;
+                models.sql = @"UPDATE Bookings SET catatan = @catatan WHERE id_booking = @id";
+                models.param.Add("@catatan", catatan);
+                models.param.Add("@id", _id_booking);
+            }
+            else if(component == "progress")
+            {
+                models.sql = @"UPDATE Bookings SET status = @status WHERE id_booking = @id";
+                models.param.Add("@status", _servisKeterangan);
+                models.param.Add("@id", _id_booking);
+                if (_servisKeterangan == "dikerjakan") 
+                    models.sql = @"UPDATE Bookings SET status = @status, tanggal_servis = GETDATE() WHERE id_booking = @id";
+            }
+            await _bookingDal.UpdateKonfirmasiBookingAsync(models);
         }
 
         private void btnStatus_Click(object sender, EventArgs e)
@@ -315,4 +362,10 @@ namespace Bengkel_Yoga_UKK
 
         }
     }
+}
+
+public class MekanikModelCombo
+{
+    public string ktp_mekanik { get; set; }
+    public string nama_mekanik { get; set; }
 }

@@ -139,7 +139,6 @@ namespace Bengkel_Yoga_UKK
                     contextMenuStripEx2.Show(Cursor.Position);
             }
         }
-
         private void ResetPage()
         {
             _page = 1;

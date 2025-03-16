@@ -81,6 +81,7 @@ CREATE TABLE Bookings(
 	no_pol VARCHAR(30),
 	nama_kendaraan VARCHAR(100),
 	tanggal DATE,
+	tanggal_servis DATE,
 	keluhan VARCHAR(100),
 
 	catatan VARCHAR(100),
@@ -138,11 +139,11 @@ CREATE TABLE Riwayat(
 	created_at DATETIME DEFAULT GETDATE(),
                         
 	FOREIGN KEY (ktp_pelanggan)
-		REFERENCES Pelanggan(ktp_pelanggan),
-	FOREIGN KEY (id_kendaraan)
-		REFERENCES Kendaraan(id_kendaraan)
+		REFERENCES Pelanggan(ktp_pelanggan)
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
+	FOREIGN KEY (id_kendaraan)
+		REFERENCES Kendaraan(id_kendaraan),
 	FOREIGN KEY (ktp_admin)
 		REFERENCES Admins(ktp_admin)
 		ON DELETE CASCADE

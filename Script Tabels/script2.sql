@@ -73,7 +73,7 @@ CREATE PROCEDURE InsertKendaraan
     @kapasitas INT,
     @tahun VARCHAR(5),
     @ktp_pelanggan VARCHAR(30),
-    @total_servis INT
+    @total_servis INT = 0
 AS
 BEGIN
     INSERT INTO Kendaraan (no_pol, merk, tipe, transmisi, kapasitas, tahun, ktp_pelanggan, total_servis, created_at, updated_at)
@@ -293,8 +293,7 @@ CREATE PROCEDURE UpdateKendaraan
     @transmisi VARCHAR(20),
     @kapasitas INT,
     @tahun VARCHAR(5),
-    @ktp_pelanggan VARCHAR(30),
-    @total_servis INT
+    @ktp_pelanggan VARCHAR(30)
 AS
 BEGIN
     UPDATE Kendaraan
@@ -306,7 +305,6 @@ BEGIN
         kapasitas = @kapasitas,
         tahun = @tahun,
         ktp_pelanggan = @ktp_pelanggan,
-        total_servis = @total_servis,
         updated_at = GETDATE()
     WHERE id_kendaraan = @id_kendaraan;
 END;

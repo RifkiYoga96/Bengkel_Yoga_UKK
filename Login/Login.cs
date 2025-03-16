@@ -89,13 +89,15 @@ namespace Bengkel_Yoga_UKK
 
             if (loginPelanggan)
             {
-                new FormDashboardUser().Show();
                 GlobalVariabel.SetKTPSession(dataPelanggan?.ktp_pelanggan??string.Empty);
+                new FormDashboardUser().Show();
+                this.Hide();
             }
             else if (loginAdmin)
             {
-                new MainFormAdmin().Show();
                 GlobalVariabel.SetKTPSession(dataAdmin?.ktp_admin ?? string.Empty);
+                new MainFormAdmin().Show();
+                this.Hide();
             }
             else
             {
