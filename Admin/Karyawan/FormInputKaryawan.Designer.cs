@@ -55,7 +55,7 @@
             lblErrorEmail = new Label();
             lblErrorPassword = new Label();
             lblErrorCPassword = new Label();
-            comboPegawai = new ComboBox();
+            comboJabatan = new ComboBox();
             lblErrorAlamat = new Label();
             btnDelete = new YogaButton();
             txtNoTelepon = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -428,15 +428,15 @@
             lblErrorCPassword.TextAlign = ContentAlignment.MiddleRight;
             lblErrorCPassword.Visible = false;
             // 
-            // comboPegawai
+            // comboJabatan
             // 
-            comboPegawai.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboPegawai.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboPegawai.FormattingEnabled = true;
-            comboPegawai.Location = new Point(619, 425);
-            comboPegawai.Name = "comboPegawai";
-            comboPegawai.Size = new Size(293, 28);
-            comboPegawai.TabIndex = 83;
+            comboJabatan.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboJabatan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboJabatan.FormattingEnabled = true;
+            comboJabatan.Location = new Point(619, 425);
+            comboJabatan.Name = "comboJabatan";
+            comboJabatan.Size = new Size(293, 28);
+            comboJabatan.TabIndex = 83;
             // 
             // lblErrorAlamat
             // 
@@ -516,7 +516,7 @@
             Controls.Add(pictureBoxProfile);
             Controls.Add(btnChooseFile);
             Controls.Add(lblErrorAlamat);
-            Controls.Add(comboPegawai);
+            Controls.Add(comboJabatan);
             Controls.Add(lblErrorCPassword);
             Controls.Add(lblErrorPassword);
             Controls.Add(lblErrorEmail);
@@ -585,7 +585,7 @@
         private Label lblErrorEmail;
         private Label lblErrorPassword;
         private Label lblErrorCPassword;
-        private ComboBox comboPegawai;
+        private ComboBox comboJabatan;
         private Label lblErrorAlamat;
         private YogaButton btnDelete;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoTelepon;

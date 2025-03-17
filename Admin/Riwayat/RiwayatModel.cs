@@ -61,13 +61,14 @@ namespace Bengkel_Yoga_UKK
         public string Kendaraan { get; set; }
 
         public DateTime Tanggal { get; set; }
+        public DateTime tanggal_servis { get; set; }
+        public DateTime tanggal_selesai { get; set; }
         public string Pegawai { get; set; }
         public string Mekanik { get; set; }
 
         public string Keluhan { get; set; }
         public string Catatan { get; set; }
         public string Sparepart { get; set; }
-        public string catatan { get; set; }
         public int total_harga { get; set; }
 
     }

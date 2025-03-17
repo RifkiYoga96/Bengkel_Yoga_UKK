@@ -213,7 +213,10 @@ BEGIN
             ktp_pelanggan = @ktp_pelanggan_new,
             nama_pelanggan = @nama_pelanggan,
             email = @email,
-            password = @password,
+            password = CASE 
+                          WHEN @password IS NOT NULL THEN @password 
+                          ELSE password 
+                       END,
             alamat = @alamat,
             no_telp = @no_telp, 
             updated_at = GETDATE()
@@ -235,7 +238,7 @@ CREATE PROCEDURE UpdateAdmin
     @ktp_admin_new VARCHAR(30),  
     @nama_admin VARCHAR(100),
     @email VARCHAR(50),
-    @password VARCHAR(255),
+    @password VARCHAR(255) = NULL,
     @alamat VARCHAR(100),
     @no_telp VARCHAR(20),
     @role INT,
@@ -251,7 +254,10 @@ BEGIN
             ktp_admin = @ktp_admin_new,
             nama_admin = @nama_admin,
             email = @email,
-            password = @password,
+            password = CASE 
+                          WHEN @password IS NOT NULL THEN @password 
+                          ELSE password 
+                       END,
             alamat = @alamat,
             no_telp = @no_telp, 
             role = @role,
@@ -444,6 +450,14 @@ BEGIN
     INNER JOIN Riwayat r ON s.id_riwayat = i.id_riwayat
     WHERE r.status = 'dibatalkan'
 END;
+
+go;
+
+ -- TRIGGER Selesai Booking --
+
+
+
+
 
 
 

@@ -315,14 +315,14 @@
             contextMenuStripEx1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, deleteToolStripMenuItem });
             contextMenuStripEx1.MetroColor = Color.FromArgb(204, 236, 249);
             contextMenuStripEx1.Name = "contextMenuStripEx1";
-            contextMenuStripEx1.Size = new Size(181, 82);
+            contextMenuStripEx1.Size = new Size(127, 60);
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             editToolStripMenuItem.Image = (Image)resources.GetObject("editToolStripMenuItem.Image");
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(180, 28);
+            editToolStripMenuItem.Size = new Size(126, 28);
             editToolStripMenuItem.Text = "Edit";
             // 
             // deleteToolStripMenuItem
@@ -330,7 +330,7 @@
             deleteToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             deleteToolStripMenuItem.Image = Properties.Resources.bin__1_;
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(180, 28);
+            deleteToolStripMenuItem.Size = new Size(126, 28);
             deleteToolStripMenuItem.Text = "Delete";
             // 
             // contextMenuStripEx2
@@ -338,14 +338,14 @@
             contextMenuStripEx2.Items.AddRange(new ToolStripItem[] { restoreStripMenuItem2 });
             contextMenuStripEx2.MetroColor = Color.FromArgb(204, 236, 249);
             contextMenuStripEx2.Name = "contextMenuStripEx1";
-            contextMenuStripEx2.Size = new Size(136, 32);
+            contextMenuStripEx2.Size = new Size(181, 54);
             // 
             // restoreStripMenuItem2
             // 
             restoreStripMenuItem2.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             restoreStripMenuItem2.Image = (Image)resources.GetObject("restoreStripMenuItem2.Image");
             restoreStripMenuItem2.Name = "restoreStripMenuItem2";
-            restoreStripMenuItem2.Size = new Size(135, 28);
+            restoreStripMenuItem2.Size = new Size(180, 28);
             restoreStripMenuItem2.Text = "Restore";
             // 
             // FormKaryawan

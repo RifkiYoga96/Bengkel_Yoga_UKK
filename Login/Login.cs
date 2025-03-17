@@ -89,13 +89,13 @@ namespace Bengkel_Yoga_UKK
 
             if (loginPelanggan)
             {
-                GlobalVariabel.SetKTPSession(dataPelanggan?.ktp_pelanggan??string.Empty);
+                GlobalVariabel.SetSession(dataPelanggan?.ktp_pelanggan??string.Empty);
                 new FormDashboardUser().Show();
                 this.Hide();
             }
             else if (loginAdmin)
             {
-                GlobalVariabel.SetKTPSession(dataAdmin?.ktp_admin ?? string.Empty);
+                GlobalVariabel.SetSession(dataAdmin?.ktp_admin ?? string.Empty, dataAdmin?.role??-1);
                 new MainFormAdmin().Show();
                 this.Hide();
             }
@@ -106,7 +106,7 @@ namespace Bengkel_Yoga_UKK
             }
         }
 
-        private void CekLogin2()
+      /*  private void CekLogin2()
         {
             string email = txtEmail.Text;
             string password = txtPassword.Text;
@@ -143,6 +143,6 @@ namespace Bengkel_Yoga_UKK
                 return;
             }
             this.Hide();
-        }
+        }*/
     }
 }

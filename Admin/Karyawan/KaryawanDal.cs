@@ -113,7 +113,7 @@ namespace Bengkel_Yoga_UKK
         }
         public KaryawanModel? GetLogin(string email)
         {
-            const string sql = @"SELECT ktp_admin, password FROM Admins
+            const string sql = @"SELECT ktp_admin, password, role FROM Admins
                         WHERE email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { email = email});

@@ -106,7 +106,7 @@ namespace Bengkel_Yoga_UKK
         {
             using var koneksi = new SqlConnection(conn.connStr);
 
-            await koneksi.QueryAsync<BookingModel>(data.sql, data.param);
+            await koneksi.ExecuteAsync(data.sql, data.param);
         }
 
 
@@ -198,5 +198,30 @@ namespace Bengkel_Yoga_UKK
             koneksi.Execute(sql, dp);
         }
 
+        public async Task SelesaiServisUpdate(DynamicParameters dp)
+        {
+            string sql = @"
+                INSERT INTO Riwayat (
+                    ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, 
+                    tanggal, tanggal_servis, tanggal_selesai, 
+                    ktp_admin, ktp_mekanik, keluhan, catatan, total_harga, 
+                    id_jasaServis, status, pembatalan_oleh, created_at
+                )
+                SELECT 
+                    b.ktp_pelanggan, b.nama_pelanggan, b.id_kendaraan, b.no_pol, b.nama_kendaraan, 
+                    b.tanggal, b.tanggal_servis, GETDATE(),
+                    @ktp_admin, b.ktp_mekanik, b.keluhan, b.catatan, @total_harga, 
+                    b.id_jasaServis, @status, @pembatalan_oleh,
+                    GETDATE()
+                FROM Bookings b
+                WHERE b.id_booking = @id_booking";
+
+            string sqlDelete = @"DELETE FROM Bookings WHERE id_booking = @id_booking";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+
+            await koneksi.ExecuteAsync(sql, dp);
+            await koneksi.ExecuteAsync(sqlDelete, dp);
+        }
     }
 }

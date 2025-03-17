@@ -38,24 +38,29 @@
             btnService = new YogaButton();
             btnPelanggan = new YogaButton();
             btnKaryawan = new YogaButton();
+            btnKendaraan = new YogaButton();
             panelLeft = new Panel();
             panelLogOut = new Panel();
+            panel3 = new Panel();
             btnLogout = new YogaButton();
             panel2 = new Panel();
-            label2 = new Label();
-            label1 = new Label();
-            rjCircularPictureBox1 = new RJCircularPictureBox();
-            panelMain = new Panel();
-            panelTop = new Panel();
-            lblDisplay = new Label();
-            btnKendaraan = new YogaButton();
+            lblRole = new Label();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            lblNamaAdmin = new Label();
             panel1 = new Panel();
-            panel3 = new Panel();
+            pictureBoxProfile = new RJCircularPictureBox();
+            label1 = new Label();
+            panelTop = new Panel();
+            yogaButton1 = new YogaButton();
+            lblDisplay = new Label();
+            btnDetailProfile = new YogaButton();
+            panelMain = new Panel();
             flowLayoutPanel2.SuspendLayout();
             panelLeft.SuspendLayout();
             panelLogOut.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
             panelTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -281,6 +286,31 @@
             btnKaryawan.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnKaryawan.UseVisualStyleBackColor = false;
             // 
+            // btnKendaraan
+            // 
+            btnKendaraan.BackColor = Color.FromArgb(44, 62, 80);
+            btnKendaraan.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnKendaraan.BorderColor = Color.PaleVioletRed;
+            btnKendaraan.BorderRadius = 7;
+            btnKendaraan.BorderSize = 0;
+            btnKendaraan.FlatAppearance.BorderSize = 0;
+            btnKendaraan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKendaraan.FlatStyle = FlatStyle.Flat;
+            btnKendaraan.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKendaraan.ForeColor = Color.White;
+            btnKendaraan.Image = Properties.Resources.scooter;
+            btnKendaraan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnKendaraan.Location = new Point(18, 531);
+            btnKendaraan.Name = "btnKendaraan";
+            btnKendaraan.Padding = new Padding(20, 0, 0, 0);
+            btnKendaraan.Size = new Size(255, 60);
+            btnKendaraan.TabIndex = 21;
+            btnKendaraan.Text = "    Kendaraan";
+            btnKendaraan.TextAlign = ContentAlignment.MiddleLeft;
+            btnKendaraan.TextColor = Color.White;
+            btnKendaraan.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnKendaraan.UseVisualStyleBackColor = false;
+            // 
             // panelLeft
             // 
             panelLeft.Controls.Add(flowLayoutPanel2);
@@ -303,6 +333,14 @@
             panelLogOut.Padding = new Padding(15, 0, 10, 0);
             panelLogOut.Size = new Size(290, 82);
             panelLogOut.TabIndex = 13;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.Location = new Point(18, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(253, 2);
+            panel3.TabIndex = 1;
             // 
             // btnLogout
             // 
@@ -332,73 +370,112 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(44, 62, 80);
+            panel2.Controls.Add(lblRole);
+            panel2.Controls.Add(flowLayoutPanel1);
             panel2.Controls.Add(panel1);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(rjCircularPictureBox1);
+            panel2.Controls.Add(pictureBoxProfile);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(290, 139);
             panel2.TabIndex = 12;
             // 
-            // label2
+            // lblRole
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
-            label2.Location = new Point(97, 68);
-            label2.Name = "label2";
-            label2.Size = new Size(75, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Super Admin";
+            lblRole.AutoSize = true;
+            lblRole.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point);
+            lblRole.Location = new Point(97, 68);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(75, 15);
+            lblRole.TabIndex = 2;
+            lblRole.Text = "Super Admin";
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(lblNamaAdmin);
+            flowLayoutPanel1.Controls.Add(btnDetailProfile);
+            flowLayoutPanel1.Location = new Point(94, 45);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(200, 20);
+            flowLayoutPanel1.TabIndex = 0;
+            // 
+            // lblNamaAdmin
+            // 
+            lblNamaAdmin.AutoEllipsis = true;
+            lblNamaAdmin.AutoSize = true;
+            lblNamaAdmin.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNamaAdmin.Location = new Point(3, 0);
+            lblNamaAdmin.Name = "lblNamaAdmin";
+            lblNamaAdmin.Size = new Size(144, 20);
+            lblNamaAdmin.TabIndex = 3;
+            lblNamaAdmin.Text = "Rifki Yoga Syahbani";
+            lblNamaAdmin.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Location = new Point(12, 132);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(253, 2);
+            panel1.TabIndex = 0;
+            // 
+            // pictureBoxProfile
+            // 
+            pictureBoxProfile.BackgroundImage = (Image)resources.GetObject("pictureBoxProfile.BackgroundImage");
+            pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBoxProfile.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            pictureBoxProfile.BorderColor = Color.White;
+            pictureBoxProfile.BorderColor2 = Color.White;
+            pictureBoxProfile.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            pictureBoxProfile.BorderSize = 2;
+            pictureBoxProfile.GradientAngle = 50F;
+            pictureBoxProfile.Location = new Point(18, 30);
+            pictureBoxProfile.Name = "pictureBoxProfile";
+            pictureBoxProfile.Size = new Size(70, 70);
+            pictureBoxProfile.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxProfile.TabIndex = 0;
+            pictureBoxProfile.TabStop = false;
             // 
             // label1
             // 
-            label1.AutoSize = true;
+            label1.AutoEllipsis = true;
             label1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(95, 47);
+            label1.Location = new Point(82, 18);
             label1.Name = "label1";
             label1.Size = new Size(144, 20);
             label1.TabIndex = 1;
             label1.Text = "Rifki Yoga Syahbani";
             // 
-            // rjCircularPictureBox1
-            // 
-            rjCircularPictureBox1.BackgroundImage = (Image)resources.GetObject("rjCircularPictureBox1.BackgroundImage");
-            rjCircularPictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            rjCircularPictureBox1.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            rjCircularPictureBox1.BorderColor = Color.White;
-            rjCircularPictureBox1.BorderColor2 = Color.White;
-            rjCircularPictureBox1.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            rjCircularPictureBox1.BorderSize = 2;
-            rjCircularPictureBox1.GradientAngle = 50F;
-            rjCircularPictureBox1.Location = new Point(18, 30);
-            rjCircularPictureBox1.Name = "rjCircularPictureBox1";
-            rjCircularPictureBox1.Size = new Size(70, 70);
-            rjCircularPictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            rjCircularPictureBox1.TabIndex = 0;
-            rjCircularPictureBox1.TabStop = false;
-            // 
-            // panelMain
-            // 
-            panelMain.AutoScroll = true;
-            panelMain.BackColor = Color.Gainsboro;
-            panelMain.Dock = DockStyle.Fill;
-            panelMain.Location = new Point(290, 67);
-            panelMain.Margin = new Padding(0);
-            panelMain.Name = "panelMain";
-            panelMain.Size = new Size(944, 769);
-            panelMain.TabIndex = 6;
-            // 
             // panelTop
             // 
             panelTop.BackColor = Color.White;
+            panelTop.Controls.Add(label1);
+            panelTop.Controls.Add(yogaButton1);
             panelTop.Controls.Add(lblDisplay);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(290, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(944, 67);
             panelTop.TabIndex = 9;
+            // 
+            // yogaButton1
+            // 
+            yogaButton1.BackColor = Color.Transparent;
+            yogaButton1.BackgroundColor = Color.Transparent;
+            yogaButton1.BorderColor = Color.PaleVioletRed;
+            yogaButton1.BorderRadius = 4;
+            yogaButton1.BorderSize = 0;
+            yogaButton1.FlatAppearance.BorderSize = 0;
+            yogaButton1.FlatStyle = FlatStyle.Flat;
+            yogaButton1.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            yogaButton1.ForeColor = Color.White;
+            yogaButton1.Image = (Image)resources.GetObject("yogaButton1.Image");
+            yogaButton1.Location = new Point(228, 15);
+            yogaButton1.Name = "yogaButton1";
+            yogaButton1.Size = new Size(30, 30);
+            yogaButton1.TabIndex = 0;
+            yogaButton1.TextColor = Color.White;
+            yogaButton1.UseVisualStyleBackColor = false;
             // 
             // lblDisplay
             // 
@@ -413,46 +490,37 @@
             lblDisplay.Text = "PRODUK";
             lblDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnKendaraan
+            // btnDetailProfile
             // 
-            btnKendaraan.BackColor = Color.FromArgb(44, 62, 80);
-            btnKendaraan.BackgroundColor = Color.FromArgb(44, 62, 80);
-            btnKendaraan.BorderColor = Color.PaleVioletRed;
-            btnKendaraan.BorderRadius = 7;
-            btnKendaraan.BorderSize = 0;
-            btnKendaraan.FlatAppearance.BorderSize = 0;
-            btnKendaraan.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnKendaraan.FlatStyle = FlatStyle.Flat;
-            btnKendaraan.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnKendaraan.ForeColor = Color.White;
-            btnKendaraan.Image = Properties.Resources.scooter;
-            btnKendaraan.ImageAlign = ContentAlignment.MiddleLeft;
-            btnKendaraan.Location = new Point(18, 531);
-            btnKendaraan.Name = "btnKendaraan";
-            btnKendaraan.Padding = new Padding(20, 0, 0, 0);
-            btnKendaraan.Size = new Size(255, 60);
-            btnKendaraan.TabIndex = 21;
-            btnKendaraan.Text = "    Kendaraan";
-            btnKendaraan.TextAlign = ContentAlignment.MiddleLeft;
-            btnKendaraan.TextColor = Color.White;
-            btnKendaraan.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnKendaraan.UseVisualStyleBackColor = false;
+            btnDetailProfile.BackColor = Color.Transparent;
+            btnDetailProfile.BackgroundColor = Color.Transparent;
+            btnDetailProfile.BorderColor = Color.PaleVioletRed;
+            btnDetailProfile.BorderRadius = 4;
+            btnDetailProfile.BorderSize = 0;
+            btnDetailProfile.FlatAppearance.BorderSize = 0;
+            btnDetailProfile.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnDetailProfile.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnDetailProfile.FlatStyle = FlatStyle.Flat;
+            btnDetailProfile.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDetailProfile.ForeColor = Color.White;
+            btnDetailProfile.Image = (Image)resources.GetObject("btnDetailProfile.Image");
+            btnDetailProfile.Location = new Point(153, 3);
+            btnDetailProfile.Name = "btnDetailProfile";
+            btnDetailProfile.Size = new Size(30, 20);
+            btnDetailProfile.TabIndex = 3;
+            btnDetailProfile.TextColor = Color.White;
+            btnDetailProfile.UseVisualStyleBackColor = false;
             // 
-            // panel1
+            // panelMain
             // 
-            panel1.BackColor = Color.White;
-            panel1.Location = new Point(12, 132);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(253, 3);
-            panel1.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Location = new Point(18, 3);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(253, 3);
-            panel3.TabIndex = 1;
+            panelMain.AutoScroll = true;
+            panelMain.BackColor = Color.Gainsboro;
+            panelMain.Dock = DockStyle.Fill;
+            panelMain.Location = new Point(290, 67);
+            panelMain.Margin = new Padding(0);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(944, 769);
+            panelMain.TabIndex = 6;
             // 
             // MainFormAdmin
             // 
@@ -479,7 +547,9 @@
             panelLogOut.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)rjCircularPictureBox1).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
             panelTop.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -496,16 +566,20 @@
         private Panel panelLeft;
         private Panel panelLogOut;
         private YogaButton btnLogout;
-        private Panel panelMain;
         private Panel panelTop;
         private Panel panel2;
         private Label label1;
-        private RJCircularPictureBox rjCircularPictureBox1;
-        private Label label2;
+        private RJCircularPictureBox pictureBoxProfile;
+        private Label lblRole;
         private Label lblDisplay;
         private YogaButton btnKalender;
         private YogaButton btnKendaraan;
         private Panel panel3;
         private Panel panel1;
+        private YogaButton yogaButton1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label lblNamaAdmin;
+        private YogaButton btnDetailProfile;
+        private Panel panelMain;
     }
 }

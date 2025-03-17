@@ -24,7 +24,7 @@ namespace Bengkel_Yoga_UKK
         public string ktp_pelanggan_new { get; set; }
         public string nama_pelanggan { get; set; }
         public string email { get; set; }
-        public string password { get; set; }
+        public string? password { get; set; }
         public string no_telp { get; set; }
         public string alamat { get; set; }
     }

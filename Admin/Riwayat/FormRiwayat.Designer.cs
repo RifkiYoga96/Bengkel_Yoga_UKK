@@ -54,6 +54,7 @@
             deleteToolStripMenuItem = new ToolStripMenuItem();
             contextMenuStrip = new Syncfusion.Windows.Forms.Tools.ContextMenuStripEx();
             InvoiceStripMenuItem = new ToolStripMenuItem();
+            btnLaporan = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             yogaPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -370,12 +371,32 @@
             InvoiceStripMenuItem.Size = new Size(133, 26);
             InvoiceStripMenuItem.Text = "Invoice";
             // 
+            // btnLaporan
+            // 
+            btnLaporan.BackColor = Color.FromArgb(230, 126, 34);
+            btnLaporan.BackgroundColor = Color.FromArgb(230, 126, 34);
+            btnLaporan.BorderColor = Color.PaleVioletRed;
+            btnLaporan.BorderRadius = 3;
+            btnLaporan.BorderSize = 0;
+            btnLaporan.FlatAppearance.BorderSize = 0;
+            btnLaporan.FlatStyle = FlatStyle.Flat;
+            btnLaporan.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLaporan.ForeColor = Color.White;
+            btnLaporan.Location = new Point(1177, 32);
+            btnLaporan.Name = "btnLaporan";
+            btnLaporan.Size = new Size(192, 35);
+            btnLaporan.TabIndex = 121;
+            btnLaporan.Text = "📥 Download Laporan";
+            btnLaporan.TextColor = Color.White;
+            btnLaporan.UseVisualStyleBackColor = false;
+            // 
             // FormRiwayat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
+            BackColor = Color.FromArgb(230, 235, 240);
             ClientSize = new Size(1397, 683);
+            Controls.Add(btnLaporan);
             Controls.Add(yogaPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormRiwayat";
@@ -419,5 +440,6 @@
         private ComboBox comboFilterStatus;
         private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStrip;
         private ToolStripMenuItem InvoiceStripMenuItem;
+        private YogaButton btnLaporan;
     }
 }

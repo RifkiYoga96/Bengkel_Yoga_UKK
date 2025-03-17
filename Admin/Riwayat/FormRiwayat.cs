@@ -59,6 +59,12 @@ namespace Bengkel_Yoga_UKK
 
             ControlTgl1();
             ControlTgl2();
+
+            //Role
+            if(GlobalVariabel._role == 1)
+            {
+                btnLaporan.Visible = false;
+            }
         }
 
         #region EVENT
@@ -248,13 +254,14 @@ namespace Bengkel_Yoga_UKK
                     Kendaraan = x.nama_kendaraan,
                     Keluhan = x.keluhan,
                     Tanggal = x.tanggal,
+                    tanggal_servis = x.tanggal_servis,
+                    tanggal_selesai = x.tanggal_selesai,
                     Pegawai = x.nama_admin,
                     Mekanik = x.nama_mekanik,
                     Catatan = x.catatan,
                     Sparepart = listSparepart.Any(a => a.id_riwayat == x.id_riwayat)
                         ? string.Join(", ", listSparepart.Where(a => a.id_riwayat == x.id_riwayat).Select(a => a.nama_sparepart))
                         : "(Tidak Ada Sparepart)",
-                    catatan = x.catatan,
                     total_harga = x.total_harga
                 }).ToList();
 
@@ -315,6 +322,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["Kendaraan"].Width = 200;
             dataGridView1.Columns["Keluhan"].Width = 250;
             dataGridView1.Columns["Tanggal"].Width = 200;
+            dataGridView1.Columns["tanggal_servis"].Width = 200;
+            dataGridView1.Columns["tanggal_selesai"].Width = 200;
             dataGridView1.Columns["Pegawai"].Width = 200;
             dataGridView1.Columns["Catatan"].Width = 200;
             dataGridView1.Columns["Sparepart"].Width = 250;
@@ -336,6 +345,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["no_pol"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Keluhan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Tanggal"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["tanggal_servis"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            dataGridView1.Columns["tanggal_selesai"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Pegawai"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Catatan"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
             dataGridView1.Columns["Sparepart"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
@@ -356,6 +367,8 @@ namespace Bengkel_Yoga_UKK
             dataGridView1.Columns["ktp_pelanggan"].HeaderText = "KTP Pelanggan";
             dataGridView1.Columns["total_harga"].HeaderText = "Total Harga";
             dataGridView1.Columns["no_pol"].HeaderText = "Nomor Polisi";
+            dataGridView1.Columns["tanggal_servis"].HeaderText = "Mulai Servis";
+            dataGridView1.Columns["tanggal_selesai"].HeaderText = "Selesai";
 
             dataGridView1.Columns["id_kendaraan"].Visible = false;
         }

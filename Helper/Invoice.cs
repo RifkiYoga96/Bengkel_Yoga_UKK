@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Bengkel_Yoga_UKK
 {
@@ -82,7 +84,7 @@ namespace Bengkel_Yoga_UKK
 
             // Informasi Invoice
             doc.Add(new Paragraph($"Nomor Antrean: {invoice.Antrean}", bodyFont) { SpacingAfter = 5f });
-            doc.Add(new Paragraph($"Tanggal: {invoice.Tanggal:dd MMM yyyy}", bodyFont));
+            doc.Add(new Paragraph($"Tanggal: {invoice.Tanggal.ToString("d MMMM yyyy", new CultureInfo("id-ID"))}", bodyFont));
             doc.Add(new Paragraph($"Pelanggan: {invoice.NamaPelanggan}", bodyFont));
             doc.Add(new Paragraph($"Kendaraan: {invoice.NamaKendaraan} ({invoice.NoPolisi})", bodyFont));
             doc.Add(new Paragraph("------------------------------------------------------", bodyFont) { SpacingAfter = 10f });

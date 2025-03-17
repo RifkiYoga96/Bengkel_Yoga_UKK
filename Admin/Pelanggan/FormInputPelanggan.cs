@@ -18,6 +18,7 @@ namespace Bengkel_Yoga_UKK
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private bool _anyProfile = false;
         private bool _IsInsert = true;
+        private bool _resetPassword = false;
         private string _ktp_pelanggan = string.Empty;
         public FormInputPelanggan(string ktp_pelanggan, bool IsInsert = true)
         {
@@ -116,8 +117,6 @@ namespace Bengkel_Yoga_UKK
                 bool notvalid_ktp_admin = _karyawanDal.CekKTP(noKtp);
                 bool notvalid_ktp_pelanggan = _ktp_pelanggan == noKtp ?  false : _pelangganDal.CekKTPUpdate(_ktp_pelanggan);
 
-                /*MB.Warning((_ktp_pelanggan != noKtp).ToString());
-                MB.Warning(_pelangganDal.CekKTPUpdate(_ktp_pelanggan).ToString());*/
                 if (notvalid_ktp_pelanggan || notvalid_ktp_admin)
                 {
                     lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";
@@ -166,6 +165,7 @@ namespace Bengkel_Yoga_UKK
                 txtCPassword.ReadOnly = false;
                 txtPassword.Clear();
                 txtCPassword.Clear();
+                _resetPassword = true;
             };
             btnSave.Click += (s, e) => SaveData();
             btnCancel.Click += (s, e) =>
@@ -208,7 +208,9 @@ namespace Bengkel_Yoga_UKK
                 nama_pelanggan = nama,
                 no_telp = telepon,
                 email = email,
-                password = PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive),
+                password = _IsInsert || _resetPassword ? 
+                    PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive) 
+                    : null,
                 alamat = alamat
             };
 

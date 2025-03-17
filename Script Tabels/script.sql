@@ -81,7 +81,7 @@ CREATE TABLE Bookings(
 	no_pol VARCHAR(30),
 	nama_kendaraan VARCHAR(100),
 	tanggal DATE,
-	tanggal_servis DATE,
+	tanggal_servis DATETIME,
 	keluhan VARCHAR(100),
 
 	catatan VARCHAR(100),
@@ -269,6 +269,7 @@ SELECT
 FROM Sparepart
 WHERE kode_sparepart = 'SP001';
 
+DELETE FROM Riwayat;
 -- Insert ke Riwayat (setelah booking selesai)
 INSERT INTO Riwayat (ktp_pelanggan, nama_pelanggan, id_kendaraan, no_pol, nama_kendaraan, tanggal, ktp_admin, ktp_mekanik, keluhan, catatan, total_harga, id_jasaServis, status, tanggal_servis, tanggal_selesai, pembatalan_oleh)
 VALUES 

@@ -253,7 +253,9 @@ namespace Bengkel_Yoga_UKK
                     tanggal = x.tanggal,
                     keluhan = x.keluhan,
                     catatan = x.catatan == null ? "(Belum ada catatan)" : x.catatan,
-                    statusImg = x.status == "pending" ? _pending : _dikerjakan
+                    statusImg = x.status == "pending" ? _pending 
+                    : x.status == "dikerjakan" ? _dikerjakan
+                    : _belum_bayar
                 }).ToList();
 
             dataGridView1.DataSource = new SortableBindingList<BookingDto>(list);

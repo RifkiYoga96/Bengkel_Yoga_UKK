@@ -131,7 +131,7 @@
 </value>
   </data>
   <metadata name="contextMenuStripEx1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>135, 28</value>
+    <value>23, 23</value>
   </metadata>
   <data name="editToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -149,7 +149,7 @@
   <data name="restoreStripMenuItem2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFlSURBVEhLtdU7
+        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFlSURBVEhLtdU7
         LwVBGMbxRUiIWyMiUSt8Ap2EgoTQ+CzaoxcRpS+ikCCiUdJQoCQRHSr3/7POm0zOvmbObNaT/LJnN3PJ
         zrw7p6iZYayjt7z7h2zgG4eY1IOmMwtNII9YRqPR0jzDJvnCHvoRzTjU8Bp3CW+wCcwppuFmDLfo7JTr
         CUuoZAdehzrOUcklvMa5jjGFSm6gBh9Qo/2EcJOtXwt9cKMJXrFQ3sUziHfY4PeYRzQXWPv9mcwcbPAD

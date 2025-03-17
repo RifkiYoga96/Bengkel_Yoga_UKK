@@ -23,6 +23,7 @@ namespace Bengkel_Yoga_UKK
         private readonly PelangganDal _pelangganDal = new PelangganDal();
         private bool _anyProfile = false;
         private bool _IsInsert = true;
+        private bool _resetPassword = false;
         private string _ktp_admin = string.Empty;
         public FormInputKaryawan(string ktp_admin,bool IsInsert = true)
         {
@@ -170,7 +171,7 @@ namespace Bengkel_Yoga_UKK
                 }
 
                 bool notvalid_ktp_pelanggan = _pelangganDal.CekKTP(noKtp);
-                bool notvalid_ktp_admin = _ktp_admin != noKtp ? _karyawanDal.CekKTP(noKtp) : _karyawanDal.CekKTPUpdate(_ktp_admin);
+                bool notvalid_ktp_admin = _ktp_admin == noKtp ? false : _karyawanDal.CekKTP(noKtp);
 
                 if (notvalid_ktp_pelanggan || notvalid_ktp_admin)
                 {
@@ -209,7 +210,7 @@ namespace Bengkel_Yoga_UKK
             };
 
 
-            comboPegawai.DataSource = new List<string>() { "Mekanik","Petugas","Super Admin" };
+            comboJabatan.DataSource = new List<string>() { "Mekanik","Petugas","Super Admin" };
         }
 
         #endregion
@@ -225,8 +226,8 @@ namespace Bengkel_Yoga_UKK
             string password = txtPassword.Text;
             string konfirmPass = txtKonfirPassword.Text;
             string alamat = txtAlamat.Text;
-            int jabatan = comboPegawai.SelectedIndex == 0 ? 0
-                :comboPegawai.SelectedIndex == 1 ? 1
+            int jabatan = comboJabatan.SelectedIndex == 0 ? 0
+                :comboJabatan.SelectedIndex == 1 ? 1
                 : 2;
             byte[]? profile = _anyProfile ? ImageConvert.ImageToByteArray(_fotoAdmin) : null;
 
@@ -250,7 +251,9 @@ namespace Bengkel_Yoga_UKK
                 nama_admin = nama,
                 no_telp = telepon,
                 email = email,
-                password = PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive),
+                password = _IsInsert || _resetPassword ?
+                    PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive) 
+                    : null,
                 alamat = alamat,
                 role = jabatan,
                 image_data = profile
@@ -285,6 +288,8 @@ namespace Bengkel_Yoga_UKK
             txtPassword.Text = data.password;
             txtKonfirPassword.Text = data.password;
             txtAlamat.Text = data.alamat;
+
+            comboJabatan.SelectedIndex = data.role;
             pictureBoxProfile.BackgroundImage = data.image_data != null ? ImageConvert.Image_ByteToImage(data.image_data) : _defaultProfile;
         }
 
@@ -296,6 +301,7 @@ namespace Bengkel_Yoga_UKK
             txtKonfirPassword.ReadOnly = false;
             txtPassword.Clear();
             txtKonfirPassword.Clear();
+            _resetPassword = true;
         }
 
         #endregion
