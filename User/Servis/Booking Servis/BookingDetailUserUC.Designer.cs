@@ -156,7 +156,6 @@
             label29.Size = new Size(72, 30);
             label29.TabIndex = 66;
             label29.Text = "Total :";
-            label29.Click += label29_Click;
             // 
             // gridSparepart
             // 

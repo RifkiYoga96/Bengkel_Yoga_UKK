@@ -198,6 +198,13 @@ namespace Bengkel_Yoga_UKK
             koneksi.Execute(sql, dp);
         }
 
+        public void HardDeleteData(int id)
+        {
+            const string sql = @"DELETE FROM Bookings WHERE id_booking = @id";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new {id});
+        }
+
         public async Task SelesaiServisUpdate(DynamicParameters dp)
         {
             string sql = @"
@@ -216,12 +223,9 @@ namespace Bengkel_Yoga_UKK
                 FROM Bookings b
                 WHERE b.id_booking = @id_booking";
 
-            string sqlDelete = @"DELETE FROM Bookings WHERE id_booking = @id_booking";
-
             using var koneksi = new SqlConnection(conn.connStr);
 
             await koneksi.ExecuteAsync(sql, dp);
-            await koneksi.ExecuteAsync(sqlDelete, dp);
         }
     }
 }

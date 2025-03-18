@@ -26,10 +26,11 @@ namespace Bengkel_Yoga_UKK
             InitializeComponent();
             _formDashboardUser = this;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            GetDataSimulation();
             InitComponent();
             RegisterEvent();
+            this.VisibleChanged += (s, e) => GetData();
         }
+
         private void RegisterEvent()
         {
             lblBeranda.Click += (s, e) => ControlTab(1);
@@ -42,10 +43,23 @@ namespace Bengkel_Yoga_UKK
                 FormDashboardUser.ShowControlInPanel(_route.uc);
             };
 
-            this.FormClosing += (s, e) =>
+            btnLogout.Click += BtnLogout_Click;
+        }
+
+        private void BtnLogout_Click(object? sender, EventArgs e)
+        {
+            string ktp = GlobalVariabel._ktp;
+            if (ktp == string.Empty)
             {
-                Login._loginForm.Close();
-            };
+                new Login().Show();
+                this.Hide();
+            }
+            else
+            {
+                if (!MB.Konfirmasi("Apakah anda yakin ingin logout?")) return;
+                GlobalVariabel._ktp = string.Empty; //delete session
+                GetData();
+            }
         }
 
         public static void ControlTab(int panel)
@@ -86,8 +100,8 @@ namespace Bengkel_Yoga_UKK
                     panelTentangKami.BackColor = _active;
                     ShowControlInPanel(new AboutUsUC());
                     break;
-
             }
+
         }
 
         public static void ShowControlInPanel(UserControl control)
@@ -123,7 +137,6 @@ namespace Bengkel_Yoga_UKK
                 panelSide.Dock = DockStyle.None;
                 btnBack.Visible = true;
             }
-            
         }
 
         private void yogaButton1_Click(object sender, EventArgs e)
@@ -131,14 +144,30 @@ namespace Bengkel_Yoga_UKK
 
         }
 
-        private void GetDataSimulation()
+        private void GetData()
         {
             ControlTab(1);
             var data = _pelangganDal.GetData(GlobalVariabel._ktp);
             if (data is null) return;
-            _ktp_pelanggan = data.ktp_pelanggan;
+            GlobalVariabel._ktp_pelanggan = data.ktp_pelanggan;
+            _ktp_pelanggan = GlobalVariabel._ktp_pelanggan;
 
-            MB.Warning(GlobalVariabel._ktp);
+            if (GlobalVariabel._ktp_pelanggan == string.Empty)
+            {
+                btnLogout.Text = "Login";
+                panelProfile.Visible = false;
+            }
+            else
+            {
+                btnLogout.Text = "Logout";
+                panelProfile.Visible = true;
+            }
+                
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

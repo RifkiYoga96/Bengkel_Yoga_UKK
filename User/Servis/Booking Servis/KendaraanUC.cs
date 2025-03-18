@@ -21,7 +21,6 @@ namespace Bengkel_Yoga_UKK
         private int _id_terkait = 0;
         // Buat instance SfToolTip
         
-
         public KendaraanUC(int id_kendaraan)
         {
             InitializeComponent();
@@ -50,14 +49,10 @@ namespace Bengkel_Yoga_UKK
 
             lblProfile.Text = kendaraan.merk.Substring(0,1).ToUpper();
 
-            
-
             var dataBooking = _userKendaraanDal.GetServisBooking(id_kendaraan);
             var dataRiwayat = _userKendaraanDal.GetServisRiwayat(id_kendaraan);
             if(dataBooking != null)
             {
-                //detail kendaraan
-
                 //keterangan servis
                 lblTanggal.Text = dataBooking.tanggal.ToString("d MMMM yyyy", new CultureInfo("id-ID"));
                 lblTanggal.ForeColor = SystemColors.ControlText;
@@ -132,24 +127,42 @@ namespace Bengkel_Yoga_UKK
         }
         private void RegisterEvent()
         {
-            btnDetail.Click += (s, e) =>
-            {
-                FormDashboardUser._route = new RouteDto
-                {
-                    uc = new ServisUserUC(),
-                    sideBar = false
-                }; 
-                FormDashboardUser.InitComponent(false);
-                FormDashboardUser.ControlTab(4);
-                FormDashboardUser.ShowControlInPanel(new BookingDetailUserUC(_isBooking, _id_terkait));
-            };
+            btnDetail.Click += BtnDetail_Click;
 
             this.Load += KendaraanUC_Load;
+            btnBooking.Click += BtnBooking_Click;
+        }
+
+        private void BtnDetail_Click(object? sender, EventArgs e)
+        {
+            FormDashboardUser._route = new RouteDto
+            {
+                uc = new ServisUserUC(),
+                sideBar = false
+            };
+            FormDashboardUser.InitComponent(false);
+            FormDashboardUser.ControlTab(4);
+            FormDashboardUser.ShowControlInPanel(new BookingDetailUserUC(_isBooking, _id_terkait));
+        }
+
+        private void BtnBooking_Click(object? sender, EventArgs e)
+        {
+            int id = _id_kendaraan;
+            var dataBooking = _userKendaraanDal.GetServisBooking(id);
+            if (dataBooking != null)
+            {
+                MB.Warning("Anda tidak dapat melakukan booking karena kendaraan ini sedang dalam proses servis!");
+                return;
+            }
+
+            if (new FormBookingUser(_id_kendaraan).ShowDialog() != DialogResult.OK) return;
+            LoadData(_id_kendaraan);
         }
 
         private void KendaraanUC_Load(object? sender, EventArgs e)
         {
             LoadData(_id_kendaraan);
+            int locationCenter = (this.Width - panelKendaraan.Width)*2;
         }
     }
 }

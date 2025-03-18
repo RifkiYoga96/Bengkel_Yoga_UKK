@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 using Syncfusion.WinForms.Controls;
 
-namespace Bengkel_Yoga_UKK      
+namespace Bengkel_Yoga_UKK
 {
     public partial class MainFormAdmin : SfForm
     {   
@@ -25,6 +25,7 @@ namespace Bengkel_Yoga_UKK
         private static Color active = System.Drawing.Color.FromArgb(41, 128, 185);
         private static Color over = System.Drawing.Color.FromArgb(44, 62, 80);
         private static Color hover = System.Drawing.Color.FromArgb(64, 82, 100);
+        private bool _isLogout = false;
 
         public MainFormAdmin()
         {
@@ -60,6 +61,17 @@ namespace Bengkel_Yoga_UKK
             this.Style.TitleBar.MinimizeButtonForeColor = Color.White;
             this.Style.TitleBar.MaximizeButtonForeColor = Color.White;
             this.StyleForm();
+
+            _listButton.Clear();
+
+            //Role Visible Component
+            if (GlobalVariabel._role == 1)
+            {
+                btnKaryawan.Visible = false;
+                btnProduk.Visible = false;
+                btnService.Visible = false;
+            }
+            PegawaiLogin();
         }
         private void RegisterEvent()
         {
@@ -80,13 +92,29 @@ namespace Bengkel_Yoga_UKK
             btnKalender.Click += (s, e) => NavigateToForm(new FormKalender(), 8);
             btnKendaraan.Click += (s, e) => NavigateToForm(new FormKendaraan(), 9);
 
-            this.FormClosing += (s, e) =>
-            {
-                if (MB.Konfirmasi("Apakah anda yakin ingin menutup aplikasi ini?"))
-                    Login._loginForm.Close();
-                else
-                    e.Cancel = true;
-            };
+            this.FormClosing += MainFormAdmin_FormClosing;
+            btnLogout.Click += BtnLogout_Click;
+
+            btnDetailProfile.Click += (s, e) => contextMenuStripEx1.Show(Cursor.Position);
+            editToolStripMenuItem.Click += (s, e) => new FormEditProfile(GlobalVariabel._ktp).ShowDialog();
+        }
+
+        private void BtnLogout_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin logout?")) return;
+            _isLogout = true;
+            GlobalVariabel._ktp = string.Empty; // hapus session
+            FormDashboardUser._formDashboardUser.Show();
+            this.Close();
+        }
+
+        private void MainFormAdmin_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            if (_isLogout) return;
+            if (MB.Konfirmasi("Apakah anda yakin ingin menutup aplikasi ini?"))
+                FormDashboardUser._formDashboardUser.Close();
+            else
+                e.Cancel = true;
         }
 
         private void NavigateToForm(Form form, int buttonId)
@@ -96,30 +124,11 @@ namespace Bengkel_Yoga_UKK
             ControlSideBar();
         }
 
-        private bool FormKhusus()
-        {
-            Control[] existingControls = panelMain.Controls.Cast<Control>().ToArray();
-
-            foreach (var control in existingControls)
-            {
-                if (control is Form specificForm && specificForm.Name == "FormDetailBooking")
-                {
-                    if (!MB.Konfirmasi("Apakah anda ingin menutup bagian ini tanpa menyimpan perubahan?")) return true;
-                }
-            }
-            return false;
-        }
-
-
         private void AddButton(int key, Button value)
         {
             _listButton.Add(key, value);
         }
 
-        private void BtnSideBar_Click(object? sender, EventArgs e)
-        {
-            ControlSideBar();
-        }
 
         public static void ControlSideBar()
         {
@@ -196,9 +205,35 @@ namespace Bengkel_Yoga_UKK
             panelMain.Tag = form;
             form.Show();
         }
+        public static void PegawaiLogin()
+        {
+            MainFormAdmin main = MainFormAdmin._mainForm;
+            var karyawanDal = new KaryawanDal();
+            var data = karyawanDal.GetData(GlobalVariabel._ktp);
 
+            if (main == null || data is null) return;
 
-        private void SetProfilePicture(Image image, PictureBox pictureBox)
+            RJCircularPictureBox pictureBox = main.pictureBoxProfile;
+            Label lblRole = main.lblRole;
+            Label lblNamaAdmin = main.lblNamaAdmin;
+
+            //PictureBox
+            Image fotoProfile = data.image_data is null ?
+                Properties.Resources.defaultProfile
+                : ImageConvert.Image_ByteToImage(data.image_data);
+            SetProfilePicture(fotoProfile, pictureBox);
+
+            lblRole.Text = data.role == 1 ? "Petugas" : "Super Admin";
+            lblNamaAdmin.Text = data.nama_admin;
+
+            //change Auto size label
+            lblNamaAdmin.AutoSize = true;
+            int maxWidth = 144;
+            lblNamaAdmin.AutoSize = lblNamaAdmin.Width > maxWidth ? false : true;
+            //lblNamaAdmin.Width = maxWidth;
+        }
+
+        public static void SetProfilePicture(Image image, PictureBox pictureBox)
         {
             // Buat bitmap baru dengan ukuran PictureBox
             Bitmap resizedImage = new Bitmap(pictureBox.Width, pictureBox.Height);

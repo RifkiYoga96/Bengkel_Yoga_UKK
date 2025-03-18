@@ -55,10 +55,10 @@ namespace Bengkel_Yoga_UKK
             var namaHari = tanggal.ToString("dddd", new System.Globalization.CultureInfo("id-ID"));
 
             if (namaHari == "Jumat")
-                namaHari = "Jum''at"; // Menangani petik tunggal dalam SQL
+                namaHari = "Jum''at";
 
             using var koneksi = new SqlConnection(conn.connStr);
-            await koneksi.OpenAsync(); // Pastikan koneksi dibuka secara async
+            await koneksi.OpenAsync();
 
             var result = await koneksi.ExecuteScalarAsync<int>(sql, new { tanggal, hari = namaHari });
             return result > 0;

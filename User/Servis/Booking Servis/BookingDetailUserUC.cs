@@ -16,6 +16,7 @@ namespace Bengkel_Yoga_UKK
     public partial class BookingDetailUserUC : UserControl
     {
         private readonly BookingDal _bookingDal = new BookingDal();
+        private readonly BookingDetailUserDal _bookingDetailUserDal = new BookingDetailUserDal();
         private readonly RiwayatDal _riwayatDal = new RiwayatDal();
         private bool _isBooking = false;
         private int _id_terkait = 0;
@@ -45,6 +46,12 @@ namespace Bengkel_Yoga_UKK
 
                     StyleGrid();
                 }
+            };
+            btnBatalkanPesanan.Click += (s, e) =>
+            {
+                if (!MB.Konfirmasi("Apakah anda yakin ingin membatalkan pesanan ini?")) return;
+                _bookingDetailUserDal.CancelBooking(_id_terkait);
+                LoadData();
             };
         }
         private void InitComponent()
@@ -94,6 +101,9 @@ namespace Bengkel_Yoga_UKK
 
                     SettingButtonStatus(orenColor, "Belum Bayar");
                 }
+
+                if (data.status != "pending")
+                    btnBatalkanPesanan.Visible = false;
 
                 lblKendaraan.Text = data.nama_kendaraan;
                 lblNoPol.Text = data.no_pol;
@@ -217,10 +227,6 @@ namespace Bengkel_Yoga_UKK
                 lblMekanik.Text = data.nama_mekanik;
                 lblBatal.Text = data.pembatalan_oleh;
                 lblCatatan.Text = data.catatan;
-
-
-
-
             }
         }
         private void SettingButtonStatus(Color color, string txt)
@@ -264,11 +270,6 @@ namespace Bengkel_Yoga_UKK
         {
             panelSparepart.Height = jumlahRow > 1 ? panelSparepart.Height + jumlahRow * rowHeight : panelSparepart.Height;
             gridSparepart.Height = headerHeight + (rowHeight * jumlahRow);
-        }
-
-        private void label29_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

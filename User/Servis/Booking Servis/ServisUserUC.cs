@@ -17,19 +17,15 @@ namespace Bengkel_Yoga_UKK
     {
         public static bool _child = false;
         private readonly KendaraanDal _kendaraanDal = new KendaraanDal();
-        
-        
+        private readonly BookingDal _bookingDal = new BookingDal();
 
-        private Image _H = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Image\H.png");
-        private Image _Y = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Image\Y.png");
-        private Image _K = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Image\K.png");
-        private Image _S = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Image\S.png");
         public ServisUserUC()
         {
             InitializeComponent();
             LoadComponent();
             this.Resize += ServisUser_Resize;
             RegisterEvent();
+            UpdateAntrean();
             
         }
 
@@ -49,23 +45,6 @@ namespace Bengkel_Yoga_UKK
             flowLayoutPanel1.AutoScroll = true;
             int width = this.ClientSize.Width;
 
-            /*UserControl item = new KendaraanUC();
-            item.Width = width-2;
-
-            UserControl item2 = new KendaraanUC();
-            item.Width = width - 2;
-
-            UserControl item3 = new KendaraanUC();
-            item.Width = width - 2;
-
-            UserControl buttonAdd = new TambahKendaraanUC();
-            buttonAdd.Width = width - 2;
-
-            flowLayoutPanel1.Controls.Add(buttonAdd);
-            flowLayoutPanel1.Controls.Add(item);
-            flowLayoutPanel1.Controls.Add(item2);
-            flowLayoutPanel1.Controls.Add(item3);*/
-
             string ktp_pelanggan = FormDashboardUser._ktp_pelanggan;
             var listDataKendaraan = _kendaraanDal.ListDataPelanggan(ktp_pelanggan);
             if (!listDataKendaraan.Any())
@@ -74,6 +53,7 @@ namespace Bengkel_Yoga_UKK
                 // penanganan jika belum ada kendaraan
             }
 
+            flowLayoutPanel1.Controls.Add(new TambahKendaraanUC());
             foreach (var itm in listDataKendaraan)
             {
                 UserControl kendaraan = new KendaraanUC(itm.id_kendaraan);
@@ -92,6 +72,24 @@ namespace Bengkel_Yoga_UKK
                     sideBar = true
                 };
             };
+        }
+
+        private async void UpdateAntrean()
+        {
+            DateTime now = DateTime.Today;
+            var listAntrean = await _bookingDal.ListDataAntrean(now);
+            if (!listAntrean.Any()) return;
+            int antrean = 1;
+            foreach (var item in listAntrean)
+            {
+                var booking = new BookingModel
+                {
+                    id_booking = item.id_booking,
+                    antrean = antrean++,
+                    tipe_antrean = 2
+                };
+                _bookingDal.UpdateAntrean(booking);
+            }
         }
     }
 }

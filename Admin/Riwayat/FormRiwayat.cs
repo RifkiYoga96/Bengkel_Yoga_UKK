@@ -88,6 +88,10 @@ namespace Bengkel_Yoga_UKK
 
             tgl1.ValueChanged += Tgl_ValueChanged;
             tgl2.ValueChanged += Tgl_ValueChanged;
+            btnLaporan.Click += (s, e) =>
+            {
+                new FormRentangTanggalLaporan().ShowDialog();
+            };
 
             btnNext.Click += (s, e) =>
             {

@@ -46,9 +46,9 @@
             btnTambah.ForeColor = Color.White;
             btnTambah.Image = (Image)resources.GetObject("btnTambah.Image");
             btnTambah.ImageAlign = ContentAlignment.MiddleRight;
-            btnTambah.Location = new Point(195, 28);
+            btnTambah.Location = new Point(224, 26);
             btnTambah.Name = "btnTambah";
-            btnTambah.Size = new Size(1035, 83);
+            btnTambah.Size = new Size(981, 83);
             btnTambah.TabIndex = 1;
             btnTambah.Text = "   Tambah Kendaraan";
             btnTambah.TextColor = Color.White;

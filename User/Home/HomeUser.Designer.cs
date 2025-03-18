@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeUser));
-            yogaButton3 = new YogaButton();
             label10 = new Label();
-            yogaButton2 = new YogaButton();
+            btnBookingServis = new YogaButton();
             label9 = new Label();
             label8 = new Label();
             label6 = new Label();
@@ -39,26 +38,6 @@
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // yogaButton3
-            // 
-            yogaButton3.Anchor = AnchorStyles.None;
-            yogaButton3.BackColor = Color.FromArgb(230, 126, 34);
-            yogaButton3.BackgroundColor = Color.FromArgb(230, 126, 34);
-            yogaButton3.BorderColor = Color.PaleVioletRed;
-            yogaButton3.BorderRadius = 24;
-            yogaButton3.BorderSize = 0;
-            yogaButton3.FlatAppearance.BorderSize = 0;
-            yogaButton3.FlatStyle = FlatStyle.Flat;
-            yogaButton3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton3.ForeColor = Color.White;
-            yogaButton3.Location = new Point(252, 573);
-            yogaButton3.Name = "yogaButton3";
-            yogaButton3.Size = new Size(169, 50);
-            yogaButton3.TabIndex = 24;
-            yogaButton3.Text = "Cari Sparepart";
-            yogaButton3.TextColor = Color.White;
-            yogaButton3.UseVisualStyleBackColor = false;
             // 
             // label10
             // 
@@ -73,25 +52,25 @@
             label10.TabIndex = 23;
             label10.Text = "Servis Kendaraan Anda";
             // 
-            // yogaButton2
+            // btnBookingServis
             // 
-            yogaButton2.Anchor = AnchorStyles.None;
-            yogaButton2.BackColor = Color.MediumSlateBlue;
-            yogaButton2.BackgroundColor = Color.MediumSlateBlue;
-            yogaButton2.BorderColor = Color.PaleVioletRed;
-            yogaButton2.BorderRadius = 24;
-            yogaButton2.BorderSize = 0;
-            yogaButton2.FlatAppearance.BorderSize = 0;
-            yogaButton2.FlatStyle = FlatStyle.Flat;
-            yogaButton2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton2.ForeColor = Color.White;
-            yogaButton2.Location = new Point(43, 573);
-            yogaButton2.Name = "yogaButton2";
-            yogaButton2.Size = new Size(169, 50);
-            yogaButton2.TabIndex = 22;
-            yogaButton2.Text = "Booking Servis";
-            yogaButton2.TextColor = Color.White;
-            yogaButton2.UseVisualStyleBackColor = false;
+            btnBookingServis.Anchor = AnchorStyles.None;
+            btnBookingServis.BackColor = Color.MediumSlateBlue;
+            btnBookingServis.BackgroundColor = Color.MediumSlateBlue;
+            btnBookingServis.BorderColor = Color.PaleVioletRed;
+            btnBookingServis.BorderRadius = 33;
+            btnBookingServis.BorderSize = 0;
+            btnBookingServis.FlatAppearance.BorderSize = 0;
+            btnBookingServis.FlatStyle = FlatStyle.Flat;
+            btnBookingServis.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBookingServis.ForeColor = Color.White;
+            btnBookingServis.Location = new Point(43, 534);
+            btnBookingServis.Name = "btnBookingServis";
+            btnBookingServis.Size = new Size(219, 67);
+            btnBookingServis.TabIndex = 22;
+            btnBookingServis.Text = "Booking Servis";
+            btnBookingServis.TextColor = Color.White;
+            btnBookingServis.UseVisualStyleBackColor = false;
             // 
             // label9
             // 
@@ -160,9 +139,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(yogaButton3);
             Controls.Add(label10);
-            Controls.Add(yogaButton2);
+            Controls.Add(btnBookingServis);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label6);
@@ -179,7 +157,7 @@
 
         private YogaButton yogaButton3;
         private Label label10;
-        private YogaButton yogaButton2;
+        private YogaButton btnBookingServis;
         private Label label9;
         private Label label8;
         private Label label6;

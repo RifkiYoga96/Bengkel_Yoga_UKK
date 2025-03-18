@@ -113,7 +113,7 @@ namespace Bengkel_Yoga_UKK
             };
             _pelangganDal.InsertData(pelanggan);
             MB.Informasi("Registrasi berhasil!");
-            Login._loginForm.Show();
+            new Login().Show();
             this.Close();
         }
     }

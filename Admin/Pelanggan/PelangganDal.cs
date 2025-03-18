@@ -97,7 +97,14 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"SELECT 1 FROM Pelanggan WHERE ktp_pelanggan = @ktp_pelanggan";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { ktp_pelanggan = ktp });
-            return data != null;
+            return data is null;
+        }
+        public bool CekKTPUpdate(string ktp_new, string ktp_old)
+        {
+            const string sql = @"SELECT 1 FROM Pelanggan WHERE ktp_pelanggan <> @ktp_old AND ktp_pelanggan = @ktp_new";
+            using var koneksi = new SqlConnection(conn.connStr);
+            var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { ktp_new = ktp_new, ktp_old = ktp_old});
+            return data is null;
         }
         public bool CekEmailUpdate(string email, string ktp_pelanggan)
         {
@@ -111,13 +118,6 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"SELECT 1 FROM Pelanggan WHERE ktp_pelanggan <> @ktp_pelanggan AND no_telp = @no_telp";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { no_telp = telepon, ktp_pelanggan = ktp_pelanggan });
-            return data != null;
-        }
-        public bool CekKTPUpdate(string ktp)
-        {
-            const string sql = @"SELECT 1 FROM Pelanggan WHERE ktp_pelanggan <> @ktp_pelanggan";
-            using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { ktp_pelanggan = ktp });
             return data != null;
         }
         public PelangganModel? GetLogin(string email)

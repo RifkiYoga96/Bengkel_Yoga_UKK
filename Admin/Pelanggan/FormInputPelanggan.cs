@@ -105,7 +105,6 @@ namespace Bengkel_Yoga_UKK
 
             txtNoKTP.TextChanged += async (s, e) =>
             {
-
                 await Task.Delay(1500);
                 string noKtp = txtNoKTP.Text;
                 if (!Regex.IsMatch(noKtp, @"^\d{16}$"))
@@ -114,10 +113,10 @@ namespace Bengkel_Yoga_UKK
                     lblErrorKTP.Text = "⚠️ NIK harus 16 digit!";
                     return;
                 }
-                bool notvalid_ktp_admin = _karyawanDal.CekKTP(noKtp);
-                bool notvalid_ktp_pelanggan = _ktp_pelanggan == noKtp ?  false : _pelangganDal.CekKTPUpdate(_ktp_pelanggan);
+                bool valid_admin = _karyawanDal.CekKTP(noKtp);
+                bool valid_pelanggan = _ktp_pelanggan == noKtp ?  true : _pelangganDal.CekKTPUpdate(noKtp,_ktp_pelanggan);
 
-                if (notvalid_ktp_pelanggan || notvalid_ktp_admin)
+                if (!valid_admin || !valid_pelanggan)
                 {
                     lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";
                     lblErrorKTP.Visible = true;

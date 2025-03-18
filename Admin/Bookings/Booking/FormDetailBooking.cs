@@ -443,7 +443,6 @@ namespace Bengkel_Yoga_UKK
             dp.Add("@pembatalan_oleh",cancel ? "Admin/Petugas" : null);
 
             await _bookingDal.SelesaiServisUpdate(dp);
-            
         }
 
         private void btnStatus_Click(object sender, EventArgs e)

@@ -81,7 +81,7 @@ namespace Bengkel_Yoga_UKK
                     lblErrorKTP.Text = "⚠️ NIK harus 16 digit!";
                     return;
                 }
-                if (_pelangganDal.CekKTP(ktp) || _karyawanDal.CekKTP(ktp))
+                if (!_pelangganDal.CekKTP(ktp) || !_karyawanDal.CekKTP(ktp))
                 {
                     lblErrorKTP.Visible = true;
                     lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";

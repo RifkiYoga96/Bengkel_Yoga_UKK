@@ -47,14 +47,17 @@
             lblRole = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             lblNamaAdmin = new Label();
+            btnDetailProfile = new YogaButton();
             panel1 = new Panel();
             pictureBoxProfile = new RJCircularPictureBox();
             label1 = new Label();
             panelTop = new Panel();
             yogaButton1 = new YogaButton();
             lblDisplay = new Label();
-            btnDetailProfile = new YogaButton();
             panelMain = new Panel();
+            restoreStripMenuItem2 = new ToolStripMenuItem();
+            contextMenuStripEx1 = new Syncfusion.Windows.Forms.Tools.ContextMenuStripEx();
+            editToolStripMenuItem = new ToolStripMenuItem();
             flowLayoutPanel2.SuspendLayout();
             panelLeft.SuspendLayout();
             panelLogOut.SuspendLayout();
@@ -62,6 +65,7 @@
             flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
             panelTop.SuspendLayout();
+            contextMenuStripEx1.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel2
@@ -411,6 +415,28 @@
             lblNamaAdmin.Text = "Rifki Yoga Syahbani";
             lblNamaAdmin.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // btnDetailProfile
+            // 
+            btnDetailProfile.BackColor = Color.Transparent;
+            btnDetailProfile.BackgroundColor = Color.Transparent;
+            btnDetailProfile.BorderColor = Color.PaleVioletRed;
+            btnDetailProfile.BorderRadius = 4;
+            btnDetailProfile.BorderSize = 0;
+            btnDetailProfile.FlatAppearance.BorderSize = 0;
+            btnDetailProfile.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnDetailProfile.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnDetailProfile.FlatStyle = FlatStyle.Flat;
+            btnDetailProfile.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDetailProfile.ForeColor = Color.White;
+            btnDetailProfile.Image = (Image)resources.GetObject("btnDetailProfile.Image");
+            btnDetailProfile.Location = new Point(150, 0);
+            btnDetailProfile.Margin = new Padding(0);
+            btnDetailProfile.Name = "btnDetailProfile";
+            btnDetailProfile.Size = new Size(26, 20);
+            btnDetailProfile.TabIndex = 3;
+            btnDetailProfile.TextColor = Color.White;
+            btnDetailProfile.UseVisualStyleBackColor = false;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.White;
@@ -490,27 +516,6 @@
             lblDisplay.Text = "PRODUK";
             lblDisplay.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnDetailProfile
-            // 
-            btnDetailProfile.BackColor = Color.Transparent;
-            btnDetailProfile.BackgroundColor = Color.Transparent;
-            btnDetailProfile.BorderColor = Color.PaleVioletRed;
-            btnDetailProfile.BorderRadius = 4;
-            btnDetailProfile.BorderSize = 0;
-            btnDetailProfile.FlatAppearance.BorderSize = 0;
-            btnDetailProfile.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnDetailProfile.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btnDetailProfile.FlatStyle = FlatStyle.Flat;
-            btnDetailProfile.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDetailProfile.ForeColor = Color.White;
-            btnDetailProfile.Image = (Image)resources.GetObject("btnDetailProfile.Image");
-            btnDetailProfile.Location = new Point(153, 3);
-            btnDetailProfile.Name = "btnDetailProfile";
-            btnDetailProfile.Size = new Size(30, 20);
-            btnDetailProfile.TabIndex = 3;
-            btnDetailProfile.TextColor = Color.White;
-            btnDetailProfile.UseVisualStyleBackColor = false;
-            // 
             // panelMain
             // 
             panelMain.AutoScroll = true;
@@ -521,6 +526,29 @@
             panelMain.Name = "panelMain";
             panelMain.Size = new Size(944, 769);
             panelMain.TabIndex = 6;
+            // 
+            // restoreStripMenuItem2
+            // 
+            restoreStripMenuItem2.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            restoreStripMenuItem2.Image = (Image)resources.GetObject("restoreStripMenuItem2.Image");
+            restoreStripMenuItem2.Name = "restoreStripMenuItem2";
+            restoreStripMenuItem2.Size = new Size(135, 28);
+            restoreStripMenuItem2.Text = "Restore";
+            // 
+            // contextMenuStripEx1
+            // 
+            contextMenuStripEx1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem });
+            contextMenuStripEx1.MetroColor = Color.FromArgb(204, 236, 249);
+            contextMenuStripEx1.Name = "contextMenuStripEx1";
+            contextMenuStripEx1.Size = new Size(107, 32);
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            editToolStripMenuItem.Image = (Image)resources.GetObject("editToolStripMenuItem.Image");
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(106, 28);
+            editToolStripMenuItem.Text = "Edit";
             // 
             // MainFormAdmin
             // 
@@ -551,6 +579,7 @@
             flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
             panelTop.ResumeLayout(false);
+            contextMenuStripEx1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -581,5 +610,8 @@
         private Label lblNamaAdmin;
         private YogaButton btnDetailProfile;
         private Panel panelMain;
+        private ToolStripMenuItem restoreStripMenuItem2;
+        private Syncfusion.Windows.Forms.Tools.ContextMenuStripEx contextMenuStripEx1;
+        private ToolStripMenuItem editToolStripMenuItem;
     }
 }

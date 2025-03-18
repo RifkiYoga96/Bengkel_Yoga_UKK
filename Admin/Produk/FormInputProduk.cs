@@ -19,7 +19,6 @@ namespace Bengkel_Yoga_UKK
         private Image _imageProduk = Properties.Resources.defaultImage;
         private Image _defaultImage = Properties.Resources.defaultImage;
         private string _kode_produk = "";
-        private bool _deleteProfile = false;
         private bool _isInsert = true;
         public FormInputProduk(string kode_produk = "", bool isInsert = true)
         {
@@ -72,7 +71,6 @@ namespace Bengkel_Yoga_UKK
         {
             if (!MB.Konfirmasi("Apakah anda yakin ingin menghapus gambar?")) return;
             pictureBox1.BackgroundImage = _defaultImage;
-            _deleteProfile = true;
         }
 
         private void BtnChooseFile_Click(object? sender, EventArgs e)
@@ -83,12 +81,7 @@ namespace Bengkel_Yoga_UKK
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     Image originalImage = Image.FromFile(openFileDialog.FileName);
-
-
-                    //if (new ImageCropTest(originalImage).ShowDialog(this) != DialogResult.OK) return;
-
                     _imageProduk = ImageConvert.ResizeImageMax(originalImage, 400, 400);
-                    //_anyProfile = !IsSameImage(_imageProduk, _defaultImage);
 
                     pictureBox1.BackgroundImage = _imageProduk;
                     pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
@@ -122,7 +115,7 @@ namespace Bengkel_Yoga_UKK
                 harga = harga,
                 stok = stok,
                 stok_minimum = stokMinimum,
-                image_data = _deleteProfile ? null : ImageConvert.ImageToByteArray(_imageProduk)
+                image_data = IsSameImage(_defaultImage,_imageProduk) ? null : ImageConvert.ImageToByteArray(_imageProduk)
             };
 
             if (_kode_produk == "")
@@ -148,6 +141,22 @@ namespace Bengkel_Yoga_UKK
             txtHarga.DecimalValue = data.harga;
             txtStok.DoubleValue = data.stok;
             txtStokMinimum.DoubleValue = data.stok_minimum;
+        }
+
+        private bool IsSameImage(Image img1, Image img2)
+        {
+            if (img1 == null || img2 == null) return false;
+
+            using (MemoryStream ms1 = new MemoryStream(), ms2 = new MemoryStream())
+            {
+                img1.Save(ms1, System.Drawing.Imaging.ImageFormat.Png);
+                img2.Save(ms2, System.Drawing.Imaging.ImageFormat.Png);
+
+                byte[] imgBytes1 = ms1.ToArray();
+                byte[] imgBytes2 = ms2.ToArray();
+
+                return StructuralComparisons.StructuralEqualityComparer.Equals(imgBytes1, imgBytes2);
+            }
         }
     }
 }

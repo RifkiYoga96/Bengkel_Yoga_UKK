@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Syncfusion.XlsIO.Parser.Biff_Records.ObjRecords;
 using System.ComponentModel;
 using System.Data;
 
@@ -34,8 +35,7 @@ namespace Bengkel_Yoga_UKK
             _timer.Start();
         }
 
-
-        private async void UpdateAntrean()
+        private async void UpdateAntrean() //Update to B Series
         {
             if (!await CekAntreanUpdate()) return;
             DateTime now = DateTime.Today;
@@ -212,6 +212,8 @@ namespace Bengkel_Yoga_UKK
                     dp.Add(@"filterWaktu2", filterWaktu2);
                 }
             }
+            // Add Filter Delete
+            fltr.Add("(b.deleted_at IS NULL)");
 
             if (fltr.Count > 0)
                 sql += " WHERE " + string.Join(" AND ",fltr);

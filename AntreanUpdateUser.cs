@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class TambahKendaraanUC : UserControl
+    public partial class AntreanUpdateUser : Form
     {
-        public TambahKendaraanUC()
+        public AntreanUpdateUser()
         {
             InitializeComponent();
-            btnTambah.Click += (s, e) => new InputKendaraanForm().ShowDialog();
         }
     }
 }

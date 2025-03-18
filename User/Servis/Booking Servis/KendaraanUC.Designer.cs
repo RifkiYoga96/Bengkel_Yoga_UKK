@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KendaraanUC));
-            yogaPanel1 = new YogaPanel();
+            panelKendaraan = new YogaPanel();
             btnDetail = new YogaButton();
             lblCatatanServis = new Label();
             btnBooking = new Button();
@@ -48,37 +48,37 @@
             label2 = new Label();
             lblMerk = new Label();
             sfToolTip1 = new Syncfusion.Windows.Forms.SfToolTip(components);
-            yogaPanel1.SuspendLayout();
+            panelKendaraan.SuspendLayout();
             panelProfile.SuspendLayout();
             SuspendLayout();
             // 
-            // yogaPanel1
+            // panelKendaraan
             // 
-            yogaPanel1.Anchor = AnchorStyles.None;
-            yogaPanel1.BackColor = Color.White;
-            yogaPanel1.BorderColor = Color.PaleVioletRed;
-            yogaPanel1.BorderRadius = 10;
-            yogaPanel1.BorderSize = 2;
-            yogaPanel1.Controls.Add(btnDetail);
-            yogaPanel1.Controls.Add(lblCatatanServis);
-            yogaPanel1.Controls.Add(btnBooking);
-            yogaPanel1.Controls.Add(btnEdit);
-            yogaPanel1.Controls.Add(panel3);
-            yogaPanel1.Controls.Add(button1);
-            yogaPanel1.Controls.Add(panelProfile);
-            yogaPanel1.Controls.Add(lblTanggal);
-            yogaPanel1.Controls.Add(label6);
-            yogaPanel1.Controls.Add(panel1);
-            yogaPanel1.Controls.Add(lblNoPol);
-            yogaPanel1.Controls.Add(lblTipe);
-            yogaPanel1.Controls.Add(label3);
-            yogaPanel1.Controls.Add(label2);
-            yogaPanel1.Controls.Add(lblMerk);
-            yogaPanel1.ForeColor = Color.White;
-            yogaPanel1.Location = new Point(195, 12);
-            yogaPanel1.Name = "yogaPanel1";
-            yogaPanel1.Size = new Size(1035, 297);
-            yogaPanel1.TabIndex = 0;
+            panelKendaraan.Anchor = AnchorStyles.None;
+            panelKendaraan.BackColor = Color.White;
+            panelKendaraan.BorderColor = Color.PaleVioletRed;
+            panelKendaraan.BorderRadius = 10;
+            panelKendaraan.BorderSize = 2;
+            panelKendaraan.Controls.Add(btnDetail);
+            panelKendaraan.Controls.Add(lblCatatanServis);
+            panelKendaraan.Controls.Add(btnBooking);
+            panelKendaraan.Controls.Add(btnEdit);
+            panelKendaraan.Controls.Add(panel3);
+            panelKendaraan.Controls.Add(button1);
+            panelKendaraan.Controls.Add(panelProfile);
+            panelKendaraan.Controls.Add(lblTanggal);
+            panelKendaraan.Controls.Add(label6);
+            panelKendaraan.Controls.Add(panel1);
+            panelKendaraan.Controls.Add(lblNoPol);
+            panelKendaraan.Controls.Add(lblTipe);
+            panelKendaraan.Controls.Add(label3);
+            panelKendaraan.Controls.Add(label2);
+            panelKendaraan.Controls.Add(lblMerk);
+            panelKendaraan.ForeColor = Color.White;
+            panelKendaraan.Location = new Point(224, 12);
+            panelKendaraan.Name = "panelKendaraan";
+            panelKendaraan.Size = new Size(981, 274);
+            panelKendaraan.TabIndex = 0;
             // 
             // btnDetail
             // 
@@ -91,7 +91,7 @@
             btnDetail.FlatStyle = FlatStyle.Flat;
             btnDetail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnDetail.ForeColor = Color.White;
-            btnDetail.Location = new Point(417, 149);
+            btnDetail.Location = new Point(397, 142);
             btnDetail.Name = "btnDetail";
             btnDetail.Size = new Size(79, 29);
             btnDetail.TabIndex = 16;
@@ -103,11 +103,11 @@
             // 
             lblCatatanServis.AutoEllipsis = true;
             lblCatatanServis.AutoSize = true;
-            lblCatatanServis.Font = new Font("Segoe UI", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCatatanServis.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblCatatanServis.ForeColor = Color.FromArgb(41, 128, 185);
-            lblCatatanServis.Location = new Point(182, 152);
+            lblCatatanServis.Location = new Point(175, 145);
             lblCatatanServis.Name = "lblCatatanServis";
-            lblCatatanServis.Size = new Size(229, 23);
+            lblCatatanServis.Size = new Size(217, 23);
             lblCatatanServis.TabIndex = 15;
             lblCatatanServis.Text = "Servis CVT dan ganti oli dd";
             // 
@@ -120,7 +120,7 @@
             btnBooking.ForeColor = SystemColors.ControlText;
             btnBooking.Image = (Image)resources.GetObject("btnBooking.Image");
             btnBooking.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBooking.Location = new Point(799, 222);
+            btnBooking.Location = new Point(745, 206);
             btnBooking.Name = "btnBooking";
             btnBooking.Padding = new Padding(20, 0, 0, 0);
             btnBooking.Size = new Size(225, 63);
@@ -138,7 +138,7 @@
             btnEdit.ForeColor = SystemColors.ControlText;
             btnEdit.Image = (Image)resources.GetObject("btnEdit.Image");
             btnEdit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEdit.Location = new Point(651, 223);
+            btnEdit.Location = new Point(597, 206);
             btnEdit.Name = "btnEdit";
             btnEdit.Padding = new Padding(20, 0, 0, 0);
             btnEdit.Size = new Size(142, 63);
@@ -151,9 +151,9 @@
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.BackColor = SystemColors.ControlDark;
-            panel3.Location = new Point(3, 212);
+            panel3.Location = new Point(3, 202);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1032, 3);
+            panel3.Size = new Size(978, 3);
             panel3.TabIndex = 12;
             // 
             // button1
@@ -163,7 +163,7 @@
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(983, 18);
+            button1.Location = new Point(929, 18);
             button1.Name = "button1";
             button1.Size = new Size(35, 35);
             button1.TabIndex = 11;
@@ -176,17 +176,17 @@
             panelProfile.Controls.Add(lblProfile);
             panelProfile.Location = new Point(28, 18);
             panelProfile.Name = "panelProfile";
-            panelProfile.Size = new Size(81, 81);
+            panelProfile.Size = new Size(78, 78);
             panelProfile.TabIndex = 10;
             // 
             // lblProfile
             // 
             lblProfile.BackColor = Color.Transparent;
-            lblProfile.Font = new Font("Microsoft New Tai Lue", 38.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblProfile.Font = new Font("Microsoft New Tai Lue", 36.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblProfile.ForeColor = Color.White;
-            lblProfile.Location = new Point(12, 10);
+            lblProfile.Location = new Point(17, 11);
             lblProfile.Name = "lblProfile";
-            lblProfile.Size = new Size(64, 69);
+            lblProfile.Size = new Size(50, 54);
             lblProfile.TabIndex = 10;
             lblProfile.Text = "H";
             lblProfile.TextAlign = ContentAlignment.MiddleCenter;
@@ -194,9 +194,9 @@
             // lblTanggal
             // 
             lblTanggal.AutoSize = true;
-            lblTanggal.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTanggal.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblTanggal.ForeColor = SystemColors.ControlText;
-            lblTanggal.Location = new Point(49, 152);
+            lblTanggal.Location = new Point(49, 145);
             lblTanggal.Name = "lblTanggal";
             lblTanggal.Size = new Size(144, 23);
             lblTanggal.TabIndex = 8;
@@ -205,9 +205,9 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlDark;
-            label6.Location = new Point(49, 125);
+            label6.Location = new Point(49, 118);
             label6.Name = "label6";
             label6.Size = new Size(120, 23);
             label6.TabIndex = 7;
@@ -218,15 +218,15 @@
             panel1.BackColor = SystemColors.ControlLight;
             panel1.Location = new Point(28, 117);
             panel1.Name = "panel1";
-            panel1.Size = new Size(5, 71);
+            panel1.Size = new Size(5, 66);
             panel1.TabIndex = 6;
             // 
             // lblNoPol
             // 
             lblNoPol.AutoSize = true;
-            lblNoPol.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNoPol.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblNoPol.ForeColor = SystemColors.ControlText;
-            lblNoPol.Location = new Point(201, 76);
+            lblNoPol.Location = new Point(195, 73);
             lblNoPol.Name = "lblNoPol";
             lblNoPol.Size = new Size(84, 23);
             lblNoPol.TabIndex = 5;
@@ -235,9 +235,9 @@
             // lblTipe
             // 
             lblTipe.AutoSize = true;
-            lblTipe.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTipe.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblTipe.ForeColor = SystemColors.ControlText;
-            lblTipe.Location = new Point(182, 47);
+            lblTipe.Location = new Point(176, 45);
             lblTipe.Name = "lblTipe";
             lblTipe.Size = new Size(237, 23);
             lblTipe.TabIndex = 4;
@@ -246,9 +246,9 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = SystemColors.ControlDark;
-            label3.Location = new Point(134, 76);
+            label3.Location = new Point(128, 73);
             label3.Name = "label3";
             label3.Size = new Size(61, 23);
             label3.TabIndex = 3;
@@ -257,9 +257,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ControlDark;
-            label2.Location = new Point(134, 47);
+            label2.Location = new Point(128, 45);
             label2.Name = "label2";
             label2.Size = new Size(42, 23);
             label2.TabIndex = 2;
@@ -268,9 +268,9 @@
             // lblMerk
             // 
             lblMerk.AutoSize = true;
-            lblMerk.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMerk.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblMerk.ForeColor = SystemColors.ControlText;
-            lblMerk.Location = new Point(134, 18);
+            lblMerk.Location = new Point(128, 18);
             lblMerk.Name = "lblMerk";
             lblMerk.Size = new Size(62, 23);
             lblMerk.TabIndex = 1;
@@ -281,19 +281,19 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            Controls.Add(yogaPanel1);
+            Controls.Add(panelKendaraan);
             Margin = new Padding(0);
             Name = "KendaraanUC";
-            Size = new Size(1430, 321);
-            yogaPanel1.ResumeLayout(false);
-            yogaPanel1.PerformLayout();
+            Size = new Size(1430, 298);
+            panelKendaraan.ResumeLayout(false);
+            panelKendaraan.PerformLayout();
             panelProfile.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private YogaPanel yogaPanel1;
+        private YogaPanel panelKendaraan;
         private Label lblNoPol;
         private Label lblTipe;
         private Label label3;

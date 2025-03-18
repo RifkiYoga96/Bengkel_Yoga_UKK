@@ -18,6 +18,7 @@ namespace Bengkel_Yoga_UKK
         private readonly PelangganDal _pelangganDal = new PelangganDal();
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private bool _showPassword = false;
+        private bool _isClose = true;
         public Login()
         {
             InitializeComponent();
@@ -57,9 +58,10 @@ namespace Bengkel_Yoga_UKK
             linkRegister.Click += (s, e) =>
             {
                 new Register().Show();
-                this.Hide();
+                this.Close();
             };
         }
+
 
         private void InitComponent()
         {
@@ -90,20 +92,25 @@ namespace Bengkel_Yoga_UKK
             if (loginPelanggan)
             {
                 GlobalVariabel.SetSession(dataPelanggan?.ktp_pelanggan??string.Empty);
-                new FormDashboardUser().Show();
-                this.Hide();
+                FormDashboardUser._formDashboardUser.Show();
+                this.Close();
             }
             else if (loginAdmin)
             {
                 GlobalVariabel.SetSession(dataAdmin?.ktp_admin ?? string.Empty, dataAdmin?.role??-1);
                 new MainFormAdmin().Show();
-                this.Hide();
+                this.Close();
             }
             else
             {
                 MB.Error("Email atau password salah!");
                 return;
             }
+        }
+
+        private void UpdateBookingData()
+        {
+
         }
 
       /*  private void CekLogin2()

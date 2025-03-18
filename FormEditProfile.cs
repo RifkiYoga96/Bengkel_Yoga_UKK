@@ -5,60 +5,46 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class FormInputKaryawan : Form
+    public partial class FormEditProfile : Form
     {
         private Image _fotoAdmin = Properties.Resources.defaultProfile;
         private Image _defaultProfile = Properties.Resources.defaultProfile;
         private readonly KaryawanDal _karyawanDal = new KaryawanDal();
         private readonly PelangganDal _pelangganDal = new PelangganDal();
-        private bool _IsInsert = true;
+        private bool _anyProfile = false;
         private bool _resetPassword = false;
         private string _ktp_admin = string.Empty;
-        public FormInputKaryawan(string ktp_admin,bool IsInsert = true)
+        public FormEditProfile(string ktp)
         {
             InitializeComponent();
-            InitComponen();
+            InitComponent();
             RegisterEvent();
-            if (!IsInsert)
-            {
-                GetData(ktp_admin);
-                lblHeader.Text = "Edit Pegawai";
-                _IsInsert = false;
-                _ktp_admin = ktp_admin;
-                txtPassword.ReadOnly = true;
-                txtKonfirPassword.ReadOnly = true;
-            }
+            _ktp_admin = ktp;
+            GetData(ktp);
         }
 
         private void RegisterEvent()
         {
             btnChooseFile.Click += BtnChooseFile_Click;
-            btnSave.Click += BtnSave_Click;
+            btnSave.Click += (s, e) => SaveData();
             btnDelete.Click += BtnDelete_Click;
             btnCancel.Click += (s, e) => this.Close();
-            linkReset.Click += (s, e) => ResetPassword(true);
+            linkReset.Click += (s, e) => ResetPassword();
         }
-
         private void BtnDelete_Click(object? sender, EventArgs e)
         {
             if (!MB.Konfirmasi("Apakah Anda yakin ingin menghapus foto ini!")) return;
             _fotoAdmin = _defaultProfile;
+            _anyProfile = false;
             pictureBoxProfile.BackgroundImage = Properties.Resources.defaultProfile;
-        }
-
-        private void BtnSave_Click(object? sender, EventArgs e)
-        {
-            SaveData();
         }
 
         private void BtnChooseFile_Click(object? sender, EventArgs e)
@@ -72,8 +58,10 @@ namespace Bengkel_Yoga_UKK
 
                     if (new ImageCropTest(originalImage).ShowDialog(this) != DialogResult.OK)
                     {
+                        _anyProfile = !IsSameImage(_fotoAdmin, _defaultProfile);
                         return;
                     }
+                    _anyProfile = true;
                     pictureBoxProfile.BackgroundImage = ImageConvert.SmoothImagePictureBox(ImageDirectory._imageResult, pictureBoxProfile.Width, pictureBoxProfile.Height);
                     pictureBoxProfile.BackgroundImageLayout = ImageLayout.Zoom;
                     _fotoAdmin = ImageDirectory._imageResult;
@@ -99,7 +87,7 @@ namespace Bengkel_Yoga_UKK
 
         #region INIT COMPONEN
 
-        private void InitComponen()
+        private void InitComponent()
         {
             txtNama.MaxLength = 90;
             txtNoKTP.MaxLength = 16;
@@ -107,14 +95,13 @@ namespace Bengkel_Yoga_UKK
             txtEmail.MaxLength = 90;
             txtAlamat.MaxLength = 99;
 
-
             StyleComponent.TextChangeNull(txtNama, lblErrorNama, "⚠️ Harap mengisi nama!");
-            StyleComponent.TextChangeNull(txtNoKTP, lblErrorKTP, "⚠️ Harap mengisi nomor KTP!",true);
-            StyleComponent.TextChangeNull(txtEmail, lblErrorEmail, "⚠️ Harap mengisi email!",true);
-            StyleComponent.TextChangeNull(txtNoTelepon, lblErrorTelepon, "⚠️ Harap mengisi nomor telepon!",true);
-            StyleComponent.TextChangeNull(txtKonfirPassword, lblErrorCPassword, "⚠️ Harap mengisi konfirmasi password!",true);
+            StyleComponent.TextChangeNull(txtNoKTP, lblErrorKTP, "⚠️ Harap mengisi nomor KTP!", true); //jika true, maka validasi text change masih lanjut
+            StyleComponent.TextChangeNull(txtEmail, lblErrorEmail, "⚠️ Harap mengisi email!", true);
+            StyleComponent.TextChangeNull(txtNoTelepon, lblErrorTelepon, "⚠️ Harap mengisi nomor telepon!", true);
+            StyleComponent.TextChangeNull(txtKonfirPassword, lblErrorCPassword, "⚠️ Harap mengisi konfirmasi password!", true);
             StyleComponent.TextChangeNull(txtAlamat, lblErrorAlamat, "⚠️ Harap mengisi alamat!");
-            
+
             txtNoKTP.InputNumber();
             txtNoTelepon.InputNumber();
 
@@ -129,7 +116,7 @@ namespace Bengkel_Yoga_UKK
                     lblErrorEmail.Visible = true;
                     return;
                 }
-                else if (_IsInsert ? _karyawanDal.CekEmail(email) : _karyawanDal.CekEmailUpdate(email,_ktp_admin))
+                else if (_karyawanDal.CekEmailUpdate(email, _ktp_admin))
                 {
                     lblErrorEmail.Text = "⚠️ Email sudah terdaftar!";
                     lblErrorEmail.Visible = true;
@@ -142,7 +129,7 @@ namespace Bengkel_Yoga_UKK
             {
                 await Task.Delay(1500);
                 string telepon = txtNoTelepon.Text;
-                if (_IsInsert ? _karyawanDal.CekTelepon(telepon) : _karyawanDal.CekTeleponUpdate(telepon, _ktp_admin))
+                if (_karyawanDal.CekTeleponUpdate(telepon, _ktp_admin))
                 {
                     lblErrorTelepon.Text = "⚠️ Nomor telepon sudah terdaftar!";
                     lblErrorTelepon.Visible = true;
@@ -164,12 +151,12 @@ namespace Bengkel_Yoga_UKK
                 }
 
                 bool valid_pelanggan = _pelangganDal.CekKTP(noKtp);
-                bool valid_admin = _ktp_admin == noKtp ? true : _karyawanDal.CekKTPUpdate(noKtp,_ktp_admin);
+                bool valid_admin = _ktp_admin == noKtp ? true : _karyawanDal.CekKTP(noKtp);
 
                 if (!valid_pelanggan || !valid_admin)
                 {
                     lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";
-                    lblErrorKTP.Visible = true; 
+                    lblErrorKTP.Visible = true;
                     return;
                 }
                 lblErrorKTP.Visible = false;
@@ -193,7 +180,7 @@ namespace Bengkel_Yoga_UKK
                 await Task.Delay(1500);
                 string password = txtPassword.Text;
                 string CPassword = txtKonfirPassword.Text;
-                if(password != CPassword)
+                if (password != CPassword)
                 {
                     lblErrorCPassword.Text = "⚠️ Konfirmasi password tidak valid!";
                     lblErrorCPassword.Visible = true;
@@ -201,9 +188,6 @@ namespace Bengkel_Yoga_UKK
                 }
                 lblErrorCPassword.Visible = false;
             };
-
-
-            comboJabatan.DataSource = new List<string>() { "Mekanik","Petugas","Super Admin" };
         }
 
         #endregion
@@ -219,10 +203,8 @@ namespace Bengkel_Yoga_UKK
             string password = txtPassword.Text;
             string konfirmPass = txtKonfirPassword.Text;
             string alamat = txtAlamat.Text;
-            int jabatan = comboJabatan.SelectedIndex == 0 ? 0
-                :comboJabatan.SelectedIndex == 1 ? 1
-                : 2;
-            byte[]? profile = !IsSameImage(_defaultProfile, _fotoAdmin) ? ImageConvert.ImageToByteArray(_fotoAdmin) : null;
+
+            byte[]? profile = !IsSameImage(_defaultProfile,_fotoAdmin) ? ImageConvert.ImageToByteArray(_fotoAdmin) : null;
 
             bool validationEvent = !lblErrorKTP.Visible
                  && !lblErrorTelepon.Visible
@@ -231,7 +213,7 @@ namespace Bengkel_Yoga_UKK
             bool validationEmpty = nama != ""
                 && password != ""
                 && alamat != "";
-            if(!validationEvent || !validationEmpty)
+            if (!validationEvent || !validationEmpty)
             {
                 MB.Warning("Data tidak valid, harap cek kembali!");
                 return;
@@ -244,26 +226,19 @@ namespace Bengkel_Yoga_UKK
                 nama_admin = nama,
                 no_telp = telepon,
                 email = email,
-                password = _IsInsert || _resetPassword ?
-                    PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive) 
+                password = _resetPassword ?
+                    PasswordHash.ArgonHashString(password, PasswordHash.StrengthArgon.Interactive)
                     : null,
                 alamat = alamat,
-                role = jabatan,
+                role = GlobalVariabel._role,
                 image_data = profile
             };
 
             if (!MB.Konfirmasi("Apakah anda yakin ingin menyimpan data?")) return;
+            _karyawanDal.UpdateData(dataPegawai);
+            _karyawanDal.UpdateKTP(dataPegawai.ktp_admin_new, dataPegawai.ktp_admin_old);
 
-            if (_ktp_admin == string.Empty)
-            {
-                _karyawanDal.InsertData(dataPegawai);
-            }
-            else
-            {
-                _karyawanDal.UpdateData(dataPegawai);
-                _karyawanDal.UpdateKTP(dataPegawai.ktp_admin_new, dataPegawai.ktp_admin_old);
-            }
-                
+            MainFormAdmin.PegawaiLogin(); // Update profile pegawai
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -281,7 +256,6 @@ namespace Bengkel_Yoga_UKK
             txtPassword.Text = data.password;
             txtKonfirPassword.Text = data.password;
             txtAlamat.Text = data.alamat;
-            comboJabatan.SelectedIndex = data.role;
 
             //Set Profile
             Image profile = data.image_data != null ?
@@ -291,9 +265,8 @@ namespace Bengkel_Yoga_UKK
             _fotoAdmin = profile;
         }
 
-        private void ResetPassword(bool reset)
+        private void ResetPassword()
         {
-            if (!reset) return;
             if (!MB.Konfirmasi("Apakah anda yakin ingin mereset password?")) return;
             txtPassword.ReadOnly = false;
             txtKonfirPassword.ReadOnly = false;

@@ -20,7 +20,6 @@ namespace Bengkel_Yoga_UKK
         private readonly JadwalDal _jadwalDal = new JadwalDal();
         private readonly JadwalOperasionalDal _jadwalOperasionalDal = new JadwalOperasionalDal();
 
-        public static int _antrean;
         public FormInputBooking2()
         {
             InitializeComponent();
@@ -202,7 +201,7 @@ namespace Bengkel_Yoga_UKK
                     id_kendaraan = id_kendaraan,
                     tanggal = tanggal,
                     keluhan = keluhan,
-                    antrean = _antrean
+                    antrean = GlobalVariabel._antrean
                 };
                 _bookingDal.InsertDataBooking(data, true);
                 this.DialogResult = DialogResult.OK;
@@ -290,7 +289,7 @@ namespace Bengkel_Yoga_UKK
                     tanggal = tanggal,
                     keluhan = keluhan,
                     no_pol = no_pol,
-                    antrean = _antrean
+                    antrean = GlobalVariabel._antrean
                 };
                 _bookingDal.InsertDataBooking(data, false);
                 this.DialogResult = DialogResult.OK;

@@ -78,7 +78,14 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin = @ktp_admin";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { ktp_admin = ktp });
-            return data != null ? true : false;
+            return data is null;
+        }
+        public bool CekKTPUpdate(string ktp_new, string ktp_old)
+        {
+            const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin <> @ktp_old AND ktp_admin = @ktp_new";
+            using var koneksi = new SqlConnection(conn.connStr);
+            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { ktp_new = ktp_new, ktp_old = ktp_old });
+            return data is null;
         }
 
         public bool CekEmailUpdate(string email, string ktp_admin)
@@ -93,13 +100,6 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin <> @ktp_admin AND no_telp = @no_telp";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { no_telp = telepon, ktp_admin = ktp_admin });
-            return data != null ? true : false;
-        }
-        public bool CekKTPUpdate(string ktp)
-        {
-            const string sql = @"SELECT 1 FROM Admins WHERE ktp_admin <> @ktp_admin";
-            using var koneksi = new SqlConnection(conn.connStr);
-            var data = koneksi.QueryFirstOrDefault<KaryawanModel>(sql, new { ktp_admin = ktp });
             return data != null ? true : false;
         }
 

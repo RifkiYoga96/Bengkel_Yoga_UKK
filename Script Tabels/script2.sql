@@ -436,24 +436,27 @@ END;
 
 go;
 
-CREATE TRIGGER trg_KembalikanStok_Sparepart
-ON RiwayatSparepart
-AFTER INSERT
-AS 
+CREATE TRIGGER tr_KembalikanStok_Sparepart
+ON BookingsSparepart
+AFTER DELETE
+AS
 BEGIN
     SET NOCOUNT ON;
 
+    -- Kembalikan stok hanya jika kode_sparepart yang dihapus dari BookingsSparepart tidak ada di RiwayatSparepart
     UPDATE Sparepart
-    SET stok = stok - i.jumlah
+    SET stok = stok + d.jumlah
     FROM Sparepart s
-    INNER JOIN inserted i ON s.kode_sparepart = i.kode_sparepart
-    INNER JOIN Riwayat r ON s.id_riwayat = i.id_riwayat
-    WHERE r.status = 'dibatalkan'
+    INNER JOIN deleted d ON s.kode_sparepart = d.kode_sparepart
+    WHERE NOT EXISTS (
+        SELECT 1 
+        FROM RiwayatSparepart rs 
+        WHERE rs.kode_sparepart = d.kode_sparepart
+    );
 END;
 
 go;
 
- -- TRIGGER Selesai Booking --
 
 
 

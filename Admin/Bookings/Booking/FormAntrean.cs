@@ -40,7 +40,7 @@ namespace Bengkel_Yoga_UKK
             btnYa.Click += (s, e) =>
             {
                 this.DialogResult = DialogResult.OK;
-                FormInputBooking2._antrean = dataAntrean.Antrean;
+                GlobalVariabel._antrean = dataAntrean.Antrean;
                 this.Close();
             };
 

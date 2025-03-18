@@ -373,6 +373,7 @@
             // 
             // btnLaporan
             // 
+            btnLaporan.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnLaporan.BackColor = Color.FromArgb(230, 126, 34);
             btnLaporan.BackgroundColor = Color.FromArgb(230, 126, 34);
             btnLaporan.BorderColor = Color.PaleVioletRed;
