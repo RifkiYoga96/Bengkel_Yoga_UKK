@@ -123,7 +123,7 @@ BEGIN
         s.harga,
         s.image_data
     FROM Sparepart s
-    WHERE s.kode_sparepart = @kode_sparepart;
+    WHERE s.kode_sparepart = @kode_sparepart AND @jumlah <= s.stok;
 END;
 
 
@@ -153,6 +153,26 @@ END;
 
 go;
 
+CREATE PROCEDURE InsertRiwayatSparepart
+    @id_riwayat INT,
+    @kode_sparepart VARCHAR(20),
+    @jumlah INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO RiwayatSparepart (id_riwayat, kode_sparepart, nama_sparepart, jumlah, harga, image_data)
+    SELECT 
+        @id_riwayat,
+        @kode_sparepart,
+        s.nama_sparepart,
+        @jumlah,
+        s.harga,
+        s.image_data
+    FROM Sparepart s
+    WHERE s.kode_sparepart = @kode_sparepart;
+END;
+go;
 
 
 CREATE PROCEDURE InsertRiwayatSparepart
@@ -453,6 +473,71 @@ BEGIN
         FROM RiwayatSparepart rs 
         WHERE rs.kode_sparepart = d.kode_sparepart
     );
+END;
+
+go;
+
+--TRIGGER penanganan jika jumlah lebih dari
+
+
+go;;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+go;
+
+CREATE TRIGGER tr_InsertRiwayatSparepart
+ON Bookings
+AFTER UPDATE
+AS 
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO RiwayatSparepart(id_riwayat,kode_sparepart,nama_sparepart,jumlah,harga,image_data)
+    SELECT
+        i.id_riwayat,
+        bs.kode_sparepart,
+        bs.nama_sparepart,
+        bs.jumlah,
+        bs.harga,
+        bs.image_data
+
+    
 END;
 
 go;

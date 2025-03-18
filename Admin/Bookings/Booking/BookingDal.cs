@@ -165,13 +165,19 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
 
-        public IEnumerable<ProdukAddDto> ListDataSparepart()
+        public IEnumerable<ProdukAddDto> ListDataSparepart(int id)
         {
-            const string sql = @"SELECT p.kode_sparepart AS Kode,p.nama_sparepart AS Sparepart, ISNULL(bs.jumlah, 1) AS Jumlah, p.stok AS Stok
-                                FROM BookingsSparepart bs
-                                RIGHT JOIN Sparepart p ON bs.kode_sparepart = p.kode_sparepart";
+                        const string sql = @"SELECT 
+                p.kode_sparepart AS Kode, 
+                p.nama_sparepart AS Sparepart, 
+                ISNULL(bs.jumlah, 1) AS Jumlah, -- Jika NULL, maka jumlah = 1
+                p.stok AS Stok
+            FROM Sparepart p
+            LEFT JOIN BookingsSparepart bs 
+                ON bs.kode_sparepart = p.kode_sparepart 
+                AND bs.id_booking = @id";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<ProdukAddDto>(sql);
+            return koneksi.Query<ProdukAddDto>(sql, new {id});
         }
         public async Task<IEnumerable<BookingModel>> ListDataAntrean(DateTime tanggal)
         {
@@ -204,8 +210,14 @@ namespace Bengkel_Yoga_UKK
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new {id});
         }
+        public void HardDeleteBookingSparepart(int id)
+        {
+            const string sql = @"DELETE FROM BookingsSparepart WHERE id_booking = @id";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { id });
+        }
 
-        public async Task SelesaiServisUpdate(DynamicParameters dp)
+        public async Task SelesaiServisUpdate(DynamicParameters dp, List<BookingSparepartModel> listBookingSparepart)
         {
             string sql = @"
                 INSERT INTO Riwayat (
@@ -221,11 +233,29 @@ namespace Bengkel_Yoga_UKK
                     b.id_jasaServis, @status, @pembatalan_oleh,
                     GETDATE()
                 FROM Bookings b
-                WHERE b.id_booking = @id_booking";
+                WHERE b.id_booking = @id_booking;
+
+                SELECT SCOPE_IDENTITY();";
+
+
+            string sqlDelete = @"UPDATE Bookings SET deleted_at = GETDATE() WHERE id_booking = @id_booking";
 
             using var koneksi = new SqlConnection(conn.connStr);
 
-            await koneksi.ExecuteAsync(sql, dp);
+            int idRiwayat = await koneksi.ExecuteScalarAsync<int>(sql, dp);
+            await koneksi.ExecuteAsync(sqlDelete, dp);
+
+            foreach (var i in listBookingSparepart)
+            {
+                //dp
+                var dpRS = new DynamicParameters();
+                dpRS.Add("@id_riwayat", idRiwayat);
+                dpRS.Add("@kode_sparepart",i.kode_sparepart);
+                dpRS.Add("@jumlah", i.jumlah);
+                await koneksi.ExecuteAsync("InsertRiwayatSparepart", dpRS, commandType: CommandType.StoredProcedure);
+            }
+
+
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Bengkel_Yoga_UKK
             StyleComponent.TextChangeNull(txtNoTelp,lblErrorTelepon, "⚠️ Harap mengisi nomor telepon!",true);
             StyleComponent.TextChangeNull(txtAlamat,lblErrorAlamat, "⚠️ Harap mengisi alamat!");
 
+            string ktp_old = GlobalVariabel._ktp_pelanggan;
             txtEmail.TextChanged += async (s, e) =>
             {
                 await Task.Delay(1500);
@@ -51,7 +52,7 @@ namespace Bengkel_Yoga_UKK
                     lblErrorEmail.Visible = true;
                     return;
                 }
-                else if (_pelangganDal.CekEmail(email) || _karyawanDal.CekEmail(email))
+                else if (!_pelangganDal.CekEmailUpdate(email,ktp_old) || !_karyawanDal.CekEmailUpdate(email,ktp_old))
                 {
                     lblErrorEmail.Text = "⚠️ Email sudah terdaftar!";
                     lblErrorEmail.Visible = true;
@@ -63,7 +64,7 @@ namespace Bengkel_Yoga_UKK
             {
                 await Task.Delay(1500);
                 string telepon = txtNoTelp.Text;
-                if (_pelangganDal.CekTelepon(telepon))
+                if (!_pelangganDal.CekTeleponUpdate(telepon,ktp_old))
                 {
                     lblErrorTelepon.Text = "⚠️ Nomor telepon sudah terdaftar!";
                     lblErrorTelepon.Visible = true;
@@ -74,14 +75,14 @@ namespace Bengkel_Yoga_UKK
             txtNoKTP.TextChanged += async (s, e) =>
             {
                 await Task.Delay(1500);
-                string ktp = txtNoKTP.Text;
-                if (!Regex.IsMatch(ktp, @"^\d{16}$"))
+                string ktp_new = txtNoKTP.Text;
+                if (!Regex.IsMatch(ktp_new, @"^\d{16}$"))
                 {
                     lblErrorKTP.Visible = true;
                     lblErrorKTP.Text = "⚠️ NIK harus 16 digit!";
                     return;
                 }
-                if (!_pelangganDal.CekKTP(ktp) || !_karyawanDal.CekKTP(ktp))
+                if (!_pelangganDal.CekKTPUpdate(ktp_new,ktp_old) || !_karyawanDal.CekKTPUpdate(ktp_new,ktp_old))
                 {
                     lblErrorKTP.Visible = true;
                     lblErrorKTP.Text = "⚠️ Nomor KTP sudah terdaftar!";

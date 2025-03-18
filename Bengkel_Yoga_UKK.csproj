@@ -276,7 +276,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="User\Servis\Riwayat Servis\" />
+    <Folder Include="User\Profile\" />
   </ItemGroup>
 
 </Project>

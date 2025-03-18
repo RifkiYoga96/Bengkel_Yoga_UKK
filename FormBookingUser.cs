@@ -105,7 +105,7 @@ namespace Bengkel_Yoga_UKK
                 return;
             }
 
-            var tutup = await _jadwalOperasionalDal.CekTutup(tanggal);
+            var tutup = await _jadwalOperasionalDal.CekKetersediaan(tanggal);
             if (tutup)
             {
                 lblErrorTanggal.Text = "Bengkel sudah tutup, Mohon pilih tanggal lain!";

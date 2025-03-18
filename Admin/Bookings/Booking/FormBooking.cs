@@ -33,14 +33,18 @@ namespace Bengkel_Yoga_UKK
             _timer.Interval = 10000;
             _timer.Tick += (s,e) => UpdateAntrean();
             _timer.Start();
+
+            UpdateAntrean();
         }
 
         private async void UpdateAntrean() //Update to B Series
         {
-            if (!await CekAntreanUpdate()) return;
+            if (!await CekApakahTutup()) return;
             DateTime now = DateTime.Today;
             var listAntrean = await _bookingDal.ListDataAntrean(now);
             if (!listAntrean.Any()) return;
+
+            //Change to B series
             int antrean = 1;
             foreach (var item in listAntrean)
             {
@@ -52,6 +56,10 @@ namespace Bengkel_Yoga_UKK
                 };
                 _bookingDal.UpdateAntrean(booking);
             }
+
+            //Delete Data Booking Selesai/Batal hari ini
+
+
             LoadData();
             _timer.Stop();
         }
@@ -430,7 +438,7 @@ namespace Bengkel_Yoga_UKK
 
         #region HELPER
 
-        private async Task<bool> CekAntreanUpdate()
+        private async Task<bool> CekApakahTutup()
         {
             DateTime tanggal = DateTime.Today;
 

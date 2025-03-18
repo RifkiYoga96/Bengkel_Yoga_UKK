@@ -82,7 +82,7 @@ namespace Bengkel_Yoga_UKK
                 item.FlatAppearance.MouseOverBackColor = hover;
             }
 
-            btnDashboard.Click += (s, e) => NavigateToForm(new Dashboard2(), 1);
+            btnDashboard.Click += (s, e) => NavigateToForm(GlobalVariabel._role == 1 ? new DashboardPetugas() : new DashboardAdmin(), 1);
             btnBooking.Click += (s, e) => NavigateToForm(new FormBooking(), 2);
             btnProduk.Click += (s, e) => NavigateToForm(new FormProduk(), 3);
             btnRiwayat.Click += (s, e) => NavigateToForm(new FormRiwayat(), 4);

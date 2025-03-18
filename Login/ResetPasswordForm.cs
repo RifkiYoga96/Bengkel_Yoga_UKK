@@ -22,18 +22,25 @@ namespace Bengkel_Yoga_UKK
             InitializeComponent();
             _passwordHash = hash;
             InitComponent();
+            btnResetPassword.Click += (s,e) => SaveData();
         }
+
         private void InitComponent()
         {
             this.IsDialogForm();
+
+            StyleComponent.TextChangeNull(txtPasswordLama,lblErrorOldPassword,"Harap isi password lama!", true);
+            StyleComponent.TextChangeNull(txtPasswordBaru,lblErrorNewPassword,"Harap isi password baru!", true);
+            StyleComponent.TextChangeNull(txtKonfirmasiPassword,lblErrorCPassword,"Harap isi konfirmasi password!", true);
           
-            btnLogin.Click += (s, e) =>
+            txtPasswordLama.TextChanged += async (s, e) =>
             {
+                await Task.Delay(1500);
                 string password = txtPasswordLama.Text;
-                bool valid = PasswordHash.ArgonHashStringVerify(_passwordHash,password);
+                bool valid = PasswordHash.ArgonHashStringVerify(_passwordHash, password);
                 if (!valid)
                 {
-                    lblErrorOldPassword.Text = "⚠️ Password salah!";
+                    lblErrorOldPassword.Text = "⚠️ Password lama salah!";
                     lblErrorOldPassword.Visible = true;
                     return;
                 }
@@ -42,7 +49,8 @@ namespace Bengkel_Yoga_UKK
 
             txtPasswordBaru.TextChanged += async (s, e) =>
             {
-                await Task.Delay(2000);
+                await Task.Delay(1500);
+                string passwordLama = txtPasswordLama.Text;
                 string password = txtPasswordBaru.Text;
                 string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$";
                 if (!Regex.IsMatch(password, pattern))
@@ -51,14 +59,23 @@ namespace Bengkel_Yoga_UKK
                     lblErrorNewPassword.Visible = true;
                     return;
                 }
+
+                bool samePassword = PasswordHash.ArgonHashStringVerify(_passwordHash, password);
+                if (samePassword)
+                {
+                    lblErrorNewPassword.Text = "⚠️ Password lama dan password baru tidak boleh sama!";
+                    lblErrorNewPassword.Visible = true;
+                    return;
+                }
                 lblErrorNewPassword.Visible = false;
             };
 
             txtKonfirmasiPassword.TextChanged += async (s, e) =>
             {
-                await Task.Delay(2000);
+                await Task.Delay(1500);
+                string password = txtPasswordBaru.Text;
                 string Cpassword = txtKonfirmasiPassword.Text;
-                if (Cpassword != txtKonfirmasiPassword.Text)
+                if (password != Cpassword)
                 {
                     lblErrorCPassword.Text = "⚠️ Konfirmasi password tidak valid!";
                     lblErrorCPassword.Visible = true;
@@ -67,19 +84,13 @@ namespace Bengkel_Yoga_UKK
                 lblErrorCPassword.Visible = false;
             };
         }
+
         private void SaveData()
         {
             string passwordOld = txtPasswordLama.Text;
             string passwordNew = txtPasswordLama.Text;
             string CPassword = txtKonfirmasiPassword.Text;
 
-            bool validOldPassword = PasswordHash.ArgonHashStringVerify(_passwordHash,passwordOld);
-            if (!validOldPassword)
-            {
-                lblErrorOldPassword.Text = "⚠️ Password lama salah!";
-                lblErrorOldPassword.Visible = true;
-                return;
-            }
             lblErrorOldPassword.Visible = false;
 
             bool validInput = !lblErrorOldPassword.Visible &&
@@ -90,6 +101,8 @@ namespace Bengkel_Yoga_UKK
                 MB.Warning("Data tidak valid, mohon cek kembali!");
                 return;
             }
+
+            if (!MB.Konfirmasi("Apakah anda yakin ingin mereset password?")) return;
 
             RegisterLanjutan._passwordHash = passwordNew;
             this.DialogResult = DialogResult.OK;

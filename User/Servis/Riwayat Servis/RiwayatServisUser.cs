@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bengkel_Yoga_UKK
 {
-    public partial class DetailBookingUser : Form
+    public partial class RiwayatServisUser : UserControl
     {
-        public DetailBookingUser()
+        public RiwayatServisUser()
         {
             InitializeComponent();
         }

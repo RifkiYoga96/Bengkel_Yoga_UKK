@@ -83,14 +83,14 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"SELECT 1 FROM Pelanggan WHERE email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { email = email });
-            return data != null;
+            return data is null;
         }
         public bool CekTelepon(string telepon)
         {
             const string sql = @"SELECT 1 FROM Pelanggan WHERE no_telp = @no_telp";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { no_telp = telepon });
-            return data != null;
+            return data is null;
         }
         public bool CekKTP(string ktp)
         {
@@ -111,14 +111,14 @@ namespace Bengkel_Yoga_UKK
             const string sql = @"SELECT 1 FROM Pelanggan WHERE ktp_pelanggan <> @ktp_pelanggan AND email = @email";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { email = email, ktp_pelanggan = ktp_pelanggan });
-            return data != null;
+            return data is null;
         }
         public bool CekTeleponUpdate(string telepon, string ktp_pelanggan)
         {
             const string sql = @"SELECT 1 FROM Pelanggan WHERE ktp_pelanggan <> @ktp_pelanggan AND no_telp = @no_telp";
             using var koneksi = new SqlConnection(conn.connStr);
             var data = koneksi.QueryFirstOrDefault<PelangganModel>(sql, new { no_telp = telepon, ktp_pelanggan = ktp_pelanggan });
-            return data != null;
+            return data is null;
         }
         public PelangganModel? GetLogin(string email)
         {

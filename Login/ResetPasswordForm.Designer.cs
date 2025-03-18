@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             txtPasswordLama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            btnLogin = new Button();
+            btnResetPassword = new Button();
             lblErrorOldPassword = new Label();
             panel1 = new Panel();
             label8 = new Label();
@@ -59,20 +59,20 @@
             txtPasswordLama.Size = new Size(325, 31);
             txtPasswordLama.TabIndex = 1;
             // 
-            // btnLogin
+            // btnResetPassword
             // 
-            btnLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnLogin.BackColor = Color.FromArgb(74, 92, 110);
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Segoe UI", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(34, 329);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(325, 36);
-            btnLogin.TabIndex = 3;
-            btnLogin.Text = "Reset Password";
-            btnLogin.UseVisualStyleBackColor = false;
+            btnResetPassword.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnResetPassword.BackColor = Color.FromArgb(74, 92, 110);
+            btnResetPassword.FlatAppearance.BorderSize = 0;
+            btnResetPassword.FlatStyle = FlatStyle.Flat;
+            btnResetPassword.Font = new Font("Segoe UI", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnResetPassword.ForeColor = Color.White;
+            btnResetPassword.Location = new Point(34, 329);
+            btnResetPassword.Name = "btnResetPassword";
+            btnResetPassword.Size = new Size(325, 36);
+            btnResetPassword.TabIndex = 3;
+            btnResetPassword.Text = "Reset Password";
+            btnResetPassword.UseVisualStyleBackColor = false;
             // 
             // lblErrorOldPassword
             // 
@@ -102,7 +102,7 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(btnLogin);
+            panel1.Controls.Add(btnResetPassword);
             panel1.Controls.Add(lblErrorOldPassword);
             panel1.Controls.Add(txtPasswordLama);
             panel1.Location = new Point(12, 12);
@@ -155,15 +155,14 @@
             // 
             // lblErrorNewPassword
             // 
-            lblErrorNewPassword.AutoSize = true;
             lblErrorNewPassword.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             lblErrorNewPassword.ForeColor = Color.Red;
-            lblErrorNewPassword.Location = new Point(34, 179);
+            lblErrorNewPassword.Location = new Point(12, 179);
             lblErrorNewPassword.Name = "lblErrorNewPassword";
-            lblErrorNewPassword.Size = new Size(337, 17);
+            lblErrorNewPassword.Size = new Size(374, 17);
             lblErrorNewPassword.TabIndex = 113;
-            lblErrorNewPassword.Text = "⚠️ Password baru tidak boleh sama dengan yang lama!";
-            lblErrorNewPassword.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorNewPassword.Text = "⚠️ Password minimal 8 karakter, huruf besar, kecil, dan angka.";
+            lblErrorNewPassword.TextAlign = ContentAlignment.MiddleCenter;
             lblErrorNewPassword.Visible = false;
             // 
             // txtPasswordBaru
@@ -187,7 +186,6 @@
             label5.TabIndex = 110;
             label5.Text = "Silahkan menghubungi bengkel dan jelaskan bahwa anda lupa password!";
             label5.TextAlign = ContentAlignment.MiddleCenter;
-            label5.Visible = false;
             // 
             // label4
             // 
@@ -200,7 +198,6 @@
             label4.TabIndex = 109;
             label4.Text = "_________________";
             label4.TextAlign = ContentAlignment.MiddleRight;
-            label4.Visible = false;
             // 
             // label2
             // 
@@ -213,7 +210,6 @@
             label2.TabIndex = 108;
             label2.Text = "_________________";
             label2.TextAlign = ContentAlignment.MiddleLeft;
-            label2.Visible = false;
             // 
             // label1
             // 
@@ -227,7 +223,6 @@
             label1.TabIndex = 107;
             label1.Text = "Lupa Password lama?";
             label1.TextAlign = ContentAlignment.MiddleRight;
-            label1.Visible = false;
             // 
             // label3
             // 
@@ -258,7 +253,7 @@
 
         #endregion
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtPasswordLama;
-        private Button btnLogin;
+        private Button btnResetPassword;
         private Label lblErrorOldPassword;
         private Panel panel1;
         private Label label3;

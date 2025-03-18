@@ -264,8 +264,10 @@ namespace Bengkel_Yoga_UKK
                     Mekanik = x.nama_mekanik,
                     Catatan = x.catatan,
                     Sparepart = listSparepart.Any(a => a.id_riwayat == x.id_riwayat)
-                        ? string.Join(", ", listSparepart.Where(a => a.id_riwayat == x.id_riwayat).Select(a => a.nama_sparepart))
-                        : "(Tidak Ada Sparepart)",
+                    ? string.Join(", ", listSparepart
+                        .Where(a => a.id_riwayat == x.id_riwayat)
+                        .Select(a => $"{a.nama_sparepart}({a.jumlah})"))
+                    : "(Tidak Ada Sparepart)",
                     total_harga = x.total_harga
                 }).ToList();
 

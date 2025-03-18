@@ -49,7 +49,7 @@ namespace Bengkel_Yoga_UKK
                     lblErrorEmail.Visible = true;
                     return;
                 }
-                else if (_pelangganDal.CekEmail(email) || _karyawanDal.CekEmail(email))
+                else if (!_pelangganDal.CekEmail(email) || !_karyawanDal.CekEmail(email))
                 {
                     lblErrorEmail.Text = "⚠️ Email sudah terdaftar!";
                     lblErrorEmail.Visible = true;

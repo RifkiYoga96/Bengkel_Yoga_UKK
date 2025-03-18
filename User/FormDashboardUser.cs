@@ -19,7 +19,6 @@ namespace Bengkel_Yoga_UKK
         public static RouteDto _route = new RouteDto();
 
         private readonly PelangganDal _pelangganDal = new PelangganDal();
-        public static string _ktp_pelanggan = string.Empty;
 
         public FormDashboardUser()
         {
@@ -36,6 +35,7 @@ namespace Bengkel_Yoga_UKK
             lblBeranda.Click += (s, e) => ControlTab(1);
             lblServis.Click += (s, e) => ControlTab(2);
             lblTentangKami.Click += (s, e) => ControlTab(5);
+            lblProfile.Click += (s, e) => ControlTab(6);
 
             btnBack.Click += (s, e) =>
             {
@@ -70,35 +70,48 @@ namespace Bengkel_Yoga_UKK
             Panel panelBeranda = FormDashboardUser._formDashboardUser.panelBeranda;
             Panel panelServis = FormDashboardUser._formDashboardUser.panelServis;
             Panel panelTentangKami = FormDashboardUser._formDashboardUser.panelTentangKami;
+            Panel panelProfileAnda = FormDashboardUser._formDashboardUser.panelProfileAnda;
             switch (panel)
             {
-                case 1:
+                case 1: //Beranda + Show
                     panelBeranda.BackColor = _active;
                     panelServis.BackColor = _inActive;
                     panelTentangKami.BackColor = _inActive;
+                    panelProfileAnda.BackColor = _inActive;
                     ShowControlInPanel(new HomeUser());
                     break;
-                case 2:
+                case 2: //Servis + Show
                     panelBeranda.BackColor = _inActive;
                     panelServis.BackColor = _active;
                     panelTentangKami.BackColor = _inActive;
+                    panelProfileAnda.BackColor = _inActive;
                     ShowControlInPanel(new ServisUC());
                     break;
-                case 3:
+                case 3: // Tentang Kami
                     panelBeranda.BackColor = _inActive;
                     panelServis.BackColor = _inActive;
                     panelTentangKami.BackColor = _active;
+                    panelProfileAnda.BackColor = _inActive;
                     break;
-                case 4:
+                case 4: // Servis
                     panelBeranda.BackColor = _inActive;
                     panelServis.BackColor = _active;
                     panelTentangKami.BackColor = _inActive;
+                    panelProfileAnda.BackColor = _inActive;
                     break;
-                case 5:
+                case 5: //Tentang Kami
                     panelBeranda.BackColor = _inActive;
                     panelServis.BackColor = _inActive;
                     panelTentangKami.BackColor = _active;
+                    panelProfileAnda.BackColor = _inActive;
                     ShowControlInPanel(new AboutUsUC());
+                    break;
+                case 6: //Profile Anda + Show
+                    panelBeranda.BackColor = _inActive;
+                    panelServis.BackColor = _inActive;
+                    panelTentangKami.BackColor = _inActive;
+                    panelProfileAnda.BackColor = _active;
+                    ShowControlInPanel(new RegisterLanjutanUC());
                     break;
             }
 
@@ -150,7 +163,6 @@ namespace Bengkel_Yoga_UKK
             var data = _pelangganDal.GetData(GlobalVariabel._ktp);
             if (data is null) return;
             GlobalVariabel._ktp_pelanggan = data.ktp_pelanggan;
-            _ktp_pelanggan = GlobalVariabel._ktp_pelanggan;
 
             if (GlobalVariabel._ktp_pelanggan == string.Empty)
             {

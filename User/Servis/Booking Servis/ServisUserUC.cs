@@ -39,13 +39,12 @@ namespace Bengkel_Yoga_UKK
 
         private void LoadComponent()
         {
-          
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel1.AutoScroll = true;
             int width = this.ClientSize.Width;
 
-            string ktp_pelanggan = FormDashboardUser._ktp_pelanggan;
+            string ktp_pelanggan = GlobalVariabel._ktp;
             var listDataKendaraan = _kendaraanDal.ListDataPelanggan(ktp_pelanggan);
             if (!listDataKendaraan.Any())
             {

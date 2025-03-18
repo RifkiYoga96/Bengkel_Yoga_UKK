@@ -116,7 +116,7 @@ namespace Bengkel_Yoga_UKK
                     lblErrorEmail.Visible = true;
                     return;
                 }
-                else if (_karyawanDal.CekEmailUpdate(email, _ktp_admin))
+                else if (!_karyawanDal.CekEmailUpdate(email, _ktp_admin))
                 {
                     lblErrorEmail.Text = "⚠️ Email sudah terdaftar!";
                     lblErrorEmail.Visible = true;
@@ -129,7 +129,7 @@ namespace Bengkel_Yoga_UKK
             {
                 await Task.Delay(1500);
                 string telepon = txtNoTelepon.Text;
-                if (_karyawanDal.CekTeleponUpdate(telepon, _ktp_admin))
+                if (!_karyawanDal.CekTeleponUpdate(telepon, _ktp_admin))
                 {
                     lblErrorTelepon.Text = "⚠️ Nomor telepon sudah terdaftar!";
                     lblErrorTelepon.Visible = true;

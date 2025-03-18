@@ -142,7 +142,6 @@
             btnBack.TextColor = Color.White;
             btnBack.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += yogaButton1_Click;
             // 
             // panelSide2
             // 

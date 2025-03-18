@@ -76,7 +76,7 @@
             label23 = new Label();
             txtCatatan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             btnProgressServis = new YogaButton();
-            label19 = new Label();
+            lblProsesSelanjutnya = new Label();
             label3 = new Label();
             btnSelesai = new YogaButton();
             yogaPanel1.SuspendLayout();
@@ -422,7 +422,7 @@
             // txtSparepart
             // 
             txtSparepart.BackColor = Color.White;
-            txtSparepart.BeforeTouchSize = new Size(293, 70);
+            txtSparepart.BeforeTouchSize = new Size(300, 95);
             txtSparepart.BorderColor = Color.FromArgb(209, 211, 212);
             txtSparepart.BorderStyle = BorderStyle.FixedSingle;
             txtSparepart.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
@@ -680,7 +680,7 @@
             // txtCatatan
             // 
             txtCatatan.BackColor = Color.White;
-            txtCatatan.BeforeTouchSize = new Size(293, 70);
+            txtCatatan.BeforeTouchSize = new Size(300, 95);
             txtCatatan.BorderColor = Color.FromArgb(209, 211, 212);
             txtCatatan.BorderStyle = BorderStyle.FixedSingle;
             txtCatatan.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
@@ -713,17 +713,17 @@
             btnProgressServis.TextColor = Color.White;
             btnProgressServis.UseVisualStyleBackColor = false;
             // 
-            // label19
+            // lblProsesSelanjutnya
             // 
-            label19.Anchor = AnchorStyles.None;
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI Semibold", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label19.ForeColor = SystemColors.ControlDarkDark;
-            label19.Location = new Point(720, 364);
-            label19.Name = "label19";
-            label19.Size = new Size(195, 30);
-            label19.TabIndex = 116;
-            label19.Text = "Proses Selanjutnya:";
+            lblProsesSelanjutnya.Anchor = AnchorStyles.None;
+            lblProsesSelanjutnya.AutoSize = true;
+            lblProsesSelanjutnya.Font = new Font("Segoe UI Semibold", 15.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblProsesSelanjutnya.ForeColor = SystemColors.ControlDarkDark;
+            lblProsesSelanjutnya.Location = new Point(720, 364);
+            lblProsesSelanjutnya.Name = "lblProsesSelanjutnya";
+            lblProsesSelanjutnya.Size = new Size(195, 30);
+            lblProsesSelanjutnya.TabIndex = 116;
+            lblProsesSelanjutnya.Text = "Proses Selanjutnya:";
             // 
             // label3
             // 
@@ -766,7 +766,7 @@
             Controls.Add(btnSelesai);
             Controls.Add(label3);
             Controls.Add(yogaPanel2);
-            Controls.Add(label19);
+            Controls.Add(lblProsesSelanjutnya);
             Controls.Add(btnProgressServis);
             Controls.Add(lblBooking);
             Controls.Add(label10);
@@ -852,7 +852,7 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtCatatan;
         private YogaButton btnBatalkanPesanan;
         private YogaButton btnProgressServis;
-        private Label label19;
+        private Label lblProsesSelanjutnya;
         private Label label3;
         private YogaButton btnStatus;
         private Label label4;

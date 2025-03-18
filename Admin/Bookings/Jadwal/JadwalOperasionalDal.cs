@@ -80,7 +80,7 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QueryFirstOrDefault<JadwalOperasionalModel>(sql, new { hari, id_jadwal_operasional });
         }
 
-        public async Task<bool> CekTutup(DateTime tanggal)
+        public async Task<bool> CekKetersediaan(DateTime tanggal)
         {
             if (tanggal > DateTime.Today) return false;
 
@@ -104,6 +104,34 @@ namespace Bengkel_Yoga_UKK
                 return false;
 
             return DateTime.Now.TimeOfDay >= jamTutup;
+        }
+
+        public async Task<bool> CekTutup(DateTime tanggal)
+        {
+            if (tanggal > DateTime.Today) return false;
+
+            const string sql = @"
+                SELECT TOP 1 jam_buka, jam_tutup 
+                FROM JadwalOperasional 
+                WHERE hari = @hari OR hari IS NULL
+                ORDER BY CASE WHEN hari = @hari THEN 1 ELSE 2 END";
+
+            var namaHari = tanggal.ToString("dddd", new System.Globalization.CultureInfo("id-ID"));
+
+            if (namaHari == "Jumat")
+                namaHari = "Jum''at"; // petik tunggal di SQL
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            await koneksi.OpenAsync();
+
+            var jadwal = await koneksi.QueryFirstOrDefaultAsync<(TimeSpan? jamBuka, TimeSpan? jamTutup)>(sql, new { hari = namaHari });
+
+            if (jadwal.jamBuka == null || jadwal.jamTutup == null)
+                return false;
+
+            TimeSpan sekarang = DateTime.Now.TimeOfDay;
+
+            return sekarang < jadwal.jamBuka || sekarang >= jadwal.jamTutup; //cek jam operasional
         }
 
     }

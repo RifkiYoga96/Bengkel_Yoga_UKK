@@ -21,11 +21,13 @@ namespace Bengkel_Yoga_UKK
         private BindingSource _bindingSourceUse = new BindingSource();
         private readonly BookingDal _bookingDal = new BookingDal();
         private int _stokBeginEdit = 0;
+        private int _id_booking = 0;
 
-        public FormAddSparepart()
+        public FormAddSparepart(int id_booking)
         {
             InitializeComponent();
             InitComponent();
+            _id_booking = id_booking;
             RegisterEvent();
             LoadData();
             CustomGrid();
@@ -97,10 +99,10 @@ namespace Bengkel_Yoga_UKK
 
         private void LoadData()
         {
-            var listBookingSparepart = _bookingDal.ListDataProduk(FormDetailBooking._id_booking);
+            var listBookingSparepart = _bookingDal.ListDataProduk(_id_booking);
             var bookedKodeSpareparts = listBookingSparepart.Select(x => x.kode_sparepart).ToHashSet();
 
-            var listSparepart = _bookingDal.ListDataSparepart()
+            var listSparepart = _bookingDal.ListDataSparepart(_id_booking)
                 .OrderBy(x => x.Sparepart);
 
             var listNoUse = listSparepart
@@ -229,13 +231,14 @@ namespace Bengkel_Yoga_UKK
 
         private void SaveComponent()
         {
-            _bookingDal.DeleteBookingSparepart(FormDetailBooking._id_booking);
-            
+            _bookingDal.DeleteBookingSparepart(_id_booking);
+
+            MB.Warning(_bindingList.Count.ToString());
             foreach (var item in _bindingListUse)
             {
                 _bookingDal.InsertDataBookingSparepart(new ProdukAddDto
                 {
-                    id_booking = FormDetailBooking._id_booking,
+                    id_booking = _id_booking,
                     Kode = item.Kode,
                     Jumlah = item.Jumlah
                 });

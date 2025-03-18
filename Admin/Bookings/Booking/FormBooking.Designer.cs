@@ -107,7 +107,7 @@ namespace Bengkel_Yoga_UKK
             comboFilterWaktu.FormattingEnabled = true;
             comboFilterWaktu.Location = new Point(482, 33);
             comboFilterWaktu.Name = "comboFilterWaktu";
-            comboFilterWaktu.Size = new Size(123, 28);
+            comboFilterWaktu.Size = new Size(142, 28);
             comboFilterWaktu.TabIndex = 14;
             // 
             // lblShowingEntries
