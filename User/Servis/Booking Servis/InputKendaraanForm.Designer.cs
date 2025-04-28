@@ -31,15 +31,14 @@
             label1 = new Label();
             comboTransmisi = new ComboBox();
             numericKapasitas = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
-            lblErrorAlamat = new Label();
-            lblErrorTelepon = new Label();
+            lblErrorTahun = new Label();
+            lblErrorNoPol = new Label();
             label8 = new Label();
             txtNoPol = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label9 = new Label();
             label10 = new Label();
-            lblErrorKTP = new Label();
             txtTahun = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            lblErrorEmail = new Label();
+            lblErrorTipe = new Label();
             label5 = new Label();
             txtTipe = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             label3 = new Label();
@@ -47,6 +46,7 @@
             txtMerk = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             lblErrorMerk = new Label();
             btnSave = new YogaButton();
+            btnCancel = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)numericKapasitas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoPol).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtTahun).BeginInit();
@@ -93,31 +93,31 @@
             numericKapasitas.ThemeName = "Office2016Colorful";
             numericKapasitas.VisualStyle = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
             // 
-            // lblErrorAlamat
+            // lblErrorTahun
             // 
-            lblErrorAlamat.AutoSize = true;
-            lblErrorAlamat.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorAlamat.ForeColor = Color.Red;
-            lblErrorAlamat.Location = new Point(465, 317);
-            lblErrorAlamat.Name = "lblErrorAlamat";
-            lblErrorAlamat.Size = new Size(162, 17);
-            lblErrorAlamat.TabIndex = 180;
-            lblErrorAlamat.Text = "⚠️ Harap mengisi alamat!";
-            lblErrorAlamat.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorAlamat.Visible = false;
+            lblErrorTahun.AutoSize = true;
+            lblErrorTahun.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTahun.ForeColor = Color.Red;
+            lblErrorTahun.Location = new Point(465, 317);
+            lblErrorTahun.Name = "lblErrorTahun";
+            lblErrorTahun.Size = new Size(162, 17);
+            lblErrorTahun.TabIndex = 180;
+            lblErrorTahun.Text = "⚠️ Harap mengisi alamat!";
+            lblErrorTahun.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTahun.Visible = false;
             // 
-            // lblErrorTelepon
+            // lblErrorNoPol
             // 
-            lblErrorTelepon.AutoSize = true;
-            lblErrorTelepon.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorTelepon.ForeColor = Color.Red;
-            lblErrorTelepon.Location = new Point(465, 224);
-            lblErrorTelepon.Name = "lblErrorTelepon";
-            lblErrorTelepon.Size = new Size(218, 17);
-            lblErrorTelepon.TabIndex = 179;
-            lblErrorTelepon.Text = "⚠️ Nomor telepon sudah terdaftar!";
-            lblErrorTelepon.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorTelepon.Visible = false;
+            lblErrorNoPol.AutoSize = true;
+            lblErrorNoPol.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorNoPol.ForeColor = Color.Red;
+            lblErrorNoPol.Location = new Point(465, 224);
+            lblErrorNoPol.Name = "lblErrorNoPol";
+            lblErrorNoPol.Size = new Size(218, 17);
+            lblErrorNoPol.TabIndex = 179;
+            lblErrorNoPol.Text = "⚠️ Nomor telepon sudah terdaftar!";
+            lblErrorNoPol.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorNoPol.Visible = false;
             // 
             // label8
             // 
@@ -162,19 +162,6 @@
             label10.TabIndex = 175;
             label10.Text = "Kapasitas Mesin (cc)";
             // 
-            // lblErrorKTP
-            // 
-            lblErrorKTP.AutoSize = true;
-            lblErrorKTP.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorKTP.ForeColor = Color.Red;
-            lblErrorKTP.Location = new Point(465, 131);
-            lblErrorKTP.Name = "lblErrorKTP";
-            lblErrorKTP.Size = new Size(208, 17);
-            lblErrorKTP.TabIndex = 174;
-            lblErrorKTP.Text = "⚠️ Kapasitas mesin tidak boleh 0!";
-            lblErrorKTP.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorKTP.Visible = false;
-            // 
             // txtTahun
             // 
             txtTahun.BeforeTouchSize = new Size(370, 31);
@@ -185,18 +172,18 @@
             txtTahun.Size = new Size(370, 31);
             txtTahun.TabIndex = 173;
             // 
-            // lblErrorEmail
+            // lblErrorTipe
             // 
-            lblErrorEmail.AutoSize = true;
-            lblErrorEmail.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorEmail.ForeColor = Color.Red;
-            lblErrorEmail.Location = new Point(33, 224);
-            lblErrorEmail.Name = "lblErrorEmail";
-            lblErrorEmail.Size = new Size(173, 17);
-            lblErrorEmail.TabIndex = 172;
-            lblErrorEmail.Text = "⚠️ Format email tidak valid!";
-            lblErrorEmail.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorEmail.Visible = false;
+            lblErrorTipe.AutoSize = true;
+            lblErrorTipe.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTipe.ForeColor = Color.Red;
+            lblErrorTipe.Location = new Point(33, 224);
+            lblErrorTipe.Name = "lblErrorTipe";
+            lblErrorTipe.Size = new Size(173, 17);
+            lblErrorTipe.TabIndex = 172;
+            lblErrorTipe.Text = "⚠️ Format email tidak valid!";
+            lblErrorTipe.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTipe.Visible = false;
             // 
             // label5
             // 
@@ -283,24 +270,43 @@
             btnSave.TextColor = Color.White;
             btnSave.UseVisualStyleBackColor = false;
             // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.Transparent;
+            btnCancel.BackgroundColor = Color.Transparent;
+            btnCancel.BorderColor = Color.PaleVioletRed;
+            btnCancel.BorderRadius = 5;
+            btnCancel.BorderSize = 2;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 12.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.ForeColor = SystemColors.ControlDarkDark;
+            btnCancel.Location = new Point(520, 366);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(150, 40);
+            btnCancel.TabIndex = 182;
+            btnCancel.Text = "Cancel";
+            btnCancel.TextColor = SystemColors.ControlDarkDark;
+            btnCancel.UseVisualStyleBackColor = false;
+            // 
             // InputKendaraanForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(864, 431);
+            Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(comboTransmisi);
             Controls.Add(numericKapasitas);
-            Controls.Add(lblErrorAlamat);
-            Controls.Add(lblErrorTelepon);
+            Controls.Add(lblErrorTahun);
+            Controls.Add(lblErrorNoPol);
             Controls.Add(label8);
             Controls.Add(txtNoPol);
             Controls.Add(label9);
             Controls.Add(label10);
-            Controls.Add(lblErrorKTP);
             Controls.Add(txtTahun);
-            Controls.Add(lblErrorEmail);
+            Controls.Add(lblErrorTipe);
             Controls.Add(label5);
             Controls.Add(txtTipe);
             Controls.Add(label3);
@@ -324,15 +330,14 @@
         private Label label1;
         private ComboBox comboTransmisi;
         private Syncfusion.Windows.Forms.Tools.NumericUpDownExt numericKapasitas;
-        private Label lblErrorAlamat;
-        private Label lblErrorTelepon;
+        private Label lblErrorTahun;
+        private Label lblErrorNoPol;
         private Label label8;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoPol;
         private Label label9;
         private Label label10;
-        private Label lblErrorKTP;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtTahun;
-        private Label lblErrorEmail;
+        private Label lblErrorTipe;
         private Label label5;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtTipe;
         private Label label3;
@@ -340,5 +345,6 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtMerk;
         private Label lblErrorMerk;
         private YogaButton btnSave;
+        private YogaButton btnCancel;
     }
 }

@@ -280,7 +280,7 @@
   <data name="btnDetailProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAAAIRJREFUOE/tjMsNgDAMQ7ssC8AAcGUKRg02rsWBbynixJMqNYn90k89EdHgjXl8
+        DgAACw4BQL7hQQAAAIRJREFUOE/tjMsNgDAMQ7ssC8AAcGUKRg02rsWBbynixJMqNYn90k89EdHgjXl8
         DBwtXf6QKd+KQbeXIjovBs3lUnQsG/JKcKH9fSmy+zLDg+7XUmTOZYYB5Y6luN2TGQaV30qxK5MZFtRb
         pfg/kxkW1Y8Jr05mKJBnoU5mKHpN9vM1Kc24ltPbZj3UqQAAAABJRU5ErkJggg==
 </value>
@@ -4427,14 +4427,6 @@
         jPy+0Mw/0DikgiTBKTE87fvgqy95X3kTeGzEm25OxnH2PsSEZnl9RCV/CfL3EFLdStxoAgD0/wBDr8fh
         jFplwXO09efTy+vL7H2HYjLyHP6GFLiQlCY5mZ57fX0MKm6VtxIUZBAG3887b4+x9ghqFTQDBCUyQFAy
         fxXjn0wcUqlGnaMn8PU9T54+x9ggj//Z
-</value>
-  </data>
-  <data name="yogaButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAIVJREFUOE/tjLsNgDAQQ7MsC8AA0DJFRj1sHIuCb4CCgidFyt3ZL/18kIho8MYy
-        3gaOli5/SC63atDtpYjOi0FzvRQdy4ayElxof12K7LbM8KD7uRSZY5lhQLl9KW7XZIZB5ddS7OpkhgX1
-        Fin+92SGRfUj4z2TGQrkmXkmMxS9Jvs5IaUJrK/T21qExM0AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="restoreStripMenuItem2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

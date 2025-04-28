@@ -1,6 +1,6 @@
 ﻿namespace Bengkel_Yoga_UKK
 {
-    partial class FormInputBooking
+    partial class FormInputBooking2
     {
         /// <summary>
         /// Required designer variable.
@@ -28,35 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInputBooking2));
             panel1 = new Panel();
             lblHeader = new Label();
-            label3 = new Label();
-            label4 = new Label();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            lblErrorTanggal = new Label();
+            TglEditSync = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            lblErrorKeluhan = new Label();
+            comboKendaraan = new ComboBox();
+            txtKeluhan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            label8 = new Label();
+            label6 = new Label();
+            txtNoPol = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            label1 = new Label();
+            btnSearch = new YogaButton();
+            lblErrorKTP = new Label();
+            btnCancel = new YogaButton();
+            label12 = new Label();
             txtNama = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             btnSave = new YogaButton();
             txtNoKTP = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label12 = new Label();
-            yogaButton1 = new YogaButton();
-            lblErrorKTP = new Label();
-            btnSearch = new YogaButton();
-            txtNoPol = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label1 = new Label();
-            label6 = new Label();
-            txtKeluhan = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            label8 = new Label();
-            comboKendaraan = new ComboBox();
-            lblErrorKendaraan = new Label();
-            lblErrorKeluhan = new Label();
-            dateTimePickerAdv1 = new Syncfusion.Windows.Forms.Tools.DateTimePickerAdv();
-            sfDateTimeEdit1 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            label4 = new Label();
+            label3 = new Label();
+            tabPage2 = new TabPage();
+            lblErrorTanggal2 = new Label();
+            lblErrorNoPol = new Label();
+            TglEditSync2 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            txtNoPol2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            lblErrorNama2 = new Label();
+            txtNama2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            txtKendaraan2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            lblErrorKeluhan2 = new Label();
+            lblErrorKendaraan2 = new Label();
+            txtKeluhan2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            label10 = new Label();
+            label11 = new Label();
+            label13 = new Label();
+            btnCancel2 = new YogaButton();
+            label14 = new Label();
+            btnSave2 = new YogaButton();
+            label15 = new Label();
             panel1.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtKeluhan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNoPol).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNama).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtNoPol).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txtKeluhan).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dateTimePickerAdv1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dateTimePickerAdv1.Calendar).BeginInit();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)txtNoPol2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtNama2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtKendaraan2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtKeluhan2).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -80,42 +104,235 @@
             lblHeader.Text = "Input Booking";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // tabControl1
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = SystemColors.ControlDarkDark;
-            label3.Location = new Point(28, 74);
-            label3.Name = "label3";
-            label3.Size = new Size(82, 25);
-            label3.TabIndex = 15;
-            label3.Text = "No KTP*";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            tabControl1.Location = new Point(0, 42);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(470, 664);
+            tabControl1.TabIndex = 1;
             // 
-            // label4
+            // tabPage1
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = SystemColors.ControlDarkDark;
-            label4.Location = new Point(28, 151);
-            label4.Name = "label4";
-            label4.Size = new Size(68, 25);
-            label4.TabIndex = 24;
-            label4.Text = "Nama*";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
+            tabPage1.BackColor = Color.White;
+            tabPage1.Controls.Add(lblErrorTanggal);
+            tabPage1.Controls.Add(TglEditSync);
+            tabPage1.Controls.Add(lblErrorKeluhan);
+            tabPage1.Controls.Add(comboKendaraan);
+            tabPage1.Controls.Add(txtKeluhan);
+            tabPage1.Controls.Add(label8);
+            tabPage1.Controls.Add(label6);
+            tabPage1.Controls.Add(txtNoPol);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(btnSearch);
+            tabPage1.Controls.Add(lblErrorKTP);
+            tabPage1.Controls.Add(btnCancel);
+            tabPage1.Controls.Add(label12);
+            tabPage1.Controls.Add(txtNama);
+            tabPage1.Controls.Add(btnSave);
+            tabPage1.Controls.Add(txtNoKTP);
+            tabPage1.Controls.Add(label4);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Location = new Point(4, 30);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(462, 630);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Pelanggan";
+            // 
+            // lblErrorTanggal
+            // 
+            lblErrorTanggal.AutoSize = true;
+            lblErrorTanggal.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggal.ForeColor = Color.Red;
+            lblErrorTanggal.Location = new Point(140, 401);
+            lblErrorTanggal.Name = "lblErrorTanggal";
+            lblErrorTanggal.Size = new Size(268, 17);
+            lblErrorTanggal.TabIndex = 115;
+            lblErrorTanggal.Text = "⚠️ Antrean penuh, Mohon pilih tanggal lain!";
+            lblErrorTanggal.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggal.Visible = false;
+            // 
+            // TglEditSync
+            // 
+            TglEditSync.DateTimeIcon = null;
+            TglEditSync.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+            TglEditSync.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            TglEditSync.Format = "d MMMM yyyy";
+            TglEditSync.Location = new Point(140, 370);
+            TglEditSync.Name = "TglEditSync";
+            TglEditSync.Size = new Size(293, 28);
+            TglEditSync.Style.BorderColor = Color.FromArgb(64, 64, 64);
+            TglEditSync.TabIndex = 114;
+            TglEditSync.ToolTipText = "";
+            // 
+            // lblErrorKeluhan
+            // 
+            lblErrorKeluhan.AutoSize = true;
+            lblErrorKeluhan.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorKeluhan.ForeColor = Color.Red;
+            lblErrorKeluhan.Location = new Point(140, 539);
+            lblErrorKeluhan.Name = "lblErrorKeluhan";
+            lblErrorKeluhan.Size = new Size(134, 17);
+            lblErrorKeluhan.TabIndex = 111;
+            lblErrorKeluhan.Text = "⚠️ Harap isi keluhan!";
+            lblErrorKeluhan.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorKeluhan.Visible = false;
+            // 
+            // comboKendaraan
+            // 
+            comboKendaraan.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboKendaraan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            comboKendaraan.FormattingEnabled = true;
+            comboKendaraan.Location = new Point(140, 215);
+            comboKendaraan.Name = "comboKendaraan";
+            comboKendaraan.Size = new Size(293, 28);
+            comboKendaraan.TabIndex = 109;
+            // 
+            // txtKeluhan
+            // 
+            txtKeluhan.BackColor = Color.White;
+            txtKeluhan.BeforeTouchSize = new Size(146, 28);
+            txtKeluhan.BorderColor = Color.FromArgb(176, 176, 176);
+            txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
+            txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKeluhan.Location = new Point(140, 446);
+            txtKeluhan.Multiline = true;
+            txtKeluhan.Name = "txtKeluhan";
+            txtKeluhan.PlaceholderText = " Masukkan Keluhan";
+            txtKeluhan.Size = new Size(293, 90);
+            txtKeluhan.TabIndex = 108;
+            txtKeluhan.ThemeName = "Default";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = SystemColors.ControlDarkDark;
+            label8.Location = new Point(26, 446);
+            label8.Name = "label8";
+            label8.Size = new Size(79, 25);
+            label8.TabIndex = 107;
+            label8.Text = "Keluhan";
+            label8.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = SystemColors.ControlDarkDark;
+            label6.Location = new Point(26, 369);
+            label6.Name = "label6";
+            label6.Size = new Size(76, 25);
+            label6.TabIndex = 105;
+            label6.Text = "Tanggal";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txtNoPol
+            // 
+            txtNoPol.BackColor = Color.FromArgb(230, 247, 255);
+            txtNoPol.BeforeTouchSize = new Size(146, 28);
+            txtNoPol.BorderColor = Color.FromArgb(176, 176, 176);
+            txtNoPol.BorderStyle = BorderStyle.FixedSingle;
+            txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNoPol.Location = new Point(140, 292);
+            txtNoPol.Name = "txtNoPol";
+            txtNoPol.ReadOnly = true;
+            txtNoPol.Size = new Size(293, 27);
+            txtNoPol.TabIndex = 104;
+            txtNoPol.ThemeName = "Default";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ControlDarkDark;
+            label1.Location = new Point(26, 292);
+            label1.Name = "label1";
+            label1.Size = new Size(68, 25);
+            label1.TabIndex = 103;
+            label1.Text = "No Pol";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.FromArgb(230, 126, 34);
+            btnSearch.BackgroundColor = Color.FromArgb(230, 126, 34);
+            btnSearch.BorderColor = Color.PaleVioletRed;
+            btnSearch.BorderRadius = 0;
+            btnSearch.BorderSize = 0;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Image = (Image)resources.GetObject("btnSearch.Image");
+            btnSearch.Location = new Point(386, 26);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(47, 27);
+            btnSearch.TabIndex = 102;
+            btnSearch.TextColor = Color.White;
+            btnSearch.UseVisualStyleBackColor = false;
+            // 
+            // lblErrorKTP
+            // 
+            lblErrorKTP.AutoSize = true;
+            lblErrorKTP.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorKTP.ForeColor = Color.Red;
+            lblErrorKTP.Location = new Point(140, 56);
+            lblErrorKTP.Name = "lblErrorKTP";
+            lblErrorKTP.Size = new Size(174, 17);
+            lblErrorKTP.TabIndex = 101;
+            lblErrorKTP.Text = "⚠️ No KTP tidak ditemukan!";
+            lblErrorKTP.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorKTP.Visible = false;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancel.BackColor = Color.Transparent;
+            btnCancel.BackgroundColor = Color.Transparent;
+            btnCancel.BorderColor = Color.PaleVioletRed;
+            btnCancel.BorderRadius = 0;
+            btnCancel.BorderSize = 2;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.ForeColor = SystemColors.ControlDarkDark;
+            btnCancel.Location = new Point(219, 577);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(108, 36);
+            btnCancel.TabIndex = 100;
+            btnCancel.Text = "Cancel";
+            btnCancel.TextColor = SystemColors.ControlDarkDark;
+            btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.ForeColor = SystemColors.ControlDarkDark;
+            label12.Location = new Point(26, 215);
+            label12.Name = "label12";
+            label12.Size = new Size(100, 25);
+            label12.TabIndex = 99;
+            label12.Text = "Kendaraan";
+            label12.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtNama
             // 
-            txtNama.BackColor = Color.White;
-            txtNama.BeforeTouchSize = new Size(100, 23);
+            txtNama.BackColor = Color.FromArgb(230, 247, 255);
+            txtNama.BeforeTouchSize = new Size(146, 28);
             txtNama.BorderColor = Color.FromArgb(176, 176, 176);
             txtNama.BorderStyle = BorderStyle.FixedSingle;
             txtNama.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNama.Location = new Point(142, 74);
+            txtNama.Location = new Point(140, 103);
             txtNama.Name = "txtNama";
-            txtNama.PlaceholderText = " Cari pelanggan dengan KTP";
-            txtNama.Size = new Size(240, 27);
-            txtNama.TabIndex = 26;
+            txtNama.ReadOnly = true;
+            txtNama.Size = new Size(293, 27);
+            txtNama.TabIndex = 98;
             txtNama.ThemeName = "Default";
             // 
             // btnSave
@@ -130,305 +347,383 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(350, 622);
+            btnSave.Location = new Point(336, 577);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 36);
-            btnSave.TabIndex = 37;
-            btnSave.Text = "Save";
+            btnSave.TabIndex = 97;
+            btnSave.Text = "Booking";
             btnSave.TextColor = Color.White;
             btnSave.UseVisualStyleBackColor = false;
             // 
             // txtNoKTP
             // 
-            txtNoKTP.BackColor = Color.FromArgb(230, 247, 255);
-            txtNoKTP.BeforeTouchSize = new Size(100, 23);
+            txtNoKTP.BackColor = Color.White;
+            txtNoKTP.BeforeTouchSize = new Size(146, 28);
             txtNoKTP.BorderColor = Color.FromArgb(176, 176, 176);
             txtNoKTP.BorderStyle = BorderStyle.FixedSingle;
             txtNoKTP.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNoKTP.Location = new Point(142, 151);
+            txtNoKTP.Location = new Point(140, 26);
             txtNoKTP.Name = "txtNoKTP";
-            txtNoKTP.ReadOnly = true;
-            txtNoKTP.Size = new Size(293, 27);
-            txtNoKTP.TabIndex = 39;
+            txtNoKTP.PlaceholderText = " Cari pelanggan dengan KTP";
+            txtNoKTP.Size = new Size(240, 27);
+            txtNoKTP.TabIndex = 96;
             txtNoKTP.ThemeName = "Default";
             // 
-            // label12
+            // label4
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.ForeColor = SystemColors.ControlDarkDark;
-            label12.Location = new Point(28, 263);
-            label12.Name = "label12";
-            label12.Size = new Size(100, 25);
-            label12.TabIndex = 53;
-            label12.Text = "Kendaraan";
-            label12.TextAlign = ContentAlignment.MiddleCenter;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ControlDarkDark;
+            label4.Location = new Point(26, 103);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 25);
+            label4.TabIndex = 95;
+            label4.Text = "Nama*";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // yogaButton1
+            // label3
             // 
-            yogaButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            yogaButton1.BackColor = Color.Transparent;
-            yogaButton1.BackgroundColor = Color.Transparent;
-            yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 0;
-            yogaButton1.BorderSize = 2;
-            yogaButton1.FlatAppearance.BorderSize = 0;
-            yogaButton1.FlatStyle = FlatStyle.Flat;
-            yogaButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            yogaButton1.ForeColor = SystemColors.ControlDarkDark;
-            yogaButton1.Location = new Point(233, 622);
-            yogaButton1.Name = "yogaButton1";
-            yogaButton1.Size = new Size(108, 36);
-            yogaButton1.TabIndex = 62;
-            yogaButton1.Text = "Cancel";
-            yogaButton1.TextColor = SystemColors.ControlDarkDark;
-            yogaButton1.UseVisualStyleBackColor = false;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ControlDarkDark;
+            label3.Location = new Point(26, 26);
+            label3.Name = "label3";
+            label3.Size = new Size(82, 25);
+            label3.TabIndex = 94;
+            label3.Text = "No KTP*";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblErrorKTP
+            // tabPage2
             // 
-            lblErrorKTP.AutoSize = true;
-            lblErrorKTP.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorKTP.ForeColor = Color.Red;
-            lblErrorKTP.Location = new Point(142, 104);
-            lblErrorKTP.Name = "lblErrorKTP";
-            lblErrorKTP.Size = new Size(174, 17);
-            lblErrorKTP.TabIndex = 77;
-            lblErrorKTP.Text = "⚠️ No KTP tidak ditemukan!";
-            lblErrorKTP.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorKTP.Visible = false;
+            tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(lblErrorTanggal2);
+            tabPage2.Controls.Add(lblErrorNoPol);
+            tabPage2.Controls.Add(TglEditSync2);
+            tabPage2.Controls.Add(txtNoPol2);
+            tabPage2.Controls.Add(lblErrorNama2);
+            tabPage2.Controls.Add(txtNama2);
+            tabPage2.Controls.Add(txtKendaraan2);
+            tabPage2.Controls.Add(lblErrorKeluhan2);
+            tabPage2.Controls.Add(lblErrorKendaraan2);
+            tabPage2.Controls.Add(txtKeluhan2);
+            tabPage2.Controls.Add(label10);
+            tabPage2.Controls.Add(label11);
+            tabPage2.Controls.Add(label13);
+            tabPage2.Controls.Add(btnCancel2);
+            tabPage2.Controls.Add(label14);
+            tabPage2.Controls.Add(btnSave2);
+            tabPage2.Controls.Add(label15);
+            tabPage2.Location = new Point(4, 30);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(462, 630);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Tamu";
             // 
-            // btnSearch
+            // lblErrorTanggal2
             // 
-            btnSearch.BackColor = Color.FromArgb(230, 126, 34);
-            btnSearch.BackgroundColor = Color.FromArgb(230, 126, 34);
-            btnSearch.BorderColor = Color.PaleVioletRed;
-            btnSearch.BorderRadius = 0;
-            btnSearch.BorderSize = 0;
-            btnSearch.FlatAppearance.BorderSize = 0;
-            btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.ForeColor = Color.White;
-            btnSearch.Image = Properties.Resources.defaultImage;
-            btnSearch.Location = new Point(388, 74);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(47, 27);
-            btnSearch.TabIndex = 84;
-            btnSearch.TextColor = Color.White;
-            btnSearch.UseVisualStyleBackColor = false;
+            lblErrorTanggal2.AutoSize = true;
+            lblErrorTanggal2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggal2.ForeColor = Color.Red;
+            lblErrorTanggal2.Location = new Point(141, 292);
+            lblErrorTanggal2.Name = "lblErrorTanggal2";
+            lblErrorTanggal2.Size = new Size(268, 17);
+            lblErrorTanggal2.TabIndex = 133;
+            lblErrorTanggal2.Text = "⚠️ Antrean penuh, Mohon pilih tanggal lain!";
+            lblErrorTanggal2.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggal2.Visible = false;
             // 
-            // txtNoPol
+            // lblErrorNoPol
             // 
-            txtNoPol.BackColor = Color.FromArgb(230, 247, 255);
-            txtNoPol.BeforeTouchSize = new Size(100, 23);
-            txtNoPol.BorderColor = Color.FromArgb(176, 176, 176);
-            txtNoPol.BorderStyle = BorderStyle.FixedSingle;
-            txtNoPol.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNoPol.Location = new Point(142, 340);
-            txtNoPol.Name = "txtNoPol";
-            txtNoPol.ReadOnly = true;
-            txtNoPol.Size = new Size(293, 27);
-            txtNoPol.TabIndex = 86;
-            txtNoPol.ThemeName = "Default";
+            lblErrorNoPol.AutoSize = true;
+            lblErrorNoPol.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorNoPol.ForeColor = Color.Red;
+            lblErrorNoPol.Location = new Point(141, 214);
+            lblErrorNoPol.Name = "lblErrorNoPol";
+            lblErrorNoPol.Size = new Size(201, 17);
+            lblErrorNoPol.TabIndex = 132;
+            lblErrorNoPol.Text = "⚠️ Nomor polisi sudah tersedia!";
+            lblErrorNoPol.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorNoPol.Visible = false;
             // 
-            // label1
+            // TglEditSync2
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(28, 340);
-            label1.Name = "label1";
-            label1.Size = new Size(68, 25);
-            label1.TabIndex = 85;
-            label1.Text = "No Pol";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            TglEditSync2.DateTimeIcon = null;
+            TglEditSync2.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+            TglEditSync2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            TglEditSync2.Format = "d MMMM yyyy";
+            TglEditSync2.Location = new Point(141, 261);
+            TglEditSync2.Name = "TglEditSync2";
+            TglEditSync2.Size = new Size(293, 28);
+            TglEditSync2.Style.BorderColor = Color.FromArgb(64, 64, 64);
+            TglEditSync2.TabIndex = 131;
+            TglEditSync2.ToolTipText = "";
             // 
-            // label6
+            // txtNoPol2
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = SystemColors.ControlDarkDark;
-            label6.Location = new Point(28, 417);
-            label6.Name = "label6";
-            label6.Size = new Size(76, 25);
-            label6.TabIndex = 87;
-            label6.Text = "Tanggal";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
+            txtNoPol2.BackColor = Color.White;
+            txtNoPol2.BeforeTouchSize = new Size(146, 28);
+            txtNoPol2.BorderColor = Color.FromArgb(176, 176, 176);
+            txtNoPol2.BorderStyle = BorderStyle.FixedSingle;
+            txtNoPol2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNoPol2.Location = new Point(141, 184);
+            txtNoPol2.Name = "txtNoPol2";
+            txtNoPol2.PlaceholderText = " contoh : AB 123 FA";
+            txtNoPol2.Size = new Size(293, 27);
+            txtNoPol2.TabIndex = 130;
+            txtNoPol2.ThemeName = "Default";
             // 
-            // txtKeluhan
+            // lblErrorNama2
             // 
-            txtKeluhan.BackColor = Color.White;
-            txtKeluhan.BeforeTouchSize = new Size(100, 23);
-            txtKeluhan.BorderColor = Color.FromArgb(176, 176, 176);
-            txtKeluhan.BorderStyle = BorderStyle.FixedSingle;
-            txtKeluhan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            txtKeluhan.Location = new Point(142, 494);
-            txtKeluhan.Multiline = true;
-            txtKeluhan.Name = "txtKeluhan";
-            txtKeluhan.PlaceholderText = " Masukkan Keluhan";
-            txtKeluhan.Size = new Size(293, 90);
-            txtKeluhan.TabIndex = 90;
-            txtKeluhan.ThemeName = "Default";
+            lblErrorNama2.AutoSize = true;
+            lblErrorNama2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorNama2.ForeColor = Color.Red;
+            lblErrorNama2.Location = new Point(141, 62);
+            lblErrorNama2.Name = "lblErrorNama2";
+            lblErrorNama2.Size = new Size(167, 17);
+            lblErrorNama2.TabIndex = 129;
+            lblErrorNama2.Text = "⚠️ Harap masukkan nama!";
+            lblErrorNama2.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorNama2.Visible = false;
             // 
-            // label8
+            // txtNama2
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = SystemColors.ControlDarkDark;
-            label8.Location = new Point(28, 494);
-            label8.Name = "label8";
-            label8.Size = new Size(79, 25);
-            label8.TabIndex = 89;
-            label8.Text = "Keluhan";
-            label8.TextAlign = ContentAlignment.MiddleCenter;
+            txtNama2.BackColor = Color.White;
+            txtNama2.BeforeTouchSize = new Size(146, 28);
+            txtNama2.BorderColor = Color.FromArgb(176, 176, 176);
+            txtNama2.BorderStyle = BorderStyle.FixedSingle;
+            txtNama2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNama2.Location = new Point(141, 32);
+            txtNama2.Name = "txtNama2";
+            txtNama2.PlaceholderText = " Masukkan nama";
+            txtNama2.Size = new Size(293, 27);
+            txtNama2.TabIndex = 128;
+            txtNama2.ThemeName = "Default";
             // 
-            // comboKendaraan
+            // txtKendaraan2
             // 
-            comboKendaraan.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboKendaraan.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboKendaraan.FormattingEnabled = true;
-            comboKendaraan.Location = new Point(142, 263);
-            comboKendaraan.Name = "comboKendaraan";
-            comboKendaraan.Size = new Size(293, 28);
-            comboKendaraan.TabIndex = 91;
+            txtKendaraan2.BackColor = Color.White;
+            txtKendaraan2.BeforeTouchSize = new Size(146, 28);
+            txtKendaraan2.BorderColor = Color.FromArgb(176, 176, 176);
+            txtKendaraan2.BorderStyle = BorderStyle.FixedSingle;
+            txtKendaraan2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKendaraan2.Location = new Point(141, 107);
+            txtKendaraan2.Name = "txtKendaraan2";
+            txtKendaraan2.PlaceholderText = " Masukkan nama kendaraan";
+            txtKendaraan2.Size = new Size(293, 27);
+            txtKendaraan2.TabIndex = 127;
+            txtKendaraan2.ThemeName = "Default";
             // 
-            // lblErrorKendaraan
+            // lblErrorKeluhan2
             // 
-            lblErrorKendaraan.AutoSize = true;
-            lblErrorKendaraan.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorKendaraan.ForeColor = Color.Red;
-            lblErrorKendaraan.Location = new Point(142, 294);
-            lblErrorKendaraan.Name = "lblErrorKendaraan";
-            lblErrorKendaraan.Size = new Size(185, 17);
-            lblErrorKendaraan.TabIndex = 92;
-            lblErrorKendaraan.Text = "⚠️ Pilih kendaraan yang valid!";
-            lblErrorKendaraan.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorKendaraan.Visible = false;
+            lblErrorKeluhan2.AutoSize = true;
+            lblErrorKeluhan2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorKeluhan2.ForeColor = Color.Red;
+            lblErrorKeluhan2.Location = new Point(141, 431);
+            lblErrorKeluhan2.Name = "lblErrorKeluhan2";
+            lblErrorKeluhan2.Size = new Size(134, 17);
+            lblErrorKeluhan2.TabIndex = 125;
+            lblErrorKeluhan2.Text = "⚠️ Harap isi keluhan!";
+            lblErrorKeluhan2.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorKeluhan2.Visible = false;
             // 
-            // lblErrorKeluhan
+            // lblErrorKendaraan2
             // 
-            lblErrorKeluhan.AutoSize = true;
-            lblErrorKeluhan.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorKeluhan.ForeColor = Color.Red;
-            lblErrorKeluhan.Location = new Point(142, 587);
-            lblErrorKeluhan.Name = "lblErrorKeluhan";
-            lblErrorKeluhan.Size = new Size(134, 17);
-            lblErrorKeluhan.TabIndex = 93;
-            lblErrorKeluhan.Text = "⚠️ Harap isi keluhan!";
-            lblErrorKeluhan.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorKeluhan.Visible = false;
+            lblErrorKendaraan2.AutoSize = true;
+            lblErrorKendaraan2.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorKendaraan2.ForeColor = Color.Red;
+            lblErrorKendaraan2.Location = new Point(141, 138);
+            lblErrorKendaraan2.Name = "lblErrorKendaraan2";
+            lblErrorKendaraan2.Size = new Size(193, 17);
+            lblErrorKendaraan2.TabIndex = 124;
+            lblErrorKendaraan2.Text = "⚠️ Masukkan nama kendaraan!";
+            lblErrorKendaraan2.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorKendaraan2.Visible = false;
             // 
-            // dateTimePickerAdv1
+            // txtKeluhan2
             // 
-            dateTimePickerAdv1.BorderColor = Color.Empty;
+            txtKeluhan2.BackColor = Color.White;
+            txtKeluhan2.BeforeTouchSize = new Size(146, 28);
+            txtKeluhan2.BorderColor = Color.FromArgb(176, 176, 176);
+            txtKeluhan2.BorderStyle = BorderStyle.FixedSingle;
+            txtKeluhan2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKeluhan2.Location = new Point(141, 338);
+            txtKeluhan2.Multiline = true;
+            txtKeluhan2.Name = "txtKeluhan2";
+            txtKeluhan2.PlaceholderText = " Masukkan Keluhan";
+            txtKeluhan2.Size = new Size(293, 90);
+            txtKeluhan2.TabIndex = 122;
+            txtKeluhan2.ThemeName = "Default";
             // 
+            // label10
             // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.ForeColor = SystemColors.ControlDarkDark;
+            label10.Location = new Point(27, 338);
+            label10.Name = "label10";
+            label10.Size = new Size(79, 25);
+            label10.TabIndex = 121;
+            label10.Text = "Keluhan";
+            label10.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            dateTimePickerAdv1.Calendar.AllowMultipleSelection = false;
-            dateTimePickerAdv1.Calendar.BottomHeight = 25;
-            dateTimePickerAdv1.Calendar.DayNamesFont = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dateTimePickerAdv1.Calendar.DaysFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerAdv1.Calendar.Dock = DockStyle.Fill;
-            dateTimePickerAdv1.Calendar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerAdv1.Calendar.HeaderFont = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dateTimePickerAdv1.Calendar.Location = new Point(0, 0);
-            dateTimePickerAdv1.Calendar.MetroColor = Color.FromArgb(22, 165, 220);
-            dateTimePickerAdv1.Calendar.Name = "monthCalendar";
+            // label11
             // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = SystemColors.ControlDarkDark;
+            label11.Location = new Point(27, 261);
+            label11.Name = "label11";
+            label11.Size = new Size(76, 25);
+            label11.TabIndex = 119;
+            label11.Text = "Tanggal";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label13
             // 
-            dateTimePickerAdv1.Calendar.NoneButton.AutoSize = true;
-            dateTimePickerAdv1.Calendar.NoneButton.Location = new Point(115, 0);
-            dateTimePickerAdv1.Calendar.NoneButton.Text = "None";
-            dateTimePickerAdv1.Calendar.Size = new Size(187, 174);
-            dateTimePickerAdv1.Calendar.SizeToFit = true;
-            dateTimePickerAdv1.Calendar.TabIndex = 0;
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.ForeColor = SystemColors.ControlDarkDark;
+            label13.Location = new Point(27, 184);
+            label13.Name = "label13";
+            label13.Size = new Size(68, 25);
+            label13.TabIndex = 117;
+            label13.Text = "No Pol";
+            label13.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // btnCancel2
             // 
+            btnCancel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancel2.BackColor = Color.Transparent;
+            btnCancel2.BackgroundColor = Color.Transparent;
+            btnCancel2.BorderColor = Color.PaleVioletRed;
+            btnCancel2.BorderRadius = 0;
+            btnCancel2.BorderSize = 2;
+            btnCancel2.FlatAppearance.BorderSize = 0;
+            btnCancel2.FlatStyle = FlatStyle.Flat;
+            btnCancel2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel2.ForeColor = SystemColors.ControlDarkDark;
+            btnCancel2.Location = new Point(219, 577);
+            btnCancel2.Name = "btnCancel2";
+            btnCancel2.Size = new Size(108, 36);
+            btnCancel2.TabIndex = 116;
+            btnCancel2.Text = "Cancel";
+            btnCancel2.TextColor = SystemColors.ControlDarkDark;
+            btnCancel2.UseVisualStyleBackColor = false;
             // 
-            dateTimePickerAdv1.Calendar.TodayButton.AutoSize = true;
-            dateTimePickerAdv1.Calendar.TodayButton.Location = new Point(0, 0);
-            dateTimePickerAdv1.Calendar.TodayButton.Text = "Today";
-            dateTimePickerAdv1.CalendarSize = new Size(189, 176);
-            dateTimePickerAdv1.DropDownImage = null;
-            dateTimePickerAdv1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerAdv1.Location = new Point(142, 422);
-            dateTimePickerAdv1.MetroColor = Color.FromArgb(22, 165, 220);
-            dateTimePickerAdv1.MinValue = new DateTime(0L);
-            dateTimePickerAdv1.Name = "dateTimePickerAdv1";
-            dateTimePickerAdv1.Size = new Size(232, 20);
-            dateTimePickerAdv1.TabIndex = 94;
-            dateTimePickerAdv1.Value = new DateTime(2025, 2, 13, 9, 22, 53, 204);
+            // label14
             // 
-            // sfDateTimeEdit1
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = SystemColors.ControlDarkDark;
+            label14.Location = new Point(27, 107);
+            label14.Name = "label14";
+            label14.Size = new Size(100, 25);
+            label14.TabIndex = 115;
+            label14.Text = "Kendaraan";
+            label14.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            sfDateTimeEdit1.DateTimeIcon = null;
-            sfDateTimeEdit1.Location = new Point(155, 381);
-            sfDateTimeEdit1.Name = "sfDateTimeEdit1";
-            sfDateTimeEdit1.Size = new Size(232, 23);
-            sfDateTimeEdit1.TabIndex = 95;
-            sfDateTimeEdit1.ToolTipText = "";
+            // btnSave2
             // 
-            // FormInputBooking
+            btnSave2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSave2.BackColor = Color.FromArgb(52, 152, 219);
+            btnSave2.BackgroundColor = Color.FromArgb(52, 152, 219);
+            btnSave2.BorderColor = Color.PaleVioletRed;
+            btnSave2.BorderRadius = 0;
+            btnSave2.BorderSize = 0;
+            btnSave2.FlatAppearance.BorderSize = 0;
+            btnSave2.FlatStyle = FlatStyle.Flat;
+            btnSave2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSave2.ForeColor = Color.White;
+            btnSave2.Location = new Point(336, 577);
+            btnSave2.Name = "btnSave2";
+            btnSave2.Size = new Size(108, 36);
+            btnSave2.TabIndex = 113;
+            btnSave2.Text = "Booking";
+            btnSave2.TextColor = Color.White;
+            btnSave2.UseVisualStyleBackColor = false;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.ForeColor = SystemColors.ControlDarkDark;
+            label15.Location = new Point(27, 32);
+            label15.Name = "label15";
+            label15.Size = new Size(60, 25);
+            label15.TabIndex = 112;
+            label15.Text = "Nama";
+            label15.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // FormInputBooking2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(247, 247, 247);
-            ClientSize = new Size(470, 670);
-            Controls.Add(sfDateTimeEdit1);
-            Controls.Add(dateTimePickerAdv1);
-            Controls.Add(lblErrorKeluhan);
-            Controls.Add(lblErrorKendaraan);
-            Controls.Add(comboKendaraan);
-            Controls.Add(txtKeluhan);
-            Controls.Add(label8);
-            Controls.Add(label6);
-            Controls.Add(txtNoPol);
-            Controls.Add(label1);
-            Controls.Add(btnSearch);
-            Controls.Add(lblErrorKTP);
-            Controls.Add(yogaButton1);
-            Controls.Add(label12);
-            Controls.Add(txtNoKTP);
-            Controls.Add(btnSave);
-            Controls.Add(txtNama);
-            Controls.Add(label4);
-            Controls.Add(label3);
+            ClientSize = new Size(470, 706);
+            Controls.Add(tabControl1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Name = "FormInputBooking";
+            Name = "FormInputBooking2";
             StartPosition = FormStartPosition.CenterParent;
             panel1.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtKeluhan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNoPol).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNama).EndInit();
             ((System.ComponentModel.ISupportInitialize)txtNoKTP).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtNoPol).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txtKeluhan).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dateTimePickerAdv1.Calendar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dateTimePickerAdv1).EndInit();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)txtNoPol2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtNama2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtKendaraan2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtKeluhan2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
         private Label lblHeader;
-        private Label label3;
-        private Label label4;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private Label lblErrorKeluhan;
+        private ComboBox comboKendaraan;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKeluhan;
+        private Label label8;
+        private Label label6;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoPol;
+        private Label label1;
+        private YogaButton btnSearch;
+        private Label lblErrorKTP;
+        private YogaButton btnCancel;
+        private Label label12;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama;
         private YogaButton btnSave;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoKTP;
-        private Label label12;
-        private YogaButton yogaButton1;
-        private Label lblErrorKTP;
-        private YogaButton btnSearch;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoPol;
-        private Label label1;
-        private Label label6;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKeluhan;
-        private Label label8;
-        private ComboBox comboKendaraan;
-        private Label lblErrorKendaraan;
-        private Label lblErrorKeluhan;
-        private Syncfusion.Windows.Forms.Tools.DateTimePickerAdv dateTimePickerAdv1;
-        private Syncfusion.WinForms.Input.SfDateTimeEdit sfDateTimeEdit1;
+        private Label label4;
+        private Label label3;
+        private Label lblErrorKeluhan2;
+        private Label lblErrorKendaraan2;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKeluhan2;
+        private Label label10;
+        private Label label11;
+        private Label label13;
+        private YogaButton btnCancel2;
+        private Label label14;
+        private YogaButton btnSave2;
+        private Label label15;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNoPol2;
+        private Label lblErrorNama2;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtNama2;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtKendaraan2;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit TglEditSync;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit TglEditSync2;
+        private Label lblErrorNoPol;
+        private Label lblErrorTanggal;
+        private Label lblErrorTanggal2;
     }
 }

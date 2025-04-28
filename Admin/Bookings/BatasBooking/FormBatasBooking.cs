@@ -60,6 +60,7 @@ namespace Bengkel_Yoga_UKK
             TglEditSync.Format = _tglFormat;
             lblHeader.Text = "Insert Batas Booking";
             _InsertReady = true;
+            _isDefault = false;
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
@@ -88,6 +89,7 @@ namespace Bengkel_Yoga_UKK
             ClearInput();
             _id_batas_booking = 0;
             _InsertReady = false;
+            _isDefault = false;
         }
 
         private void DataGridView1_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

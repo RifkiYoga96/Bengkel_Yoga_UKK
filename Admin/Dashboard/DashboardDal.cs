@@ -49,6 +49,15 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QuerySingleOrDefault<int>(sql, new { tgl1, tgl2 });
         }
 
+        public int GetPelangganBaru(DateTime tgl1, DateTime tgl2)
+        {
+            const string sql = @"SELECT COUNT(*) AS PelangganBaru
+                                FROM Pelanggan
+                                WHERE created_at BETWEEN @tgl1 AND @tgl2";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, new { tgl1, tgl2 });
+        }
+
         public int GetBookingBelumDitangani(DateTime tgl1, DateTime tgl2)
         {
             const string sql = @"SELECT COUNT(*) AS BookingBelumDitangani
@@ -67,20 +76,45 @@ namespace Bengkel_Yoga_UKK
             return koneksi.QuerySingleOrDefault<int>(sql);
         }
 
+        public int GetServisSelesai(DateTime tgl1, DateTime tgl2)
+        {
+            const string sql = @"SELECT COUNT(*) AS ServisSelesai
+                                FROM Riwayat
+                                WHERE tanggal_selesai BETWEEN @tgl1 AND @tgl2";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, new { tgl1, tgl2 });
+        }
 
 
         //Admin
-        public IEnumerable<ServisTerbanyakDto> ListServisTerbanyak()
+        public IEnumerable<ServisTerbanyakDto> ListServisTerbanyak(DateTime tgl1, DateTime tgl2)
         {
             const string sql = @"SELECT TOP 5
                     p.nama_pelanggan, COUNT(*) AS jumlah_servis
                     FROM Riwayat r
                     INNER JOIN Pelanggan p ON r.ktp_pelanggan = p.ktp_pelanggan
+                    WHERE r.tanggal BETWEEN @tgl1 AND @tgl2
                     GROUP BY r.ktp_pelanggan, p.nama_pelanggan";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<ServisTerbanyakDto>(sql);
+            return koneksi.Query<ServisTerbanyakDto>(sql, new { tgl1, tgl2 });
         }
-
+        public IEnumerable<SparepartTerbanyakDto> ListPenjualanSparepart(DateTime tgl1, DateTime tgl2)
+        {
+            const string sql = @"
+                SELECT TOP 5
+                    rs.kode_sparepart,
+                    rs.nama_sparepart,
+                    SUM(rs.harga * rs.jumlah) AS total_penjualan,
+                    SUM(rs.jumlah) AS jumlah_penjualan
+                FROM RiwayatSparepart RS
+                JOIN Riwayat r ON rs.id_riwayat = r.id_riwayat
+                WHERE r.tanggal_servis BETWEEN @tgl1 AND @tgl2
+                GROUP BY rs.kode_sparepart, rs.nama_sparepart
+                ORDER BY jumlah_penjualan DESC";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.Query<SparepartTerbanyakDto>(sql, new {tgl1,tgl2});
+        }
+        
     }
 }
 
@@ -89,3 +123,11 @@ public class ServisTerbanyakDto
     public string nama_pelanggan { get; set; }
     public int jumlah_servis { get; set; }
 }
+public class SparepartTerbanyakDto
+{
+    public string kode_sparepart { get; set; }
+    public string nama_sparepart { get; set; }
+    public int total_penjualan { get; set; }
+    public int jumlah_penjualan { get; set; }
+}
+

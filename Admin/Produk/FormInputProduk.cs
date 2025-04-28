@@ -19,7 +19,6 @@ namespace Bengkel_Yoga_UKK
         private Image _imageProduk = Properties.Resources.defaultImage;
         private Image _defaultImage = Properties.Resources.defaultImage;
         private string _kode_produk = "";
-        private bool _isInsert = true;
         public FormInputProduk(string kode_produk = "", bool isInsert = true)
         {
             InitializeComponent();
@@ -29,7 +28,6 @@ namespace Bengkel_Yoga_UKK
             if (!isInsert)
             {
                 lblHeader.Text = "Edit Sparepart";
-                _isInsert = false;
                 _kode_produk = kode_produk;
                 GetData();
             }
@@ -135,7 +133,7 @@ namespace Bengkel_Yoga_UKK
             if (data is null) return;
 
             pictureBox1.BackgroundImage = data.image_data != null
-                ? ImageConvert.Image_ByteToImage(data.image_data)
+                ? ImageConvert.ByteArrayToImage(data.image_data)
                 : null;
             txtNamaProduk.Text = data.nama_sparepart;
             txtHarga.DecimalValue = data.harga;

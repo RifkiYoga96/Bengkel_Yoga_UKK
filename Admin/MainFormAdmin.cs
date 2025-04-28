@@ -12,12 +12,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 using Syncfusion.WinForms.Controls;
+using System.Globalization;
 
 namespace Bengkel_Yoga_UKK
 {
     public partial class MainFormAdmin : SfForm
     {   
-        public static MainFormAdmin _mainForm { get; private set; }
+        public static MainFormAdmin? _mainForm { get; private set; }
         private static Dictionary<int, Button> _listButton = new Dictionary<int, Button>();
         private static Label _lblDisplay;
         private static int buttonActiveBefore = 0;
@@ -33,11 +34,11 @@ namespace Bengkel_Yoga_UKK
             _mainForm = this;
             InitComponen();
             RegisterEvent();
-            Image originalImage = Image.FromFile(@"D:\APenyimpanan\BENGKEL - UKK\Profile (5).png");
         }
 
         private void InitComponen()
         {
+
             AddButton(1, btnDashboard);
             AddButton(2, btnBooking);
             AddButton(3, btnProduk);
@@ -82,7 +83,10 @@ namespace Bengkel_Yoga_UKK
                 item.FlatAppearance.MouseOverBackColor = hover;
             }
 
-            btnDashboard.Click += (s, e) => NavigateToForm(GlobalVariabel._role == 1 ? new DashboardPetugas() : new DashboardAdmin(), 1);
+            btnDashboard.Click += (s, e) =>
+            {
+                NavigateToForm(GlobalVariabel._role == 1 ? new DashboardPetugas() : new DashboardAdmin(), 1);
+            };
             btnBooking.Click += (s, e) => NavigateToForm(new FormBooking(), 2);
             btnProduk.Click += (s, e) => NavigateToForm(new FormProduk(), 3);
             btnRiwayat.Click += (s, e) => NavigateToForm(new FormRiwayat(), 4);
@@ -97,6 +101,8 @@ namespace Bengkel_Yoga_UKK
 
             btnDetailProfile.Click += (s, e) => contextMenuStripEx1.Show(Cursor.Position);
             editToolStripMenuItem.Click += (s, e) => new FormEditProfile(GlobalVariabel._ktp).ShowDialog();
+
+            //this.FormClosed += (s, e) => _mainForm = null;
         }
 
         private void BtnLogout_Click(object? sender, EventArgs e)
@@ -104,7 +110,7 @@ namespace Bengkel_Yoga_UKK
             if (!MB.Konfirmasi("Apakah anda yakin ingin logout?")) return;
             _isLogout = true;
             GlobalVariabel._ktp = string.Empty; // hapus session
-            FormDashboardUser._formDashboardUser.Show();
+            FormDashboardUser._formDashboardUser?.Show();
             this.Close();
         }
 
@@ -112,7 +118,7 @@ namespace Bengkel_Yoga_UKK
         {
             if (_isLogout) return;
             if (MB.Konfirmasi("Apakah anda yakin ingin menutup aplikasi ini?"))
-                FormDashboardUser._formDashboardUser.Close();
+                FormDashboardUser._formDashboardUser?.Close();
             else
                 e.Cancel = true;
         }
@@ -146,6 +152,7 @@ namespace Bengkel_Yoga_UKK
                     _listButton[buttonActiveBefore].FlatAppearance.MouseOverBackColor = hover;
                 }
                 buttonActiveBefore = buttonActiveAfter;
+                MainFormAdmin._mainForm.btnBooking.BackColor = Color.Red;
             }
             string text = "";
             switch (buttonActiveAfter)
@@ -205,9 +212,11 @@ namespace Bengkel_Yoga_UKK
             panelMain.Tag = form;
             form.Show();
         }
+
         public static void PegawaiLogin()
         {
-            MainFormAdmin main = MainFormAdmin._mainForm;
+            MainFormAdmin? main = MainFormAdmin._mainForm;
+            if (main is null) return;
             var karyawanDal = new KaryawanDal();
             var data = karyawanDal.GetData(GlobalVariabel._ktp);
 
@@ -220,7 +229,7 @@ namespace Bengkel_Yoga_UKK
             //PictureBox
             Image fotoProfile = data.image_data is null ?
                 Properties.Resources.defaultProfile
-                : ImageConvert.Image_ByteToImage(data.image_data);
+                : ImageConvert.ByteArrayToImage(data.image_data);
             SetProfilePicture(fotoProfile, pictureBox);
 
             lblRole.Text = data.role == 1 ? "Petugas" : "Super Admin";

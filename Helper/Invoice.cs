@@ -22,10 +22,16 @@ namespace Bengkel_Yoga_UKK
             string fileName = $"Invoice_{invoice.NamaPelanggan}_{invoice.Tanggal:dd-MM-yyyy}.pdf";
             string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
             // Ukuran kertas A4 (595 x 842 pts)
             iTextSharp.text.Document doc = new iTextSharp.text.Document(PageSize.A4, 30f, 30f, 30f, 30f);
             PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
             doc.Open();
+
 
             // Font Styling
             iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 24);
@@ -137,8 +143,8 @@ namespace Bengkel_Yoga_UKK
             {
                 table.AddCell(new PdfPCell(new Phrase(invoice.ListBarang[i], bodyFont)) { Padding = 5f });
                 table.AddCell(new PdfPCell(new Phrase(invoice.ListQuantity[i].ToString(), bodyFont)) { HorizontalAlignment = Element.ALIGN_CENTER, Padding = 5f });
-                table.AddCell(new PdfPCell(new Phrase($"Rp {invoice.ListHarga[i]:N0}", bodyFont)) { Padding = 5f });
-                table.AddCell(new PdfPCell(new Phrase($"Rp {invoice.ListQuantity[i] * invoice.ListHarga[i]:N0}", bodyFont)) { Padding = 5f });
+                table.AddCell(new PdfPCell(new Phrase($"Rp {invoice.ListHarga[i]:N0}", bodyFont)) { HorizontalAlignment = Element.ALIGN_RIGHT,Padding = 5f });
+                table.AddCell(new PdfPCell(new Phrase($"Rp {invoice.ListQuantity[i] * invoice.ListHarga[i]:N0}", bodyFont)) { Padding = 5f, HorizontalAlignment = Element.ALIGN_RIGHT });
             }
 
             doc.Add(table);

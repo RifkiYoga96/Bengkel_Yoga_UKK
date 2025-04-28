@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             txtEmail = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             btnShowPassword = new Button();
@@ -40,6 +41,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            btnBack = new YogaButton();
             ((System.ComponentModel.ISupportInitialize)txtEmail).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txtPassword).BeginInit();
             panel1.SuspendLayout();
@@ -132,7 +134,7 @@
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(lblErrorEmail);
             panel1.Controls.Add(txtPassword);
-            panel1.Location = new Point(53, 49);
+            panel1.Location = new Point(92, 84);
             panel1.Name = "panel1";
             panel1.Size = new Size(397, 410);
             panel1.TabIndex = 104;
@@ -189,12 +191,36 @@
             label1.TabIndex = 0;
             label1.Text = "LOGIN";
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(44, 62, 80);
+            btnBack.BackgroundColor = Color.FromArgb(44, 62, 80);
+            btnBack.BackgroundImageLayout = ImageLayout.Zoom;
+            btnBack.BorderColor = Color.PaleVioletRed;
+            btnBack.BorderRadius = 7;
+            btnBack.BorderSize = 0;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.ForeColor = Color.White;
+            btnBack.Image = (Image)resources.GetObject("btnBack.Image");
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(113, 50);
+            btnBack.TabIndex = 105;
+            btnBack.Text = "   Back";
+            btnBack.TextAlign = ContentAlignment.MiddleLeft;
+            btnBack.TextColor = Color.White;
+            btnBack.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBack.UseVisualStyleBackColor = false;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 235, 240);
-            ClientSize = new Size(502, 505);
+            ClientSize = new Size(581, 575);
+            Controls.Add(btnBack);
             Controls.Add(panel1);
             Name = "Login";
             Text = "Login";
@@ -219,5 +245,6 @@
         private Label label2;
         private LinkLabel linkRegister;
         private Label label4;
+        private YogaButton btnBack;
     }
 }

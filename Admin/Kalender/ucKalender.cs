@@ -18,9 +18,10 @@ namespace Bengkel_Yoga_UKK
         int _date;
         private Dictionary<int, Button> _btnControl = new Dictionary<int, Button>();
         DateTime NowTgl;
-        public ucKalender(int date,DateTime dateTime, bool show, ShowDayDto? showDay = null)
+        public ucKalender(int date, DateTime dateTime, bool show, ShowDayDto? showDay = null)
         {
             InitializeComponent();
+            if (showDay is null) return;
             NowTgl = dateTime;
             if (!show)
             {
@@ -40,19 +41,18 @@ namespace Bengkel_Yoga_UKK
                 label1.ForeColor = Color.Black;
             }
 
-            if(DateTime.Today == dateTime)
+            if (DateTime.Today == dateTime)
             {
                 this.BackColor = Color.LightGray;
             }
 
+            _btnControl.Add(0, btnBooking1);
+            _btnControl.Add(1, btnBooking2);
+            _btnControl.Add(2, btnBooking3);
 
-            _btnControl.Add(0,btnBooking1);
-            _btnControl.Add(1,btnBooking2);
-            _btnControl.Add(2,btnBooking3);
-
-            if(showDay?.jumlah > 3)
+            if (showDay?.jumlah > 3)
             {
-                for(int i = 0; i < showDay.nama_pelanggan.Count; i++)
+                for (int i = 0; i < showDay.nama_pelanggan.Count; i++)
                 {
                     _btnControl[i].BackColor = showDay.warnaStatus[i];
                     _btnControl[i].Text = showDay.nama_pelanggan[i];
@@ -60,8 +60,9 @@ namespace Bengkel_Yoga_UKK
                     _btnControl[i].FlatAppearance.MouseOverBackColor = showDay.warnaStatus[i];
                     _btnControl[i].Visible = true;
                 }
-                btnCountNotif.Visible = true;
-                btnCountNotif.Text = showDay.jumlah.ToString();
+                this.btnCountNotif.Visible = showDay.jumlah> 3;
+                btnCountNotif.Text = showDay?.jumlah > 9 ? "9+"
+                    : showDay?.jumlah.ToString();
             }
             else if (showDay?.jumlah > 0)
             {
@@ -75,7 +76,7 @@ namespace Bengkel_Yoga_UKK
                 }
             }
 
-            switch (showDay.integratedTo)
+            switch (showDay?.integratedTo)
             {
                 case 1:
                     btnBooking1.Click += Click_ToBooking;
@@ -115,16 +116,16 @@ namespace Bengkel_Yoga_UKK
             MainFormAdmin.ShowFormInPanel2(new FormBooking(NowTgl));
         }
 
-        private void Click_ToBookingRiwayat(object? sender, EventArgs e) 
+        private void Click_ToBookingRiwayat(object? sender, EventArgs e)
         {
             var dialog = new FormCaseIntegrated(NowTgl).ShowDialog();
-            if(dialog == DialogResult.Yes)
+            if (dialog == DialogResult.Yes)
             {
                 MainFormAdmin.buttonActiveAfter = 2;
                 MainFormAdmin.ControlSideBar();
                 MainFormAdmin.ShowFormInPanel2(new FormBooking(NowTgl));
             }
-            else if(dialog == DialogResult.OK)
+            else if (dialog == DialogResult.OK)
             {
                 MainFormAdmin.buttonActiveAfter = 4;
                 MainFormAdmin.ControlSideBar();

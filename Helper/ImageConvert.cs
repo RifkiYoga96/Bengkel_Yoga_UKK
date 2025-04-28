@@ -62,8 +62,8 @@ namespace Bengkel_Yoga_UKK
                 return ms.ToArray();
             }
         }
-
-        public static Image Image_ByteToImage(byte[] image_data)
+        
+        public static Image ByteArrayToImage(byte[] image_data)
         {
             using MemoryStream ms = new MemoryStream(image_data);
             return Image.FromStream(ms);

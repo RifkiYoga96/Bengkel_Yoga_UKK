@@ -1,9 +1,12 @@
-﻿using System;
+﻿using MaterialSkin.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,19 +15,14 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class DashboardAdmin : Form
     {
-        private readonly DashboardDal _dashboardDal = new DashboardDal();
+        private readonly DashboardDal _dashboard = new DashboardDal();
         public DashboardAdmin()
         {
             InitializeComponent();
             InitComponent();
             RegisterEvent();
 
-
-            //Servis Petugas
-            LoadGridServisTerbanyak();
             StyleGrids();
-            SetTotalPendapatan();
-            SetCards();
         }
 
         private void InitComponent()
@@ -38,69 +36,124 @@ namespace Bengkel_Yoga_UKK
         private void RegisterEvent()
         {
             gridServisTerbanyak.CellPainting += dataGridView1_CellPainting;
-        }
 
-        private void LoadGridServisTerbanyak()
-        {
-            var dataServis = _dashboardDal.ListServisTerbanyak()
-                .Select( (x,index) => new
-                {
-                    No = index + 1,
-                    Nama = x.nama_pelanggan,
-                    Total = x.jumlah_servis
-                }).ToList();
-            gridServisTerbanyak.DataSource = dataServis;
+            radioHariIni.CheckedChanged += (s, e) => GetRangeWaktu();
+            radioKemarin.CheckedChanged += (s, e) => GetRangeWaktu();
+            radio7H.CheckedChanged += (s, e) => GetRangeWaktu();
+            radio30H.CheckedChanged += (s, e) => GetRangeWaktu();
+            radio90H.CheckedChanged += (s, e) => GetRangeWaktu();
+
+            radio30H.Checked = true;
+
+            btnBatasBooking.Click += (s, e) => new FormBatasBooking().ShowDialog();
+            btnJadwal.Click += (s, e) => new FormJadwal().ShowDialog();
         }
 
         private void StyleGrids()
         {
             //Grid Servis
-            DataGridView gst = gridServisTerbanyak;
-            CustomGrids.CustomDataGrid(gst);
+            CustomGrids.CustomDataGrid(gridServisTerbanyak);
 
-            gst.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridServisTerbanyak.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            gst.Columns["No"].FillWeight = 20;
-            gst.Columns["Nama"].FillWeight = 50;
-            gst.Columns["Total"].FillWeight = 30;
+            gridServisTerbanyak.ColumnHeadersHeight = 40;
+            gridServisTerbanyak.RowTemplate.Height = 50;
 
-            gst.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
-            gst.Columns["No"].HeaderText = "    No";
-            gst.Columns["Total"].HeaderText = "Total Servis";
-            gst.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridServisTerbanyak.Columns["No"].FillWeight = 20;
+            gridServisTerbanyak.Columns["Nama"].FillWeight = 50;
+            gridServisTerbanyak.Columns["Total"].FillWeight = 30;
 
+            gridServisTerbanyak.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            gridServisTerbanyak.Columns["No"].HeaderText = "    No";
+            gridServisTerbanyak.Columns["Total"].HeaderText = "Total Servis";
+            gridServisTerbanyak.Columns["Total"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            //Grid Sparepart
+            CustomGrids.CustomDataGrid(gridPenjualanSparepart);
+            gridPenjualanSparepart.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            gridPenjualanSparepart.ColumnHeadersHeight = 40;
+            gridPenjualanSparepart.RowTemplate.Height = 50;
+
+            gridPenjualanSparepart.Columns["No"].FillWeight = 10;
+            gridPenjualanSparepart.Columns["Kode"].FillWeight = 20;
+            gridPenjualanSparepart.Columns["Nama"].FillWeight = 30;
+            gridPenjualanSparepart.Columns["TotalPenjualan"].FillWeight = 20;
+            gridPenjualanSparepart.Columns["Terjual"].FillWeight = 20;
+
+            gridPenjualanSparepart.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            gridPenjualanSparepart.Columns["No"].HeaderText = "    No";
+            gridPenjualanSparepart.Columns["TotalPenjualan"].HeaderText = "Total Penjualan";
+            gridPenjualanSparepart.Columns["Terjual"].HeaderText = "          Terjual";
+            gridPenjualanSparepart.Columns["Terjual"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        private void SetTotalPendapatan()
+        private void GetRangeWaktu()
         {
-            //Petugas dulu
-            DateTime tanggal1 = DateTime.Today;
-            DateTime tanggal2 = DateTime.Today.AddDays(1).AddSeconds(-1);
+            DateTime now = DateTime.Now;
+            var listFilterWaktu = new List<FilterWaktu>()
+            {
+                new FilterWaktu { nama = "Hari Ini", waktu1 = now.Date, waktu2 = now.Date.AddDays(1).AddSeconds(-1) },
+                new FilterWaktu { nama = "Kemarin", waktu1 = now.Date.AddDays(-1), waktu2 = now.Date.AddSeconds(-1) },
+                new FilterWaktu { nama = "7 Hari Lalu", waktu1 = now.Date.AddDays(-6), waktu2 = now.Date.AddDays(1).AddSeconds(-1) },
+                new FilterWaktu { nama = "30 Hari Lalu", waktu1 = now.Date.AddDays(-29), waktu2 = now.Date.AddDays(1).AddSeconds(-1) },
+                new FilterWaktu { nama = "90 Hari Lalu", waktu1 = now.Date.AddDays(-89), waktu2 = now.Date.AddDays(1).AddSeconds(-1) }
+            };
 
-            int pendapatan = _dashboardDal.GetPendapatan(tanggal1, tanggal2);
-
-            //set to label
-            lblPendapatan.Text = $"Rp {pendapatan:N2}";
+            if (radioHariIni.Checked)
+                LoadAdmin(listFilterWaktu[0].waktu1, listFilterWaktu[0].waktu2, listFilterWaktu[0].nama);
+            else if(radioKemarin.Checked)
+                LoadAdmin(listFilterWaktu[1].waktu1, listFilterWaktu[1].waktu2, listFilterWaktu[1].nama);
+            else if (radio7H.Checked)
+                LoadAdmin(listFilterWaktu[2].waktu1, listFilterWaktu[2].waktu2, listFilterWaktu[2].nama);
+            else if(radio30H.Checked)
+                LoadAdmin(listFilterWaktu[3].waktu1, listFilterWaktu[3].waktu2, listFilterWaktu[3].nama);
+            else
+                LoadAdmin(listFilterWaktu[4].waktu1, listFilterWaktu[4].waktu2, listFilterWaktu[4].nama);
         }
 
-        private void SetCards()
+        private void LoadAdmin(DateTime tgl1, DateTime tgl2, string keterangan)
         {
-            /*//Petugas
-            DateTime tanggal1 = DateTime.Today;
-            DateTime tanggal2 = DateTime.Today.AddDays(1).AddSeconds(-1);
-
             //Booking Card
-            int jumlahBookingToday = _dashboardDal.GetJumlahBooking(tanggal1, tanggal2);
+            int jumlahBookingToday = _dashboard.GetJumlahBooking(tgl1, tgl2);
             lblBooking.Text = jumlahBookingToday.ToString();
+            lblKetBooking.Text = "Jumlah Booking " + keterangan; 
 
-            //Servis Card
-            int bookingBelumDitangani = _dashboardDal.GetBookingBelumDitangani(tanggal1, tanggal2);
-            lblServis.Text = bookingBelumDitangani.ToString();
+            //Pelanggan Card
+            int pelangganBaru = _dashboard.GetPelangganBaru(tgl1, tgl2);
+            lblTotalPelanggan.Text = pelangganBaru.ToString();
+            lblKetPelanggan.Text = "Pelanggan Baru " + keterangan;
 
             //Sparepart Meipis
-            int sparepartMenipisHabis = _dashboardDal.GetSparepartMenipisHabis();
-            lblSparepart.Text = sparepartMenipisHabis.ToString();*/
+            int sparepartMenipisHabis = _dashboard.GetSparepartMenipisHabis();
+            lblSparepart.Text = sparepartMenipisHabis.ToString();
 
+            //Pendapatan
+            int pendapatan = _dashboard.GetPendapatan(tgl1, tgl2);
+            lblPendapatan.Text = $"Rp {pendapatan:N2}";
+            lblKetPendapatan.Text = "PENDAPATAN " + keterangan.ToUpper();
+
+            //Servis Terbanyak
+            var dataServis = _dashboard.ListServisTerbanyak(tgl1, tgl2)
+                .Select((x, index) => new
+                {
+                    No = index + 1,
+                    Nama = x.nama_pelanggan, 
+                    Total = x.jumlah_servis
+                }).ToList();
+            gridServisTerbanyak.DataSource = dataServis;
+
+            //Penjualan Sparepart
+            var dataPenjualan = _dashboard.ListPenjualanSparepart(tgl1,tgl2)
+                .Select((x,index) => new
+                {
+                    No = index + 1,
+                    Kode = x.kode_sparepart,
+                    Nama = x.nama_sparepart,
+                    TotalPenjualan = x.total_penjualan.ToString("C", new CultureInfo("id-ID")),
+                    Terjual = x.jumlah_penjualan
+                }).ToList();
+            gridPenjualanSparepart.DataSource = dataPenjualan;
         }
 
         private List<string> kolomTengah = new List<string> { "Total" };

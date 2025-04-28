@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -149,6 +150,7 @@ namespace Bengkel_Yoga_UKK
             comboMekanik.Enabled = false;
             comboServis.Enabled = false;
             btnSparepart.Enabled = false;
+            txtCatatan.Enabled = false;
         }
 
         private void ProgresServisGaris()
@@ -413,6 +415,17 @@ namespace Bengkel_Yoga_UKK
                 Catatan = txtCatatan.Text
             };
 
+
+            string[] pdfReaders = { "AcroRd32", "Acrobat", "FoxitReader", "SumatraPDF", "msedge", "chrome" };
+
+            foreach (var reader in pdfReaders)
+            {
+                foreach (var process in Process.GetProcessesByName(reader))
+                {
+                    process.Kill();
+                }
+            }
+
             InvoiceGenerators.GenerateInvoice(invoice);
         }
 
@@ -438,7 +451,7 @@ namespace Bengkel_Yoga_UKK
             dp.Add("@ktp_admin",GlobalVariabel._ktp);
             dp.Add("@total_harga",total);
             dp.Add("@status",_servisKeterangan);
-            dp.Add("@pembatalan_oleh",cancel ? "Admin/Petugas" : null);
+            dp.Add("@pembatalan_oleh",_servisKeterangan != "selesai" ? "Admin/Petugas" : null);
 
             await _bookingDal.SelesaiServisUpdate(dp,listSparepart.ToList());
         }

@@ -31,31 +31,28 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardAdmin));
             yogaPanel7 = new YogaPanel();
             btnBatasBooking = new YogaButton();
-            btnJamOperasional = new YogaButton();
-            btnJadwalLibur = new YogaButton();
             label9 = new Label();
             yogaPanel4 = new YogaPanel();
-            comboPendapatan = new ComboBox();
             lblPendapatan = new Label();
-            label14 = new Label();
+            lblKetPendapatan = new Label();
             autoLabel1 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             tableLayoutPanel2 = new TableLayoutPanel();
             yogaPanel5 = new YogaPanel();
-            gridTotalHargaTerbanyak = new DataGridView();
-            label11 = new Label();
+            gridPenjualanSparepart = new DataGridView();
+            lblKetPenjualanSparepart = new Label();
             yogaPanel6 = new YogaPanel();
             gridServisTerbanyak = new DataGridView();
-            label15 = new Label();
+            lblKetServisTerbanyak = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             yogaPanel3 = new YogaPanel();
             pictureBox6 = new PictureBox();
             yogaButton3 = new YogaButton();
             panel6 = new Panel();
             btnViewSparepart = new YogaButton();
-            label6 = new Label();
+            lblKetSparepart = new Label();
             panel3 = new Panel();
             label8 = new Label();
-            lblPelangganBaru = new Label();
+            lblSparepart = new Label();
             pictureBox4 = new PictureBox();
             yogaPanel2 = new YogaPanel();
             pictureBox5 = new PictureBox();
@@ -63,7 +60,7 @@
             panel5 = new Panel();
             btnViewServis = new YogaButton();
             panel2 = new Panel();
-            label5 = new Label();
+            lblKetPelanggan = new Label();
             label1 = new Label();
             pictureBox3 = new PictureBox();
             lblTotalPelanggan = new Label();
@@ -73,15 +70,21 @@
             panel4 = new Panel();
             btnViewBooking = new YogaButton();
             panel1 = new Panel();
-            label2 = new Label();
+            lblKetBooking = new Label();
             label3 = new Label();
             lblBooking = new Label();
             pictureBox1 = new PictureBox();
+            radioHariIni = new MaterialSkin.Controls.MaterialRadioButton();
+            radio7H = new MaterialSkin.Controls.MaterialRadioButton();
+            radio30H = new MaterialSkin.Controls.MaterialRadioButton();
+            radio90H = new MaterialSkin.Controls.MaterialRadioButton();
+            radioKemarin = new MaterialSkin.Controls.MaterialRadioButton();
+            btnJadwal = new YogaButton();
             yogaPanel7.SuspendLayout();
             yogaPanel4.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             yogaPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridTotalHargaTerbanyak).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPenjualanSparepart).BeginInit();
             yogaPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridServisTerbanyak).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -104,19 +107,18 @@
             yogaPanel7.BorderRadius = 13;
             yogaPanel7.BorderSize = 0;
             yogaPanel7.Controls.Add(btnBatasBooking);
-            yogaPanel7.Controls.Add(btnJamOperasional);
-            yogaPanel7.Controls.Add(btnJadwalLibur);
+            yogaPanel7.Controls.Add(btnJadwal);
             yogaPanel7.Controls.Add(label9);
             yogaPanel7.ForeColor = Color.White;
-            yogaPanel7.Location = new Point(627, 332);
+            yogaPanel7.Location = new Point(804, 359);
             yogaPanel7.Name = "yogaPanel7";
-            yogaPanel7.Size = new Size(543, 130);
+            yogaPanel7.Size = new Size(358, 130);
             yogaPanel7.TabIndex = 20;
             // 
             // btnBatasBooking
             // 
-            btnBatasBooking.BackColor = Color.MediumSlateBlue;
-            btnBatasBooking.BackgroundColor = Color.MediumSlateBlue;
+            btnBatasBooking.BackColor = Color.DodgerBlue;
+            btnBatasBooking.BackgroundColor = Color.DodgerBlue;
             btnBatasBooking.BorderColor = Color.PaleVioletRed;
             btnBatasBooking.BorderRadius = 7;
             btnBatasBooking.BorderSize = 0;
@@ -124,51 +126,13 @@
             btnBatasBooking.FlatStyle = FlatStyle.Flat;
             btnBatasBooking.Font = new Font("Segoe UI Semibold", 10.5F, FontStyle.Bold, GraphicsUnit.Point);
             btnBatasBooking.ForeColor = Color.White;
-            btnBatasBooking.Location = new Point(361, 55);
+            btnBatasBooking.Location = new Point(186, 56);
             btnBatasBooking.Name = "btnBatasBooking";
             btnBatasBooking.Size = new Size(138, 35);
             btnBatasBooking.TabIndex = 16;
             btnBatasBooking.Text = "✏ Batas Booking";
             btnBatasBooking.TextColor = Color.White;
             btnBatasBooking.UseVisualStyleBackColor = false;
-            // 
-            // btnJamOperasional
-            // 
-            btnJamOperasional.BackColor = Color.MediumSlateBlue;
-            btnJamOperasional.BackgroundColor = Color.MediumSlateBlue;
-            btnJamOperasional.BorderColor = Color.PaleVioletRed;
-            btnJamOperasional.BorderRadius = 7;
-            btnJamOperasional.BorderSize = 0;
-            btnJamOperasional.FlatAppearance.BorderSize = 0;
-            btnJamOperasional.FlatStyle = FlatStyle.Flat;
-            btnJamOperasional.Font = new Font("Segoe UI Semibold", 10.5F, FontStyle.Bold, GraphicsUnit.Point);
-            btnJamOperasional.ForeColor = Color.White;
-            btnJamOperasional.Location = new Point(185, 56);
-            btnJamOperasional.Name = "btnJamOperasional";
-            btnJamOperasional.Size = new Size(156, 35);
-            btnJamOperasional.TabIndex = 15;
-            btnJamOperasional.Text = "🕥 Jam Operasional";
-            btnJamOperasional.TextColor = Color.White;
-            btnJamOperasional.UseVisualStyleBackColor = false;
-            // 
-            // btnJadwalLibur
-            // 
-            btnJadwalLibur.BackColor = Color.MediumSlateBlue;
-            btnJadwalLibur.BackgroundColor = Color.MediumSlateBlue;
-            btnJadwalLibur.BorderColor = Color.PaleVioletRed;
-            btnJadwalLibur.BorderRadius = 7;
-            btnJadwalLibur.BorderSize = 0;
-            btnJadwalLibur.FlatAppearance.BorderSize = 0;
-            btnJadwalLibur.FlatStyle = FlatStyle.Flat;
-            btnJadwalLibur.Font = new Font("Segoe UI Semibold", 10.5F, FontStyle.Bold, GraphicsUnit.Point);
-            btnJadwalLibur.ForeColor = Color.White;
-            btnJadwalLibur.Location = new Point(38, 56);
-            btnJadwalLibur.Name = "btnJadwalLibur";
-            btnJadwalLibur.Size = new Size(130, 35);
-            btnJadwalLibur.TabIndex = 0;
-            btnJadwalLibur.Text = "📅 Jadwal Libur";
-            btnJadwalLibur.TextColor = Color.White;
-            btnJadwalLibur.UseVisualStyleBackColor = false;
             // 
             // label9
             // 
@@ -189,23 +153,13 @@
             yogaPanel4.BorderColor = Color.PaleVioletRed;
             yogaPanel4.BorderRadius = 13;
             yogaPanel4.BorderSize = 0;
-            yogaPanel4.Controls.Add(comboPendapatan);
             yogaPanel4.Controls.Add(lblPendapatan);
-            yogaPanel4.Controls.Add(label14);
+            yogaPanel4.Controls.Add(lblKetPendapatan);
             yogaPanel4.ForeColor = Color.White;
-            yogaPanel4.Location = new Point(38, 332);
+            yogaPanel4.Location = new Point(30, 359);
             yogaPanel4.Name = "yogaPanel4";
-            yogaPanel4.Size = new Size(556, 130);
+            yogaPanel4.Size = new Size(744, 130);
             yogaPanel4.TabIndex = 19;
-            // 
-            // comboPendapatan
-            // 
-            comboPendapatan.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            comboPendapatan.FormattingEnabled = true;
-            comboPendapatan.Location = new Point(177, 10);
-            comboPendapatan.Name = "comboPendapatan";
-            comboPendapatan.Size = new Size(121, 25);
-            comboPendapatan.TabIndex = 14;
             // 
             // lblPendapatan
             // 
@@ -219,21 +173,21 @@
             lblPendapatan.Text = "Rp 17.800.000,00";
             lblPendapatan.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label14
+            // lblKetPendapatan
             // 
-            label14.AutoSize = true;
-            label14.BackColor = Color.Transparent;
-            label14.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.ForeColor = SystemColors.ControlText;
-            label14.Location = new Point(21, 10);
-            label14.Name = "label14";
-            label14.Size = new Size(132, 25);
-            label14.TabIndex = 7;
-            label14.Text = "PENDAPATAN";
+            lblKetPendapatan.AutoSize = true;
+            lblKetPendapatan.BackColor = Color.Transparent;
+            lblKetPendapatan.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKetPendapatan.ForeColor = SystemColors.ControlText;
+            lblKetPendapatan.Location = new Point(21, 10);
+            lblKetPendapatan.Name = "lblKetPendapatan";
+            lblKetPendapatan.Size = new Size(132, 25);
+            lblKetPendapatan.TabIndex = 7;
+            lblKetPendapatan.Text = "PENDAPATAN";
             // 
             // autoLabel1
             // 
-            autoLabel1.Location = new Point(184, 328);
+            autoLabel1.Location = new Point(176, 315);
             autoLabel1.Name = "autoLabel1";
             autoLabel1.Size = new Size(0, 15);
             autoLabel1.TabIndex = 18;
@@ -247,7 +201,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 653F));
             tableLayoutPanel2.Controls.Add(yogaPanel5, 0, 0);
             tableLayoutPanel2.Controls.Add(yogaPanel6, 1, 0);
-            tableLayoutPanel2.Location = new Point(38, 504);
+            tableLayoutPanel2.Location = new Point(30, 531);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -260,8 +214,8 @@
             yogaPanel5.BorderColor = Color.PaleVioletRed;
             yogaPanel5.BorderRadius = 0;
             yogaPanel5.BorderSize = 0;
-            yogaPanel5.Controls.Add(gridTotalHargaTerbanyak);
-            yogaPanel5.Controls.Add(label11);
+            yogaPanel5.Controls.Add(gridPenjualanSparepart);
+            yogaPanel5.Controls.Add(lblKetPenjualanSparepart);
             yogaPanel5.Dock = DockStyle.Fill;
             yogaPanel5.ForeColor = Color.White;
             yogaPanel5.Location = new Point(0, 0);
@@ -270,26 +224,27 @@
             yogaPanel5.Size = new Size(479, 353);
             yogaPanel5.TabIndex = 0;
             // 
-            // gridTotalHargaTerbanyak
+            // gridPenjualanSparepart
             // 
-            gridTotalHargaTerbanyak.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridTotalHargaTerbanyak.Location = new Point(21, 54);
-            gridTotalHargaTerbanyak.Name = "gridTotalHargaTerbanyak";
-            gridTotalHargaTerbanyak.RowTemplate.Height = 25;
-            gridTotalHargaTerbanyak.Size = new Size(438, 278);
-            gridTotalHargaTerbanyak.TabIndex = 10;
+            gridPenjualanSparepart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridPenjualanSparepart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPenjualanSparepart.Location = new Point(21, 54);
+            gridPenjualanSparepart.Name = "gridPenjualanSparepart";
+            gridPenjualanSparepart.RowTemplate.Height = 25;
+            gridPenjualanSparepart.Size = new Size(438, 278);
+            gridPenjualanSparepart.TabIndex = 10;
             // 
-            // label11
+            // lblKetPenjualanSparepart
             // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.Transparent;
-            label11.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = SystemColors.ControlText;
-            label11.Location = new Point(21, 16);
-            label11.Name = "label11";
-            label11.Size = new Size(304, 25);
-            label11.TabIndex = 10;
-            label11.Text = "TOP 5 TOTAL HARGA TERBANYAK";
+            lblKetPenjualanSparepart.AutoSize = true;
+            lblKetPenjualanSparepart.BackColor = Color.Transparent;
+            lblKetPenjualanSparepart.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKetPenjualanSparepart.ForeColor = SystemColors.ControlText;
+            lblKetPenjualanSparepart.Location = new Point(21, 16);
+            lblKetPenjualanSparepart.Name = "lblKetPenjualanSparepart";
+            lblKetPenjualanSparepart.Size = new Size(387, 25);
+            lblKetPenjualanSparepart.TabIndex = 10;
+            lblKetPenjualanSparepart.Text = "TOP PENJUALAN SPAREPART 30 HARI LALU";
             // 
             // yogaPanel6
             // 
@@ -298,7 +253,7 @@
             yogaPanel6.BorderRadius = 13;
             yogaPanel6.BorderSize = 0;
             yogaPanel6.Controls.Add(gridServisTerbanyak);
-            yogaPanel6.Controls.Add(label15);
+            yogaPanel6.Controls.Add(lblKetServisTerbanyak);
             yogaPanel6.Dock = DockStyle.Fill;
             yogaPanel6.ForeColor = Color.White;
             yogaPanel6.Location = new Point(509, 0);
@@ -316,17 +271,17 @@
             gridServisTerbanyak.Size = new Size(582, 278);
             gridServisTerbanyak.TabIndex = 8;
             // 
-            // label15
+            // lblKetServisTerbanyak
             // 
-            label15.AutoSize = true;
-            label15.BackColor = Color.Transparent;
-            label15.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label15.ForeColor = SystemColors.ControlText;
-            label15.Location = new Point(19, 16);
-            label15.Name = "label15";
-            label15.Size = new Size(239, 25);
-            label15.TabIndex = 9;
-            label15.Text = "TOP 5 SERVIS TERBANYAK";
+            lblKetServisTerbanyak.AutoSize = true;
+            lblKetServisTerbanyak.BackColor = Color.Transparent;
+            lblKetServisTerbanyak.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKetServisTerbanyak.ForeColor = SystemColors.ControlText;
+            lblKetServisTerbanyak.Location = new Point(19, 16);
+            lblKetServisTerbanyak.Name = "lblKetServisTerbanyak";
+            lblKetServisTerbanyak.Size = new Size(348, 25);
+            lblKetServisTerbanyak.TabIndex = 9;
+            lblKetServisTerbanyak.Text = "TOP SERVIS TERBANYAK 30 HARI LALU";
             // 
             // tableLayoutPanel1
             // 
@@ -339,7 +294,7 @@
             tableLayoutPanel1.Controls.Add(yogaPanel3, 2, 0);
             tableLayoutPanel1.Controls.Add(yogaPanel2, 1, 0);
             tableLayoutPanel1.Controls.Add(yogaPanel1, 0, 0);
-            tableLayoutPanel1.Location = new Point(38, 55);
+            tableLayoutPanel1.Location = new Point(30, 82);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -356,10 +311,10 @@
             yogaPanel3.Controls.Add(yogaButton3);
             yogaPanel3.Controls.Add(panel6);
             yogaPanel3.Controls.Add(btnViewSparepart);
-            yogaPanel3.Controls.Add(label6);
+            yogaPanel3.Controls.Add(lblKetSparepart);
             yogaPanel3.Controls.Add(panel3);
             yogaPanel3.Controls.Add(label8);
-            yogaPanel3.Controls.Add(lblPelangganBaru);
+            yogaPanel3.Controls.Add(lblSparepart);
             yogaPanel3.Controls.Add(pictureBox4);
             yogaPanel3.Dock = DockStyle.Fill;
             yogaPanel3.ForeColor = Color.White;
@@ -433,17 +388,17 @@
             btnViewSparepart.TextColor = Color.White;
             btnViewSparepart.UseVisualStyleBackColor = false;
             // 
-            // label6
+            // lblKetSparepart
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(29, 148);
-            label6.Name = "label6";
-            label6.Size = new Size(220, 25);
-            label6.TabIndex = 11;
-            label6.Text = "Pelanggan Baru Bulan Ini";
+            lblKetSparepart.AutoSize = true;
+            lblKetSparepart.BackColor = Color.Transparent;
+            lblKetSparepart.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKetSparepart.ForeColor = Color.White;
+            lblKetSparepart.Location = new Point(29, 148);
+            lblKetSparepart.Name = "lblKetSparepart";
+            lblKetSparepart.Size = new Size(235, 25);
+            lblKetSparepart.TabIndex = 11;
+            lblKetSparepart.Text = "Sparepart Menipis && Habis";
             // 
             // panel3
             // 
@@ -462,21 +417,21 @@
             label8.ForeColor = Color.White;
             label8.Location = new Point(21, 14);
             label8.Name = "label8";
-            label8.Size = new Size(177, 25);
+            label8.Size = new Size(113, 25);
             label8.TabIndex = 12;
-            label8.Text = "PELANGGAN BARU";
+            label8.Text = "SPAREPART";
             // 
-            // lblPelangganBaru
+            // lblSparepart
             // 
-            lblPelangganBaru.AutoSize = true;
-            lblPelangganBaru.BackColor = Color.Transparent;
-            lblPelangganBaru.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPelangganBaru.ForeColor = Color.White;
-            lblPelangganBaru.Location = new Point(29, 85);
-            lblPelangganBaru.Name = "lblPelangganBaru";
-            lblPelangganBaru.Size = new Size(81, 62);
-            lblPelangganBaru.TabIndex = 9;
-            lblPelangganBaru.Text = "67";
+            lblSparepart.AutoSize = true;
+            lblSparepart.BackColor = Color.Transparent;
+            lblSparepart.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSparepart.ForeColor = Color.White;
+            lblSparepart.Location = new Point(29, 85);
+            lblSparepart.Name = "lblSparepart";
+            lblSparepart.Size = new Size(81, 62);
+            lblSparepart.TabIndex = 9;
+            lblSparepart.Text = "67";
             // 
             // pictureBox4
             // 
@@ -499,7 +454,7 @@
             yogaPanel2.Controls.Add(panel5);
             yogaPanel2.Controls.Add(btnViewServis);
             yogaPanel2.Controls.Add(panel2);
-            yogaPanel2.Controls.Add(label5);
+            yogaPanel2.Controls.Add(lblKetPelanggan);
             yogaPanel2.Controls.Add(label1);
             yogaPanel2.Controls.Add(pictureBox3);
             yogaPanel2.Controls.Add(lblTotalPelanggan);
@@ -584,17 +539,17 @@
             panel2.Size = new Size(514, 3);
             panel2.TabIndex = 15;
             // 
-            // label5
+            // lblKetPelanggan
             // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(29, 148);
-            label5.Name = "label5";
-            label5.Size = new Size(144, 25);
-            label5.TabIndex = 8;
-            label5.Text = "Total Pelanggan";
+            lblKetPelanggan.AutoSize = true;
+            lblKetPelanggan.BackColor = Color.Transparent;
+            lblKetPelanggan.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKetPelanggan.ForeColor = Color.White;
+            lblKetPelanggan.Location = new Point(34, 147);
+            lblKetPelanggan.Name = "lblKetPelanggan";
+            lblKetPelanggan.Size = new Size(245, 25);
+            lblKetPelanggan.TabIndex = 8;
+            lblKetPelanggan.Text = "Pelanggan Baru 30 Hari Lalu";
             // 
             // label1
             // 
@@ -641,7 +596,7 @@
             yogaPanel1.Controls.Add(panel4);
             yogaPanel1.Controls.Add(btnViewBooking);
             yogaPanel1.Controls.Add(panel1);
-            yogaPanel1.Controls.Add(label2);
+            yogaPanel1.Controls.Add(lblKetBooking);
             yogaPanel1.Controls.Add(label3);
             yogaPanel1.Controls.Add(lblBooking);
             yogaPanel1.Controls.Add(pictureBox1);
@@ -726,17 +681,17 @@
             panel1.Size = new Size(514, 3);
             panel1.TabIndex = 13;
             // 
-            // label2
+            // lblKetBooking
             // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(29, 148);
-            label2.Name = "label2";
-            label2.Size = new Size(222, 25);
-            label2.TabIndex = 7;
-            label2.Text = "Jumlah Booking Bulan Ini";
+            lblKetBooking.AutoSize = true;
+            lblKetBooking.BackColor = Color.Transparent;
+            lblKetBooking.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKetBooking.ForeColor = Color.White;
+            lblKetBooking.Location = new Point(29, 148);
+            lblKetBooking.Name = "lblKetBooking";
+            lblKetBooking.Size = new Size(247, 25);
+            lblKetBooking.TabIndex = 7;
+            lblKetBooking.Text = "Jumlah Booking 30 Hari Lalu";
             // 
             // label3
             // 
@@ -772,11 +727,115 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // radioHariIni
+            // 
+            radioHariIni.AutoSize = true;
+            radioHariIni.Depth = 0;
+            radioHariIni.Location = new Point(30, 23);
+            radioHariIni.Margin = new Padding(0);
+            radioHariIni.MouseLocation = new Point(-1, -1);
+            radioHariIni.MouseState = MaterialSkin.MouseState.HOVER;
+            radioHariIni.Name = "radioHariIni";
+            radioHariIni.Ripple = true;
+            radioHariIni.Size = new Size(85, 37);
+            radioHariIni.TabIndex = 86;
+            radioHariIni.TabStop = true;
+            radioHariIni.Text = "Hari ini";
+            radioHariIni.UseVisualStyleBackColor = true;
+            // 
+            // radio7H
+            // 
+            radio7H.AutoSize = true;
+            radio7H.Depth = 0;
+            radio7H.Location = new Point(282, 23);
+            radio7H.Margin = new Padding(0);
+            radio7H.MouseLocation = new Point(-1, -1);
+            radio7H.MouseState = MaterialSkin.MouseState.HOVER;
+            radio7H.Name = "radio7H";
+            radio7H.Ripple = true;
+            radio7H.Size = new Size(105, 37);
+            radio7H.TabIndex = 87;
+            radio7H.TabStop = true;
+            radio7H.Text = "7 hari lalu";
+            radio7H.UseVisualStyleBackColor = true;
+            // 
+            // radio30H
+            // 
+            radio30H.AutoSize = true;
+            radio30H.Depth = 0;
+            radio30H.Location = new Point(418, 23);
+            radio30H.Margin = new Padding(0);
+            radio30H.MouseLocation = new Point(-1, -1);
+            radio30H.MouseState = MaterialSkin.MouseState.HOVER;
+            radio30H.Name = "radio30H";
+            radio30H.Ripple = true;
+            radio30H.Size = new Size(114, 37);
+            radio30H.TabIndex = 88;
+            radio30H.TabStop = true;
+            radio30H.Text = "30 hari lalu";
+            radio30H.UseVisualStyleBackColor = true;
+            // 
+            // radio90H
+            // 
+            radio90H.AutoSize = true;
+            radio90H.Depth = 0;
+            radio90H.Location = new Point(566, 23);
+            radio90H.Margin = new Padding(0);
+            radio90H.MouseLocation = new Point(-1, -1);
+            radio90H.MouseState = MaterialSkin.MouseState.HOVER;
+            radio90H.Name = "radio90H";
+            radio90H.Ripple = true;
+            radio90H.Size = new Size(114, 37);
+            radio90H.TabIndex = 89;
+            radio90H.TabStop = true;
+            radio90H.Text = "90 hari lalu";
+            radio90H.UseVisualStyleBackColor = true;
+            // 
+            // radioKemarin
+            // 
+            radioKemarin.AutoSize = true;
+            radioKemarin.Depth = 0;
+            radioKemarin.Location = new Point(153, 23);
+            radioKemarin.Margin = new Padding(0);
+            radioKemarin.MouseLocation = new Point(-1, -1);
+            radioKemarin.MouseState = MaterialSkin.MouseState.HOVER;
+            radioKemarin.Name = "radioKemarin";
+            radioKemarin.Ripple = true;
+            radioKemarin.Size = new Size(94, 37);
+            radioKemarin.TabIndex = 90;
+            radioKemarin.TabStop = true;
+            radioKemarin.Text = "Kemarin";
+            radioKemarin.UseVisualStyleBackColor = true;
+            // 
+            // btnJadwal
+            // 
+            btnJadwal.BackColor = Color.LimeGreen;
+            btnJadwal.BackgroundColor = Color.LimeGreen;
+            btnJadwal.BorderColor = Color.PaleVioletRed;
+            btnJadwal.BorderRadius = 7;
+            btnJadwal.BorderSize = 0;
+            btnJadwal.FlatAppearance.BorderSize = 0;
+            btnJadwal.FlatStyle = FlatStyle.Flat;
+            btnJadwal.Font = new Font("Segoe UI Semibold", 10.5F, FontStyle.Bold, GraphicsUnit.Point);
+            btnJadwal.ForeColor = Color.White;
+            btnJadwal.Location = new Point(38, 56);
+            btnJadwal.Name = "btnJadwal";
+            btnJadwal.Size = new Size(130, 35);
+            btnJadwal.TabIndex = 0;
+            btnJadwal.Text = "📅 Jadwal";
+            btnJadwal.TextColor = Color.White;
+            btnJadwal.UseVisualStyleBackColor = false;
+            // 
             // DashboardAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1193, 896);
+            Controls.Add(radioKemarin);
+            Controls.Add(radio90H);
+            Controls.Add(radio30H);
+            Controls.Add(radio7H);
+            Controls.Add(radioHariIni);
             Controls.Add(yogaPanel7);
             Controls.Add(yogaPanel4);
             Controls.Add(autoLabel1);
@@ -790,7 +849,7 @@
             tableLayoutPanel2.ResumeLayout(false);
             yogaPanel5.ResumeLayout(false);
             yogaPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridTotalHargaTerbanyak).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridPenjualanSparepart).EndInit();
             yogaPanel6.ResumeLayout(false);
             yogaPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gridServisTerbanyak).EndInit();
@@ -815,43 +874,40 @@
 
         private YogaPanel yogaPanel7;
         private YogaButton btnBatasBooking;
-        private YogaButton btnJamOperasional;
-        private YogaButton btnJadwalLibur;
         private Label label9;
         private YogaPanel yogaPanel4;
         private Label lblPendapatan;
-        private Label label14;
+        private Label lblKetPendapatan;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel1;
         private TableLayoutPanel tableLayoutPanel2;
         private YogaPanel yogaPanel5;
-        private DataGridView gridTotalHargaTerbanyak;
-        private Label label11;
+        private DataGridView gridPenjualanSparepart;
+        private Label lblKetPenjualanSparepart;
         private YogaPanel yogaPanel6;
         private DataGridView gridServisTerbanyak;
-        private Label label15;
+        private Label lblKetServisTerbanyak;
         private TableLayoutPanel tableLayoutPanel1;
         private YogaPanel yogaPanel3;
         private YogaButton btnViewSparepart;
-        private Label label6;
+        private Label lblKetSparepart;
         private Panel panel3;
         private Label label8;
-        private Label lblPelangganBaru;
+        private Label lblSparepart;
         private PictureBox pictureBox4;
         private YogaPanel yogaPanel2;
         private YogaButton btnViewServis;
         private Panel panel2;
-        private Label label5;
+        private Label lblKetPelanggan;
         private Label label1;
         private PictureBox pictureBox3;
         private Label lblTotalPelanggan;
         private YogaPanel yogaPanel1;
         private YogaButton btnViewBooking;
         private Panel panel1;
-        private Label label2;
+        private Label lblKetBooking;
         private Label label3;
         private Label lblBooking;
         private PictureBox pictureBox1;
-        private ComboBox comboPendapatan;
         private YogaButton yogaButton3;
         private Panel panel6;
         private YogaButton yogaButton2;
@@ -861,5 +917,11 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox6;
         private PictureBox pictureBox5;
+        private MaterialSkin.Controls.MaterialRadioButton radioHariIni;
+        private MaterialSkin.Controls.MaterialRadioButton radio7H;
+        private MaterialSkin.Controls.MaterialRadioButton radio30H;
+        private MaterialSkin.Controls.MaterialRadioButton radio90H;
+        private MaterialSkin.Controls.MaterialRadioButton radioKemarin;
+        private YogaButton btnJadwal;
     }
 }

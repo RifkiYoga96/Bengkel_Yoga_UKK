@@ -50,9 +50,7 @@
             btnDetailProfile = new YogaButton();
             panel1 = new Panel();
             pictureBoxProfile = new RJCircularPictureBox();
-            label1 = new Label();
             panelTop = new Panel();
-            yogaButton1 = new YogaButton();
             lblDisplay = new Label();
             panelMain = new Panel();
             restoreStripMenuItem2 = new ToolStripMenuItem();
@@ -462,46 +460,15 @@
             pictureBoxProfile.TabIndex = 0;
             pictureBoxProfile.TabStop = false;
             // 
-            // label1
-            // 
-            label1.AutoEllipsis = true;
-            label1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(82, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(144, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Rifki Yoga Syahbani";
-            // 
             // panelTop
             // 
             panelTop.BackColor = Color.White;
-            panelTop.Controls.Add(label1);
-            panelTop.Controls.Add(yogaButton1);
             panelTop.Controls.Add(lblDisplay);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(290, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(944, 67);
             panelTop.TabIndex = 9;
-            // 
-            // yogaButton1
-            // 
-            yogaButton1.BackColor = Color.Transparent;
-            yogaButton1.BackgroundColor = Color.Transparent;
-            yogaButton1.BorderColor = Color.PaleVioletRed;
-            yogaButton1.BorderRadius = 4;
-            yogaButton1.BorderSize = 0;
-            yogaButton1.FlatAppearance.BorderSize = 0;
-            yogaButton1.FlatStyle = FlatStyle.Flat;
-            yogaButton1.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            yogaButton1.ForeColor = Color.White;
-            yogaButton1.Image = (Image)resources.GetObject("yogaButton1.Image");
-            yogaButton1.Location = new Point(228, 15);
-            yogaButton1.Name = "yogaButton1";
-            yogaButton1.Size = new Size(30, 30);
-            yogaButton1.TabIndex = 0;
-            yogaButton1.TextColor = Color.White;
-            yogaButton1.UseVisualStyleBackColor = false;
             // 
             // lblDisplay
             // 
@@ -597,7 +564,6 @@
         private YogaButton btnLogout;
         private Panel panelTop;
         private Panel panel2;
-        private Label label1;
         private RJCircularPictureBox pictureBoxProfile;
         private Label lblRole;
         private Label lblDisplay;
@@ -605,7 +571,6 @@
         private YogaButton btnKendaraan;
         private Panel panel3;
         private Panel panel1;
-        private YogaButton yogaButton1;
         private FlowLayoutPanel flowLayoutPanel1;
         private Label lblNamaAdmin;
         private YogaButton btnDetailProfile;

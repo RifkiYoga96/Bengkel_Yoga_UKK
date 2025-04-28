@@ -16,6 +16,7 @@ namespace Bengkel_Yoga_UKK
     public partial class KendaraanUC : UserControl
     {
         private readonly UserKendaraanDal _userKendaraanDal = new UserKendaraanDal();
+        private readonly KendaraanDal _kendaraanDal = new KendaraanDal();
         private int _id_kendaraan = 0;
         private bool _isBooking = false;
         private int _id_terkait = 0;
@@ -128,9 +129,24 @@ namespace Bengkel_Yoga_UKK
         private void RegisterEvent()
         {
             btnDetail.Click += BtnDetail_Click;
+            btnEdit.Click += BtnEdit_Click;
 
             this.Load += KendaraanUC_Load;
             btnBooking.Click += BtnBooking_Click;
+            btnDelete.Click += BtnDelete_Click;
+        }
+
+        private void BtnDelete_Click(object? sender, EventArgs e)
+        {
+            if (!MB.Konfirmasi("Apakah anda yakin ingin menghapus kendaraan ini?")) return;
+            _kendaraanDal.SoftDeleteData(_id_kendaraan);
+            //ServisUserUC.LoadComponent();
+        }
+
+        private void BtnEdit_Click(object? sender, EventArgs e)
+        {
+            if (new InputKendaraanForm(_id_kendaraan).ShowDialog() != DialogResult.OK) return;
+            LoadData(_id_kendaraan);
         }
 
         private void BtnDetail_Click(object? sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class FormDashboardUser : Form
     {
-        public static FormDashboardUser _formDashboardUser { get; private set; }
+        public static FormDashboardUser? _formDashboardUser { get; private set; }
         private static Color _active = Color.FromArgb(52, 152, 219);
         private static Color _inActive = Color.FromArgb(44, 62, 80);
         public static RouteDto _route = new RouteDto();
@@ -44,7 +44,10 @@ namespace Bengkel_Yoga_UKK
             };
 
             btnLogout.Click += BtnLogout_Click;
+
+            this.FormClosed += (s,e) => _formDashboardUser = null;
         }
+
 
         private void BtnLogout_Click(object? sender, EventArgs e)
         {

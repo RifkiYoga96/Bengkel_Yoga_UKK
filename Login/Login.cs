@@ -60,6 +60,11 @@ namespace Bengkel_Yoga_UKK
                 new Register().Show();
                 this.Close();
             };
+            btnBack.Click += (s, e) =>
+            {
+                FormDashboardUser._formDashboardUser.Show();
+                this.Close();
+            };
         }
 
 

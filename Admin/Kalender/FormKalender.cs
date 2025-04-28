@@ -104,10 +104,10 @@ namespace Bengkel_Yoga_UKK
                               : x.status == "dikerjakan" ? _dikerjakan
                               : _selesai)
                         .ToList(),
-                    jumlah = listDay.Count(),
+                    jumlah = data.Count(),
                     integratedTo = !data.Any() ? 0
                             : data.All(x => x.status == "pending" || x.status == "dikerjakan") ? 1
-                            : data.All(x => x.status == "selesai" || x.status == "dibatalkan") ? 2 
+                            : data.All(x => x.status == "selesai" || x.status == "dibatalkan") ? 2
                             : 3
                 };
 
@@ -124,11 +124,11 @@ namespace Bengkel_Yoga_UKK
                                     ON p.ktp_pelanggan = b.ktp_pelanggan
                                  WHERE YEAR(Tanggal) = @year AND MONTH(Tanggal) = @month";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<ShowDayModel>(sql, new {month = month, year = year});
+            return koneksi.Query<ShowDayModel>(sql, new { month = month, year = year });
         }
 
-        
-        
+
+
     }
 }
 

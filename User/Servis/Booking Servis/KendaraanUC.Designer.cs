@@ -36,7 +36,7 @@
             btnBooking = new Button();
             btnEdit = new Button();
             panel3 = new Panel();
-            button1 = new Button();
+            btnDelete = new Button();
             panelProfile = new Panel();
             lblProfile = new Label();
             lblTanggal = new Label();
@@ -64,7 +64,7 @@
             panelKendaraan.Controls.Add(btnBooking);
             panelKendaraan.Controls.Add(btnEdit);
             panelKendaraan.Controls.Add(panel3);
-            panelKendaraan.Controls.Add(button1);
+            panelKendaraan.Controls.Add(btnDelete);
             panelKendaraan.Controls.Add(panelProfile);
             panelKendaraan.Controls.Add(lblTanggal);
             panelKendaraan.Controls.Add(label6);
@@ -156,18 +156,18 @@
             panel3.Size = new Size(978, 3);
             panel3.TabIndex = 12;
             // 
-            // button1
+            // btnDelete
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(929, 18);
-            button1.Name = "button1";
-            button1.Size = new Size(35, 35);
-            button1.TabIndex = 11;
-            button1.UseVisualStyleBackColor = true;
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.BackgroundImage = (Image)resources.GetObject("btnDelete.BackgroundImage");
+            btnDelete.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(929, 18);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(35, 35);
+            btnDelete.TabIndex = 11;
+            btnDelete.UseVisualStyleBackColor = true;
             // 
             // panelProfile
             // 
@@ -303,7 +303,7 @@
         private Panel panel1;
         private Panel panelProfile;
         private Label lblTanggal;
-        private Button button1;
+        private Button btnDelete;
         private Panel panel3;
         private Button btnEdit;
         private Button btnBooking;

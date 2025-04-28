@@ -224,7 +224,6 @@ namespace Bengkel_Yoga_UKK
                 _pelangganDal.UpdateData(dataPelanggan);
             }
 
-
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

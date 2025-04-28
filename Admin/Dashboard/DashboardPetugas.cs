@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,9 @@ namespace Bengkel_Yoga_UKK
 
 
             //Servis Petugas
-            LoadGridServis();
-            StyleGrids();
-            SetTotalPendapatan();
             SetCards();
+            StyleGrids();
         }
-
 
         private void InitComponent()
         {
@@ -36,9 +34,6 @@ namespace Bengkel_Yoga_UKK
             yogaPanel2.Resize += (s, e) => yogaPanel2.Invalidate();
             yogaPanel3.Resize += (s, e) => yogaPanel3.Invalidate();
             yogaPanel5.Resize += (s, e) => yogaPanel5.Invalidate();
-
-            
-
         }
 
         private void RegisterEvent()
@@ -49,19 +44,6 @@ namespace Bengkel_Yoga_UKK
         private void BtnViewBooking_Click(object? sender, EventArgs e)
         {
             //MainFormAdmin._mainForm.
-        }
-
-
-        private void LoadGridServis()
-        {
-            var dataServis = _dashboardDal.ListDataServis()
-                .Select(x => new
-                {
-                    Antrean = (x.tipe_antrean == 1 ? "A" : "B") + (x.antrean.ToString("D3")),
-                    Nama = x.nama_pelanggan,
-                    Kendaraan = x.nama_kendaraan
-                }).ToList();
-            gridServisToday.DataSource = dataServis;
         }
 
         private void StyleGrids()
@@ -79,23 +61,25 @@ namespace Bengkel_Yoga_UKK
             gst.Columns["Antrean"].DefaultCellStyle.Padding = new Padding(20,0,0,0);
             gst.Columns["Antrean"].HeaderText = "    Antrean";
 
-        }
 
-        private void SetTotalPendapatan()
-        {
-            //Petugas dulu
-            DateTime tanggal1 = DateTime.Today;
-            DateTime tanggal2 = DateTime.Today.AddDays(1).AddSeconds(-1);
+            DataGridView gs = gridSparepart;
+            CustomGrids.CustomDataGrid(gs);
 
-            int pendapatan = _dashboardDal.GetPendapatan(tanggal1,tanggal2);
+            gs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //set to label
-            lblPendapatan.Text = $"Rp {pendapatan:N2}";
+            gs.Columns["No"].FillWeight = 15;
+            gs.Columns["Kode"].FillWeight = 20;
+            gs.Columns["Nama"].FillWeight = 25;
+            gs.Columns["TotalPenjualan"].FillWeight = 20;
+            gs.Columns["Terjual"].FillWeight = 20;
+
+            gs.Columns["No"].DefaultCellStyle.Padding = new Padding(20, 0, 0, 0);
+            gs.Columns["TotalPenjualan"].HeaderText = "    Total Penjualan";
+
         }
 
         private void SetCards()
         {
-            //Petugas
             DateTime tanggal1 = DateTime.Today;
             DateTime tanggal2 = DateTime.Today.AddDays(1).AddSeconds(-1);
 
@@ -103,14 +87,40 @@ namespace Bengkel_Yoga_UKK
             int jumlahBookingToday = _dashboardDal.GetJumlahBooking(tanggal1, tanggal2);
             lblBooking.Text = jumlahBookingToday.ToString();
 
-            //Servis Card
+            //Servis Pending
             int bookingBelumDitangani = _dashboardDal.GetBookingBelumDitangani(tanggal1, tanggal2);
             lblServis.Text = bookingBelumDitangani.ToString();
 
-            //Sparepart Meipis
-            int sparepartMenipisHabis = _dashboardDal.GetSparepartMenipisHabis();
-            lblSparepart.Text = sparepartMenipisHabis.ToString();
+            //Servis Selesai
+            int servisSelesai = _dashboardDal.GetServisSelesai(tanggal1, tanggal2);
+            lblServisSelesai.Text = servisSelesai.ToString();
 
+            //Pendapatan
+            int pendapatan = _dashboardDal.GetPendapatan(tanggal1, tanggal2);
+            lblPendapatan.Text = $"Rp {pendapatan:N2}";
+
+            //Servis Hari Ini
+            var dataServis = _dashboardDal.ListDataServis()
+                .Select(x => new
+                {
+                    Antrean = (x.tipe_antrean == 1 ? "A" : "B") + (x.antrean.ToString("D3")),
+                    Nama = x.nama_pelanggan,
+                    Kendaraan = x.nama_kendaraan
+                }).ToList();
+            gridServisToday.DataSource = dataServis;
+
+            //Penjualan Sparepart Hari Ini
+            //Penjualan Sparepart
+            var dataPenjualan = _dashboardDal.ListPenjualanSparepart(tanggal1, tanggal2)
+                .Select((x, index) => new
+                {
+                    No = index + 1,
+                    Kode = x.kode_sparepart,
+                    Nama = x.nama_sparepart,
+                    TotalPenjualan = x.total_penjualan.ToString("C", new CultureInfo("id-ID")),
+                    Terjual = x.jumlah_penjualan
+                }).ToList();
+            gridSparepart.DataSource = dataPenjualan;
         }
     }
 }

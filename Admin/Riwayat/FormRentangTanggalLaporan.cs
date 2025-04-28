@@ -16,11 +16,13 @@ namespace Bengkel_Yoga_UKK
         public FormRentangTanggalLaporan()
         {
             InitializeComponent();
+            this.IsDialogForm();
             RegisterEvent();
         }
         private void RegisterEvent()
         {
             btnSave.Click += BtnSave_Click;
+            btnCancel.Click += (s, e) => this.Close();
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)

@@ -238,6 +238,7 @@ namespace Bengkel_Yoga_UKK
             _karyawanDal.UpdateData(dataPegawai);
             _karyawanDal.UpdateKTP(dataPegawai.ktp_admin_new, dataPegawai.ktp_admin_old);
 
+            GlobalVariabel._ktp = dataPegawai.ktp_admin_new; //Reset session
             MainFormAdmin.PegawaiLogin(); // Update profile pegawai
 
             this.DialogResult = DialogResult.OK;
@@ -259,7 +260,7 @@ namespace Bengkel_Yoga_UKK
 
             //Set Profile
             Image profile = data.image_data != null ?
-                ImageConvert.Image_ByteToImage(data.image_data)
+                ImageConvert.ByteArrayToImage(data.image_data)
                 : _defaultProfile;
             pictureBoxProfile.BackgroundImage = profile;
             _fotoAdmin = profile;

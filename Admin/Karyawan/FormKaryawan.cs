@@ -203,7 +203,7 @@ namespace Bengkel_Yoga_UKK
                 {
                     No = offset + index + 1,
                     ktp_admin = x.ktp_admin,
-                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.SmoothImagePictureBox(ImageConvert.Image_ByteToImage(x.image_data), 45, 45))
+                    Foto = x.image_data != null ? ImageConvert.ImageToByteArray(ImageConvert.SmoothImagePictureBox(ImageConvert.ByteArrayToImage(x.image_data), 45, 45))
                         : _defaultProfile,
                     Nama = x.nama_admin,
                     Email = x.email,

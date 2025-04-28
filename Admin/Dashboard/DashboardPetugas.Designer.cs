@@ -57,7 +57,7 @@
             label6 = new Label();
             panel3 = new Panel();
             label8 = new Label();
-            lblSparepart = new Label();
+            lblServisSelesai = new Label();
             pictureBox4 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             autoLabel1 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
@@ -111,6 +111,7 @@
             // 
             // gridSparepart
             // 
+            gridSparepart.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             gridSparepart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridSparepart.Location = new Point(21, 54);
             gridSparepart.Name = "gridSparepart";
@@ -126,9 +127,9 @@
             label11.ForeColor = SystemColors.ControlText;
             label11.Location = new Point(21, 16);
             label11.Name = "label11";
-            label11.Size = new Size(153, 25);
+            label11.Size = new Size(304, 25);
             label11.TabIndex = 10;
-            label11.Text = "SERVIS HARI INI";
+            label11.Text = "PENJUALAN SPAREPART HARI INI";
             // 
             // yogaPanel6
             // 
@@ -208,7 +209,7 @@
             yogaPanel1.Location = new Point(0, 0);
             yogaPanel1.Margin = new Padding(0, 0, 30, 0);
             yogaPanel1.Name = "yogaPanel1";
-            yogaPanel1.Size = new Size(357, 237);
+            yogaPanel1.Size = new Size(357, 219);
             yogaPanel1.TabIndex = 12;
             // 
             // btnViewBooking
@@ -225,22 +226,24 @@
             btnViewBooking.FlatStyle = FlatStyle.Flat;
             btnViewBooking.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             btnViewBooking.ForeColor = Color.White;
-            btnViewBooking.Location = new Point(14, 188);
+            btnViewBooking.Location = new Point(14, 179);
             btnViewBooking.Name = "btnViewBooking";
             btnViewBooking.Size = new Size(331, 45);
             btnViewBooking.TabIndex = 14;
             btnViewBooking.Text = "View Detail";
             btnViewBooking.TextColor = Color.White;
             btnViewBooking.UseVisualStyleBackColor = false;
+            btnViewBooking.Visible = false;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.FromArgb(230, 235, 240);
-            panel1.Location = new Point(0, 185);
+            panel1.Location = new Point(0, 176);
             panel1.Name = "panel1";
             panel1.Size = new Size(357, 3);
             panel1.TabIndex = 13;
+            panel1.Visible = false;
             // 
             // label2
             // 
@@ -248,7 +251,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(29, 148);
+            label2.Location = new Point(29, 164);
             label2.Name = "label2";
             label2.Size = new Size(209, 25);
             label2.TabIndex = 7;
@@ -272,7 +275,7 @@
             lblBooking.BackColor = Color.Transparent;
             lblBooking.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
             lblBooking.ForeColor = Color.White;
-            lblBooking.Location = new Point(29, 85);
+            lblBooking.Location = new Point(29, 101);
             lblBooking.Name = "lblBooking";
             lblBooking.Size = new Size(81, 62);
             lblBooking.TabIndex = 3;
@@ -306,7 +309,7 @@
             yogaPanel2.Location = new Point(387, 0);
             yogaPanel2.Margin = new Padding(0, 0, 30, 0);
             yogaPanel2.Name = "yogaPanel2";
-            yogaPanel2.Size = new Size(357, 237);
+            yogaPanel2.Size = new Size(357, 219);
             yogaPanel2.TabIndex = 13;
             // 
             // btnViewServis
@@ -323,22 +326,24 @@
             btnViewServis.FlatStyle = FlatStyle.Flat;
             btnViewServis.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             btnViewServis.ForeColor = Color.White;
-            btnViewServis.Location = new Point(14, 188);
+            btnViewServis.Location = new Point(14, 179);
             btnViewServis.Name = "btnViewServis";
             btnViewServis.Size = new Size(331, 45);
             btnViewServis.TabIndex = 16;
             btnViewServis.Text = "View Detail";
             btnViewServis.TextColor = Color.White;
             btnViewServis.UseVisualStyleBackColor = false;
+            btnViewServis.Visible = false;
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.FromArgb(230, 235, 240);
-            panel2.Location = new Point(0, 185);
+            panel2.Location = new Point(0, 176);
             panel2.Name = "panel2";
             panel2.Size = new Size(357, 3);
             panel2.TabIndex = 15;
+            panel2.Visible = false;
             // 
             // label5
             // 
@@ -346,11 +351,11 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(29, 148);
+            label5.Location = new Point(29, 164);
             label5.Name = "label5";
-            label5.Size = new Size(206, 25);
+            label5.Size = new Size(271, 25);
             label5.TabIndex = 8;
-            label5.Text = "Servis Belum Ditangani";
+            label5.Text = "Servis Belum Ditangani Hari Ini";
             // 
             // label1
             // 
@@ -360,9 +365,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(21, 14);
             label1.Name = "label1";
-            label1.Size = new Size(72, 25);
+            label1.Size = new Size(158, 25);
             label1.TabIndex = 10;
-            label1.Text = "SERVIS";
+            label1.Text = "SERVIS PENDING";
             // 
             // pictureBox3
             // 
@@ -381,7 +386,7 @@
             lblServis.BackColor = Color.Transparent;
             lblServis.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
             lblServis.ForeColor = Color.White;
-            lblServis.Location = new Point(29, 85);
+            lblServis.Location = new Point(29, 101);
             lblServis.Name = "lblServis";
             lblServis.Size = new Size(81, 62);
             lblServis.TabIndex = 7;
@@ -397,14 +402,14 @@
             yogaPanel3.Controls.Add(label6);
             yogaPanel3.Controls.Add(panel3);
             yogaPanel3.Controls.Add(label8);
-            yogaPanel3.Controls.Add(lblSparepart);
+            yogaPanel3.Controls.Add(lblServisSelesai);
             yogaPanel3.Controls.Add(pictureBox4);
             yogaPanel3.Dock = DockStyle.Fill;
             yogaPanel3.ForeColor = Color.White;
             yogaPanel3.Location = new Point(774, 0);
             yogaPanel3.Margin = new Padding(0, 0, 30, 0);
             yogaPanel3.Name = "yogaPanel3";
-            yogaPanel3.Size = new Size(358, 237);
+            yogaPanel3.Size = new Size(358, 219);
             yogaPanel3.TabIndex = 14;
             // 
             // btnViewSparepart
@@ -421,13 +426,14 @@
             btnViewSparepart.FlatStyle = FlatStyle.Flat;
             btnViewSparepart.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             btnViewSparepart.ForeColor = Color.White;
-            btnViewSparepart.Location = new Point(15, 188);
+            btnViewSparepart.Location = new Point(15, 179);
             btnViewSparepart.Name = "btnViewSparepart";
             btnViewSparepart.Size = new Size(330, 45);
             btnViewSparepart.TabIndex = 18;
             btnViewSparepart.Text = "View Detail";
             btnViewSparepart.TextColor = Color.White;
             btnViewSparepart.UseVisualStyleBackColor = false;
+            btnViewSparepart.Visible = false;
             // 
             // label6
             // 
@@ -435,20 +441,21 @@
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(29, 148);
+            label6.Location = new Point(29, 164);
             label6.Name = "label6";
-            label6.Size = new Size(166, 25);
+            label6.Size = new Size(189, 25);
             label6.TabIndex = 11;
-            label6.Text = "Sparepart Menipis";
+            label6.Text = "Servis Selesai Hari Ini";
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel3.BackColor = Color.FromArgb(230, 235, 240);
-            panel3.Location = new Point(0, 185);
+            panel3.Location = new Point(0, 176);
             panel3.Name = "panel3";
             panel3.Size = new Size(356, 3);
             panel3.TabIndex = 17;
+            panel3.Visible = false;
             // 
             // label8
             // 
@@ -458,21 +465,21 @@
             label8.ForeColor = Color.White;
             label8.Location = new Point(21, 14);
             label8.Name = "label8";
-            label8.Size = new Size(113, 25);
+            label8.Size = new Size(145, 25);
             label8.TabIndex = 12;
-            label8.Text = "SPAREPART";
+            label8.Text = "SERVIS SELESAI";
             // 
-            // lblSparepart
+            // lblServisSelesai
             // 
-            lblSparepart.AutoSize = true;
-            lblSparepart.BackColor = Color.Transparent;
-            lblSparepart.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
-            lblSparepart.ForeColor = Color.White;
-            lblSparepart.Location = new Point(29, 85);
-            lblSparepart.Name = "lblSparepart";
-            lblSparepart.Size = new Size(81, 62);
-            lblSparepart.TabIndex = 9;
-            lblSparepart.Text = "67";
+            lblServisSelesai.AutoSize = true;
+            lblServisSelesai.BackColor = Color.Transparent;
+            lblServisSelesai.Font = new Font("Segoe UI", 35F, FontStyle.Bold, GraphicsUnit.Point);
+            lblServisSelesai.ForeColor = Color.White;
+            lblServisSelesai.Location = new Point(29, 101);
+            lblServisSelesai.Name = "lblServisSelesai";
+            lblServisSelesai.Size = new Size(54, 62);
+            lblServisSelesai.TabIndex = 9;
+            lblServisSelesai.Text = "2";
             // 
             // pictureBox4
             // 
@@ -496,11 +503,11 @@
             tableLayoutPanel1.Controls.Add(yogaPanel3, 2, 0);
             tableLayoutPanel1.Controls.Add(yogaPanel2, 1, 0);
             tableLayoutPanel1.Controls.Add(yogaPanel1, 0, 0);
-            tableLayoutPanel1.Location = new Point(30, 66);
+            tableLayoutPanel1.Location = new Point(30, 84);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1162, 237);
+            tableLayoutPanel1.Size = new Size(1162, 219);
             tableLayoutPanel1.TabIndex = 11;
             // 
             // autoLabel1
@@ -521,7 +528,7 @@
             yogaPanel4.ForeColor = Color.White;
             yogaPanel4.Location = new Point(30, 343);
             yogaPanel4.Name = "yogaPanel4";
-            yogaPanel4.Size = new Size(556, 130);
+            yogaPanel4.Size = new Size(479, 130);
             yogaPanel4.TabIndex = 14;
             // 
             // DashboardPetugas
@@ -575,7 +582,7 @@
         private Label lblServis;
         private YogaPanel yogaPanel3;
         private Label label8;
-        private Label lblSparepart;
+        private Label lblServisSelesai;
         private PictureBox pictureBox4;
         private TableLayoutPanel tableLayoutPanel1;
         private DataGridView gridServisToday;

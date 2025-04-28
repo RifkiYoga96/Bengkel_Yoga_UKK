@@ -15,6 +15,7 @@ namespace Bengkel_Yoga_UKK
         public TambahKendaraanUC()
         {
             InitializeComponent();
+            
             btnTambah.Click += (s, e) => 
             {
                 /*FormDashboardUser._route = new RouteDto
@@ -26,7 +27,8 @@ namespace Bengkel_Yoga_UKK
                 FormDashboardUser.ControlTab(4);
                 FormDashboardUser.ShowControlInPanel(new InputKendaraanUC());*/
 
-                new InputKendaraanForm().ShowDialog();
+                if (new InputKendaraanForm(0).ShowDialog() != DialogResult.OK) return;
+                ServisUserUC._servisUserUC.LoadComponent();
             };
             ServisUserUC._child = true;
         }

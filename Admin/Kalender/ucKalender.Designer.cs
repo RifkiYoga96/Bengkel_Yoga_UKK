@@ -69,8 +69,8 @@
             // 
             // btnCountNotif
             // 
-            btnCountNotif.BackColor = Color.FromArgb(0, 192, 0);
-            btnCountNotif.BackgroundColor = Color.FromArgb(0, 192, 0);
+            btnCountNotif.BackColor = Color.Coral;
+            btnCountNotif.BackgroundColor = Color.Coral;
             btnCountNotif.BorderColor = Color.PaleVioletRed;
             btnCountNotif.BorderRadius = 3;
             btnCountNotif.BorderSize = 0;

@@ -38,9 +38,9 @@ namespace Bengkel_Yoga_UKK
         {
             const string sql = @"SELECT k.*,p.nama_pelanggan
                                 FROM Kendaraan k 
-                                INNER JOIN Pelanggan p
+                                RIGHT JOIN Pelanggan p
                                     ON k.ktp_pelanggan = p.ktp_pelanggan
-                                WHERE k.ktp_pelanggan = @ktp_pelanggan";
+                                WHERE k.ktp_pelanggan = @ktp_pelanggan AND p.deleted_at IS NULL";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<KendaraanModel>(sql, new { ktp_pelanggan = ktp_pelanggan });
         }

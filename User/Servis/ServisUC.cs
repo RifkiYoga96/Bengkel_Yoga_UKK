@@ -27,14 +27,14 @@ namespace Bengkel_Yoga_UKK
                 {
                     if (!MB.Konfirmasi("Anda harus login terlebih dahulu!\nApakah anda ingin login")) return;
                     new Login().Show();
-                    FormDashboardUser._formDashboardUser.Hide();
+                    FormDashboardUser._formDashboardUser?.Hide();
                     return;
                 }
                 else if (Regex.IsMatch(GlobalVariabel._ktp, @"[A-Za-z]"))
                 {
                     if (!MB.Konfirmasi("Anda harus melengkapi data terlebih dahulu!\nApakah anda ingin melengkapi?")) return;
                     new RegisterLanjutan().Show();
-                    FormDashboardUser._formDashboardUser.Hide();
+                    FormDashboardUser._formDashboardUser?.Hide();
                     return;
                 }
 

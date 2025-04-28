@@ -15,18 +15,18 @@ namespace Bengkel_Yoga_UKK
 {
     public partial class ServisUserUC : UserControl
     {
+        public static ServisUserUC? _servisUserUC { get; private set; }
         public static bool _child = false;
-        private readonly KendaraanDal _kendaraanDal = new KendaraanDal();
         private readonly BookingDal _bookingDal = new BookingDal();
 
         public ServisUserUC()
         {
             InitializeComponent();
+            _servisUserUC = this;
             LoadComponent();
             this.Resize += ServisUser_Resize;
             RegisterEvent();
             UpdateAntrean();
-            
         }
 
         private void ServisUser_Resize(object? sender, EventArgs e)
@@ -37,28 +37,35 @@ namespace Bengkel_Yoga_UKK
             }
         }
 
-        private void LoadComponent()
+        public void LoadComponent()
         {
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.WrapContents = false;
-            flowLayoutPanel1.AutoScroll = true;
-            int width = this.ClientSize.Width;
+            if (ServisUserUC._servisUserUC == null) return;
+            FlowLayoutPanel flow = ServisUserUC._servisUserUC.flowLayoutPanel1;
+            flow.FlowDirection = FlowDirection.TopDown;
+            flow.WrapContents = false;
+            flow.AutoScroll = true;
+            int width = flow.ClientSize.Width;
 
+            var kendaraanDal = new KendaraanDal();
             string ktp_pelanggan = GlobalVariabel._ktp;
-            var listDataKendaraan = _kendaraanDal.ListDataPelanggan(ktp_pelanggan);
-            if (!listDataKendaraan.Any())
-            {
-                return;
-                // penanganan jika belum ada kendaraan
-            }
+            var listDataKendaraan = kendaraanDal.ListDataPelanggan(ktp_pelanggan);
 
-            flowLayoutPanel1.Controls.Add(new TambahKendaraanUC());
+
+            flow.Controls.Clear();
+
+            var tambahKendaraan = new TambahKendaraanUC();
+            tambahKendaraan.Width = flow.ClientSize.Width - 2;
+            flow.Controls.Add(tambahKendaraan);
+
             foreach (var itm in listDataKendaraan)
             {
                 UserControl kendaraan = new KendaraanUC(itm.id_kendaraan);
                 kendaraan.Width = width - 2;
-                flowLayoutPanel1.Controls.Add(kendaraan);
+                flow.Controls.Add(kendaraan);
             }
+            this.Resize -= ServisUser_Resize;
+            this.Resize += ServisUser_Resize;
+
         }
         private void RegisterEvent()
         {
@@ -71,7 +78,9 @@ namespace Bengkel_Yoga_UKK
                     sideBar = true
                 };
             };
+            this.Disposed += (s,e) => _servisUserUC = null;
         }
+
 
         private async void UpdateAntrean()
         {
